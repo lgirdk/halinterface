@@ -203,6 +203,9 @@ _CMMGMT_CM_US_CHANNEL {
     CHAR                            SymbolRate[64];
     CHAR                            Modulation[64];
     CHAR                            LockStatus[64];
+    /* LGI ADD */
+    ULONG                           T3Timeouts;
+    ULONG                           T4Timeouts;
 }
 CMMGMT_CM_US_CHANNEL, *PCMMGMT_CM_US_CHANNEL;
 
