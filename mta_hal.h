@@ -446,6 +446,19 @@ typedef enum{
         MTA_PROVISIONED=0,
         MTA_NON_PROVISIONED=1
 } MTAMGMT_MTA_PROVISION_STATUS;
+
+// LGI ADD - START
+typedef  struct
+_MTAMGMT_LGI_MTA_LINEINFO
+{
+    ULONG                           InstanceNumber;
+    ULONG                           OperStatus;                 /* Up = 1; Down = 2 */
+    ULONG                           AdminStatus;                /* Disabled = 0; Enabled = 1 */
+    ULONG                           HookStatus;                 /* Onhook = 0; Offhook = 1 */
+}
+MTAMGMT_LGI_MTA_LINEINFO, *PMTAMGMT_LGI_MTA_LINEINFO;
+// LGI ADD - END
+
 /**
  * @}
  */
@@ -1397,6 +1410,80 @@ typedef INT ( * mta_hal_getLineRegisterStatus_callback)(MTAMGMT_MTA_STATUS *outp
 */
 
 void mta_hal_LineRegisterStatus_callback_register(mta_hal_getLineRegisterStatus_callback callback_proc); //Callback registration function.
+
+// LGI ADD - START
+/*  mta_hal_GetPacketCableRegion: */
+/**
+* @description Get the MTA Packet Cable Region
+* @param ULONG *pPacketCableRegion - the region
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT mta_hal_GetPacketCableRegion(ULONG *pPacketCableRegion);
+
+/*  mta_hal_LineInfoGetNumberOfEntries :  */
+/**
+* @description Get number of line info entries.
+* @param None
+*
+* @return ULONG - number of entries
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+ULONG mta_hal_LineInfoGetNumberOfEntries(void);
+
+/* mta_hal_LineInfoGetEntry : */
+/**
+* @description Get entry of the line info at the given index
+* @param INT Index - index to the info entry
+* @param PMTAMGMT_LGI_MTA_LINEINFO pEntry - entry info, to be returned
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT mta_hal_LineInfoGetEntry(ULONG Index, PMTAMGMT_LGI_MTA_LINEINFO pEntry);
+
+/*  mta_hal_LineInfoSetAdminStatus: */
+/**
+* @description Set the line AdminStatus to ulong value passed in
+* @param INT Index - index to the info entry
+* @param ULONG Value - ulong value for enabled or not.
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT mta_hal_LineInfoSetAdminStatus(ULONG Index, ULONG Value);
+// LGI ADD - END
 
 #endif /* __MTA_HAL_H__ */
 /**
