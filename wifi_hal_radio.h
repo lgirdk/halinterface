@@ -317,6 +317,50 @@ INT wifi_getRadioDfsEnable(INT radioIndex, BOOL *output_bool);
 */
 INT wifi_setRadioDfsEnable(INT radioIndex, BOOL enabled);
 
+/* wifi_getRadioDfsMoveBackEnable() function */
+/**
+* @brief Get the DfsMoveBack enable status.
+*
+* Device.WiFi.Radio.{i}.X_LGI-COM_EnhancedACS.DFSMoveBack
+*
+* @param[in]  radioIndex   Index of Wi-Fi radio channel
+* @param[out] output_bool  Get the DfsMoveBack enable status. 
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT wifi_getRadioDfsMoveBackEnable(INT radioIndex, BOOL *output_bool);
+
+/* wifi_setRadioDfsMoveBackEnable() function */
+/**
+* @brief Set the DfsMoveBack enable status.
+*
+* Data model parameter used to check the DFSMoveBack enable status is "Device.WiFi.Radio.{i}.X_LGI-COM_EnhancedACS.DFSMoveBack".
+*
+* @param[in] radioIndex  Index of Wi-Fi radio channel
+* @param[in] enable	 Set DFSMoveBack Enable status of the selected radio channel
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT wifi_setRadioDfsMoveBackEnable(INT radioIndex, BOOL enabled);
+
 /* wifi_getRadioMCS() function */
 /**
 * @brief Get the Modulation Coding Scheme index, eg: "-1", "1", "15".
