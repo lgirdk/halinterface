@@ -957,6 +957,17 @@ typedef struct _wifi_associated_dev_stats {
 	wifi_rssi_snapshot_t cli_rssi_ack;      /**< RSSI from last 4 ack received     (AP) */
 } wifi_associated_dev_stats_t;	
 
+typedef struct _wifi_5gcapable_table_t{
+    char mac[18];
+    char time[32];
+}wifi_5gcapable_table_t;
+
+typedef struct _wifi_24gblacklist_table_t{
+    char mac[18];
+    char time[32];
+    ULONG time_remaining;
+}wifi_24gblacklist_table_t;
+
 /** @} */  //END OF GROUP WIFI_HAL_TYPES 
 
 /**
@@ -10472,5 +10483,19 @@ typedef struct {
     unsigned int        num_vaps;
     wifi_vap_info_t vap_array[8];
 } __attribute__((packed)) wifi_vap_info_map_t;
+
+INT wifi_getBandSteeringEnable_perSSID(INT ifIndex, BOOL *enable);
+INT wifi_getBandSteeringActive_perSSID(INT ifIndex, BOOL *active);
+INT wifi_setBandSteeringEnable_perSSID(INT ifIndex, BOOL enable);
+INT wifi_getBandSteeringRSSIThreshold_perSSID(INT ifIndex, INT *RSSIThr);
+INT wifi_setBandSteeringRSSIThreshold_perSSID(INT ifIndex, INT RSSIThr);
+INT wifi_getBandSteeringDeltaThreshold_perSSID(INT ifIndex, UINT *deltaThreshold);
+INT wifi_setBandSteeringDeltaThreshold_perSSID(INT ifIndex, UINT deltaThreshold);
+INT wifi_getBandSteeringBlacklistTimeout_perSSID(INT ifIndex, UINT *blacklistTimeout);
+INT wifi_setBandSteeringBlacklistTimeout_perSSID(INT ifIndex, UINT blacklistTimeout);
+INT wifi_getBandSteering5GCapableEntries_perSSID(INT ifIndex, ULONG *num, wifi_5gcapable_table_t **table);
+INT wifi_getBandSteering24GBlacklistEntries_perSSID(INT ifIndex, ULONG *num, wifi_24gblacklist_table_t **table);
+INT wifi_setBandSteeringClear5GCapableTable(BOOL clear);
+INT wifi_setBandSteeringClear24GTempBlacklistTable(BOOL clear);
 
 #endif
