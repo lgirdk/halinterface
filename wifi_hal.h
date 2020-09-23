@@ -2484,6 +2484,50 @@ INT wifi_getRadioDfsMoveBackEnable(INT radioIndex, BOOL *output_bool);		//RDKB
 */
 INT wifi_setRadioDfsMoveBackEnable(INT radioIndex, BOOL enabled);			//RDKB
 
+/* wifi_getRadioExcludeDfs() function */
+/**
+* @brief Get the ExcludeDFS enable status.
+*
+* Device.WiFi.Radio.{i}.X_LGI-COM_EnhancedACS.ExcludeDFS
+*
+* @param[in]  radioIndex   Index of Wi-Fi radio channel
+* @param[out] output_bool  Get the ExcludeDFS enable status.
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT wifi_getRadioExcludeDfs(INT radioIndex, BOOL *output_bool);		//RDKB
+
+/* wifi_setRadioExcludeDfs() function */
+/**
+* @brief Set the ExcludeDFS enable status.
+*
+* Device.WiFi.Radio.{i}.X_LGI-COM_EnhancedACS.ExcludeDFS
+*
+* @param[in] radioIndex  Index of Wi-Fi radio
+* @param[in] enable      Set ExcludeDFS status of the selected radio
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT wifi_setRadioExcludeDfs(INT radioIndex, BOOL enable);		//RDKB
+
 /* wifi_getRadioAutoChannelRefreshPeriodSupported() function */
 /**
 * @brief Check if the driver support the AutoChannelRefreshPeriod.
