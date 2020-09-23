@@ -374,6 +374,30 @@ typedef struct _snmpv3_kickstart_table {
     snmp_kickstart_row_t *kickstart_values[MAX_KICKSTART_ROWS];
 } snmpv3_kickstart_table_t;
 
+/*
+   These values are hardcoded in the data model (as part of
+   Device.X_LGI-COM_CableModem.CMStatus) so should not be changed.
+*/
+typedef enum
+{
+    CM_STAT_UNKNOWN = 0,
+    CM_STAT_OTHER = 1,
+    CM_STAT_ONLINE = 2,
+    CM_STAT_PARTIAL_SRV_DS = 3,
+    CM_STAT_PARTIAL_SRV_US = 4,
+    CM_STAT_PARTIAL_SRV_DS_US = 5,
+} cmOperationState_t;
+
+typedef enum
+{
+    CM_DL_STAT_UNKNOWN = 0,
+    CM_DL_STAT_UPGRADE_IN_PROGRESS = 1,
+    CM_DL_STAT_UPGRADE_COMPLETE_FROM_PROVISIONING = 2,
+    CM_DL_STAT_UPGRADE_COMPLETE_FROM_MANAGEMENT = 3,
+    CM_DL_STAT_UPGRADE_FAILED = 4,
+    CM_DL_STAT_OTHER = 5,
+} cmDownloadState_t;
+
 /** @} */  //END OF GROUP CM_HAL_TYPES
 
 
@@ -1170,6 +1194,21 @@ int cm_hal_snmpv3_kickstart_initialize(snmpv3_kickstart_table_t *pKickstart_Tabl
 */
 
 int docsis_IsEnergyDetected( BOOLEAN *pEnergyDetected );
+
+
+int docsis_getCmDoc30SwRegistrationState (int *mac_status);
+int docsis_getCmT1Timeouts (unsigned int *t1_timeout);
+int docsis_getCmT2Timeouts (unsigned int *t2_timeout);
+int docsis_getCMOperationStatus (int *cm_status);
+int docsis_getEnergyMode (int *energy_mode);
+int docsis_getHorizOvertempProtModeState (int *temp_mode);
+int docsis_getPartServiceFallback20 (int *enable);
+int docsis_getDownstreamPrimaryChannelID (int *dsPrimChannelId);
+int cm_getSoftwareOperStatus (int *swOperStatus);
+int qos_getServiceFlowCount (unsigned int *count);
+int qos_getServiceFlowParamCount (unsigned int *count);
+int qos_getServiceFlowParam (int sf_index, int *flow_id, int *direction);
+int qos_getServiceFlowParamsetDetails (int sf_id, int *MaxTrafficRate, int *MaxTrafficBurst, int *MinReservedRate, int *MaxConcatBurst, int *SchedulingType);
 
 #ifdef __cplusplus
 }
