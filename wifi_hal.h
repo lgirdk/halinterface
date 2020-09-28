@@ -966,6 +966,37 @@ typedef struct _wifi_24gblacklist_table_t{
     ULONG time_remaining;
 }wifi_24gblacklist_table_t;
 
+typedef  struct
+{
+    char    mac[18];
+    ULONG   total_airtime;
+} wifi_station_airtime;
+
+typedef struct ATM_REPORT_BSSWeightInfo
+{
+    int BssID;
+    char BssWeightDL[10];
+    char BssWeightUL[10];
+
+}ATM_REPORT_BSSWeightInfo_t;
+
+struct wlan_ATM_report
+{
+        unsigned char mIsUsed;
+        char nMac[18];
+        unsigned char nConnectBSS;
+        char  nBSSConfigPercentWeightDL[10];
+        char  nBSSConfigPercentWeightUL[10];
+        char  nSTAConfigAirTimeDL[10];
+        char  nSTAConfigAirTimeUL[10];
+        char  nSTAActualAirTimeDL[10];
+        char  nSTAActualAirTimeUL[10];
+        char  nSTATotalAirTimeDL[20];
+        char  nSTATotalAirTimeUL[20];
+};
+
+typedef struct wlan_ATM_report wlan_ATM_report_t ;
+
 /** @} */  //END OF GROUP WIFI_HAL_TYPES 
 
 /**
@@ -10254,4 +10285,23 @@ INT wifi_getBandSteering24GBlacklistEntries_perSSID(INT ifIndex, ULONG *num, wif
 INT wifi_setBandSteeringClear5GCapableTable(BOOL clear);
 INT wifi_setBandSteeringClear24GTempBlacklistTable(BOOL clear);
 
+INT wifi_getAtmBandEnable(INT band, BOOL * enable);
+INT wifi_setAtmBandEnable(INT band, BOOL enable);
+INT wifi_getAtmBandMode(INT band, CHAR *mode);
+INT wifi_setAtmBandMode(INT band, ULONG mode);
+INT wifi_getAtmBandWeights(INT band, CHAR *weights, INT size);
+INT wifi_setAtmBandWeights(INT band, CHAR *weights);
+INT wifi_getAtmBandDistributionType(INT band, CHAR *distribType);
+INT wifi_setAtmBandDistributionType(INT band, CHAR *distribType);
+INT wifi_getAtmBandWaitThreshold(INT band, ULONG *thresholdTime);
+INT wifi_setAtmBandWaitThreshold(INT band, ULONG thresholdTime);
+INT wifi_getAtmBandDirection(INT band, CHAR *direction);
+INT wifi_setAtmBandDirection(INT band, ULONG direction);
+INT wifi_getAtmBandStaWeight(INT band, CHAR *staWeight);
+INT wifi_setAtmBandStaWeight(INT band, CHAR *staWeight);
+INT wifi_getAtmBandMWWWeight(INT band, CHAR *mwwWeight);
+INT wifi_setAtmBandMWWWeight(INT band, CHAR *mwwWeight);
+INT wifi_getAtmBandMWWEnable(INT band, BOOL *enable);
+INT wifi_setAtmBandMWWEnable(INT band, BOOL enable);
+INT wifi_getAtmStationAirtime(wlan_ATM_report_t **pStationAirtime, INT *stationNumber);
 #endif
