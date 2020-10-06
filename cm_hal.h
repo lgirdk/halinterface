@@ -409,6 +409,16 @@ typedef enum
     CM_DL_STAT_OTHER = 5,
 } cmDownloadState_t;
 
+typedef enum
+{
+    CM_INIT_MODE_CONTROL_UNKNOWN = 0,
+    CM_INIT_MODE_CONTROL_DISABLED = 1,
+    CM_INIT_MODE_CONTROL_IPV4 = 2,
+    CM_INIT_MODE_CONTROL_IPV6 = 3,
+    CM_INIT_MODE_CONTROL_IPV4_IPV6 = 4,
+    CM_INIT_MODE_CONTROL_HONOR = 5,
+} cmInitMode_t;
+
 /*
    These values are hardcoded in the data model (as part of
    Device.X_LGI-COM_CableModem.CmDoc30SwRegistrationState)
@@ -1312,6 +1322,9 @@ int qos_getServiceFlowCount (unsigned int *count);
 int qos_getServiceFlowParamCount (unsigned int *count);
 int qos_getServiceFlowParam (int sf_index, int *flow_id, int *direction);
 int qos_getServiceFlowParamsetDetails (int sf_id, int *MaxTrafficRate, int *MaxTrafficBurst, int *MinReservedRate, int *MaxConcatBurst, int *SchedulingType);
+
+int cm_hal_Get_ErouterModeControl (unsigned int *initMode);
+int cm_hal_Set_ErouterModeControl (int initMode);
 
 #ifdef __cplusplus
 }
