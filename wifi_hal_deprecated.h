@@ -2948,6 +2948,9 @@ INT wifi_getApSecurityKeyPassphrase(INT apIndex, CHAR *output_string);
 */
 INT wifi_setApSecurityKeyPassphrase(INT apIndex, CHAR *passPhrase);           // sets the passphrase environment variable, max 63 characters
 
+INT wifi_getApSecurityWpaRekeyInterval(INT apIndex, INT *output_int);         // outputs the rekey interval
+INT wifi_setApSecurityWpaRekeyInterval(INT apIndex, INT rekeyInterval);       // sets the internal variable for the rekey interval
+
 /* wifi_getApWpsEnable() function */
 /**
 * @brief Outputs the WPS enable state of this access point  in output_bool.
