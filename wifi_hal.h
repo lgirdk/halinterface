@@ -6470,8 +6470,8 @@ INT wifi_setApSecurityKeyPassphrase(INT apIndex, CHAR *passPhrase);           //
 
 //Device.WiFi.AccessPoint.{i}.Security.RekeyingInterval	unsignedInt	W	
 //The interval (expressed in seconds) in which the keys are re-generated.
-//INT wifi_getApSecurityWpaRekeyInterval(INT apIndex, INT *output_int);         // outputs the rekey interval
-//INT wifi_setApSecurityWpaRekeyInterval(INT apIndex, INT rekeyInterval);       // sets the internal variable for the rekey interval
+INT wifi_getApSecurityWpaRekeyInterval(INT apIndex, INT *output_int);         // outputs the rekey interval
+INT wifi_setApSecurityWpaRekeyInterval(INT apIndex, INT rekeyInterval);       // sets the internal variable for the rekey interval
 
 /* wifi_setApSecurityReset() function */
 /**
