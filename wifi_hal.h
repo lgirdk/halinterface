@@ -2559,6 +2559,50 @@ INT wifi_getRadioExcludeDfs(INT radioIndex, BOOL *output_bool);		//RDKB
 */
 INT wifi_setRadioExcludeDfs(INT radioIndex, BOOL enable);		//RDKB
 
+/* wifi_getRadioChannelWeights() function */
+/**
+* @brief Get the Radio ChannelWeights.
+*
+* Device.WiFi.Radio.{i}.X_LGI-COM_EnhancedACS.Weight.
+*
+* @param[in]  radioIndex   Index of Wi-Fi radio channel
+* @param[out] output_bool  Get Radio ChannelWeights for channels 1,6,11 for Radio 0 and 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140 for Radio 1
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT wifi_getRadioChannelWeights(INT radioIndex, ULONG *output_weights); //RDKB
+
+/* wifi_setRadioChannelWeights() function */
+/**
+* @brief Set the Radio ChannelWeights.
+*
+* Device.WiFi.Radio.{i}.X_LGI-COM_EnhancedACS.Weight.
+*
+* @param[in] radioIndex  Index of Wi-Fi radio
+* @param[in] enable      Set Radio ChannelWeights for channels 1,6,11 for Radio 0 and 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140 for Radio 1
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT wifi_setRadioChannelWeights(INT radioIndex, const ULONG *output_weights); //RDKB
+
 /* wifi_getRadioAutoChannelRefreshPeriodSupported() function */
 /**
 * @brief Check if the driver support the AutoChannelRefreshPeriod.
