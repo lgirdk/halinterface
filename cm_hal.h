@@ -80,41 +80,8 @@
 extern "C"{
 #endif
 
-
-#ifndef CHAR
-#define CHAR  char
-#endif
-
-#ifndef UCHAR
-#define UCHAR unsigned char
-#endif
-
 #ifndef BOOLEAN
 #define BOOLEAN  unsigned char
-#endif
-
-#ifndef USHORT
-#define USHORT  unsigned short
-#endif
-
-#ifndef UINT8
-#define UINT8 unsigned char
-#endif
-
-#ifndef INT
-#define INT   int
-#endif
-
-#ifndef UINT
-#define UINT  unsigned int
-#endif
-
-#ifndef LONG
-#define LONG	long
-#endif
-
-#ifndef ULONG
-#define ULONG unsigned long
 #endif
 
 #ifndef TRUE
