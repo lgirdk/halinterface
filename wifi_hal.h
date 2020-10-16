@@ -6940,6 +6940,29 @@ INT wifi_cancelApWPS(INT apIndex);                                    // cancels
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
+INT wifi_getWpsStatus(INT apIndex, CHAR *output_string);     // Get the WPS status
+/* wifi_getWpsStatus() function */
+/**
+* @brief Outputs the WPS status of this access point in output_string.
+*
+* @param[in]  apIndex       Access Point index
+* @param[out] output_string   WPS Status, to be returned(Expected values : Success,Failed,In_progress)
+*
+* Device.WiFi.AccessPoint.{x}.WPS.X_LGI-COM_WpsStatus
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+
+
 INT wifi_getApManagementFramePowerControl(INT apIndex, INT *output_dBm);  // Get the RadioManagementFramePowerControl supported. 
 
 /* wifi_setApManagementFramePowerControl() function */
