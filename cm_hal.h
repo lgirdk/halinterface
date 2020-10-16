@@ -78,41 +78,8 @@
 extern "C"{
 #endif
 
-
-#ifndef CHAR
-#define CHAR  char
-#endif
-
-#ifndef UCHAR
-#define UCHAR unsigned char
-#endif
-
 #ifndef BOOLEAN
 #define BOOLEAN  unsigned char
-#endif
-
-#ifndef USHORT
-#define USHORT  unsigned short
-#endif
-
-#ifndef UINT8
-#define UINT8 unsigned char
-#endif
-
-#ifndef INT
-#define INT   int
-#endif
-
-#ifndef UINT
-#define UINT  unsigned int
-#endif
-
-#ifndef LONG
-#define LONG	long
-#endif
-
-#ifndef ULONG
-#define ULONG unsigned long
 #endif
 
 #ifndef TRUE
@@ -152,8 +119,8 @@ extern "C"{
 #define  ANSC_IPV4_ADDRESS                                                                  \
          union                                                                              \
          {                                                                                  \
-            UCHAR                   Dot[IPV4_ADDRESS_SIZE];                                 \
-            ULONG                   Value;                                                  \
+            unsigned char           Dot[IPV4_ADDRESS_SIZE];                                 \
+            unsigned long           Value;                                                  \
          }
 #endif
 
@@ -182,61 +149,61 @@ extern "C"{
 
 typedef  struct
 _CMMGMT_CM_DS_CHANNEL {
-    ULONG                           ChannelID;
-    CHAR                            Frequency[64];
-    CHAR                            PowerLevel[64];
-    CHAR                            SNRLevel[64];
-    CHAR                            Modulation[64];
-    ULONG                           Octets;
-    ULONG                           Correcteds;
-    ULONG                           Uncorrectables;
-    CHAR                            LockStatus[64];
+    unsigned long                   ChannelID;
+    char                            Frequency[64];
+    char                            PowerLevel[64];
+    char                            SNRLevel[64];
+    char                            Modulation[64];
+    unsigned long                   Octets;
+    unsigned long                   Correcteds;
+    unsigned long                   Uncorrectables;
+    char                            LockStatus[64];
 }
 CMMGMT_CM_DS_CHANNEL, *PCMMGMT_CM_DS_CHANNEL;
 
 typedef  struct
 _CMMGMT_CM_US_CHANNEL {
-    ULONG                           ChannelID;
-    CHAR                            Frequency[64];
-    CHAR                            PowerLevel[64];
-    CHAR                            ChannelType[64];
-    CHAR                            SymbolRate[64];
-    CHAR                            Modulation[64];
-    CHAR                            LockStatus[64];
+    unsigned long                   ChannelID;
+    char                            Frequency[64];
+    char                            PowerLevel[64];
+    char                            ChannelType[64];
+    char                            SymbolRate[64];
+    char                            Modulation[64];
+    char                            LockStatus[64];
 }
 CMMGMT_CM_US_CHANNEL, *PCMMGMT_CM_US_CHANNEL;
 
 typedef  struct
 _CMMGMT_CM_DOCSIS_INFO
 {
-    CHAR                            DOCSISVersion[64];
-    CHAR                            DOCSISDownstreamScanning[64];
-    CHAR                            DOCSISDownstreamRanging[64];
-    CHAR                            DOCSISUpstreamScanning[64];
-    CHAR                            DOCSISUpstreamRanging[64];
-    CHAR                            DOCSISTftpStatus[64];
-    CHAR                            DOCSISDataRegComplete[64];
-    ULONG                           DOCSISDHCPAttempts;
-    CHAR                            DOCSISConfigFileName[64];
-    ULONG                           DOCSISTftpAttempts;
-    CHAR                            ToDStatus[64];
+    char                            DOCSISVersion[64];
+    char                            DOCSISDownstreamScanning[64];
+    char                            DOCSISDownstreamRanging[64];
+    char                            DOCSISUpstreamScanning[64];
+    char                            DOCSISUpstreamRanging[64];
+    char                            DOCSISTftpStatus[64];
+    char                            DOCSISDataRegComplete[64];
+    unsigned long                   DOCSISDHCPAttempts;
+    char                            DOCSISConfigFileName[64];
+    unsigned long                   DOCSISTftpAttempts;
+    char                            ToDStatus[64];
     BOOLEAN                         BPIState;
     BOOLEAN                         NetworkAccess;
     ANSC_IPV4_ADDRESS               UpgradeServerIP;
-    ULONG                           MaxCpeAllowed;
-    CHAR                            UpstreamServiceFlowParams[64];
-    CHAR                            DownstreamServiceFlowParams[64];
-    CHAR                            DOCSISDownstreamDataRate[64];
-    CHAR                            DOCSISUpstreamDataRate[64];
-    CHAR                            CoreVersion[64];
+    unsigned long                   MaxCpeAllowed;
+    char                            UpstreamServiceFlowParams[64];
+    char                            DownstreamServiceFlowParams[64];
+    char                            DOCSISDownstreamDataRate[64];
+    char                            DOCSISUpstreamDataRate[64];
+    char                            CoreVersion[64];
 }
 CMMGMT_CM_DOCSIS_INFO, *PCMMGMT_CM_DOCSIS_INFO;
 
 typedef  struct
 _CMMGMT_CM_ERROR_CODEWORDS {
-    ULONG                           UnerroredCodewords;
-    ULONG                           CorrectableCodewords;
-    ULONG                           UncorrectableCodewords;
+    unsigned long                   UnerroredCodewords;
+    unsigned long                   CorrectableCodewords;
+    unsigned long                   UncorrectableCodewords;
 }
 CMMGMT_CM_ERROR_CODEWORDS, *PCMMGMT_CM_ERROR_CODEWORDS;
 
@@ -261,13 +228,13 @@ typedef enum
 
 typedef struct
 {
-    UINT                docsDevEvIndex;
+    unsigned int        docsDevEvIndex;
     struct timeval      docsDevEvFirstTime;
     struct timeval      docsDevEvLastTime;
-    UINT                docsDevEvCounts;
-    UINT                docsDevEvLevel;
-    UINT                docsDevEvId;
-    CHAR                docsDevEvText[EVM_MAX_EVENT_TEXT];
+    unsigned int        docsDevEvCounts;
+    unsigned int        docsDevEvLevel;
+    unsigned int        docsDevEvId;
+    char                docsDevEvText[EVM_MAX_EVENT_TEXT];
     
 }CMMGMT_CM_EventLogEntry_t;
 
@@ -280,11 +247,11 @@ CMMGMT_DML_CM_LOG,  *PCMMGMT_DML_CM_LOG;
 
 typedef  struct
 _CMMGMT_DML_DOCSISLOG_FULL {
-    ULONG                           Index;
-    ULONG                           EventID;
-    ULONG                           EventLevel;
-    CHAR                            Time[64];
-    CHAR                            Description[256];
+    unsigned long                   Index;
+    unsigned long                   EventID;
+    unsigned long                   EventLevel;
+    char                            Time[64];
+    char                            Description[256];
 }
 CMMGMT_DML_DOCSISLOG_FULL,  *PCMMGMT_DML_DOCSISLOG_FULL;
 
@@ -292,41 +259,41 @@ typedef  struct
 _CMMGMT_CM_DHCP_INFO
 {
     ANSC_IPV4_ADDRESS               IPAddress;
-    CHAR                            BootFileName[64];
+    char                            BootFileName[64];
     ANSC_IPV4_ADDRESS               SubnetMask;
     ANSC_IPV4_ADDRESS               Gateway;
     ANSC_IPV4_ADDRESS               TFTPServer;
-    CHAR                            TimeServer[64];
-    INT                             TimeOffset;
-    ULONG                           LeaseTimeRemaining;
-    CHAR                            RebindTimeRemaining[64];
-    CHAR                            RenewTimeRemaining[64];
-    CHAR                            MACAddress[64];
-    CHAR                            DOCSISDHCPStatus[64];
+    char                            TimeServer[64];
+    int                             TimeOffset;
+    unsigned long                   LeaseTimeRemaining;
+    char                            RebindTimeRemaining[64];
+    char                            RenewTimeRemaining[64];
+    char                            MACAddress[64];
+    char                            DOCSISDHCPStatus[64];
 }
 CMMGMT_CM_DHCP_INFO, *PCMMGMT_CM_DHCP_INFO;
 
 typedef  struct
 _CMMGMT_CM_IPV6DHCP_INFO
 {
-    CHAR                            IPv6Address[40];
-    CHAR                            IPv6BootFileName[64];
-    CHAR                            IPv6Prefix[40];
-    CHAR                            IPv6Router[40];
-    CHAR                            IPv6TFTPServer[40];
-    CHAR                            IPv6TimeServer[40];
+    char                            IPv6Address[40];
+    char                            IPv6BootFileName[64];
+    char                            IPv6Prefix[40];
+    char                            IPv6Router[40];
+    char                            IPv6TFTPServer[40];
+    char                            IPv6TimeServer[40];
 
-    ULONG                           IPv6LeaseTimeRemaining;
-    ULONG                           IPv6RebindTimeRemaining;
-    ULONG                           IPv6RenewTimeRemaining;
+    unsigned long                   IPv6LeaseTimeRemaining;
+    unsigned long                   IPv6RebindTimeRemaining;
+    unsigned long                   IPv6RenewTimeRemaining;
 }
 CMMGMT_CM_IPV6DHCP_INFO, *PCMMGMT_CM_IPV6DHCP_INFO;
 
 typedef  struct
 _CMMGMT_DML_CPE_LIST
 {
-    CHAR                            IPAddress[32];
-    CHAR                            MACAddress[32];
+    char                            IPAddress[32];
+    char                            MACAddress[32];
 }
 CMMGMT_DML_CPE_LIST,  *PCMMGMT_DML_CPE_LIST;
 
@@ -393,8 +360,8 @@ typedef struct _DOCSIF31_CMSTATUSOFDMA_US {
 #define MAX_KICKSTART_ROWS 5
 
 typedef struct _fixed_length_buffer {
-    USHORT length;
-    UINT8 *buffer;
+    unsigned short length;
+    unsigned char *buffer;
 } fixed_length_buffer_t;
 
 typedef struct _snmpv3_kickstart_row {
@@ -403,7 +370,7 @@ typedef struct _snmpv3_kickstart_row {
 } snmp_kickstart_row_t;
 
 typedef struct _snmpv3_kickstart_table {
-    UINT8 n_rows;
+    unsigned char n_rows;
     snmp_kickstart_row_t *kickstart_values[MAX_KICKSTART_ROWS];
 } snmpv3_kickstart_table_t;
 
@@ -437,7 +404,7 @@ typedef struct _snmpv3_kickstart_table {
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT cm_hal_InitDB(void);
+int cm_hal_InitDB(void);
 
 /* docsis_InitDS :  */
 /**
@@ -455,7 +422,7 @@ INT cm_hal_InitDB(void);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_InitDS(void);
+int docsis_InitDS(void);
 
 /* docsis_InitUS :  */
 /**
@@ -473,12 +440,12 @@ INT docsis_InitDS(void);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_InitUS(void);
+int docsis_InitUS(void);
 
 /*  docsis_getCMStatus : */
 /**
 * @description Retrieve, format and output the Cable Modem DOCSIS status.
-* @param CHAR* cm_status - status string, to be returned
+* @param char* cm_status - status string, to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -491,7 +458,7 @@ INT docsis_InitUS(void);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_getCMStatus(CHAR *cm_status);
+int docsis_getCMStatus(char *cm_status);
 
 /*  docsis_GetDSChannel : */
 /**
@@ -509,12 +476,12 @@ INT docsis_getCMStatus(CHAR *cm_status);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetDSChannel(PCMMGMT_CM_DS_CHANNEL * ppinfo);
+int docsis_GetDSChannel(PCMMGMT_CM_DS_CHANNEL * ppinfo);
 
 /*  docsis_GetUsStatus : */
 /**
 * @description Retrieve all the relevant US channel info from global DBs.
-* @param USHORT i - index to the US channel
+* @param unsigned short i - index to the US channel
 * @param PCMMGMT_CM_US_CHANNEL pinfo - info of one US channel, to be returned
 *
 * @return The status of the operation.
@@ -528,7 +495,7 @@ INT docsis_GetDSChannel(PCMMGMT_CM_DS_CHANNEL * ppinfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetUsStatus(USHORT i, PCMMGMT_CM_US_CHANNEL pinfo);
+int docsis_GetUsStatus(unsigned short i, PCMMGMT_CM_US_CHANNEL pinfo);
 
 /*  docsis_GetUSChannel : */
 /**
@@ -546,7 +513,7 @@ INT docsis_GetUsStatus(USHORT i, PCMMGMT_CM_US_CHANNEL pinfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetUSChannel(PCMMGMT_CM_US_CHANNEL * ppinfo);
+int docsis_GetUSChannel(PCMMGMT_CM_US_CHANNEL * ppinfo);
 
 /*  docsis_GetDOCSISInfo : */
 /**
@@ -564,12 +531,12 @@ INT docsis_GetUSChannel(PCMMGMT_CM_US_CHANNEL * ppinfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetDOCSISInfo(PCMMGMT_CM_DOCSIS_INFO pinfo);
+int docsis_GetDOCSISInfo(PCMMGMT_CM_DOCSIS_INFO pinfo);
 
 /*  docsis_GetNumOfActiveTxChannels : */
 /**
 * @description Retrieve number of US channels actively in use in current registration.
-* @param ULONG * cnt - pointer to number, to be returned
+* @param unsigned long * cnt - pointer to number, to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -582,12 +549,12 @@ INT docsis_GetDOCSISInfo(PCMMGMT_CM_DOCSIS_INFO pinfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetNumOfActiveTxChannels(ULONG * cnt);
+int docsis_GetNumOfActiveTxChannels(unsigned long * cnt);
 
 /*  docsis_GetNumOfActiveRxChannels : */
 /**
 * @description Retrieve number of DS channels actively in use in current registration.
-* @Param ULONG * cnt - pointer to number, to be returned
+* @Param unsigned long * cnt - pointer to number, to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -600,7 +567,7 @@ INT docsis_GetNumOfActiveTxChannels(ULONG * cnt);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetNumOfActiveRxChannels(ULONG * cnt);
+int docsis_GetNumOfActiveRxChannels(unsigned long * cnt);
 
 /*  docsis_GetErrorCodewords : */
 /**
@@ -618,12 +585,12 @@ INT docsis_GetNumOfActiveRxChannels(ULONG * cnt);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetErrorCodewords(PCMMGMT_CM_ERROR_CODEWORDS * ppinfo);
+int docsis_GetErrorCodewords(PCMMGMT_CM_ERROR_CODEWORDS * ppinfo);
 
 /*  docsis_GetMddIpModeOverride : */
 /**
 * @description Retrieve the current MIMO status.
-* @param CHAR *pValue - status retrieved
+* @param char *pValue - status retrieved
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -636,12 +603,12 @@ INT docsis_GetErrorCodewords(PCMMGMT_CM_ERROR_CODEWORDS * ppinfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetMddIpModeOverride(CHAR *pValue);
+int docsis_GetMddIpModeOverride(char *pValue);
 
 /*  docsis_SetMddIpModeOverride : */
 /**
 * @description Set the current global MIMO status.
-* @param CHAR *pValue - status to be set to
+* @param char *pValue - status to be set to
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -654,14 +621,14 @@ INT docsis_GetMddIpModeOverride(CHAR *pValue);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_SetMddIpModeOverride(CHAR *pValue);
+int docsis_SetMddIpModeOverride(char *pValue);
 
 /*  docsis_GetUSChannelId : */
 /**
 * @description Retrieve the US channel ID in its MAC domain.
 * @param none
 *
-* @return UINT8 - Channel ID
+* @return unsigned char - Channel ID
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -670,12 +637,12 @@ INT docsis_SetMddIpModeOverride(CHAR *pValue);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-UINT8 docsis_GetUSChannelId(void);
+unsigned char docsis_GetUSChannelId(void);
 
 /*  docsis_SetUSChannelId : */
 /**
 * @description Set the US channel ID in its MAC domain.
-* @param INT index = Index to set the Upstream Channel ID to
+* @param int index = Index to set the Upstream Channel ID to
 *
 * @return None
 *
@@ -686,14 +653,14 @@ UINT8 docsis_GetUSChannelId(void);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-void docsis_SetUSChannelId(INT index);
+void docsis_SetUSChannelId(int index);
 
 /*  docsis_GetDownFreq : */
 /**
 * @description Retrieve the current primary channel DS channel frequency from the LKF table.
 * @param None
 *
-* @return ULONG - channel frequency
+* @return unsigned long - channel frequency
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -702,12 +669,12 @@ void docsis_SetUSChannelId(INT index);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-ULONG docsis_GetDownFreq(void);
+unsigned long docsis_GetDownFreq(void);
 
 /*  docsis_SetStartFreq : */
 /**
 * @description Change the DS primary channel frequency in the LKF table.
-* @param ULONG value - frequency to get set to 
+* @param unsigned long value - frequency to get set to 
 *
 * @return None
 *
@@ -718,15 +685,15 @@ ULONG docsis_GetDownFreq(void);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-void docsis_SetStartFreq(ULONG value);
+void docsis_SetStartFreq(unsigned long value);
 
 /*  docsis_GetDownFreq : */
 /**
 * @description Retrieve the DOCSIS event log entries and display it.
 * @param CMMGMT_CM_EventLogEntry_t *entryArray - entries to be returned
-* @param INT len - length of log entries
+* @param int len - length of log entries
 *
-* @return INT - number of log entries retrieved
+* @return int - number of log entries retrieved
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -735,7 +702,7 @@ void docsis_SetStartFreq(ULONG value);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetDocsisEventLogItems(CMMGMT_CM_EventLogEntry_t *entryArray, INT len);
+int docsis_GetDocsisEventLogItems(CMMGMT_CM_EventLogEntry_t *entryArray, int len);
 
 /*  docsis_ClearDocsisEventLog : */
 /**
@@ -753,7 +720,7 @@ INT docsis_GetDocsisEventLogItems(CMMGMT_CM_EventLogEntry_t *entryArray, INT len
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_ClearDocsisEventLog(void);
+int docsis_ClearDocsisEventLog(void);
 
 /*  cm_hal_GetDHCPInfo : */
 /**
@@ -771,7 +738,7 @@ INT docsis_ClearDocsisEventLog(void);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT cm_hal_GetDHCPInfo(PCMMGMT_CM_DHCP_INFO pInfo);
+int cm_hal_GetDHCPInfo(PCMMGMT_CM_DHCP_INFO pInfo);
 
 /*  cm_hal_GetIPv6DHCPInfo : */
 /**
@@ -789,14 +756,14 @@ INT cm_hal_GetDHCPInfo(PCMMGMT_CM_DHCP_INFO pInfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT cm_hal_GetIPv6DHCPInfo(PCMMGMT_CM_IPV6DHCP_INFO pInfo);
+int cm_hal_GetIPv6DHCPInfo(PCMMGMT_CM_IPV6DHCP_INFO pInfo);
 
 /*  cm_hal_GetCPEList : */
 /**
 * @description Retrieve list of CPEs connected to the CM
 * @param PCMMGMT_DML_CPE_LIST * ppCPEList - List of all CPE, to be returned
-* @param ULONG* InstnaceNum - Number of instances, to be returned
-* @param CHAR* LanMode - input of "router" or "bridge" mode of the modem
+* @param unsigned long* InstnaceNum - Number of instances, to be returned
+* @param char* LanMode - input of "router" or "bridge" mode of the modem
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -809,12 +776,12 @@ INT cm_hal_GetIPv6DHCPInfo(PCMMGMT_CM_IPV6DHCP_INFO pInfo);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT cm_hal_GetCPEList(PCMMGMT_DML_CPE_LIST * ppCPEList, ULONG* InstanceNum, CHAR* LanMode);
+int cm_hal_GetCPEList(PCMMGMT_DML_CPE_LIST * ppCPEList, unsigned long* InstanceNum, char* LanMode);
 
 /*  cm_hal_GetMarket : */
 /**
 * @description Retrieve the market of this modem
-* @param CHAR* market - Name of the market for this modem, "US" or "EURO", to be returned 
+* @param char* market - Name of the market for this modem, "US" or "EURO", to be returned 
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -827,7 +794,7 @@ INT cm_hal_GetCPEList(PCMMGMT_DML_CPE_LIST * ppCPEList, ULONG* InstanceNum, CHAR
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT cm_hal_GetMarket(CHAR* market);
+int cm_hal_GetMarket(char* market);
 
 /* HTTP Download HAL API Prototype */
 
@@ -842,7 +809,7 @@ INT cm_hal_GetMarket(CHAR* market);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any Downloading is in process or Url string is invalided.
 */
-INT cm_hal_Set_HTTP_Download_Url (char* pHttpUrl, char* pfilename);
+int cm_hal_Set_HTTP_Download_Url (char* pHttpUrl, char* pfilename);
 
 /* cm_hal_Get_HTTP_Download_Url: */
 
@@ -854,7 +821,7 @@ INT cm_hal_Set_HTTP_Download_Url (char* pHttpUrl, char* pfilename);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if http url string is empty.
 */
-INT cm_hal_Get_HTTP_Download_Url (char *pHttpUrl, char* pfilename);
+int cm_hal_Get_HTTP_Download_Url (char *pHttpUrl, char* pfilename);
 
 /* cm_hal_Set_HTTP_Download_Interface: */
 /**
@@ -865,7 +832,7 @@ INT cm_hal_Get_HTTP_Download_Url (char *pHttpUrl, char* pfilename);
 * @retval RETURN_ERR if any error is detected
 */
 /* interface=0 for wan0, interface=1 for erouter0 */
-INT cm_hal_Set_HTTP_Download_Interface(unsigned int interface);
+int cm_hal_Set_HTTP_Download_Interface(unsigned int interface);
 
 /* cm_hal_Get_HTTP_Download_Interface: */
 /**
@@ -876,7 +843,7 @@ INT cm_hal_Set_HTTP_Download_Interface(unsigned int interface);
 * @retval RETURN_ERR if any error is detected
 */
 /* interface=0 for wan0, interface=1 for erouter0 */
-INT cm_hal_Get_HTTP_Download_Interface(unsigned int* pinterface);
+int cm_hal_Get_HTTP_Download_Interface(unsigned int* pinterface);
 
 /* cm_hal_HTTP_Download - 3 */
 /**
@@ -892,7 +859,7 @@ INT cm_hal_Get_HTTP_Download_Interface(unsigned int* pinterface);
 * @note This function must not suspend and must not invoke any blocking system
 * calls. It should probably just send a message to a driver event handler task.
 */
-INT cm_hal_HTTP_Download ();
+int cm_hal_HTTP_Download ();
 
 /* cm_hal_ Get_HTTP_Download _Status ? 4 */
 /**
@@ -913,17 +880,17 @@ INT cm_hal_HTTP_Download ();
 * @retval 500 - General Download Failure
 * 	
 */
-INT cm_hal_Get_HTTP_Download_Status();
+int cm_hal_Get_HTTP_Download_Status();
 
 /* cm_hal_Reboot_Ready - 5 */
 /**
 * @description Get the Reboot Ready Status
-* @param ULONG *pValue- Values of 1 for Ready, 2 for Not Ready
+* @param unsigned long *pValue- Values of 1 for Ready, 2 for Not Ready
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected
 */
-INT cm_hal_Reboot_Ready(ULONG *pValue);
+int cm_hal_Reboot_Ready(unsigned long *pValue);
 
 /* cm_hal_HTTP_DL_Reboot_Now - 6*/
 /**
@@ -933,7 +900,7 @@ INT cm_hal_Reboot_Ready(ULONG *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any reboot is in process.
 */
-INT cm_hal_HTTP_Download_Reboot_Now();
+int cm_hal_HTTP_Download_Reboot_Now();
 
 /* cm_hal_FWupdateAndFactoryReset : */
 /**
@@ -944,7 +911,7 @@ INT cm_hal_HTTP_Download_Reboot_Now();
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any reboot is in process.
 */
-INT cm_hal_FWupdateAndFactoryReset(char* pUrl, char* pImagename);
+int cm_hal_FWupdateAndFactoryReset(char* pUrl, char* pImagename);
 
 /*  cm_hal_ReinitMac : */
 /**
@@ -964,12 +931,12 @@ INT cm_hal_FWupdateAndFactoryReset(char* pUrl, char* pImagename);
 *
 
 */
-INT cm_hal_ReinitMac();
+int cm_hal_ReinitMac();
 
 /*  docsis_GetProvIpType : */
 /**
 * @description Retrieve the provisioned wan0 IP type
-* @param CHAR* pValue - ip type currently provisioned on wan0
+* @param char* pValue - ip type currently provisioned on wan0
 * values are "IPv4", "IPv6", or "unknown"
 *
 * @return The status of the operation.
@@ -983,12 +950,12 @@ INT cm_hal_ReinitMac();
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetProvIpType(CHAR *pValue); 
+int docsis_GetProvIpType(char *pValue); 
 
 /*  docsis_GetCert : */
 /**
 * @description Retrieve the location of the certificate
-* @param CHAR* pCert - certificate location, to be returned
+* @param char* pCert - certificate location, to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1001,12 +968,12 @@ INT docsis_GetProvIpType(CHAR *pValue);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetCert(CHAR* pCert);
+int docsis_GetCert(char* pCert);
 
 /*  docsis_GetCertStatus : */
 /**
 * @description Retrieve status of the certificate 
-* @param ULONG *pVal - certificate status, to be returned
+* @param unsigned long *pVal - certificate status, to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1019,13 +986,13 @@ INT docsis_GetCert(CHAR* pCert);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT docsis_GetCertStatus(ULONG *pVal);
+int docsis_GetCertStatus(unsigned long *pVal);
 
 
 /*  cm_hal_Get_CableModemResetCount : */
 /**
 * @description Retrieve the count of cable modem reset
-* @param ULONG *resetcnt - Count to be returned
+* @param unsigned long *resetcnt - Count to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1039,12 +1006,12 @@ INT docsis_GetCertStatus(ULONG *pVal);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT cm_hal_Get_CableModemResetCount(ULONG *resetcnt);
+int cm_hal_Get_CableModemResetCount(unsigned long *resetcnt);
 
 /*  cm_hal_Get_LocalResetCount : */
 /**
 * @description Retrieve the count of local reset
-* @param ULONG *resetcnt - Count to be returned
+* @param unsigned long *resetcnt - Count to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1058,12 +1025,12 @@ INT cm_hal_Get_CableModemResetCount(ULONG *resetcnt);
 *
 */
 
-INT cm_hal_Get_LocalResetCount(ULONG *resetcnt);
+int cm_hal_Get_LocalResetCount(unsigned long *resetcnt);
 
 /*  cm_hal_Get_DocsisResetCount : */
 /**
 * @description Retrieve the count of docsis reset
-* @param ULONG *resetcnt - Count to be returned
+* @param unsigned long *resetcnt - Count to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1077,12 +1044,12 @@ INT cm_hal_Get_LocalResetCount(ULONG *resetcnt);
 *
 */
 
-INT cm_hal_Get_DocsisResetCount(ULONG *resetcnt);
+int cm_hal_Get_DocsisResetCount(unsigned long *resetcnt);
 
 /*  cm_hal_Get_ErouterResetCount : */
 /**
 * @description Retrieve the count of erouter reset
-* @param ULONG *resetcnt - Count to be returned
+* @param unsigned long *resetcnt - Count to be returned
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1096,7 +1063,7 @@ INT cm_hal_Get_DocsisResetCount(ULONG *resetcnt);
 *
 */
 
-INT cm_hal_Get_ErouterResetCount(ULONG *resetcnt);
+int cm_hal_Get_ErouterResetCount(unsigned long *resetcnt);
 
 /*  cm_hal_HTTP_LED_Flash : */
 /**
@@ -1115,7 +1082,7 @@ INT cm_hal_Get_ErouterResetCount(ULONG *resetcnt);
 *
 */
 
-INT cm_hal_HTTP_LED_Flash( BOOLEAN LedFlash );
+int cm_hal_HTTP_LED_Flash( BOOLEAN LedFlash );
 
 //>> Docsis3.1
 /*  docsis_GetDsOfdmChanTable : */
@@ -1133,7 +1100,7 @@ INT cm_hal_HTTP_LED_Flash( BOOLEAN LedFlash );
 * @note HAL function need to allocate the array of DOCSIF31_CM_DS_OFDM_CHAN and return with ppinfo.
 *
 */
-INT docsis_GetDsOfdmChanTable(PDOCSIF31_CM_DS_OFDM_CHAN *ppinfo, int *output_NumberOfEntries);
+int docsis_GetDsOfdmChanTable(PDOCSIF31_CM_DS_OFDM_CHAN *ppinfo, int *output_NumberOfEntries);
 
 /*  docsis_GetUsOfdmaChanTable : */
 /**
@@ -1150,7 +1117,7 @@ INT docsis_GetDsOfdmChanTable(PDOCSIF31_CM_DS_OFDM_CHAN *ppinfo, int *output_Num
 * @note HAL function need to allocate the array of DOCSIF31_CM_US_OFDMA_CHAN and return with ppinfo.
 *
 */
-INT docsis_GetUsOfdmaChanTable(PDOCSIF31_CM_US_OFDMA_CHAN *ppinfo, int *output_NumberOfEntries);
+int docsis_GetUsOfdmaChanTable(PDOCSIF31_CM_US_OFDMA_CHAN *ppinfo, int *output_NumberOfEntries);
 
 /*  docsis_GetStatusOfdmaUsTable : */
 /**
@@ -1167,7 +1134,7 @@ INT docsis_GetUsOfdmaChanTable(PDOCSIF31_CM_US_OFDMA_CHAN *ppinfo, int *output_N
 * @note HAL function need to allocate the array of DOCSIF31_CMSTATUSOFDMA_US and return with ppinfo.
 *
 */
-INT docsis_GetStatusOfdmaUsTable(PDOCSIF31_CMSTATUSOFDMA_US *ppinfo, int *output_NumberOfEntries);
+int docsis_GetStatusOfdmaUsTable(PDOCSIF31_CMSTATUSOFDMA_US *ppinfo, int *output_NumberOfEntries);
 //<< Docsis3.1
 
 /*  cm_hal_snmpv3_kickstart_initialize: */
@@ -1184,7 +1151,7 @@ INT docsis_GetStatusOfdmaUsTable(PDOCSIF31_CMSTATUSOFDMA_US *ppinfo, int *output
 *
 *
 */
-INT cm_hal_snmpv3_kickstart_initialize(snmpv3_kickstart_table_t *pKickstart_Table);
+int cm_hal_snmpv3_kickstart_initialize(snmpv3_kickstart_table_t *pKickstart_Table);
 /** @} */  //END OF GROUP CM_HAL_APIS
 
 
@@ -1203,7 +1170,7 @@ INT cm_hal_snmpv3_kickstart_initialize(snmpv3_kickstart_table_t *pKickstart_Tabl
 *
 */
 
-INT docsis_IsEnergyDetected( BOOLEAN *pEnergyDetected );
+int docsis_IsEnergyDetected( BOOLEAN *pEnergyDetected );
 
 #ifdef __cplusplus
 }
