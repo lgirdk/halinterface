@@ -168,6 +168,8 @@ _CMMGMT_CM_US_CHANNEL {
     char                            SymbolRate[64];
     char                            Modulation[64];
     char                            LockStatus[64];
+    unsigned int                    T3Timeouts;
+    unsigned int                    T4Timeouts;
 }
 CMMGMT_CM_US_CHANNEL, *PCMMGMT_CM_US_CHANNEL;
 
