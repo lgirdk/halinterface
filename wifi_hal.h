@@ -9084,7 +9084,7 @@ typedef enum
  */
  
 INT wifi_dpp_frame_received_callbacks_register(wifi_dppAuthResponse_callback_t dppAuthCallback,
-                                    wifi_dppConfigRequest_callback_t dppCpnfigCallback,
+                                    wifi_dppConfigRequest_callback_t dppConfigCallback,
 									wifi_dppConfigResult_callback_t dppConfigResultCallback,
 									wifi_dppReconfigAnnounce_callback_t dppReconfigAnnounceCallback,
 									wifi_dppReconfigAuthResponse_callback_t dppReconfigAuthRspCallback);
