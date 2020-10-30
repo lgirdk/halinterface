@@ -6037,6 +6037,29 @@ INT wifi_getApWmmUapsdEnable(INT apIndex, BOOL *output);
 */
 INT wifi_setApWmmUapsdEnable(INT apIndex, BOOL enable);               // enables/disables Automatic Power Save Delivery on the hardwarwe for this AP
 
+/* wifi_getApWmmOgAckPolicy() function */
+/**
+* @brief Gets the WMM ACK policy on the hardware.
+*
+* AckPolicy false means do not acknowledge, true means acknowledge.
+*
+* @param[in] apIndex    Access Point index
+* @param[out] ackPolicy  Acknowledge policy
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+// Gets the WMM ACK polity on the hardware. AckPolicy false means do not acknowledge, true means acknowledge
+INT wifi_getApWmmOgAckPolicy(INT apIndex, BOOL *output);
+
 /* wifi_setApWmmOgAckPolicy() function */
 /**
 * @brief Sets the WMM ACK policy on the hardware.
