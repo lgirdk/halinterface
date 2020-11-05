@@ -10466,4 +10466,16 @@ INT wifi_setAtmBandMWWWeight(INT band, CHAR *mwwWeight);
 INT wifi_getAtmBandMWWEnable(INT band, BOOL *enable);
 INT wifi_setAtmBandMWWEnable(INT band, BOOL enable);
 INT wifi_getAtmStationAirtime(wlan_ATM_report_t **pStationAirtime, INT *stationNumber);
+
+INT wifi_getRADIUSAcctEnable(INT band, BOOL *enable);
+INT wifi_setRADIUSAcctEnable(INT band, BOOL enable);
+
+INT wifi_getApSecurityAcctServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *AcctSecret_output);
+INT wifi_setApSecurityAcctServer(INT apIndex, CHAR *IPAddress, UINT port, CHAR *AcctSecret);
+
+INT wifi_getApSecuritySecondaryAcctServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *AcctSecret_output);
+INT wifi_setApSecuritySecondaryAcctServer(INT apIndex, CHAR *IPAddress, UINT port, CHAR *AcctSecret);
+
+INT wifi_getApSecurityAcctInterimInterval(INT apIndex, UINT *Interval_output);
+INT wifi_setApSecurityAcctInterimInterval(INT apIndex, UINT NewInterval);
 #endif
