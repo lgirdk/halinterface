@@ -1184,6 +1184,8 @@ GWP_GetEthWanInterfaceName
     );
 
 
+CCSP_HAL_ETHSW_LINK_STATUS CcspHalExtSw_GetLinkStatus (char *pMacAddr);
+
 #define UP "up"
 #define DOWN "down"
 
