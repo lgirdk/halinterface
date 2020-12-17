@@ -1521,6 +1521,8 @@ INT wifi_setApSecuritySecondaryAcctServer(INT apIndex, CHAR *IPAddress, UINT por
 INT wifi_getApSecurityAcctInterimInterval(INT apIndex, UINT *Interval_output);
 INT wifi_setApSecurityAcctInterimInterval(INT apIndex, UINT NewInterval);
 
+INT wifi_setApRadiusTransportInterface(UINT RadiusInterface);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
