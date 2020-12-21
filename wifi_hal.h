@@ -10283,4 +10283,12 @@ INT wifi_getApSecurityAcctInterimInterval(INT apIndex, UINT *Interval_output);
 INT wifi_setApSecurityAcctInterimInterval(INT apIndex, UINT NewInterval);
 
 INT wifi_setApRadiusTransportInterface(UINT RadiusInterface);
+/*Disable the use of lower WiFi modulation rates - CR103 - START*/
+INT wifi_getSupportRatesBitmapControlFeature(BOOL *enable);
+INT wifi_setSupportRatesBitmapControlFeature(BOOL enable);
+INT wifi_getSupportRatesDisableBasicRates(INT ssidIndex, CHAR *rate);
+INT wifi_setSupportRatesDisableBasicRates(INT ssidIndex, CHAR *rate);
+INT wifi_getSupportRatesDisableSupportedRates(INT ssidIndex, CHAR *rate);
+INT wifi_setSupportRatesDisableSupportedRates(INT ssidIndex, CHAR *rate);
+/*Disable the use of lower WiFi modulation rates -  CR103- END*/
 #endif
