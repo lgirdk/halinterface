@@ -9163,6 +9163,12 @@ typedef struct {
 	unsigned int	channels_list[32]; // list of channels that enrollee can listen on
 	unsigned int	current_attempts; // number of failed attempts on N different channels off the list
 } wifi_device_dpp_context_t;
+
+typedef struct{
+    char mac[18];
+    char time[32];
+}wifi_softblock_mac_table_t;
+
 /** @} */  //END OF GROUP WIFI_HAL_TYPES
 
 /**
@@ -10415,4 +10421,11 @@ INT wifi_setSupportRatesDisableBasicRates(INT ssidIndex, CHAR *rate);
 INT wifi_getSupportRatesDisableSupportedRates(INT ssidIndex, CHAR *rate);
 INT wifi_setSupportRatesDisableSupportedRates(INT ssidIndex, CHAR *rate);
 /*Disable the use of lower WiFi modulation rates -  CR103- END*/
+
+/* Softblock */
+INT wifi_getSoftBlockEnable(BOOL *enable);
+INT wifi_setSoftBlockEnable(BOOL enable);
+INT wifi_clearSoftBlockBlacklist();
+INT wifi_getSoftBlockBlacklistEntries(INT band, ULONG *num, wifi_softblock_mac_table_t **table);
+
 #endif
