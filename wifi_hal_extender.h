@@ -718,6 +718,11 @@ struct wlan_ATM_report
 
 typedef struct wlan_ATM_report wlan_ATM_report_t;
 
+typedef struct{
+    char mac[18];
+    char time[32];
+}wifi_softblock_mac_table_t;
+
 /** @} */  //END OF GROUP WIFI_HAL_TYPES
 
 /**
@@ -1529,6 +1534,12 @@ INT wifi_setSupportRatesDisableBasicRates(INT ssidIndex, CHAR *rate);
 INT wifi_getSupportRatesDisableSupportedRates(INT ssidIndex, CHAR *rate);
 INT wifi_setSupportRatesDisableSupportedRates(INT ssidIndex, CHAR *rate);
 /*Disable the use of lower WiFi modulation rates -  CR103- END*/
+
+/* Softblock */
+INT wifi_getSoftBlockEnable(BOOL *enable);
+INT wifi_setSoftBlockEnable(BOOL enable);
+INT wifi_clearSoftBlockBlacklist();
+INT wifi_getSoftBlockBlacklistEntries(INT band, ULONG *num, wifi_softblock_mac_table_t **table);
 
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
