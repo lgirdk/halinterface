@@ -657,7 +657,7 @@ GWP_GetEthWanInterfaceName
 	); //!< This function will get used to retrieve the ETHWAN interface name. API returns 0 = success and 1 = fail
 
 
-CCSP_HAL_ETHSW_LINK_STATUS CcspHalExtSw_GetLinkStatus (unsigned char *pMacAddr);
+CCSP_HAL_ETHSW_LINK_STATUS CcspHalExtSw_GetLinkStatus (char *pMacAddr);
 
 #ifdef _HUB4_PRODUCT_REQ_
 #define UP "up"
