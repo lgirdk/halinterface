@@ -410,6 +410,22 @@ typedef enum
     CM_INIT_MODE_CONTROL_HONOR = 5,
 } cmInitMode_t;
 
+/*
+   These values are hardcoded in the data model (as part of
+   Device.X_LGI-COM_CableModem.CmDoc30SwRegistrationState)
+   so should not be changed.
+*/
+typedef enum
+{
+    CM_REGSTATE_UNKNOWN = 0,
+    CM_REGSTATE_SCANNING = 1,
+    CM_REGSTATE_DSRANGING = 2,
+    CM_REGSTATE_USRANGING = 3,
+    CM_REGSTATE_DHCP = 4,
+    CM_REGSTATE_TFTP = 5,
+    CM_REGSTATE_REGISTERED = 6,
+} CmRegState_t;
+
 /** @} */  //END OF GROUP CM_HAL_TYPES
 
 
@@ -1209,7 +1225,7 @@ int cm_hal_snmpv3_kickstart_initialize(snmpv3_kickstart_table_t *pKickstart_Tabl
 int docsis_IsEnergyDetected( BOOLEAN *pEnergyDetected );
 
 
-int docsis_getCmDoc30SwRegistrationState (int *mac_status);
+int docsis_getCmDoc30SwRegistrationState (int *registration_state);
 int docsis_getCmT1Timeouts (unsigned int *t1_timeout);
 int docsis_getCmT2Timeouts (unsigned int *t2_timeout);
 int docsis_getCMOperationStatus (int *cm_status);
