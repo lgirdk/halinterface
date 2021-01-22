@@ -108,10 +108,6 @@ extern "C"{
 #define  IPV4_ADDRESS_SIZE                          4
 #endif
 
-#ifndef IP_ADDRESS_LENGTH
-#define  IP_ADDRESS_LENGTH                          IP_ADDRESS_SIZE
-#endif
-
 #ifndef ANSC_IPV4_ADDRESS
 /*
  * While we're trying really hard to smooth the procedure of switch-over from IPv4 to IPv4, there
