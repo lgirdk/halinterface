@@ -144,10 +144,6 @@ hardware abstraction layer for Cable Modem
 #define  IPV4_ADDRESS_SIZE                          4
 #endif
 
-#ifndef IP_ADDRESS_LENGTH
-#define  IP_ADDRESS_LENGTH                          IP_ADDRESS_SIZE
-#endif
-
 #ifndef MTA_HAL_SHORT_VALUE_LEN
 #define  MTA_HAL_SHORT_VALUE_LEN   16
 #endif
