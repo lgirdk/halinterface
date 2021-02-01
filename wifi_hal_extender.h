@@ -1568,6 +1568,12 @@ INT wifi_setApSecurityAcctInterimInterval(INT apIndex, UINT NewInterval);
 
 INT wifi_setApRadiusTransportInterface(UINT RadiusInterface);
 
+/*Radius OperatorName and Location Data*/
+INT wifi_getRadiusOperatorName(INT index, CHAR *op_name);
+INT wifi_setRadiusOperatorName(INT band, CHAR *op_name);
+INT wifi_getRadiusLocationData(INT index, CHAR *loc_data);
+INT wifi_setRadiusLocationData(INT band, CHAR *loc_data);
+
 /*Disable the use of lower WiFi modulation rates - CR103 - START*/
 INT wifi_getSupportRatesBitmapControlFeature(BOOL *enable);
 INT wifi_setSupportRatesBitmapControlFeature(BOOL enable);
