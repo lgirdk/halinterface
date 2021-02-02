@@ -803,6 +803,48 @@ INT wifi_getRadioChannelWeights(INT radioIndex, ULONG *output_weights); //RDKB
 */
 INT wifi_setRadioChannelWeights(INT radioIndex, const ULONG *output_weights); //RDKB
 
+/* wifi_getRadioConfiguredChannel() function */
+/**
+* @brief Get the configured channel number.
+*
+* @param[in]  radioIndex     Index of Wi-Fi radio channel
+* @param[out] output_ulong   Configured channel number, to be returned
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+//Device.WiFi.Radio.{i}.X_LGI-COM_ChannelSetting
+INT wifi_getRadioConfiguredChannel(INT radioIndex,ULONG *cfgdChannel);
+
+/* wifi_getRadioRunningChannel() function */
+/**
+* @brief Get the running channel number.
+*
+* @param[in]  radioIndex     Index of Wi-Fi radio channel
+* @param[out] output_ulong   Operating channel number or the configured one if ApplySetting is in progress, to be returned
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+//Device.WiFi.Radio.{i}.RunningChannel
+INT wifi_getRadioRunningChannel(INT radioIndex,ULONG *cfgdChannel);
+
 /* wifi_getApAssociatedDeviceRxStatsResult() function */
 /**
 * @brief Get the associated client per rate receive status.
