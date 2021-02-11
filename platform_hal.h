@@ -886,6 +886,8 @@ INT platform_hal_StopMACsec(INT ethPort);
 */
 INT platform_hal_GetMemoryPaths(RDK_CPUS index, PPLAT_PROC_MEM_INFO *ppinfo);
 
+int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
+
 #ifdef __cplusplus
 }
 #endif
