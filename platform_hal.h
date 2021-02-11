@@ -1004,6 +1004,8 @@ INT platform_hal_SetLowPowerModeState(PPSM_STATE pState);
 
 INT platform_hal_getCMTSMac(CHAR *pValue);
 
+int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
+
 #ifdef __cplusplus
 }
 #endif
