@@ -1088,6 +1088,7 @@ INT platform_hal_getDscpClientList(WAN_INTERFACE interfaceType , pDSCP_list_t pD
 */
 INT platform_hal_GetCPUSpeed(char *cpuSpeed);
 
+int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
 
 #ifdef __cplusplus
 }
