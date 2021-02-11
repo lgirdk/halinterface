@@ -1227,6 +1227,8 @@ FW_BANK_INFO, *PFW_BANK_INFO;
 */
 INT platform_hal_GetFirmwareBankInfo(FW_BANK bankIndex,PFW_BANK_INFO pFW_Bankinfo);
 
+int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
+
 #ifdef __cplusplus
 }
 #endif
