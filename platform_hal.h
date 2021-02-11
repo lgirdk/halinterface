@@ -1551,6 +1551,8 @@ INTF_STATS, *PINTF_STATS;
 */
 INT platform_hal_GetInterfaceStats(const char *ifname,PINTF_STATS pIntfStats);
 
+int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
+
 #ifdef __cplusplus
 }
 #endif
