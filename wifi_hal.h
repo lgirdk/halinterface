@@ -2055,30 +2055,6 @@ INT wifi_getRadioAutoChannelSupported(INT radioIndex, BOOL *output_bool); //Tr18
 //Get the AutoChannel enable status
 INT wifi_getRadioAutoChannelEnable(INT radioIndex, BOOL *output_bool);	//Tr181
 
-/* wifi_setRadioAutoChannelEnable() function */
-/**
-* @brief Enables or disables a driver level variable to indicate if auto channel selection is enabled on this radio.
-*
-* This "auto channel" means the auto channel selection when radio is up.
-* (which is different from the dynamic channel/frequency selection (DFC/DCS))
-*
-* @param[in] radioIndex  Index of Wi-Fi radio channel.
-* @param[in] enable      Enable/Disable selected radio channel as auto channel radio
-*
-* @return The status of the operation
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
-*
-* @execution Synchronous
-* @sideeffect None
-*
-* @note This function must not suspend and must not invoke any blocking system
-* calls. It should probably just send a message to a driver event handler task.
-*
-*/
-//Set the AutoChannel enable status
-INT wifi_setRadioAutoChannelEnable(INT radioIndex, BOOL enable);	//Tr181
-
 /* wifi_getRadioDCSSupported() function */
 /**
 * @brief Check if the driver support the DCS.
