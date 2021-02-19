@@ -1590,6 +1590,10 @@ INT wifi_setSoftBlockEnable(BOOL enable);
 INT wifi_clearSoftBlockBlacklist();
 INT wifi_getSoftBlockBlacklistEntries(INT band, ULONG *num, wifi_softblock_mac_table_t **table);
 
+/*Get default SSID name and SSID password*/
+INT wifi_getDefaultSsid(INT index, CHAR *default_ssid);
+INT wifi_getDefaultPassword(INT index, CHAR *default_password);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
