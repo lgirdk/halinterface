@@ -10476,4 +10476,8 @@ INT wifi_setRadiusOperatorName(INT band, CHAR *op_name);
 INT wifi_getRadiusLocationData(INT index, CHAR *loc_data);
 INT wifi_setRadiusLocationData(INT band, CHAR *loc_data);
 
+/*Get default SSID name and SSID password*/
+INT wifi_getDefaultSsid(INT index, CHAR *default_ssid);
+INT wifi_getDefaultPassword(INT index, CHAR *default_password);
+
 #endif
