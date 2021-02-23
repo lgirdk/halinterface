@@ -754,8 +754,6 @@ typedef struct _wifi_radius_setting_t
 	 INT  RadiusServerRetries; 			/**< Number of retries for Radius requests. */
 	 INT  RadiusServerRequestTimeout; 	/**< Radius request timeout in seconds after which the request must be retransmitted for the # of retries available.	 */
 	 INT  PMKLifetime; 					/**< Default time in seconds after which a Wi-Fi client is forced to ReAuthenticate (def 8 hrs).	 */
-	 BOOL PMKCaching; 					/**< Enable or disable caching of PMK.	 */
-	 INT  PMKCacheInterval; 			/**< Time interval in seconds after which the PMKSA (Pairwise Master Key Security Association) cache is purged (def 5 minutes).	 */
 	 INT  MaxAuthenticationAttempts; 	/**< Indicates the # of time, a client can attempt to login with incorrect credentials. When this limit is reached, the client is blacklisted and not allowed to attempt loging into the network. Settings this parameter to 0 (zero) disables the blacklisting feature. */
 	 INT  BlacklistTableTimeout; 		/**< Time interval in seconds for which a client will continue to be blacklisted once it is marked so.	*/
 	 INT  IdentityRequestRetryInterval; /**< Time Interval in seconds between identity requests retries. A value of 0 (zero) disables it.	*/
@@ -10483,5 +10481,9 @@ INT wifi_setRadiusLocationData(INT band, CHAR *loc_data);
 /*Get default SSID name and SSID password*/
 INT wifi_getDefaultSsid(INT index, CHAR *default_ssid);
 INT wifi_getDefaultPassword(INT index, CHAR *default_password);
+
+/*PMKCache Interval*/
+INT wifi_getApPMKCacheInterval(INT apIndex, UINT *output_uint);
+INT wifi_setApPMKCacheInterval(INT apIndex, UINT number);
 
 #endif
