@@ -913,6 +913,7 @@ typedef  enum {
 */
 INT platform_hal_SetLowPowerModeState(PPSM_STATE pState);
 
+int platform_hal_GetCmMacAddress (char *pValue, unsigned int len);
 int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
 
 #ifdef __cplusplus
