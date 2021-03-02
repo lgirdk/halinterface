@@ -1068,6 +1068,7 @@ INT platform_hal_resetDscpCounts(WAN_INTERFACE interfaceType);
 */
 INT platform_hal_getDscpClientList(WAN_INTERFACE interfaceType , pDSCP_traffic_client_list_t pClientList);
 
+int platform_hal_GetCmMacAddress (char *pValue, unsigned int len);
 int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
 
 #ifdef __cplusplus
