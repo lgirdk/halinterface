@@ -10743,6 +10743,10 @@ INT wifi_getApSecurityAcctInterimInterval(INT apIndex, UINT *Interval_output);
 INT wifi_setApSecurityAcctInterimInterval(INT apIndex, UINT NewInterval);
 
 INT wifi_setApRadiusTransportInterface(UINT RadiusInterface);
+
+INT wifi_setApRadiusReAuthInterval(INT apIndex, UINT number);
+INT wifi_getApRadiusReAuthInterval(INT apIndex, UINT *output_uint);
+
 /*Disable the use of lower WiFi modulation rates - CR103 - START*/
 INT wifi_getSupportRatesBitmapControlFeature(BOOL *enable);
 INT wifi_setSupportRatesBitmapControlFeature(BOOL enable);
