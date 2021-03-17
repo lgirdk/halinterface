@@ -1568,8 +1568,8 @@ INT wifi_setApSecurityAcctInterimInterval(INT apIndex, UINT NewInterval);
 
 INT wifi_setApRadiusTransportInterface(UINT RadiusInterface);
 
-INT wifi_setApRadiusReAuthInterval(INT apIndex, UINT number);
-INT wifi_getApRadiusReAuthInterval(INT apIndex, UINT *output_uint);
+INT wifi_getApRadiusReAuthInterval(INT apIndex, UINT *interval);
+INT wifi_setApRadiusReAuthInterval(INT apIndex, UINT interval);
 
 /*Radius OperatorName and Location Data*/
 INT wifi_getRadiusOperatorName(INT index, CHAR *op_name);
