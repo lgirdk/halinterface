@@ -1070,6 +1070,7 @@ INT platform_hal_getDscpClientList(WAN_INTERFACE interfaceType , pDSCP_traffic_c
 
 int platform_hal_GetCmMacAddress (char *pValue, unsigned int len);
 int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
+int platform_hal_GetCustomerIndex(void);
 
 #ifdef __cplusplus
 }
