@@ -1399,6 +1399,7 @@ INT platform_hal_GetInterfaceStats(const char *ifname,PINTF_STATS pIntfStats);
 
 int platform_hal_GetCmMacAddress (char *pValue, unsigned int len);
 int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
+int platform_hal_GetCustomerIndex (void);
 
 #ifdef __cplusplus
 }
