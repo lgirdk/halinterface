@@ -2703,6 +2703,8 @@ INT wifi_vapstatus_callback_register(wifi_vapstatus_callback callback);
 INT wifi_getApPMKCacheInterval(INT apIndex, UINT *output_uint);
 INT wifi_setApPMKCacheInterval(INT apIndex, UINT number);
 
+BOOL wifi_api_is_device_associated(int ap_index, char *mac);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
