@@ -10774,4 +10774,6 @@ INT wifi_getDefaultPassword(INT index, CHAR *default_password);
 INT wifi_getApPMKCacheInterval(INT apIndex, UINT *output_uint);
 INT wifi_setApPMKCacheInterval(INT apIndex, UINT number);
 
+BOOL wifi_api_is_device_associated(int ap_index, char *mac);
+
 #endif
