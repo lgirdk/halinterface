@@ -2600,6 +2600,8 @@ INT wifi_updateLibHostApdConfig(int apIndex);
 INT wifi_getApPMKCacheInterval(INT apIndex, UINT *output_uint);
 INT wifi_setApPMKCacheInterval(INT apIndex, UINT number);
 
+BOOL wifi_api_is_device_associated(int ap_index, char *mac);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
