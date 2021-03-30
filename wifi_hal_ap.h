@@ -2833,6 +2833,8 @@ INT wifi_setApPMKCacheInterval(INT apIndex, UINT number);
 
 BOOL wifi_api_is_device_associated(int ap_index, char *mac);
 
+INT wifi_apply_customer_index(void);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
