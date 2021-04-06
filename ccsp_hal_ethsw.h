@@ -259,6 +259,28 @@ _CCSP_HAL_ETHSW_ADMIN_STATUS
     CCSP_HAL_ETHSW_AdminTest
 }
 CCSP_HAL_ETHSW_ADMIN_STATUS, *PCCSP_HAL_ETHSW_ADMIN_STATUS;
+
+typedef  struct
+_CCSP_HAL_ETHSW_STATS
+{
+    ULONG                           BytesSent;
+    ULONG                           BytesReceived;
+    ULONG                           PacketsSent;
+    ULONG                           PacketsReceived;
+    ULONG                           ErrorsSent;
+    ULONG                           ErrorsReceived;
+    ULONG                           UnicastPacketsSent;
+    ULONG                           UnicastPacketsReceived;
+    ULONG                           DiscardPacketsSent;
+    ULONG                           DiscardPacketsReceived;
+    ULONG                           MulticastPacketsSent;
+    ULONG                           MulticastPacketsReceived;
+    ULONG                           BroadcastPacketsSent;
+    ULONG                           BroadcastPacketsReceived;
+    ULONG                           UnknownProtoPacketsReceived;
+}
+CCSP_HAL_ETHSW_STATS, *PCCSP_HAL_ETHSW_STATS;
+
 /**
  * @}
  */
@@ -270,7 +292,7 @@ CCSP_HAL_ETHSW_ADMIN_STATUS, *PCCSP_HAL_ETHSW_ADMIN_STATUS;
  */
 
 /**********************************************************************
-                STRUCTURE DEFINITIONS
+                FUNCTION PROTOTYPES
 **********************************************************************/
 
 /* CcspHalEthSwInit :  */
@@ -496,6 +518,33 @@ CcspHalEthSwLocatePortByMacAddress
 		INT * port
 	);
 
+/* CcspHalEthSwGetPortStats :  */
+/**
+* Description: Retrieve the current port statistics -- Bytes sent, Bytes received, etc.
+
+* Parameters :
+    PortId        -- Port ID as defined in CCSP_HAL_ETHSW_PORT
+    pStats(out)   -- Receives the external switch stats, as in CCSP_HAL_ETHSW_STATS
+
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+
+*
+* @note This function must not suspend and must not invoke any blocking system 
+* calls. It should probably just send a message to a driver event handler task. 
+
+*/
+INT
+CcspHalEthSwGetPortStats
+    (
+        CCSP_HAL_ETHSW_PORT         PortId,
+        PCCSP_HAL_ETHSW_STATS       pStats
+    );
 
 //>>zqiu
 //Ethernet HAL for client association/disassociation notification. 
