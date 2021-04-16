@@ -1186,6 +1186,9 @@ GWP_GetEthWanInterfaceName
 
 CCSP_HAL_ETHSW_LINK_STATUS CcspHalExtSw_GetLinkStatus (char *pMacAddr);
 
+int CcspHalEthSwGetEEEPortEnable (CCSP_HAL_ETHSW_PORT PortId, BOOLEAN *enable);
+int CcspHalEthSwSetEEEPortEnable (CCSP_HAL_ETHSW_PORT PortId, BOOLEAN enable);
+
 #define UP "up"
 #define DOWN "down"
 
