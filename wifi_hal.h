@@ -5023,7 +5023,7 @@ INT wifi_deleteAp(INT apIndex);                                     // deletes t
 */
 INT wifi_getApName(INT apIndex, CHAR *output_string);                 // Outputs a 16 byte or less name assocated with the AP.  String buffer must be pre-allocated by the caller
 
-/* wifi_getApIndexFromName() function */
+/* wifi_getIndexFromName() function */
 /**
 * @brief Outputs the index number in that corresponds to the SSID string.
 *
@@ -5041,7 +5041,16 @@ INT wifi_getApName(INT apIndex, CHAR *output_string);                 // Outputs
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApIndexFromName(CHAR *inputSsidString, INT *ouput_int);	 // Outputs the index number in that corresponds to the SSID string
+INT wifi_getIndexFromName(CHAR *inputSsidString, INT *ouput_int);	 // Outputs the index number in that corresponds to the SSID string
+
+/*
+   Warning: Originally the HAL declared only wifi_getApIndexFromName() even
+   though HAL and ccsp-wifi-agent sources used only wifi_getIndexFromName().
+   Although the old wifi_getApIndexFromName() function isn't expected to be
+   used anywhere, add a mapping back to wifi_getIndexFromName() to document
+   the fact that it's the same API with a different name.
+*/
+#define wifi_getApIndexFromName wifi_getIndexFromName
 
 /* wifi_getApBeaconType() function */
 /**
