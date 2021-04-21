@@ -2835,6 +2835,8 @@ BOOL wifi_api_is_device_associated(int ap_index, char *mac);
 
 INT wifi_apply_customer_index(void);
 
+INT wifi_kickAllAssociatedDevice(INT apIndex);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
