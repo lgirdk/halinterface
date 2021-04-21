@@ -3959,6 +3959,8 @@ INT wifi_getNeighboringWiFiDiagnosticResult(wifi_neighbor_ap_t **neighbor_ap_arr
 INT wifi_getAllAssociatedDeviceDetail(INT apIndex, ULONG *output_ulong, wifi_device_t **output_struct); //RDKB
 //<<
 
+INT wifi_kickAllAssociatedDevice(INT apIndex);
+
 //>> -------------------- wifi_ap_hal -----------------------------------
 //---------------------------------------------------------------------------------------------------
 //
