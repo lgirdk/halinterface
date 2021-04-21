@@ -2306,7 +2306,7 @@ INT wifi_setRadio11nGreenfieldEnable(INT radioIndex, BOOL enable);              
 */
 INT wifi_createAp(INT apIndex, INT radioIndex, CHAR *essid, BOOL hideSsid);  // creates a new ap and pushes these parameters to the hardware
 
-/* wifi_getApIndexFromName() function */
+/* wifi_getIndexFromName() function */
 /**
 * @brief Outputs the index number in that corresponds to the SSID string.
 *
@@ -2324,7 +2324,7 @@ INT wifi_createAp(INT apIndex, INT radioIndex, CHAR *essid, BOOL hideSsid);  // 
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApIndexFromName(CHAR *inputSsidString, INT *ouput_int);     // Outputs the index number in that corresponds to the SSID string
+INT wifi_getIndexFromName(CHAR *inputSsidString, INT *ouput_int);     // Outputs the index number in that corresponds to the SSID string
 
 /* wifi_setApDTIMInterval() function */
 /**
