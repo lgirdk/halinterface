@@ -260,6 +260,17 @@ _CCSP_HAL_ETHSW_ADMIN_STATUS
 }
 CCSP_HAL_ETHSW_ADMIN_STATUS, *PCCSP_HAL_ETHSW_ADMIN_STATUS;
 
+typedef struct
+_CCSP_HAL_ETH_FULL_CFG
+{
+    CCSP_HAL_ETHSW_ADMIN_STATUS adminStatus;
+    CCSP_HAL_ETHSW_DUPLEX_MODE duplexMode;
+    CCSP_HAL_ETHSW_LINK_RATE maxBitRate;
+    CCSP_HAL_ETHSW_LINK_STATUS linkStatus;
+    CCSP_HAL_ETHSW_LINK_RATE currLinkRate;
+    BOOLEAN bEEEPortEnable;
+}
+CCSP_HAL_ETH_FULL_CFG, *PCCSP_HAL_ETH_FULL_CFG;
 
 typedef  struct
 _CCSP_HAL_ETH_STATS
@@ -718,6 +729,35 @@ int CcspHalEthSwSetEEEPortEnable (CCSP_HAL_ETHSW_PORT PortId, BOOLEAN enable);
 typedef INT (*ethsw_ethLinkEventCallback)(CHAR* ifname, CHAR* state);
 void CcspHalEthSw_RegisterLinkEventCallback(ethsw_ethLinkEventCallback callback_proc);
 #endif // _HUB4_PRODUCT_REQ_
+
+/* CcspHalEthSwGetPortEntry :  */
+/**
+* @description Retrieve the current port config -- link speed, duplex mode, etc.
+
+* @param PortId      -- Port ID as defined in CCSP_HAL_ETHSW_PORT
+* @param pEthCfg     -- Receives the current port configuration
+
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+INT
+CcspHalEthSwGetPortEntry
+    (
+        CCSP_HAL_ETHSW_PORT         PortId,
+        PCCSP_HAL_ETH_FULL_CFG      pEthCfg
+    );
+
+
 
 #endif /* __CCSP_HAL_ETHSW_H__ */
 
