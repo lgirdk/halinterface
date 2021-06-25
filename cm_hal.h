@@ -426,6 +426,47 @@ typedef enum
     CM_REGSTATE_REGISTERED = 6,
 } CmRegState_t;
 
+/*
+   OFDM and OFDMA channel details for X_LGI-COM_CableModem
+   object.
+*/
+
+typedef struct {
+    int32_t channelID;
+    int32_t fftType;
+    int32_t channelWidth;
+    int32_t numActSubcarrier;
+    int32_t firstActSubcarrier;
+    int32_t lastActSubcarrier;
+    int32_t pilotScAvgMer;
+    int32_t plcScAvgMer;
+    int32_t dataScAvgMer;
+    int32_t lockStatus;
+    int32_t modulation;
+    float power;
+    int32_t modulation_high;
+    uint32_t correcteds;
+    uint32_t uncorrectables;
+}
+cm_ds_ofdm_chan_t;
+
+typedef struct {
+    int32_t channelID;
+    int32_t fftType;
+    int32_t channelType;
+    int32_t numActSubcarrier;
+    int32_t symbolRate;
+    int32_t lockStatus;
+    int32_t modulation;
+    int32_t t3Timeouts;
+    int32_t t4Timeouts;
+    float channelWidth;
+    float freqMAX;
+    float freqMIN;
+    float power;
+}
+cm_us_ofdma_chan_t;
+
 /** @} */  //END OF GROUP CM_HAL_TYPES
 
 
@@ -1272,6 +1313,11 @@ int qos_getServiceFlowParamsetDetails (int sf_id, int *MaxTrafficRate, int *MaxT
 
 int cm_hal_Get_ErouterModeControl (unsigned int *initMode);
 int cm_hal_Set_ErouterModeControl (int initMode);
+
+int docsis_getDsOFDMChannelCount (unsigned int *count);
+int docsis_getDsOFDMChannelDetails (unsigned int count, cm_ds_ofdm_chan_t *channel);
+int docsis_getUsOFDMAChannelCount (unsigned int *count);
+int docsis_getUsOFDMAChannelDetails (unsigned int count, cm_us_ofdma_chan_t *channel);
 
 #ifdef __cplusplus
 }
