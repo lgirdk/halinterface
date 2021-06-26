@@ -432,34 +432,34 @@ typedef enum
 */
 
 typedef struct {
-    int32_t channelID;
-    int32_t fftType;
-    int32_t channelWidth;
-    int32_t numActSubcarrier;
-    int32_t firstActSubcarrier;
-    int32_t lastActSubcarrier;
-    int32_t pilotScAvgMer;
-    int32_t plcScAvgMer;
-    int32_t dataScAvgMer;
-    int32_t lockStatus;
-    int32_t modulation;
+    int channelID;
+    int fftType;
+    int channelWidth;
+    int numActSubcarrier;
+    int firstActSubcarrier;
+    int lastActSubcarrier;
+    int pilotScAvgMer;
+    int plcScAvgMer;
+    int dataScAvgMer;
+    int lockStatus;
+    int modulation;
+    int modulation_high;
+    unsigned int correcteds;
+    unsigned int uncorrectables;
     float power;
-    int32_t modulation_high;
-    uint32_t correcteds;
-    uint32_t uncorrectables;
 }
 cm_ds_ofdm_chan_t;
 
 typedef struct {
-    int32_t channelID;
-    int32_t fftType;
-    int32_t channelType;
-    int32_t numActSubcarrier;
-    int32_t symbolRate;
-    int32_t lockStatus;
-    int32_t modulation;
-    int32_t t3Timeouts;
-    int32_t t4Timeouts;
+    int channelID;
+    int fftType;
+    int channelType;
+    int numActSubcarrier;
+    int symbolRate;
+    int lockStatus;
+    int modulation;
+    int t3Timeouts;
+    int t4Timeouts;
     float channelWidth;
     float freqMAX;
     float freqMIN;
