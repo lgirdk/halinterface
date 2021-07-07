@@ -68,6 +68,7 @@
 #ifndef __CM_HAL_H__
 #define __CM_HAL_H__
 
+#include <stdint.h>
 #include <sys/time.h>
 
 /**********************************************************************
@@ -117,7 +118,7 @@ extern "C"{
          union                                                                              \
          {                                                                                  \
             unsigned char           Dot[IPV4_ADDRESS_SIZE];                                 \
-            unsigned long           Value;                                                  \
+            uint32_t                Value;                                                  \
          }
 #endif
 
