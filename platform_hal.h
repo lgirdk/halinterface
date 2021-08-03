@@ -1008,6 +1008,13 @@ int platform_hal_GetCmMacAddress (char *pValue, unsigned int len);
 int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
 int platform_hal_GetCustomerIndex(void);
 
+int platform_hal_GetLedDSErrorTimer(void);
+int platform_hal_GetLedUSErrorTimer(void);
+int platform_hal_GetLedRegistrationErrorTimer(void);
+int platform_hal_SetLedDSErrorTimer(int value);
+int platform_hal_SetLedUSErrorTimer(int value);
+int platform_hal_SetLedRegistrationErrorTimer(int value);
+
 #ifdef __cplusplus
 }
 #endif
