@@ -1297,6 +1297,20 @@ int cm_hal_set_ReinitMacThreshold(unsigned long value);
 */
 int cm_hal_get_ReinitMacThreshold(unsigned long *pValue);
 
+/*  docsis_FactoryReset: */
+/**
+* @description Used to set default values for docsis parameters during factory reset.
+*              For instance, set default values for QAM threshold values.
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+*/
+int docsis_FactoryReset (void);
 
 int docsis_getCmDoc30SwRegistrationState (int *registration_state);
 int docsis_getCmT1Timeouts (unsigned int *t1_timeout);
