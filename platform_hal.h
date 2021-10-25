@@ -1230,6 +1230,7 @@ INT platform_hal_GetFirmwareBankInfo(FW_BANK bankIndex,PFW_BANK_INFO pFW_Bankinf
 int platform_hal_GetCmMacAddress (char *pValue, unsigned int len);
 int platform_hal_getUIDefaultPassword (char *pValue, unsigned int len);
 int platform_hal_GetCustomerIndex (void);
+int platform_hal_SetSpeedUpMTARFLossDetection (BOOLEAN bValue);
 
 #ifdef __cplusplus
 }
