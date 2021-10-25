@@ -1018,6 +1018,8 @@ int platform_hal_SetLedDSErrorTimer(int value);
 int platform_hal_SetLedUSErrorTimer(int value);
 int platform_hal_SetLedRegistrationErrorTimer(int value);
 
+int platform_hal_SetSpeedUpMTARFLossDetection(BOOLEAN bValue);
+
 #ifdef __cplusplus
 }
 #endif
