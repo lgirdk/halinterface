@@ -443,6 +443,11 @@ INT wifi_getApATMAirTimePercent(INT apIndex, UINT *output_ap_AirTimePercent);
 */
 INT wifi_getApATMSta(INT apIndex, UCHAR *output_sta_MAC_ATM_array, UINT  buf_size);  //output_sta_MAC_ATM_array contains the atm array in format of "$MAC $ATM_percent|$MAC $ATM_percent|$MAC $ATM_percent"
                                                                                 //buf_size is the size for output_sta_MAC_ATM_array
+
+INT wifi_setApATMSta(INT apIndex, UCHAR *sta_MAC, UINT sta_AirTimePercent); //if sta_MAC is new, HAL need to add this new record into ATM table for this AP
+                                                                            //if sta_MAC is not new, HAL need to change sta_AirTimePercent for this MAC in ATM table for this AP
+                                                                            //if sta_AirTimePercent is 0, HAL needd to remove this recordC from the ATM table
+
 /* wifi_getRadioNumberOfEntries() function */
 /**
 * @brief Get the total number of radios in this wifi subsystem.
