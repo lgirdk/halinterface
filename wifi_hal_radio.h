@@ -1039,6 +1039,8 @@ typedef INT ( * wifi_scanResults_callback)(wifi_radio_index_t index, wifi_bss_in
 
 void wifi_scanResults_callback_register(wifi_scanResults_callback callback_proc);
 
+INT wifi_setRadioRetryLimit(INT radioIndex, ULONG val);
+INT wifi_getRadioRetryLimit(INT radioIndex, ULONG *output_ulong);
 
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
