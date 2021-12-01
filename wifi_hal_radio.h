@@ -1146,6 +1146,8 @@ void wifi_scanResults_callback_register(wifi_scanResults_callback callback_proc)
 
 INT wifi_hal_getRadioTemperature(wifi_radio_index_t radioIndex, wifi_radioTemperature_t *output_struct);
 
+INT wifi_setRadioRetryLimit(INT radioIndex, ULONG val);
+INT wifi_getRadioRetryLimit(INT radioIndex, ULONG *output_ulong);
 
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
