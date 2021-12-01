@@ -1014,6 +1014,9 @@ INT wifi_setRadioOperatingParameters(wifi_radio_index_t index, wifi_radio_operat
  */
 INT wifi_getRadioOperatingParameters(wifi_radio_index_t index, wifi_radio_operationParam_t *operationParam);
 
+INT wifi_setRadioRetryLimit(INT radioIndex, ULONG val);
+INT wifi_getRadioRetryLimit(INT radioIndex, ULONG *output_ulong);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
