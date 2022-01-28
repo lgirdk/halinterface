@@ -2331,6 +2331,16 @@ INT wifi_createAp(INT apIndex, INT radioIndex, CHAR *essid, BOOL hideSsid);  // 
 */
 INT wifi_getIndexFromName(CHAR *inputSsidString, INT *ouput_int);     // Outputs the index number in that corresponds to the SSID string
 
+/*
+   Warning: Originally the HAL declared only wifi_getApIndexFromName() even
+   though HAL and ccsp-wifi-agent sources used only wifi_getIndexFromName().
+   Although the old wifi_getApIndexFromName() function isn't expected to be
+   used anywhere, add a mapping back to wifi_getIndexFromName() to document
+   the fact that it's the same API with a different name.
+*/
+#define wifi_getApIndexFromName wifi_getIndexFromName
+
+
 /* wifi_setApDTIMInterval() function */
 /**
 * @brief Sets the DTIM interval for this Access Point.
