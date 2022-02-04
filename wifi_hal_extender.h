@@ -1599,6 +1599,9 @@ INT wifi_getSoftBlockBlacklistEntries(INT band, ULONG *num, wifi_softblock_mac_t
 INT wifi_getDefaultSsid(INT index, CHAR *default_ssid);
 INT wifi_getDefaultPassword(INT index, CHAR *default_password);
 
+/*Get Mac filter list along with hostname from wifi db*/
+INT wifi_getApAclDevicesList(INT apIndex, CHAR **macArray, CHAR **devArray, UINT *buf_size);
+
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
 #ifdef __cplusplus
