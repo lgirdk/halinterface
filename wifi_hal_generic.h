@@ -222,6 +222,17 @@ typedef enum {
     wifi_ip_family_ipv6
 } wifi_ip_family_t;
 
+typedef enum {
+    CAC_PERIOD = 0,
+    CLEARED = 1,
+    NO_CLEARED = 2,
+} wifi_zwdfs_chan_status_enum_t;
+
+typedef struct {
+    ULONG                          Channel;
+    wifi_zwdfs_chan_status_enum_t  Status;
+} wifi_zwdf_list_t;
+
 typedef struct {
     wifi_ip_family_t family;
     union { /* network byte ordered */
@@ -951,6 +962,76 @@ typedef struct _wifi_associated_dev3
  *
  */
 INT wifi_getHalCapability(wifi_hal_capability_t *cap);
+
+/* wifi_isZeroDFSSupported() function */
+/**
+* @brief get if ZWDFS feature is supported or not
+*
+* @param radioIndex the radio index 
+* @param supported info on either feature is supported or not
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+*/
+INT wifi_isZeroDFSSupported(UINT radioIndex, BOOL *supported);
+
+/* wifi_setZeroDFSState() function */
+/**
+* @brief set ZWDFS feature 
+*
+* @param radioIndex the radio index 
+* @param enable 
+* @param precac
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+*/
+INT wifi_setZeroDFSState(UINT radioIndex, BOOL enable,BOOL precac);
+
+/* wifi_getZeroDFSState() function */
+/**
+* @brief get ZWDFS feature 
+*
+* @param radioIndex
+* @param enable 
+* @param precac
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+*/
+INT wifi_getZeroDFSState(UINT radioIndex, BOOL *enable, BOOL *precac);
+
+/* wifi_getZeroWaitDFSChannelsStatus() function */
+/** 
+* @brief get channel status of DFS channels list
+*
+* @param radioIndex the radio index 
+* @param ListOfDFSChannelStatus
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+*/
+INT wifi_getZeroWaitDFSChannelsStatus(UINT radioIndex, wifi_zwdf_list_t **ListOfDFSChannelStatus);
 
 /* wifi_factoryReset() function */
 /**
