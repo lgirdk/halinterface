@@ -1235,7 +1235,7 @@ INT wifi_setRadioAutoChannelRefreshPeriod(INT radioIndex, ULONG seconds);
 
 /* wifi_getRadioOperatingChannelBandwidth() function */
 /**
-* @brief Get the Operating Channel Bandwidth. eg "20MHz", "40MHz", "80MHz", "80+80", "160".
+* @brief Get the Operating Channel Bandwidth. eg "20MHz", "40MHz", "80MHz", "80+80MHz", "160MHz".
 *
 * The output_string is a max length 64 octet string that is allocated by the RDKB code.
 * Implementations must ensure that strings are not longer than this.
@@ -1255,6 +1255,11 @@ INT wifi_setRadioAutoChannelRefreshPeriod(INT radioIndex, ULONG seconds);
 *
 */
 INT wifi_getRadioOperatingChannelBandwidth(INT radioIndex, CHAR *output_string);
+
+/*
+   Similar to wifi_getRadioOperatingChannelBandwidth(), but different.
+*/
+int wifi_getCurrentRadioOperatingChannelBandwidth(int radioIndex, char *output_string, unsigned int len);
 
 /* wifi_setRadioOperatingChannelBandwidth() function */
 /**
