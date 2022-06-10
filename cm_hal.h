@@ -286,6 +286,10 @@ _CMMGMT_DML_DOCSISLOG_FULL {
 }
 CMMGMT_DML_DOCSISLOG_FULL,  *PCMMGMT_DML_DOCSISLOG_FULL;
 
+/*
+   Warning: The CMMGMT_CM_DHCP_INFO struct must exactly match COSA_CM_DHCP_INFO in
+            ccsp-cm-agent/source/TR-181/include/cosa_x_cisco_com_cablemodem_apis.h
+*/
 typedef  struct
 _CMMGMT_CM_DHCP_INFO
 {
