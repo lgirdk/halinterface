@@ -1239,6 +1239,12 @@ int platform_hal_SetLedDSErrorTimer (int value);
 int platform_hal_SetLedUSErrorTimer (int value);
 int platform_hal_SetLedRegistrationErrorTimer (int value);
 int platform_hal_SetLedMaxBrightness (int value);
+int platform_hal_GetLedPONRegistrationErrorTimer (void);
+int platform_hal_GetLedOLTProvisioningErrorTimer (void);
+int platform_hal_GetLedWanDhcpErrorTimer (void);
+int platform_hal_SetLedPONRegistrationErrorTimer (int value);
+int platform_hal_SetLedOLTProvisioningErrorTimer (int value);
+int platform_hal_SetLedWanDhcpErrorTimer (int value);
 
 #ifdef __cplusplus
 }
