@@ -440,6 +440,18 @@ typedef enum
 } CmRegState_t;
 
 /*
+   These values are hardcoded in the data model (as part of
+   Device.X_LGI-COM_CableModem.DownstreamPrimaryChannelType)
+   so should not be changed.
+*/
+typedef enum
+{
+    CM_CHANNEL_TYPE_SC_QAM = 0,
+    CM_CHANNEL_TYPE_SC_OFDM = 1,
+}
+CmChannelType_t;
+
+/*
    OFDM and OFDMA channel details for X_LGI-COM_CableModem
    object.
 */
@@ -1377,6 +1389,8 @@ int docsis_getEnergyMode (int *energy_mode);
 int docsis_getHorizOvertempProtModeState (int *temp_mode);
 int docsis_getPartServiceFallback20 (int *enable);
 int docsis_getDownstreamPrimaryChannelID (int *dsPrimChannelId);
+int docsis_getDownstreamPrimaryChannelType (int *dsPrimChannelType);
+
 int cm_getSoftwareOperStatus (int *swOperStatus);
 int qos_getServiceFlowCount (unsigned int *count);
 int qos_getServiceFlowParamCount (unsigned int *count);
