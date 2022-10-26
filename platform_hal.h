@@ -1562,6 +1562,7 @@ int platform_hal_GetLedRegistrationErrorTimer (void);
 int platform_hal_SetLedDSErrorTimer (int value);
 int platform_hal_SetLedUSErrorTimer (int value);
 int platform_hal_SetLedRegistrationErrorTimer (int value);
+int platform_hal_SetLedBrightness (int value);
 int platform_hal_SetLedMaxBrightness (int value);
 int platform_hal_GetLedPONRegistrationErrorTimer (void);
 int platform_hal_GetLedOLTProvisioningErrorTimer (void);
