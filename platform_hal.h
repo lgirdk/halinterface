@@ -1569,6 +1569,11 @@ int platform_hal_SetLedPONRegistrationErrorTimer (int value);
 int platform_hal_SetLedOLTProvisioningErrorTimer (int value);
 int platform_hal_SetLedWanDhcpErrorTimer (int value);
 
+int platform_hal_GetManufacturer (char *pValue);
+int platform_hal_GetDescription (char *pValue);
+int platform_hal_GetProductClass (char *pValue);
+int platform_hal_GetManufacturerOUI (char *pValue);
+
 #ifdef __cplusplus
 }
 #endif
