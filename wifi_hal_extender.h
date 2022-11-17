@@ -224,7 +224,8 @@ typedef enum {
 typedef enum {
     DISCONNECT_TYPE_UNKNOWN                 = 0,    /**< Unknown type               */
     DISCONNECT_TYPE_DISASSOC,                       /**< Disassociation             */
-    DISCONNECT_TYPE_DEAUTH                          /**< Deauthentication           */
+    DISCONNECT_TYPE_DEAUTH,                         /**< Deauthentication           */
+    DISCONNECT_TYPE_RECONNECT                       /**< Reconnection               */
 } wifi_disconnectType_t;
 
 /**
