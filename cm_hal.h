@@ -129,6 +129,10 @@ extern "C"{
 #define ENABLE   1
 #endif
 
+#ifndef DISABLE
+#define DISABLE  0
+#endif
+
 #ifndef RETURN_OK
 #define RETURN_OK   0
 #endif
@@ -1178,6 +1182,22 @@ INT docsis_GetUsOfdmaChanTable(PDOCSIF31_CM_US_OFDMA_CHAN *ppinfo, int *output_N
 */
 INT docsis_GetStatusOfdmaUsTable(PDOCSIF31_CMSTATUSOFDMA_US *ppinfo, int *output_NumberOfEntries);
 //<< Docsis3.1
+
+
+/*  docsis_LLDgetEnableStatus : */
+/**
+*@description Get the LLD enable status  
+* @return The status of the LLD status.
+* @retval ENABLE if LLD is enabled in bootfile.
+* @retval DISABLE if LLD is disabled/entry doesn't exists in bootfile
+* @retval RETURN_ERR if any other error detected
+
+*
+* @execution Synchronous.
+* @sideeffect None.
+*/
+
+INT docsis_LLDgetEnableStatus();
 
 /*  cm_hal_snmpv3_kickstart_initialize: */
 /**
