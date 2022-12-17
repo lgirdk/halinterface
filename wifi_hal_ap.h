@@ -2476,6 +2476,7 @@ typedef struct {
     UINT  eap_req_timeout;
     UINT  eap_req_retries;
     BOOL  disable_pmksa_caching;
+    char  key_id[32];  // Openflow Tag associated with a PSK.
     union {
         wifi_radius_settings_t  radius;
         wifi_security_key_t key;
