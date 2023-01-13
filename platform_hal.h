@@ -174,6 +174,8 @@ extern "C"{
 #define DHCPV4_OPT_243 243 // Private Use
 #define DHCPV4_OPT_END 255 // DHCP Option End - used to check if option is valid
 
+#define FW_NAME_MAX_LEN 64 // Firmware Name String Length
+#define FW_STATE_MAX_LEN 64 //Firmware State
 /**********************************************************************
                 ENUMERATION DEFINITIONS
 **********************************************************************/
@@ -1198,6 +1200,31 @@ INT platform_hal_getDscpClientList(WAN_INTERFACE interfaceType , pDSCP_list_t pD
 */
 INT platform_hal_GetCPUSpeed(char *cpuSpeed);
 
+typedef  enum {
+   ACTIVE_BANK,
+   INACTIVE_BANK,
+} FW_BANK;
+
+typedef  struct _FW_BANK_INFO
+{
+      CHAR  fw_name[FW_NAME_MAX_LEN];
+      CHAR  fw_state[FW_STATE_MAX_LEN];
+}
+FW_BANK_INFO, *PFW_BANK_INFO;
+/* platform_hal_GetBankFirmwareName() function */
+/**
+* @description Get firmware image name flashed in the given Bank
+*
+* @param bankIndex - Bank index enum,ACTIVE_BANK,INACTIVE_BANK
+* @param pValue - Firmware image name, to be returned
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @sideeffect None
+*/
+INT platform_hal_GetFirmwareBankInfo(FW_BANK bankIndex,PFW_BANK_INFO pFW_Bankinfo);
 
 #ifdef __cplusplus
 }
