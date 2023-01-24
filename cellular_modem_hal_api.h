@@ -29,6 +29,7 @@ extern "C"{
 
 int Modem_FactoryReset(void);
 int Modem_Reboot(void);
+int Modem_Firmware_Version(char *firmware_version);
 
 #ifdef __cplusplus
 }
