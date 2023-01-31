@@ -123,6 +123,12 @@ extern "C"{
 #define ULONG unsigned long
 #endif
 
+
+  
+#ifndef UINT64_t
+#define UINT64_t unsigned long long
+#endif
+
 #ifndef TRUE
 #define TRUE     1
 #endif
@@ -1225,6 +1231,31 @@ FW_BANK_INFO, *PFW_BANK_INFO;
 * @sideeffect None
 */
 INT platform_hal_GetFirmwareBankInfo(FW_BANK bankIndex,PFW_BANK_INFO pFW_Bankinfo);
+
+typedef  struct _INTF_STATS
+{
+   UINT64_t rx_packet; /* Packets received */
+   UINT64_t tx_packet; /* Packets sent */
+   UINT64_t rx_bytes; /* Bytes received */
+   UINT64_t tx_bytes; /* Bytes sent */
+}
+INTF_STATS, *PINTF_STATS;
+
+/* platform_hal_GetInterfaceStats() function */
+/**
+* @description Get Interface Stats for the given interface,considering
+* only LAN to WAN/WAN to LAN traffic.
+*
+* @param ifname - Interface name for which stats needs to be fetched 
+* @param pIntfStats - Interface Stats structure, to be returned
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @sideeffect None
+*/
+INT platform_hal_GetInterfaceStats(const char *ifname,PINTF_STATS pIntfStats);
 
 #ifdef __cplusplus
 }
