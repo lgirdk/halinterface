@@ -103,6 +103,7 @@ typedef struct {
     BOOL chanUtilSelfHealEnable;
     BOOL DfsEnabled;
     BOOL DfsEnabledBootup;
+    BOOL EcoPowerDown;
 } __attribute__((packed)) wifi_radio_operationParam_t;
 
 

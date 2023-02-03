@@ -701,6 +701,7 @@ typedef struct {
      wifi_radio_capabilities_t radiocap[MAX_NUM_RADIOS]; /**< Radio capabilities */
      wifi_interface_name_idex_map_t interface_map[(MAX_NUM_RADIOS * MAX_NUM_VAP_PER_RADIO)];
      radio_interface_mapping_t radio_interface_map[MAX_NUM_RADIOS];
+     BOOL radio_presence[MAX_NUM_RADIOS];         /**< Indicates if the interfaces is present (not in deep sleep)*/
 }__attribute__((packed)) wifi_platform_property_t;
 
 /**
