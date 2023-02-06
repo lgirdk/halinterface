@@ -873,6 +873,7 @@ typedef struct _wifi_frame_info
     UINT    num_sc;                /* Number of subcarriers in the payload so that information can be used in conjunction with the number of streams to fully decode valid regions */
     UCHAR    decimation;            /* Value to indicate degree to which CSI matrix is decimated in terms of number of subcarriers present.*/
     UINT    channel;            /* Primary Channel of received frame */
+    INT       cfo;              /* center frequency offset when demodulated, offset can be positive or negative */
     ULLONG    time_stamp;            /* PHY timestamp of CSI capture with at minimum millisecond    */
                                 /* resolution. Ideally this can be resolved to a standard epoch */
                                 /* format with millisecond resolution. */
