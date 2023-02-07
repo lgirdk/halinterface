@@ -335,6 +335,7 @@ int _is_this_interface_available_in_given_linux_bridge(char * if_name, char * br
 */
 
 void _get_shell_outputbuffer(char * cmd, char * out, int len);
+void _get_shell_outputbuffer_res(FILE *fp, char * out, int len);
 
 /**
 * @description This HAL utility is used store the VLAN ID, Group Name configuration.
