@@ -875,6 +875,7 @@ typedef struct _FAN_PLATFORM_CONFIG
    UINT FanMinRunTime;
    UINT MonitoringDelay;
    UINT PowerMonitoring;
+   UINT LogInterval;
 } THERMAL_PLATFORM_CONFIG;
 
 
