@@ -240,14 +240,15 @@ typedef enum {
 } wifi_ip_family_t;
 
 typedef enum {
-    CAC_PERIOD = 1,
-    CLEARED = 2,
-    NO_CLEARED = 3,
-} WIFI_ZWDFS_CHAN_STATUS_ENUM;
+    AVAILABLE = 0,
+    CAC_ONGOING = 1,
+    NON_OCCUPANCY_PERIOD = 2,
+    NOT_CLEARED = 3,
+} wifi_zwdfs_chan_status_enum_t;
 
 typedef struct {
     ULONG Channel;
-    WIFI_ZWDFS_CHAN_STATUS_ENUM Status;
+    wifi_zwdfs_chan_status_enum_t Status;
 } wifi_zwdf_list_t;
 
 typedef struct {
