@@ -2455,7 +2455,8 @@ typedef enum {
     wifi_security_mode_wpa_wpa2_enterprise = 0x00000100,
     wifi_security_mode_wpa3_personal = 0x00000200,
     wifi_security_mode_wpa3_transition = 0x00000400,
-    wifi_security_mode_wpa3_enterprise = 0x00000800
+    wifi_security_mode_wpa3_enterprise = 0x00000800,
+    wifi_security_mode_enhanced_open = 0x00001000
 } wifi_security_modes_t;
 
 typedef struct {
