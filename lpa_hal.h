@@ -181,4 +181,26 @@ int cellular_esim_lpa_init(void);
 */
 int cellular_esim_lpa_exit(void);
 
+/*  cellular_esim_get_eid function */
+/**
+* @description - Get EID info
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+*/
+int cellular_esim_get_eid();
+
+/*  cellular_esim_get_euicc function */
+/**
+* @description - Get eUicc Info
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+*/
+int cellular_esim_get_euicc();
+
 #endif //_LPA_HAL_H_
