@@ -167,6 +167,7 @@ extern "C"{
 
 
 //DHCPv4 Options
+#define DHCPV4_OPT_2    2  // Time Offset
 #define DHCPV4_OPT_42  42  // NTP Server Addresses
 #define DHCPV4_OPT_43  43  // Vendor Specific Information
 #define DHCPV4_OPT_58  58  // DHCP Renewal (T1) Time
