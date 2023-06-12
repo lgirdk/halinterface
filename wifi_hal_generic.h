@@ -840,8 +840,8 @@ typedef enum {
 } wifi_connection_status_t;
 
 
-#define MAX_NR                  8
-#define MAX_NC                  4
+#define MAX_NR                  4
+#define MAX_NC                  1
 #define MAX_SUB_CARRIERS        256
 #define MAX_PILOTS              26
 
