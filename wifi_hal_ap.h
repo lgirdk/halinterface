@@ -1914,6 +1914,8 @@ typedef void (* wifi_sentAuthFrame_callback)(unsigned int ap_index, mac_address_
 typedef void (* wifi_receivedAssocReqFrame_callback)(unsigned int ap_index, mac_address_t sta, void *data, unsigned int len);
 typedef void (* wifi_sentAssocRspFrame_callback)(unsigned int ap_index, mac_address_t sta, void *data, unsigned int len);
 
+typedef INT (* wifi_hal_frame_hook_fn_t)(INT ap_index, wifi_mgmtFrameType_t type);
+
 #ifdef WIFI_HAL_VERSION_3_PHASE2
 typedef INT (* wifi_receivedMgmtFrame_callback)(INT apIndex, wifi_frame_t *frame);
 typedef INT (* wifi_receivedDataFrame_callback)(INT apIndex, mac_address_t sta_mac, UCHAR *frame, UINT len, wifi_dataFrameType_t type, wifi_direction_t dir);
@@ -1950,6 +1952,23 @@ INT wifi_mgmt_frame_callbacks_register(wifi_receivedMgmtFrame_callback mgmtRxCal
 *
 */
 void wifi_csi_callback_register(wifi_csi_callback callback_proc);
+
+/* wifi_hal_register_frame_hook() function */
+/**
+* @brief Frame hook callregistration function. Hook will be executed when
+* the mgmt frame is received from the HAL. Is used by applications, if 
+* application doesn't define this hook it will not be executed.
+*
+* @param[in] hook    wifi_hal_frame_hook_fn_t callback function
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a hal event handler task.
+*
+*/
+void wifi_hal_register_frame_hook(wifi_hal_frame_hook_fn_t hook_fn);
 
 
 /* wifi_enableCSIEngine() function */
@@ -2536,6 +2555,27 @@ typedef struct {
     wifi_passpoint_settings_t   passpoint;
 } __attribute__((packed)) wifi_interworking_t;
 
+typedef struct {
+    char rssi_up_threshold[32];
+    char snr_threshold[32];
+    char cu_threshold[32];
+    char basic_data_transmit_rates[32];
+    char operational_data_transmit_rates[32];
+    char supported_data_transmit_rates[32];
+    char minimum_advertised_mcs[32];
+    char sixGOpInfoMinRate[32];
+    wifi_vap_name_t vap_name;
+} __attribute__((packed)) wifi_preassoc_control_t;
+
+typedef struct {
+    char sampling_interval[32]; //up_discard
+    char sampling_count[32];
+    char rssi_up_threshold[32];
+    char snr_threshold[32]; // retrans_up
+    char cu_threshold[32];
+    wifi_vap_name_t vap_name;
+} __attribute__((packed)) wifi_postassoc_control_t;
+
 typedef enum {
     wifi_vap_mode_ap,
     wifi_vap_mode_sta,
@@ -2572,6 +2612,8 @@ typedef struct {
     BOOL    vapStatsEnable;             //should not be implemented in the hal
     wifi_vap_security_t security;
     wifi_interworking_t interworking;
+    wifi_preassoc_control_t preassoc;
+    wifi_postassoc_control_t postassoc;
     BOOL    mac_filter_enable;
     wifi_mac_filter_mode_t mac_filter_mode;
     BOOL    sec_changed;                //should not be implemented in the hal
