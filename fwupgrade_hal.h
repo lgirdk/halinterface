@@ -120,113 +120,123 @@ extern "C"{
  * @{
  */
 
-/* fwupgrade_hal_set_download_url  - 1 */
+/* fwupgrade_hal_set_download_url - 1 */
 
 /**
-* @description Set FW Download Settings
-* @param char* pUrl
-* @param char* pfilename
+* @description Set FW Download URL and Filename.
+* @param[in] pUrl A pointer to a character array that will hold the firmware download URL.
+*                 \n URL buffer size should be at least 1024 bytes.
+* @param[in] pfilename A pointer to a character array that will hold the firmware filename.
+*                      \n Filename buffer size should be at least 256 bytes.
 *
-* @return the status of the operation
+* @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any Downloading is in process or Url string is invalided.
+* @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
 INT fwupgrade_hal_set_download_url (char* pUrl, char* pfilename);
 
-/* fwupgrade_hal_get_download_Url: */
+/* fwupgrade_hal_get_download_url - 2 */
 
 /**
-* @description Get FW Download Url
-* @param char* pUrl
-* @param char* pfilename
+* @description Get FW Download URL and Filename.
+* @param[out] pUrl A pointer to a character array that will hold the firmware download URL.
+*                  \n The buffer size should be at least 1024 bytes.
+* @param[out] pfilename A pointer to a character array that will hold the firmware filename.
+*                       \n The buffer size should be at least 256 bytes.
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if FW url string is empty.
+* @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
 INT fwupgrade_hal_get_download_url (char *pUrl, char* pfilename);
 
-/* fwupgrade_hal_set_download_interface: */
+/* fwupgrade_hal_set_download_interface - 3 */
 /**
-* @description Set the FW Download Interface
-* @param unsigned int interface - interface=0 for wan0, interface=1 for erouter0
+* @description Set the FW Download Interface.
+* @param[in] interface The interface to be set.
+*                      \n Use interface=0 for wan0 and interface=1 for erouter0.
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_ERR if any error is detected.
 */
 /* interface=0 for wan0, interface=1 for erouter0 */
 INT fwupgrade_hal_set_download_interface (unsigned int interface);
 
-/* fwupgrade_hal_GetDownload_Interface: */
+/* fwupgrade_hal_get_download_interface - 4 */
 /**
-* @description Get the FW Download Interface
-* @param unsigned int* pinterface - interface=0 for wan0, interface=1 for erouter0
+* @description Get the FW Download Interface.
+* @param[out] pinterface A pointer to an unsigned integer that stores retrieved interface value.
+*                        \n Interface value is represented as follows: 0 for wan0 and 1 for erouter0.
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_ERR if any error is detected.
+* @remark The caller is responsible for providing a valid memory location for the function argument.
 */
 /* interface=0 for wan0, interface=1 for erouter0 */
 INT fwupgrade_hal_get_download_interface (unsigned int* pinterface);
 
-/* fwupgrade_halDownload - 3 */
+/* fwupgrade_hal_download - 5 */
 /**
-* @description Start FW Download
-* @param <None>
+* @description Start FW Download.
+* @param None
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any Downloading is in process.
 *
 * @execution Synchronous.
 * @sideeffect None.
-* 
-* @note This function must not suspend and must not invoke any blocking system
-* calls. It should probably just send a message to a driver event handler task.
+*
+* @note This function must not suspend and must not invoke any blocking system calls.
+*       \n It should probably just send a message to a driver event handler task.
 */
 INT fwupgrade_hal_download ();
 
-/* fwupgrade_hal_get_download_status  4 */
+/* fwupgrade_hal_get_download_status - 6 */
 /**
-* @description Get the FW Download Status
-* @param <None>
+* @description Get the FW Download Status.
+* @param None
 * @return the status of the FW Download.
-* @retval 0 -   Download is not started.
+* @retval 0 - Download is not started.
 * @retval 0-100 - Values of percent of download.
 * @retval 200 - Download is completed and waiting for reboot.
-* @retval 400 - Invalided Http server Url
-* @retval 401 - Cannot connect to Http server
-* @retval 402 - File is not found on Http server
-* @retval 403 - HW_Type_DL_Protection Failure
-* @retval 404 - HW Mask DL Protection Failure
-* @retval 405 - DL Rev Protection Failure
-* @retval 406 - DL Header Protection Failure
-* @retval 407 - DL CVC Failure
-* @retval 500 - General Download Failure
-* 	
+* @retval 400 - Invalided Http server Url.
+* @retval 401 - Cannot connect to Http server.
+* @retval 402 - File is not found on Http server.
+* @retval 403 - HW_Type_DL_Protection Failure.
+* @retval 404 - HW Mask DL Protection Failure.
+* @retval 405 - DL Rev Protection Failure.
+* @retval 406 - DL Header Protection Failure.
+* @retval 407 - DL CVC Failure.
+* @retval 500 - General Download Failure.
+*
 */
 INT fwupgrade_hal_get_download_status ();
 
-/* fwupgrade_hal_Reboot_Ready - 5 */
+/* fwupgrade_hal_reboot_ready - 7 */
 /**
-* @description Get the Reboot Ready Status
-* @param ULONG *pValue- Values of 1 for Ready, 2 for Not Ready
+* @description Get the Reboot Ready Status.
+* @param[out] pValue Pointer to an unsigned long variable that will store the reboot ready status.
+*                    \n Value 1 represents ready for reboot and 2 represents not ready for reboot.
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_ERR if any error is detected.
 */
 INT fwupgrade_hal_reboot_ready (ULONG *pValue);
 
-/* fwupgrade_hal_download_reboot_now - 6*/
+/* fwupgrade_hal_download_reboot_now - 8 */
 /**
-* @description FW Download Reboot Now
-* @param <None>
+* @description FW Download Reboot Now.
+* @param None
 * @return the status of the reboot operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any reboot is in process.
 */
 INT fwupgrade_hal_download_reboot_now ();
 
-/* fwupgrade_hal_FWupdateAndFactoryReset : */
+/* fwupgrade_hal_update_and_factoryreset - 9 */
 /**
-* @description: Firmware update and factory reset the device
+* @description Firmware update and factory reset the device.
 * @param None
 * @return the status of the Firmware update and factory reset operation.
 * @retval RETURN_OK if successful.
@@ -234,13 +244,15 @@ INT fwupgrade_hal_download_reboot_now ();
 */
 INT fwupgrade_hal_update_and_factoryreset ();
 
-/* fwupgrade_hal_FWupdateAndFactoryReset : */
+/* fwupgrade_hal_download_install - 10 */
 /**
-* @description: Downloads and upgrades the firmware
-* @param None
-* @return the status of the Firmware download and upgrade status
+* @description Downloads and upgrades the firmware.
+* @param[in] url URL from which to download the firmware.
+                 \n The URL buffer size should be at least 1024 bytes.
+* @return the status of the Firmware download and upgrade status.
 * @retval RETURN_OK if successful.
-* @retval RETURN_ERR in case of remote server not reachable
+* @retval RETURN_ERR in case of remote server not reachable.
+* @remark The caller is responsible for providing a valid memory location for the function argument.
 */
 INT fwupgrade_hal_download_install(const char *url);
 

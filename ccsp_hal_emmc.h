@@ -200,30 +200,108 @@ typedef struct _stmgr_CallBackData{
 /* CcspHalEmmcGetHealthInfo() function */
 /**
 * @description Provides EMMC health information
-* @param
-*    pHealthInfo - Pointer to Health Info structure that needs to be updated.
+* @param[out]
+*    pHealthInfo - Pointer to eSTMGRHealthInfo structure that needs to be updated.
+*    <pre>
+*    eSTMGRHealthInfo structure consists of the following:
+*        m_deviceID is a 128 byte character array. Example: 4501004447343030380157d0ed433800
+*        m_deviceType variable is from the enumerated datatype eSTMGRDeviceType.
+*        Possible values of m_deviceType:
+*            RDK_STMGR_DEVICE_TYPE_HDD = 0,
+*            RDK_STMGR_DEVICE_TYPE_SDCARD = 1,
+*            RDK_STMGR_DEVICE_TYPE_USB = 2,
+*            RDK_STMGR_DEVICE_TYPE_FLASH = 3,
+*            RDK_STMGR_DEVICE_TYPE_NVRAM = 4,
+*            RDK_STMGR_DEVICE_TYPE_EMMCCARD = 5,
+*            RDK_STMGR_DEVICE_TYPE_MAX = 6
+*        m_isOperational is a boolean variable. Possible values: true or false
+*        m_isHealthy is a boolean variable. Possible values: true or false
+*        m_diagnostics forms the union of following structure/variable:
+*            m_list object is from the structure eSTMGRDiagAttributesList.
+*                m_numOfAttributes is a unsigned short.
+*                m_diagnostics is a structure array of size 20 from the structure eSTMGRDiagAttributes.
+*                    m_name is a 128 byte character array.
+*                    m_value is a 128 byte character array.
+*            m_blob is 2048 byte character array.
+*        m_lifetimesList object is from the structure eSTMGRDiagAttributesList.
+*            m_numOfAttributes is a unsigned short.
+*            m_diagnostics is a structure array of size 20 from the structure eSTMGRDiagAttributes.
+*                m_name is a 128 byte character array.
+*                m_value is a 128 byte character array.
+*        m_firstExceededConfiguredLife object is from the structure eSTMGRDiagAttributesList.
+*            m_numOfAttributes is a unsigned short.
+*            m_diagnostics is a structure array of size 20 from the structure eSTMGRDiagAttributes.
+*                m_name is a 128 byte character array.
+*                m_value is a 128 byte character array.
+*        m_firstExceededMaxLife object is from the structure eSTMGRDiagAttributesList.
+*            m_numOfAttributes is a unsigned short.
+*            m_diagnostics is a structure array of size 20 from the structure eSTMGRDiagAttributes.
+*                m_name is a 128 byte character array.
+*                m_value is a 128 byte character array.
+*        m_healthStatesList object is from the structure eSTMGRDiagAttributesList.
+*            m_numOfAttributes is a unsigned short.
+*            m_diagnostics is a structure array of size 20 from the structure eSTMGRDiagAttributes.
+*                m_name is a 128 byte character array.
+*                m_value is a 128 byte character array.
+*    </pre>
+*
 * @return The status of the operation.
 * @retval RDK_STMGR_RETURN_SUCCESS Success.
 * @retval RDK_STMGR_RETURN_GENERIC_FAILURE Generic Failure.
 * @retval RDK_STMGR_RETURN_INIT_FAILURE Initialization failure.
 * @retval RDK_STMGR_RETURN_INVALID_INPUT Invalid Input.
 * @retval RDK_STMGR_RETURN_UNKNOWN_FAILURE Unknown Failure.
-* 
+* @remark The caller of this function is responsible for allocating memory for the eSTMGRHealthInfo structure.
+*
 */
 eSTMGRReturns CcspHalEmmcGetHealthInfo (eSTMGRHealthInfo* pHealthInfo);
 
 /* CcspHalEmmcGetDeviceInfo() function */
 /**
 * @description Provides EMMC Device information
-* @param
-*    pHealthInfo - Pointer to Device Info structure that needs to be updated.
+* @param[out]
+*    pDeviceInfo - Pointer to eSTMGRDeviceInfo structure that needs to be updated.
+*    <pre>
+*    eSTMGRDeviceInfo structure consists of the following:
+*        m_deviceID is 128 byte character array. Example: 4501004447343030380157d0ed433800
+*        m_type variable is from the enumerated datatype eSTMGRDeviceType.
+*        Possible values of m_type:
+*            RDK_STMGR_DEVICE_TYPE_HDD   = 0,
+*            RDK_STMGR_DEVICE_TYPE_SDCARD = 1,
+*            RDK_STMGR_DEVICE_TYPE_USB = 2,
+*            RDK_STMGR_DEVICE_TYPE_FLASH = 3,
+*            RDK_STMGR_DEVICE_TYPE_NVRAM = 4,
+*            RDK_STMGR_DEVICE_TYPE_EMMCCARD = 5,
+*            RDK_STMGR_DEVICE_TYPE_MAX = 6
+*        m_capacity is a unsigned long long.
+*        m_status variable is from the enumerated datatype eSTMGRDeviceStatus.
+*        Possible values of m_status:
+*            RDK_STMGR_DEVICE_STATUS_OK              = 0,
+*            RDK_STMGR_DEVICE_STATUS_READ_ONLY       = (1 << 0), 1
+*            RDK_STMGR_DEVICE_STATUS_NOT_PRESENT     = (1 << 1), 2
+*            RDK_STMGR_DEVICE_STATUS_NOT_QUALIFIED   = (1 << 2), 4
+*            RDK_STMGR_DEVICE_STATUS_DISK_FULL       = (1 << 3), 8
+*            RDK_STMGR_DEVICE_STATUS_READ_FAILURE    = (1 << 4), 16
+*            RDK_STMGR_DEVICE_STATUS_WRITE_FAILURE   = (1 << 5), 32
+*            RDK_STMGR_DEVICE_STATUS_UNKNOWN         = (1 << 6)  64
+*        m_partitions is a 256 byte character array.
+*        m_manufacturer is a 128 byte character array. Possible values: SanDisk, Kioxia
+*        m_model is a 128 byte character array. Possible values: DG4008, DG4016
+*        m_serialNumber is a 128 byte character array. Example: 0x12345678,0x98765432
+*        m_firmwareVersion is a 128 byte character array. Example: 3733313033353137, 0x333330343031
+*        m_hwVersion is a 128 byte character array. Possible values: 0x01
+*        m_ifATAstandard is a 128 byte character array.
+*        m_hasSMARTSupport is a boolean.
+*    </pre>
+*
 * @return The status of the operation.
 * @retval RDK_STMGR_RETURN_SUCCESS Success.
 * @retval RDK_STMGR_RETURN_GENERIC_FAILURE Generic Failure.
 * @retval RDK_STMGR_RETURN_INIT_FAILURE Initialization failure.
 * @retval RDK_STMGR_RETURN_INVALID_INPUT Invalid Input.
 * @retval RDK_STMGR_RETURN_UNKNOWN_FAILURE Unknown Failure.
-* 
+* @remark The caller of this function is responsible for allocating memory for the eSTMGRDeviceInfo structure.
+*
 */
 eSTMGRReturns CcspHalEmmcGetDeviceInfo (eSTMGRDeviceInfo* pDeviceInfo);
 
