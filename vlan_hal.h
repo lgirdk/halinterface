@@ -167,13 +167,20 @@ typedef struct _vlan_vlanidconfiguration
  */
 
 /**
-* @description This HAL is used to creat an new vlan group, and assig default vlanID.
-* @param const char *groupName - bridge name
-* @param const char *default_vlanID - default VLANID
+* @description This HAL utility is used to create an new vlan group, and assign default vlanID.
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                      \n It represents the bridge name for the VLAN group.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
+* @param[in] default_vlanID A pointer to a constant character string (const char *).
+*                      \n It represents the default VLANID to be asThe buffer size shouldn't exceed 16 bytes.igned to the VLAN group.
+*                      \n The buffer size shouldn't exceed 5 bytes.
+*                      \n The valid VLAN IDs range from 1 to 4094.
+*                      \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful (or) return RETURN_OK If group is already exist and has expected vlanID
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful (or) return RETURN_OK If group is already exist and has expected vlanID.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -182,12 +189,15 @@ typedef struct _vlan_vlanidconfiguration
 int vlan_hal_addGroup(const char *groupName, const char *default_vlanID);
 
 /**
-* @description This HAL is used to delete existing vlan group, and delete correspond interface association.
-* @param const char *groupName - bridge name 
+* @description This HAL utility is used to delete existing vlan group, and delete correspond interface association.
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                      \n It represents the bridge name associated with the VLAN group to be deleted.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful (or) RETURN_OK If group is not exist
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful (or) RETURN_OK If group is not exist.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -196,14 +206,24 @@ int vlan_hal_addGroup(const char *groupName, const char *default_vlanID);
 int vlan_hal_delGroup(const char *groupName);
 
 /**
-* @description This HAL is used to add interface to existing vlan group, and assign the vlanID.
-* @param const char *groupName - bridge name 
-* @param const char *ifName - interface name
-* @param const char *vlanID - VLANID
+* @description This HAL utility is used to add interface to existing vlan group, and assign the vlanID.
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                   \n A string representing the bridge name to which the interface will be added.
+*                   \n The buffer size shouldn't exceed 16 bytes.
+*                   \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
+* @param[in] ifName A pointer to a constant character string (const char *).
+*                   \n The Possible values are : wl0.2, wl0.3, wl1.2, wl1.3, wl0.5, wl1.5, br106, brlan113, brlan1, brlan112, brlan0, etc.
+*                   \n A string representing the name of the interface that will be added to the VLAN group.
+*                   \n The buffer size shouldn't exceed 16 bytes.
+* @param[in] vlanID A pointer to a constant character string (const char *).
+*                   \n A string representing the VLAN ID that will be assigned to the interface within the VLAN group.
+*                   \n The buffer size shouldn't exceed 5 bytes.
+*                   \n The valid VLAN IDs range from 1 to 4094.
+*                   \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful (or) RETURN_OK If interface is already in group, and has expected vlan ID
-* @retval RETURN_ERR if group is not exist (or) if any error is detected
+* @retval RETURN_OK if successful (or) RETURN_OK If interface is already in group, and has expected vlan ID.
+* @retval RETURN_ERR if group is not exist (or) if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -212,14 +232,24 @@ int vlan_hal_delGroup(const char *groupName);
 int vlan_hal_addInterface(const char *groupName, const char *ifName, const char *vlanID);
 
 /**
-* @description This HAL is used to deassociate existing interface from group.
-* @param const char *groupName - bridge name 
-* @param const char *ifName - interface name
-* @param const char *vlanID - VLANID
+* @description This HAL utility is used to deassociate existing interface from group.
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                   \n A string representing the bridge name from which the interface will be deassociated.
+*                   \n The buffer size shouldn't exceed 16 bytes.
+*                   \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
+* @param[in] ifName A pointer to a constant character string (const char *).
+*                   \n The Possible values are : wl0.2, wl0.3, wl1.2, wl1.3, wl0.5, wl1.5, br106, brlan113, brlan1, brlan112, brlan0, etc.
+*                   \n A string representing the name of the interface that will be deassociated from the VLAN group.
+*                   \n The buffer size shouldn't exceed 16 bytes.
+* @param[in] vlanID A pointer to a constant character string (const char *).
+*                   \n A string representing the VLAN ID associated with the interface in the VLAN group.
+*                   \n The buffer size shouldn't exceed 5 bytes.
+*                   \n The valid VLAN IDs range from 1 to 4094.
+*                   \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful (or) RETURN_OK If interface is not exist
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful (or) RETURN_OK If interface is not exist.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -228,12 +258,15 @@ int vlan_hal_addInterface(const char *groupName, const char *ifName, const char 
 int vlan_hal_delInterface(const char *groupName, const char *ifName, const char *vlanID);
 
 /**
-* @description This HAL is used to dump the particular group setting, for debug purpose
-* @param const char *groupName - bridge name 
+* @description This HAL utility is used to dump the particular group setting, for debug purpose.
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                      \n A string representing the bridge name for which the settings will be dumped.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -243,12 +276,12 @@ int vlan_hal_printGroup(const char *groupName);
 
 
 /**
-* @description This HAL is used dump all group setting, for debug purpose
+* @description This HAL utility is used dump all group setting, for debug purpose.
 * @param None.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -257,12 +290,15 @@ int vlan_hal_printGroup(const char *groupName);
 int vlan_hal_printAllGroup();
 
 /**
-* @description This HAL is used to deassociate all existing interface from group.
-* @param const char *groupName - bridge name 
+* @description This HAL utility is used to deassociate all existing interface from group.
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                      \n A string representing the bridge name from which all interfaces will be deassociated.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -273,11 +309,14 @@ int vlan_hal_delete_all_Interfaces(const char *groupName);
 
 /**
 * @description This HAL utility is used identify given bridge available in linux bridge.
-* @param const char * br_name - bridge name
+* @param[in] br_name It is a pointer to a character array (string) named br_name.
+*              \n A string representing the name of the bridge that will be checked for availability in the Linux bridge.
+*              \n The buffer size shouldn't exceed 16 bytes.
+*              \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -287,13 +326,21 @@ int vlan_hal_delete_all_Interfaces(const char *groupName);
 int _is_this_group_available_in_linux_bridge(char * br_name);
 
 /**
-* @description This HAL utility is used identify given interface available in given bridge.
-* @param const char * br_name - bridge name
-* @param char *vlanID - VLAND ID
+* @description This HAL utility is used identify given interface available in anyone of linux bridge.
+* @param[in] if_name It is a pointer to a character array (string) named if_name.
+*                 \n A string representing the name of the interface that will be checked for availability in any Linux bridge.
+*                 \n The buffer size shouldn't exceed 16 bytes.
+*                 \n The Possible values are : wl0.2, wl0.3, wl1.2, wl1.3, wl0.5, wl1.5, br106, brlan113, brlan1, brlan112, brlan0, etc.
+*
+* @param[in] vlanID It is a pointer to a character array (string) named vlanID.
+*                   \n A string representing the VLAN ID associated with the interface.
+*                   \n The buffer size shouldn't exceed 5 bytes.
+*                   \n The valid VLAN IDs range from 1 to 4094.
+*                   \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -303,14 +350,24 @@ int _is_this_group_available_in_linux_bridge(char * br_name);
 int _is_this_interface_available_in_linux_bridge(char * if_name, char *vlanID);
 
 /**
-* @description This HAL utility is used identify given interface available in anyone of linux bridge.
-* @param char * if_name - interface name
-* @param const char * br_name - bridge name
-* @param char *vlanID - VLAND ID
+* @description This HAL utility is used identify given interface available in given linux bridge.
+* @param[in] if_name It is a pointer to a character array (string) named if_name.
+*                 \n A string representing the name of the interface that will be checked for availability in given bridge.
+*                 \n The buffer size shouldn't exceed 16 bytes.
+*                 \n The Possible values are : wl0.2, wl0.3, wl1.2, wl1.3, wl0.5, wl1.5, br106, brlan113, brlan1, brlan112, brlan0, etc.
+* @param[in] br_name It is a pointer to a character array (string) named br_name.
+*                 \n A string representing the name of the bridge from which availability of interface is checked.
+*                 \n The buffer size shouldn't exceed 16 bytes.
+*                 \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
+* @param[in] vlanID It is a pointer to a character array (string) named vlanID.
+*                 \n A string representing the VLAN ID associated with the interface.
+*                 \n The buffer size shouldn't exceed 5 bytes.
+*                 \n The valid VLAN IDs range from 1 to 4094.
+*                 \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -320,14 +377,15 @@ int _is_this_interface_available_in_linux_bridge(char * if_name, char *vlanID);
 int _is_this_interface_available_in_given_linux_bridge(char * if_name, char * br_name,char *vlanID);
 
 /**
-* @description This HAL utility is used get the buffer from shell output
-* @param char * cmd - linux shell command
-* @param char * out - construct the linux system command and copy in this parameter
-* @param int len - length of the output string
+* @description This HAL utility is used get the buffer from shell output.
+* @param[in] cmd A string representing the Linux shell command that will be executed to obtain the desired output.
+* @param[out] out A character array (string) where the output of the input cmd will be copied.
+* @param[out] len length of the output string.
+*                 \n The maximum output length is 120.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -335,16 +393,40 @@ int _is_this_interface_available_in_given_linux_bridge(char * if_name, char * br
 */
 
 void _get_shell_outputbuffer(char * cmd, char * out, int len);
+
+/**
+* @description This HAL utility is used get the buffer from shell output.
+* @param[in] fp It is a pointer to a FILE object.
+* @param[out] out A character array (string) where the output of the input cmd will be copied.
+* @param[out] len length of the output string.
+*                 \n The maximum output length is 120.
+*
+* @return The status of the operation.
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+*/
+
 void _get_shell_outputbuffer_res(FILE *fp, char * out, int len);
 
 /**
 * @description This HAL utility is used store the VLAN ID, Group Name configuration.
-* @param char *groupName - bridge name
-* @param char *vlanID - VLAND ID
+* @param[in] groupName It is a pointer to a character array (string) named groupName.
+*                      \n It represents the bridge name or group name that needs to be added to VLAN configuration entry.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
+* @param[in] vlanID It is a pointer to a character array (string) named vlanID.
+*                 \n It represents the vlanID that needs to be added to VLAN configuration entry.
+*                 \n The buffer size shouldn't exceed 5 bytes.
+*                 \n The valid VLAN IDs range from 1 to 4094.
+*                 \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -355,11 +437,14 @@ int insert_VLAN_ConfigEntry(char *groupName, char *vlanID);
 
 /**
 * @description This HAL utility is used delete the VLAN ID, Group Name configuration
-* @param char *groupName - bridge name
+* @param[in] groupName It is a pointer to a character array (string) named groupName.
+*                      \n It represents the bridge name or group name that needs to be deleted from VLAN configuration entry.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -370,13 +455,20 @@ int delete_VLAN_ConfigEntry(char *groupName);
 
 
 /**
-* @description This HAL utility is used delete the VLAN ID, Group Name configuration from link
-* @param char *groupName - bridge name
-* @param char char *vlanID - VLANID
+* @description This HAL utility is used get the VLAN ID for corresponding Group Name from link
+* @param[in] groupName A pointer to a constant character string (const char *).
+*                      \n It represents the bridge name or group name that needs to be deleted from VLAN configuration entry.
+*                      \n The buffer size shouldn't exceed 16 bytes.
+*                      \n The possible values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
+* @param[out] vlanID It is a pointer to a character array (string) named vlanID.
+*                 \n It represents the vlanID that will get update in the function .
+*                 \n The buffer size should be atleast 5 bytes.
+*                 \n The valid VLAN IDs range from 1 to 4094.
+*                 \n Example: 101, 102 etc.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -386,12 +478,12 @@ int delete_VLAN_ConfigEntry(char *groupName);
 int get_vlanId_for_GroupName(const char *groupName, char *vlanID);
 
 /**
-* @description This HAL utility is used get the VLAN ID for corresponding Group Name from link
+* @description This HAL utility is used to print all the VLAN ID configuration.
 * @param None.
 *
 * @return The status of the operation.
-* @retval RETURN_OK if successful
-* @retval RETURN_ERR if any error is detected
+* @retval RETURN_OK if successful.
+* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
