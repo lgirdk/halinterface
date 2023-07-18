@@ -2564,6 +2564,7 @@ typedef struct {
     char supported_data_transmit_rates[32];
     char minimum_advertised_mcs[32];
     char sixGOpInfoMinRate[32];
+    char client_deny_assoc_info[32];
     wifi_vap_name_t vap_name;
 } __attribute__((packed)) wifi_preassoc_control_t;
 
@@ -2573,6 +2574,7 @@ typedef struct {
     char rssi_up_threshold[32];
     char snr_threshold[32]; // retrans_up
     char cu_threshold[32];
+    char client_force_disassoc_info[32];
     wifi_vap_name_t vap_name;
 } __attribute__((packed)) wifi_postassoc_control_t;
 
