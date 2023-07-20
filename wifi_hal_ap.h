@@ -2631,6 +2631,7 @@ typedef struct {
     char   beaconRateCtl[32];
     BOOL   network_initiated_greylist;
     BOOL   mcast2ucast;                    /**< True if 'multicast to unicast' feature is enabled for this VAP, false otherwise */
+    BOOL   connected_building_enabled;
 } __attribute__((packed)) wifi_front_haul_bss_t;
 
 #define WIFI_BRIDGE_NAME_LEN  32
@@ -2641,6 +2642,7 @@ typedef struct {
     wifi_radio_index_t  radio_index;
     CHAR                bridge_name[WIFI_BRIDGE_NAME_LEN];
     wifi_vap_mode_t     vap_mode;
+    wifi_vap_name_t     repurposed_vap_name;
     union {
         wifi_front_haul_bss_t   bss_info;
         wifi_back_haul_sta_t    sta_info;
