@@ -118,6 +118,9 @@ enum Config {
 	MESH = 12,
 	MESH_WIFI_BACKHAUL_2G = 13,
 	MESH_WIFI_BACKHAUL_5G = 14
+#if defined  (WIFI_MANAGE_SUPPORTED)
+        ,MANAGE_WIFI_BRIDGE = 17
+#endif /* WIFI_MANAGE_SUPPORTED*/
 };
 
 /**
