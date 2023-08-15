@@ -1900,6 +1900,7 @@ typedef struct {
     wifi_mgmtFrameType_t type;
     wifi_direction_t dir;
     INT     sig_dbm;
+    INT     phy_rate;
     UCHAR   token;
     UINT    len;
     UCHAR   *data;
