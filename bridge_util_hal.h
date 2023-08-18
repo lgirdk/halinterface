@@ -173,23 +173,23 @@ typedef struct bridgeDetails {
 * <pre>
 * The structure members are defined as below:
 *    bridgeName           -    It is a 64 bytes character array that represents the name of the bridge.
-*                              The possible value is "brlan0", "brlan1".
+*                              It is vendor specific.
 *    vlan_name            -    It is a 64 bytes character array that represents the virtual LAN name.
-*                              The possible value is "link0", "link1".
+*                              It is vendor specific.
 *    VirtualParentIfname  -    It is a 64 bytes character array that represents the virtual parent interface name.
-*                              The possible value is "pgd0-91".
+*                              It is vendor specific.
 *    vlanID               -    It is an integer that represents the vlanID.
-*                              The range of acceptable values is 0 to n, where n is an integer value.The possible value is 100, 101.
+*                              It is in range -2^31 to (2^31)-1.
 *    ethIfList            -    It is a 256 bytes character array that represents the list of ethernet interfaces.
-*                              The possible value is "eth0", "eth1".
+*                              It is vendor specific.
 *    MoCAIfList           -    It is a 256 bytes character array that represents the list of MoCA interfaces.
-*                              The possible value is "moca0", "moca1".
+*                              It is vendor specific.
 *    GreIfList            -    It is a 256 bytes character array that represents the list of GRE interfaces.
-*                              The possible value is "gre0", "gre1".
+*                              It is vendor specific.
 *    WiFiIfList           -    It is a 256 bytes character array that represents the list of WiFi interfaces.
-*                              The possible value is "wifi0", "wifi1".
+*                              It is vendor specific.
 * </pre>
-* @param[out] ifNameToBeUpdated - Is a character pointer where the interface is to be deleted and updated, applicable only during sync. The possible value is "moca0", "wifi0", "eth0".
+* @param[out] ifNameToBeUpdated - Is a 64 byte character array where the interface is to be deleted and updated, applicable only during sync. It is vendor specific.
 * @param[in] Opr - It is an enumeration that defines the different network interface or bridge. It provides information about operations whether the request creating/updating/deleting bridge.
 * \n The range of acceptable values is 1 to 4 based on OVS_CMD enum type.
 * <pre>
@@ -213,7 +213,7 @@ typedef struct bridgeDetails {
 *                   IF_OTHER_BRIDGEUTIL = 7
 * </pre>
 * @return The status of the operation.
-* @retval 0 on success or a negative error code.
+* @retval 0 on success or -1 on negative error code.
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
@@ -221,17 +221,17 @@ extern int updateBridgeInfo(bridgeDetails *bridgeInfo, char* ifNameToBeUpdated, 
 /* checkIfExists() function */
 /**
 * @brief Check if interface is created.
-* @param[in] iface_name - It is a character pointer which represents the name of the interface. The possible value is "moca0", "wifi0", "eth0".
+* @param[in] iface_name - It is a 64 byte character array which represents the name of the interface. It is vendor specific.
 * @return The status of the operation.
-* @retval 0 on success or a negative error code.
+* @retval 0 on success or -1 on negative error code.
 *
 */
 extern int checkIfExists(char* iface_name);
 /* removeIfaceFromList() function */
 /**
 * @brief Remove interface from the list of interfaces.
-* @param[out] str - It is a character pointer which has the list of interfaces name. The possible value is "wl0 wl11 moca0 ath0 eth3"
-* @param[in] sub - It is a character pointer that represents the interface name that needs to be removed from the list. The possible value is "moca0".
+* @param[out] str - It is a 64 byte character array which has the list of interfaces name. It is vendor specific.
+* @param[in] sub - It is a 64 byte character array that represents the interface name that needs to be removed from the list. It is vendor specific.
 * @return The status of the operation.
 * @retval void
 *
@@ -240,10 +240,10 @@ extern void removeIfaceFromList(char *str, const char *sub);
 /* checkIfExistsInBridge() function */
 /**
 * @brief Check if interface is attached to bridge.
-* @param[in] iface_name - It is a character pointer which represents the interface name. The possible value is "moca0".
-* @param[out] bridge_name - It is a character pointer which represents the bridge name. The possible value is "brlan0".
+* @param[in] iface_name - It is a 64 byte character array which represents the interface name. It is vendor specific.
+* @param[out] bridge_name - It is a 64 byte character array which represents the bridge name.It is vendor specific.
 * @return The status of the operation.
-* @retval 0 on success or a negative error code.
+* @retval 0 on success or -1 on negative error code.
 *
 */
 extern int checkIfExistsInBridge(char* iface_name, char *bridge_name);
@@ -254,21 +254,21 @@ extern int checkIfExistsInBridge(char* iface_name, char *bridge_name);
 * <pre>
 * The structure members are defined as below:
 *    bridgeName           -    It is a 64 bytes character array that represents the name of the bridge.
-*                              The possible value is brlan0, brlan1.
+*                              It is vendor specific.
 *    vlan_name            -    It is a 64 bytes character array that represents the virtual LAN name.
-*                              The possible value is "link0", "link1".
+*                              It is vendor specific.
 *    VirtualParentIfname  -    It is a 64 bytes character array that represents the virtual parent interface name.
-*                              The possible value is "pgd0-91".
+*                              It is vendor specific.
 *    vlanID               -    It is an integer that represents the vlanID.
-*                              The range of acceptable values is 0 to n, where n is an integer value.The possible value is 100, 101.
+*                              It is in range -2^31 to (2^31)-1.
 *    ethIfList            -    It is a 256 bytes character array that represents the list of ethernet interfaces.
-*                              The possible value is "eth0", "eth1".
+*                              It is vendor specific.
 *    MoCAIfList           -    It is a 256 bytes character array that represents the list of MoCA interfaces.
-*                              The possible value is "moca0", "moca1".
+*                              It is vendor specific.
 *    GreIfList            -    It is a 256 bytes character array that represents the list of GRE interfaces.
-*                              The possible value is "gre0", "gre1".
+*                              It is vendor specific.
 *    WiFiIfList           -    It is a 256 bytes character array that represents the list of WiFi interfaces.
-*                              The possible value is "wifi0", "wifi1".
+*                              It is vendor specific.
 * </pre>
 * @param[in] InstanceNumber - It is an enumeration that defines the instance number for configuration.
 * \n The range of acceptable values is 1 to 14 based on Config enum type.
@@ -288,7 +288,7 @@ extern int checkIfExistsInBridge(char* iface_name, char *bridge_name);
 *	       MESH_WIFI_BACKHAUL_2G = 13
 *	       MESH_WIFI_BACKHAUL_5G = 14
 * @return The status of the operation.
-* @retval 0 on success or a negative error code.
+* @retval 0 on success or -1 on negative error code.
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
@@ -300,21 +300,21 @@ int HandlePreConfigVendor(bridgeDetails *bridgeInfo,int InstanceNumber);
 * <pre>
 * The structure members are defined as below:
 *    bridgeName           -    It is a 64 bytes character array that represents the name of the bridge.
-*                              The possible value is brlan0, brlan1.
+*                              It is vendor specific.
 *    vlan_name            -    It is a 64 bytes character array that represents the virtual LAN name.
-*                              The possible value is "link0", "link1".
+*                              It is vendor specific.
 *    VirtualParentIfname  -    It is a 64 bytes character array that represents the virtual parent interface name.
-*                              The possible value is "pgd0-91".
+*                              It is vendor specific.
 *    vlanID               -    It is an integer that represents the vlanID.
-*                              The range of acceptable values is 0 to n, where n is an integer value.The possible value is 100, 101.
+*                              It is in range -2^31 to (2^31)-1.
 *    ethIfList            -    It is a 256 bytes character array that represents the list of ethernet interfaces.
-*                              The possible value is "eth0", "eth1".
+*                              It is vendor specific.
 *    MoCAIfList           -    It is a 256 bytes character array that represents the list of MoCA interfaces.
-*                              The possible value is "moca0", "moca1".
+*                              It is vendor specific.
 *    GreIfList            -    It is a 256 bytes character array that represents the list of GRE interfaces.
-*                              The possible value is "gre0", "gre1".
+*                              It is vendor specific.
 *    WiFiIfList           -    It is a 256 bytes character array that represents the list of WiFi interfaces.
-*                              The possible value is "wifi0", "wifi1".
+*                              It is vendor specific.
 * </pre>
 * @param[in] Config - It is an enumeration that defines the instance number for configuration.
 * \n The range of acceptable values is 1 to 14 based on Config enum type.
@@ -334,7 +334,7 @@ int HandlePreConfigVendor(bridgeDetails *bridgeInfo,int InstanceNumber);
 *	       MESH_WIFI_BACKHAUL_2G = 13
 *	       MESH_WIFI_BACKHAUL_5G = 14
 * @return The status of the operation.
-* @retval 0 on success or a negative error code.
+* @retval 0 on success or -1 on negative error code.
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
@@ -344,7 +344,7 @@ int HandlePostConfigVendor(bridgeDetails *bridgeInfo,int Config);
 * @brief Provides vendor interface information for creating/updating/deleting bridge.
 * @param None
 * @return The status of the operation.
-* @retval vendor interface or NULL.
+* @retval vendor interface which is a 64 byte character array or NULL.
 *
 */
 char *getVendorIfaces();

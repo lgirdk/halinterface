@@ -487,41 +487,59 @@ INT   mta_hal_InitDB(void);
 /**
 * @description Retrieve all the relevant DHCP info for MTA.
 * @param[out] pInfo pointer to PMTAMGMT_MTA_DHCP_INFO that will hold all DHCP info for MTA, to be returned
-*                   <pre>
-*                   The structure members are defined as below:
-*                       IPAddress            - It is a ANSC_IPV4_ADDRESS union type value that represents the IP Address.  The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4. Possible values: "IPAddress.Dot = {192, 168, 0, 100}".
-*                                                     Value - A 32 bit unsigned integer value.
-*                       BootFileName         - It is a 64 bytes character array that represents the Boot File Name. Possible values: "ccsp.boot".
-*                       FQDN                 - It is a 64 bytes character array that represents the FQDN. Possible values: "www.example.com"
-*                       SubnetMask           - It is a ANSC_IPV4_ADDRESS union type value that represents the Subnet Mask.  The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4.  Possible values: "SubnetMask.Dot = {255, 255, 255, 0}".
-*                                                     Value - A 32 bit unsigned integer value.
-*                       Gateway              - It is a ANSC_IPV4_ADDRESS union type value that represents the Gateway.  The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4. Possible values: "Gateway.Dot={192, 168, 0, 1}".
-*                                                     Value - A 32 bit unsigned integer value.
-*                       LeaseTimeRemaining   - It is an unsigned long value that represents the Lease Time Remaining. The range of acceptable values is 0 to n, where n is an unsigned long value. Possible values: 3600.
-*                       RebindTimeRemaining  - It is a 64 bytes character array that represents the Rebind Time Remaining. The range of acceptable values is 0 to n. Possible values: 3700.
-*                       RenewTimeRemaining   - It is a 64 bytes character array that represents the Renew Time Remaining. The range of acceptable values is 0 to n. Possible values: 1200.
-*                       PrimaryDNS           - It is a ANSC_IPV4_ADDRESS union type value that represents the Primary DNS. The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4. Possible values: "10.0.1.8".
-*                                                     Value - A 32 bit unsigned integer value.
-*                       SecondaryDNS         - It is a ANSC_IPV4_ADDRESS union type value that represents the Secondary DNS. The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4. Possible values: "10.0.1.1".
-*                                                     Value - A 32 bit unsigned integer value.
-*                       DHCPOption3          - It is a 64 bytes character array that specifies the IP address of the default gateway(router) for the DHCP client to use for internet access and communication with devices outside the local network. Example: "192.168.1.1".
-*                       DHCPOption6          - It is a 64 bytes character array that specifies the IP Address of a DNS servers that the DNS client should use for domain name resolution. Possible values: "8.8.8.8".
-*                       DHCPOption7          - It is a 64 bytes character array that specifies the IP address of a log server that the DHCP client can use for loggin purpose. Possible values: "192.168.1.100".
-*                       DHCPOption8          - It is a 64 bytes character array that specifies the IP address of a cookie server that the DHCP client can use to retrieve cookies. Possible values: "10.0.0.15".
-*                       PCVersion            - It is a 64 bytes character array that represents the version of a PC. Possible values: "2.5.1".
-*                       MACAddress           - It is a 64 bytes character array that represents the MAC Address. Possible values: "00:1A:2B:11:22:33".
-*                       PrimaryDHCPServer    - It is a ANSC_IPV4_ADDRESS union type value that represents the Primary DHCP server. The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4. Possible values: "192.168.16.55".
-*                                                     Value - A 32 bit unsigned integer value.
-*                       SecondaryDHCPServer  - It is a ANSC_IPV4_ADDRESS union type value that represents the Secondary DHCP Server. The union members are defined as below:
-*                                                     Dot - An unsigned character array of size 4. Possible values: "192.168.16.215".
-*                                                     Value - A 32 bit unsigned integer value.
-*                   </pre>
+* <pre>
+* The structure members are defined as below:
+*     IPAddress            - It is a ANSC_IPV4_ADDRESS union type value that represents the IP Address.  The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     BootFileName         - It is a 64 bytes character array that represents the Boot File Name.
+*                            It is vendor specific.
+*     FQDN                 - It is a 64 bytes character array that represents the FQDN.
+*                            It is vendor specific.
+*     SubnetMask           - It is a ANSC_IPV4_ADDRESS union type value that represents the Subnet Mask.  The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The range of values for each octet is 0 to 255.
+*     Gateway              - It is a ANSC_IPV4_ADDRESS union type value that represents the Gateway.  The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The valid range is: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     LeaseTimeRemaining   - It is an unsigned long value that represents the Lease Time Remaining.
+*                            The range of acceptable values is 0 to (2^32)-1.
+*     RebindTimeRemaining  - It is a 64 bytes character array that represents the Rebind Time Remaining.
+*                            It is vendor specific.
+*     RenewTimeRemaining   - It is a 64 bytes character array that represents the Renew Time Remaining.
+*                            It is vendor specific.
+*     PrimaryDNS           - It is a ANSC_IPV4_ADDRESS union type value that represents the Primary DNS. The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The valid range is: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     SecondaryDNS         - It is a ANSC_IPV4_ADDRESS union type value that represents the Secondary DNS. The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The valid range is: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     DHCPOption3          - It is a 64 bytes character array that specifies the IP address of the default gateway(router) for the DHCP client to use for internet access and communication with devices outside the local network.
+*                            It is vendor specific.
+*     DHCPOption6          - It is a 64 bytes character array that specifies the IP Address of a DNS servers that the DNS client should use for domain name resolution.
+*                            It is vendor specific.
+*     DHCPOption7          - It is a 64 bytes character array that specifies the IP address of a log server that the DHCP client can use for loggin purpose.
+*                            It is vendor specific.
+*     DHCPOption8          - It is a 64 bytes character array that specifies the IP address of a cookie server that the DHCP client can use to retrieve cookies.
+*                            It is vendor specific.
+*     PCVersion            - It is a 64 bytes character array that represents the version of a PC.
+*                            It is vendor specific.
+*     MACAddress           - It is a 64 bytes character array that represents the MAC Address.
+*                            It is vendor specific.
+*     PrimaryDHCPServer    - It is a ANSC_IPV4_ADDRESS union type value that represents the Primary DHCP server. The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The valid range is: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     SecondaryDHCPServer  - It is a ANSC_IPV4_ADDRESS union type value that represents the Secondary DHCP Server. The union members are defined as below:
+*                            Dot - An unsigned character array of size 4.
+*                            Value - A 32 bit unsigned integer value.
+*                            The valid range is: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+* </pre>
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -536,31 +554,42 @@ INT   mta_hal_InitDB(void);
 */
 INT mta_hal_GetDHCPInfo(PMTAMGMT_MTA_DHCP_INFO pInfo);
 
-/*  mta_hal_GetDHCPInfo : */
+/*  mta_hal_GetDHCPV6Info : */
 /**
 * @description Retrieve all the relevant DHCP info for MTA.
 * @param[out] pInfo pointer to PMTAMGMT_MTA_DHCP_INFO that will hold all DHCP info for MTA, to be returned
-*                   <pre>
-*                   The structure members are defined as below:
-*                         IPV6Address            - It is a 46 bytes character array represents the IPV6 Address. Possible values: "2012:cafe:100::1".
-*                         BootFileName           - It is a 64 bytes character array that represents the Boot File Name. Possible values: "ccsp.boot".
-*                         FQDN                   - It is a 64 bytes character array that represents the FQDN. Possible values: "www.example.com".
-*                         Prefix                 - It is a 46 bytes character array represents the prefix. Possible values: "/64".
-*                         Gateway                - It is a 46 bytes character array that represents the Gateway. Possible values: "{192, 168, 0, 1}".
-*                         LeaseTimeRemaining     - It is an unsigned long value that represents the Lease Time Remaining. The range of acceptable values is 0 to n, where n is an unsigned long value. Possible values: 3600.
-*                         RebindTimeRemaining    - It is a 64 bytes character array that represents the Rebind Time Remaining. The range of acceptable values is 0 to n. Possible values: 3700.
-*                         RenewTimeRemaining     - It is a 64 bytes character array that represents the Renew Time Remaining. The range of acceptable values is 0 to n. Possible values: 1200.
-*                         PrimaryDNS             - It is a 46 bytes character array that represents the Primary DNS. Possible values: "2001:4860:4860::8888".
-*                         SecondaryDNS           - It is a 46 bytes character array that represents the Secondary DNS. Possible values: "2001:4860:4860::8844".
-*                         DHCPOption3            - It is a 64 bytes character array that provides information about the IPv6 address prefix to be used by the client for autoconfiguration. Possible values: "2001:db8:abcd::/48".
-*                         DHCPOption6            - It is a 64 bytes character array that supplies the IPv6 addresses of DNS servers that the DHCPv6 client should use for domain name resolution. Possible values: "DNS Server 1: 2001:4860:4860::8888, DNS Server 2: 2001:4860:4860::8844".
-*                         DHCPOption7            - It is a 64 bytes character array that provides a list of domain names that the DHCPv6 client can search when performing domain name resolution. Possible values: "example.com".
-*                         DHCPOption8            - It is a 64 bytes character array that conveys the maximum transmission unit (MTU) for the client's network interface. Possible values: 1500.
-*                         PCVersion              - It is a 64 bytes character array that represents the PC version. Possible values: "3.5".
-*                         MACAddress             - It is a 64 bytes character array that represents the MAC Address. Possible values: "00:1A:2B:11:22:33".
-*                         PrimaryDHCPv6Server    - It is a 46 bytes character array that represents the Primary DHCPv6 server. It is a server-specific value. Possible values: "00:01:00:01:2a:3b:4c:5d:6e:7f".
-*                         SecondaryDHCPv6Server  - It is a 46 bytes character array that represents the Secondary DHCPv6 Server. It is a server-specific value. Possible values: "00:01:2a:3b:4c:5e".
-*                   </pre>
+* <pre>
+* The structure members are defined as below:
+*     IPV6Address            - It is a 46 bytes character array represents the IPV6 Address.
+*                              The valid range is: 0000::/8, 2000::/3, FC00::/7, FE80::/10 and FF00::/8
+*     BootFileName           - It is a 64 bytes character array that represents the Boot File Name.
+*                              It is vendor specific.
+*     FQDN                   - It is a 64 bytes character array that represents the FQDN.
+*                              It is vendor specific.
+*     Prefix                 - It is a 46 bytes character array represents the prefix. It is vendor specific.
+*     Gateway                - It is a 46 bytes character array that represents the Gateway.
+*                              The valid range is: 0000::/8, 2000::/3, FC00::/7, FE80::/10 and FF00::/8
+*     LeaseTimeRemaining     - It is an unsigned long value that represents the Lease Time Remaining.
+*                              The range of acceptable values is 0 to (2^32)-1.
+*     RebindTimeRemaining    - It is a 64 bytes character array that represents the Rebind Time Remaining.
+*                              It is vendor specific.
+*     RenewTimeRemaining     - It is a 64 bytes character array that represents the Renew Time Remaining.
+*                              It is vendor specific.
+*     PrimaryDNS             - It is a 46 bytes character array that represents the Primary DNS.
+*                              The valid range is: 0000::/8, 2000::/3, FC00::/7, FE80::/10 and FF00::/8
+*     SecondaryDNS           - It is a 46 bytes character array that represents the Secondary DNS.
+*                              The valid range is: 0000::/8, 2000::/3, FC00::/7, FE80::/10 and FF00::/8
+*     DHCPOption3            - It is a 64 bytes character array that provides information about the IPv6 address prefix to be used by the client for autoconfiguration.
+*                              The valid range is 1 to 128.
+*     DHCPOption6            - It is a 64 bytes character array that supplies the IPv6 addresses of DNS servers that the DHCPv6 client should use for domain name resolution.
+*                              The valid range is: 0000::/8, 2000::/3, FC00::/7, FE80::/10 and FF00::/8
+*     DHCPOption7            - It is a 64 bytes character array that provides a list of domain names that the DHCPv6 client can search when performing domain name resolution. It is vendor specific.
+*     DHCPOption8            - It is a 64 bytes character array that conveys the maximum transmission unit (MTU) for the client's network interface. It is vendor specific.
+*     PCVersion              - It is a 64 bytes character array that represents the PC version. It is vendor specific.
+*     MACAddress             - It is a 64 bytes character array that represents the MAC Address. It is vendor specific.
+*     PrimaryDHCPv6Server    - It is a 46 bytes character array that represents the Primary DHCPv6 server. It is a server-specific value.
+*     SecondaryDHCPv6Server  - It is a 46 bytes character array that represents the Secondary DHCPv6 Server. It is a server-specific value.
+* </pre>
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -597,25 +626,25 @@ ULONG mta_hal_LineTableGetNumberOfEntries(void);
 /* mta_hal_LineTableGetEntry : */
 /**
 * @description Get entry of the line table at the given index
-* @param[in] INT Index - index to the table entry. The value ranges from 0 to n. Possible values: 3.
-* @param[out] PMTAMGMT_MTA_LINETABLE_INFO pEntry - entry info, to be returned.
+* @param[in] Index - index to the table entry. The value ranges from 0 to (2^32)-1.
+* @param[out] pEntry - entry info from the structure PMTAMGMT_MTA_LINETABLE_INFO, to be returned.
 *                                                  \n The structure members are defined below:
 *                                                  <pre>
-*                                                         InstanceNumber     - It is a unsigned long integer value that represents the instance number. The value ranges from 0 to n. Possible values: 4.
-*                                                         LineNumber         - It is a unsigned long integer value that represents the line number. The value ranges from 0 to n. Possible values: 3.
-*                                                         Status             - It is a unsigned long integer value that defines the status. The value ranges from 0 to n. Possible values: 2.
+*                                                         InstanceNumber     - It is a unsigned long integer value that represents the instance number. The value ranges from 0 to (2^32)-1.
+*                                                         LineNumber         - It is a unsigned long integer value that represents the line number. The value ranges from 0 to (2^32)-1.
+*                                                         Status             - It is a unsigned long integer value that defines the status. The value ranges from 0 to (2^32)-1.
 *                                                         HazardousPotential - It is a 128 bytes of character value that represents the Hazardous potential. It is a vendor-specific value.
 *                                                         ForeignEMF         - It is a 128 bytes of character value that represents the foreign EMF. It is a vendor-specific value.
 *                                                         ResistiveFaults    - It is a 128 bytes of character value that represents the resistive faults. It is a vendor-specific value.
 *                                                         ReceiverOffHook    - It is a 128 bytes of character value that represents the receiver off hook. It is a vendor-specific value.
 *                                                         RingerEquivalency  - It is a 64 bytes of character value that represents the Ringer equivalency. It is a vendor-specific value.
 *                                                         CAName             - It is a 64 bytes of character value that represents the CA name. It is a vendor-specific value.
-*                                                         CAPort             - It is a unsigned long integer value that represents the CA port. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 80.
-*                                                         MWD                - It is a unsigned long integer value that represents the MWD. The value ranges from 0 to n, where n is an unsigned long value. It is a vendor-specific value.
-*                                                         CallsNumber        - It is a unsigned long integer value that represents the calls number. The value ranges from 0 to n, where n is an unsigned long value. It is a vendor-specific value.
+*                                                         CAPort             - It is a unsigned long integer value that represents the CA port. The value ranges from 0 to (2^32)-1.
+*                                                         MWD                - It is a unsigned long integer value that represents the MWD. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*                                                         CallsNumber        - It is a unsigned long integer value that represents the calls number. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
 *                                                         pCalls             - It is a structure PMTAMGMT_MTA_CALLS that defines the MTA calls. It is a vendor-specific value.
-*                                                         CallsUpdateTime    - It is a unsigned long integer value that represents the update time of calls. The value ranges from 0 to n, where n is an unsigned long value. It is a vendor-specific value.
-*                                                         OverCurrentFault   - It is a unsigned long integer value that represents the over current fault. The value ranges from 0 to n. Possible values: 1, 2.
+*                                                         CallsUpdateTime    - It is a unsigned long integer value that represents the update time of calls. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*                                                         OverCurrentFault   - It is a unsigned long integer value that represents the over current fault. The value ranges from 0 to (2^32)-1.
 *                                                  </pre>
 * @return The status of the operation
 * @retval RETURN_OK if successful.
@@ -633,7 +662,7 @@ INT   mta_hal_LineTableGetEntry(ULONG Index, PMTAMGMT_MTA_LINETABLE_INFO pEntry)
 /*  mta_hal_TriggerDiagnostics : */
 /**
 * @description Trigger GR909 Diagnostics
-* @param[in] INT Index - line number to perform the GR909 diagnostics on. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 3.
+* @param[in] Index - it is an unsigned long integer that provides line number to perform the GR909 diagnostics on. The value ranges from 0 to (2^32)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -651,26 +680,26 @@ INT   mta_hal_TriggerDiagnostics(ULONG Index);
 /*  mta_hal_GetServiceFlow :  */
 /**
 * @description Get all the service flow info
-* @param[out] ULONG* Count - number of service flow entries, to be returned
-* @param[out] PMTAMGMT_MTA_SERVICE_FLOW *ppCfg - service flow info, to be returned.
-*                                                <pre>
-*                                                The structure members are defined below:
-*                                                       SFID               - It is a unsigned long integer value that represents the service flow ID. It is a vendor-specific value.
-*                                                       ServiceClassName   - It is a 256 bytes of character value that represents the service class name. It is a vendor-specific value.
-*                                                       Direction          - It is a 16 bytes of character value that represents the direction. It is a vendor-specific value.
-*                                                       ScheduleType       - It is a unsigned long integer value that represents the schedule type. It is a vendor-specific value.
-*                                                       DefaultFlow        - It is a boolean value that specifies the default flow. Possible values: "{TRUE, FLASE}".
-*                                                       NomGrantInterval   - It is a unsigned long integer value that represents the NomGrantInterval. It is a vendor-specific value.
-*                                                       UnsolicitGrantSize - It is a unsigned long integer value that represents the UnsolicitGrantSize. It is a vendor-specific value.
-*                                                       TolGrantJitter     - It is a unsigned long integer value that represents the TolGrantJitter. It is a vendor-specific value.
-*                                                       NomPollInterval    - It is a unsigned long integer value that represents the NomPollInterval. It is a vendor-specific value.
-*                                                       MinReservedPkt     - It is a unsigned long integer value that represents the minimum reserved packet. It is a vendor-specific value.
-*                                                       MaxTrafficRate     - It is a unsigned long integer value that represents the maximum traffic rate. It is a vendor-specific value.
-*                                                       MinReservedRate    - It is a unsigned long integer value that represents the minimum reserved rate. It is a vendor-specific value.
-*                                                       MaxTrafficBurst    - It is a unsigned long integer value that represents the maximum traffic burst. It is a vendor-specific value.
-*                                                       TrafficType        - It is a 64 bytes of character value that represents the traffic type. It is a vendor-specific value.
-*                                                       NumberOfPackets    - It is a unsigned long integer value that represents the number of packets. It is a vendor-specific value.
-*                                                </pre>
+* @param[out] Count - it is an unsigned long integer that provides number of service flow entries, to be returned. The value ranges from 0 to (2^32)-1.
+* @param[out] ppCfg - service flow info from the structure PMTAMGMT_MTA_SERVICE_FLOW, to be returned.
+* <pre>
+* The structure members are defined below:
+*     SFID               - It is a unsigned long integer value that represents the service flow ID. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     ServiceClassName   - It is a 256 bytes of character value that represents the service class name. It is a vendor-specific value.
+*     Direction          - It is a 16 bytes of character value that represents the direction. It is a vendor-specific value.
+*     ScheduleType       - It is a unsigned long integer value that represents the schedule type. The value ranges from 0 to 4294967295. It is a vendor-specific value.
+*     DefaultFlow        - It is a boolean value that specifies the default flow. The values: "{TRUE, FLASE}".
+*     NomGrantInterval   - It is a unsigned long integer value that represents the NomGrantInterval. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     UnsolicitGrantSize - It is a unsigned long integer value that represents the UnsolicitGrantSize. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     TolGrantJitter     - It is a unsigned long integer value that represents the TolGrantJitter. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     NomPollInterval    - It is a unsigned long integer value that represents the NomPollInterval. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     MinReservedPkt     - It is a unsigned long integer value that represents the minimum reserved packet. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     MaxTrafficRate     - It is a unsigned long integer value that represents the maximum traffic rate. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     MinReservedRate    - It is a unsigned long integer value that represents the minimum reserved rate. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     MaxTrafficBurst    - It is a unsigned long integer value that represents the maximum traffic burst. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*     TrafficType        - It is a 64 bytes of character value that represents the traffic type. It is a vendor-specific value.
+*     NumberOfPackets    - It is a unsigned long integer value that represents the number of packets. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*</pre>
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -690,7 +719,7 @@ INT   mta_hal_GetServiceFlow(ULONG* Count, PMTAMGMT_MTA_SERVICE_FLOW *ppCfg);
 /*  mta_hal_DectGetEnable : */
 /**
 * @description Get info on if Dect is enabled
-* @param[out] BOOLEAN* pBool - boolean value for enabled or not, to be returned. Possible values: "TRUE", "FALSE".
+* @param[out] pBool - It is a boolean pointer type with 1 byte size, boolean value for enabled or not, to be returned. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -710,7 +739,7 @@ INT   mta_hal_DectGetEnable(BOOLEAN *pBool);
 /*  mta_hal_DectSetEnable: */
 /**
 * @description Set Dect to boolean value passed in
-* @param[in] BOOLEAN* bBool - boolean value for enabled or not, to be returned. Possible values: "TRUE", "FALSE".
+* @param[in] bBool - It is a boolean pointer type with 1 byte size, boolean value for enabled or not, to be returned. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -728,7 +757,7 @@ INT mta_hal_DectSetEnable(BOOLEAN bBool);
 /*  mta_hal_DectGetRegistrationMode: */
 /**
 * @description Set Dect to boolean value passed in
-* @param[out] BOOLEAN* bBool - boolean value for enabled or not, to be returned. Possible values: "TRUE", "FALSE".
+* @param[out] bBool - It is a boolean pointer type with 1 byte size, boolean value for enabled or not, to be returned. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -748,7 +777,7 @@ INT mta_hal_DectGetRegistrationMode(BOOLEAN* pBool);
 /*  mta_hal_DectSetRegistrationMode: */
 /**
 * @description Set Dect registration mode
-* @param[in] BOOLEAN* bBool - boolean value for enabled or not, to be returned. Possible values: "TRUE","FALSE".
+* @param[in] bBool - It is a boolean pointer type with 1 byte size, boolean value for enabled or not, to be returned. The values are: "TRUE","FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -766,7 +795,7 @@ INT mta_hal_DectSetRegistrationMode(BOOLEAN bBool);
 /*  mta_hal_DectDeregisterDectHandset: */
 /**
 * @description Deregister Dect Handset
-* @param[in] ULONG* uValue - unsigned long value for deregister dect handset. The value ranges from 0 to n, where n is an unsigned long value. It is a vendor-specific value.
+* @param[in] uValue - unsigned long pointer value for deregister dect handset. The value ranges from 0 to 4294967295. It is a vendor-specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -784,14 +813,14 @@ INT mta_hal_DectDeregisterDectHandset(ULONG uValue);
 /*  mta_hal_GetDect: */
 /**
 * @description  Get Dect info
-* @param[out] PMTAMGMT_MTA_DECT* pDect - info of Dect. pDect is a pointer to structure PMTAMGMT_MTA_DECT.
+* @param[out] pDect - info of Dect. pDect is a pointer to structure PMTAMGMT_MTA_DECT.
 *                                        \n The structure members are defined as below:
 *                                        <pre>
-*                                               RegisterDectHandset   - It is a unsigned long integer value that represents the register dect handset. It is a vendor-specific value.
-*                                               DeregisterDectHandset - It is a unsigned long integer value that represents the deregister dect handset. It is a vendor-specific value.
-*                                               HardwareVersion       - It is a 64 bytes of character value that represents the hardware version. Possible values: "1.0.0".
+*                                               RegisterDectHandset   - It is a unsigned long integer value that represents the register dect handset. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*                                               DeregisterDectHandset - It is a unsigned long integer value that represents the deregister dect handset. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*                                               HardwareVersion       - It is a 64 bytes of character value that represents the hardware version. It is a vendor-specific value.
 *                                               RFPI                  - It is a 64 bytes of character value that represents the RFPI. It is a vendor-specific value.
-*                                               SoftwareVersion       - It is a 64 bytes of character value that represents the software version. Possible values: "v1.0".
+*                                               SoftwareVersion       - It is a 64 bytes of character value that represents the software version. It is a vendor-specific value.
 *                                               PIN                   - It is a 64 bytes of character value that represents the PIN. It is a vendor-specific value.
 *                                        </pre>
 * @return The status of the operation.
@@ -810,7 +839,7 @@ INT mta_hal_GetDect(PMTAMGMT_MTA_DECT pDect);
 /*  mta_hal_GetDectPIN: */
 /**
 * @description get Decr PIN
-* @param[out] char* pPINString - PIN value. It is a vendor-specific value.
+* @param[out] pPINString - It is a 128 bytes of character pointer that provides PIN value. It is a vendor-specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -830,7 +859,7 @@ INT mta_hal_GetDectPIN(char* pPINString);
 /*  mta_hal_SetDectPIN: */
 /**
 * @description Set Dect PIN
-* @param[in] char* pPINString - PIN value. It is a vendor-specific value.
+* @param[in] pPINString - It is a 128 bytes of character pointer that provides PIN value. It is a vendor-specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -848,12 +877,12 @@ INT mta_hal_SetDectPIN(char* pPINString);
 /*  mta_hal_GetHandsets: */
 /**
 * @description Get MTA handset info
-* @param[in] ULONG* pulCount  - handset number. The value ranges from 0 to n, where n is a unsigned long value. It is a vendor-specific value.
-* @param[out] PMTAMGMT_MTA_HANDSETS_INFO* ppHandsets - Info of MTA handset. ppHandsets is a pointer to structure PMTAMGMT_MTA_HANDSETS_INFO.
+* @param[in] pulCount  - Unsigned long integer pointer that provides handset number. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+* @param[out] ppHandsets - Info of MTA handset. ppHandsets is a pointer to structure PMTAMGMT_MTA_HANDSETS_INFO.
 *                                                      <pre>
 *                                                      The structure members are defined below:
-*                                                           InstanceNumber  - It is a unsigned long integer value that represents the instance number. It is a vendor-specific value.
-*                                                           Status          - It is a boolean value that defines the status. Possible values: "TRUE", "FALSE".
+*                                                           InstanceNumber  - It is a unsigned long integer value that represents the instance number. The value ranges from 0 to (2^32)-1. It is a vendor-specific value.
+*                                                           Status          - It is a boolean value that defines the status. The values are: "TRUE", "FALSE".
 *                                                           LastActiveTime  - It is a 64 bytes of character value that represents the last active time. It is a vendor-specific value.
 *                                                           HandSetName     - It is a 64 bytes of character value that represents the hand set name. It is a vendor-specific value.
 *                                                           HandsetFirmware - It is a 64 bytes of character value that represents the hand set firmware. It is a vendor-specific value.
@@ -878,27 +907,28 @@ INT mta_hal_GetHandsets(ULONG* pulCount, PMTAMGMT_MTA_HANDSETS_INFO* ppHandsets)
 /*  mta_hal_GetCalls : */
 /**
 * @description Retrieve all call info for the given instance number of LineTable
-* @param[in] ULONG InstanceNumber - LineTable's instance number
-* @param[out] ULONG *Count - number of entries(calls) for the call info array, to be returned.
-* @param[out] PMTAMGMT_MTA_CALLS *ppCfg - Array of call info, to be returned
+* @param[in] InstanceNumber - Unsigned long integer that provides LineTable's instance number. The valid range is 0 to (2^32)-1.
+* @param[out] Count - Unsigned long integer pointer that provides number of entries(calls) for the call info array, to be returned. The valid range is 0 to (2^32)-1.
+* @param[out] ppCfg - Array of call info, to be returned
 *                                         \n The structure members are defined below:
 *                                         <pre>
-*                                               Codec                      - It is a 64 bytes of character value that represents the local side codec used for the call. It is a vendor-specific value. Possible values: "Opus".
-*                                               RemoteCodec                - It is a 64 bytes of character value that represents the remote side codec used for the call. It is a vendor-specific value. Possible values: "VOIP".
-*                                               CallStartTime              - It is a 64 bytes of character value that represents the start time of a call. It is a vendor-specific value. Possible values: "09:30".
-*                                               CallEndTime                - It is a 64 bytes of character value that represents the end time of a call. It is a vendor-specific value. Possible values: "10:30".
-*                                               CWErrorRate                - It is a 16 bytes of character value that represents the ratio of useful signal to background noise. It is a vendor-specific value. Possible values: "26.02dB".
+*                                               Codec                      - It is a 64 bytes of character value that represents the local side codec used for the call. It is a vendor-specific value.
+*                                               RemoteCodec                - It is a 64 bytes of character value that represents the remote side codec used for the call. It is a vendor-specific value.
+*                                               CallStartTime              - It is a 64 bytes of character value that represents the start time of a call. The value is: 2000-01-01.
+*                                               CallEndTime                - It is a 64 bytes of character value that represents the end time of a call. The value is: 2000-01-01.
+*                                               CWErrorRate                - It is a 16 bytes of character value that represents the ratio of useful signal to background noise. It is vendor specific.
 *                                               PktLossConcealment         - It is a 16 bytes of character value that represents the ratio of pkt lost to total expected. It is a vendor-specific value.
-*                                               JitterBufferAdaptive       - It is a boolean value that specifies whether the JBA used or not. Possible values: "{TRUE, FALSE}".
-*                                               Originator                 - It is a boolean value that represents the originating side of the call or not. Possible values: "{TRUE, FALSE}".
+*                                               JitterBufferAdaptive       - It is a boolean value that specifies whether the JBA used or not.The values are: "{TRUE, FALSE}".
+*                                               Originator                 - It is a boolean value that represents the originating side of the call or not. The values are: "{TRUE, FALSE}".
 *                                               RemoteIPAddress            - It is a ANSC_IPV4_ADDRESS union type value that represents the Primary DHCP server. The union members are defined as below:
-*                                                                            Dot - An unsigned character array of size 4. Possible values: "192.168.16.55".
+*                                                                            Dot - An unsigned character array of size 4.
 *                                                                            Value - A 32 bit unsigned integer value.
-*                                               CallDuration               - It is a unsigned integer value that represents the length of the call in minutes. It is a vendor-specific value.
-*                                               CWErrors                   - It is a 16 bytes of character value that represents the code word errors on this channel. It is a vendor-specific value.
-*                                               SNR                        - It is a 16 bytes of character value that represents the signal to noise ratio. It is a vendor-specific value.
+                                                                             The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*                                               CallDuration               - It is a unsigned integer value that represents the length of the call in minutes. The value ranges from 0 to (2^32)-1.
+*                                               CWErrors                   - It is a 16 bytes of character value that represents the code word errors on this channel. It is vendor specific.
+*                                               SNR                        - It is a 16 bytes of character value that represents the signal to noise ratio. It is vendor specific.
 *                                               MicroReflections           - It is a 16 bytes of character value that represents the return loss measurement. It is a vendor-specific value.
-*                                               DownstreamPower            - It is a 16 bytes of character value that represents the downstream power in dbmv. It is a vendor-specific value.
+*                                               DownstreamPower            - It is a 16 bytes of character value that represents the downstream power in dbmv. It is vendor specific.
 *                                               UpstreamPower              - It is a 16 bytes of character value that represents the upstream power in dbmv. It is a vendor-specific value.
 *                                               EQIAverage                 - It is a 16 bytes of character value that represents the EQI average. It is a vendor-specific value.
 *                                               EQIMinimum                 - It is a 16 bytes of character value that represents the EQI minimum. It is a vendor-specific value.
@@ -949,7 +979,7 @@ INT mta_hal_GetHandsets(ULONG* pulCount, PMTAMGMT_MTA_HANDSETS_INFO* ppHandsets)
 *                                               RemoteJitterBufferAdaptive - It is a 16 bytes of character value that represents the remote side Buffer Adaptive. It is a vendor-specific value.
 *                                               RemoteJitterBufRate        - It is a 16 bytes of character value that represents the remote side Buffer rate. It is a vendor-specific value.
 *                                               RemoteJBNominalDelay       - It is a 16 bytes of character value that represents the remote side JBNominalDelay. It is a vendor-specific value.
-*                                               RemoteJBMaxDelay           - It is a 16 bytes of character value that represents the remote side JBMaxDelay. It is a vendor-specific value.
+*                                               RemoteJBMaxDelay           - It is a 16 bytes of character value that represents the remote side JBMaxDelay. It is vendor specific.
 *                                               RemoteJBAbsMaxDelay        - It is a 16 bytes of character value that represents the remote side JBAbsMaxDelay. It is a vendor-specific value.
 *                                         </pre>
 * @return The status of the operation.
@@ -970,13 +1000,13 @@ INT   mta_hal_GetCalls(ULONG InstanceNumber, ULONG *Count, PMTAMGMT_MTA_CALLS *p
 /*  mta_hal_GetCALLP : */
 /**
 * @description Retrieve the CALLP status info for the line number
-* @param[in]  ULONG LineNumber - Line number for which to retrieve info on CALLP status.
-* @param[out]  PMTAMGMT_MTA_CALLP pCallp - CallP info, to be returned.
+* @param[in]  LineNumber - Unsigned long integer that provides Line number for which to retrieve info on CALLP status.
+* @param[out]  pCallp - CallP info, to be returned.
 *                                          \n Structure members are defined below:
 *                                          <pre>
-*                                                   LCState     - It is a 64 bytes of character value that represents the LC State. It is a vendor-specific value.
-*                                                   CallPState  - It is a 64 bytes of character value that represents the callpstate. It is a vendor-specific value.
-*                                                   LoopCurrent - It is a 64 bytes of character value that represents the Loop current. It is a vendor-specific value.
+*                                                   LCState     - It is a 64 bytes of character value that represents the LC State. The value is: In Use, Idle, Out of Service.
+*                                                   CallPState  - It is a 64 bytes of character value that represents the callpstate. The value is: In Service, OOS.
+*                                                   LoopCurrent - It is a 64 bytes of character value that represents the Loop current. The value is: Normal, Boosted.
 *                                          </pre>
 *
 * @return The status of the operation.
@@ -995,14 +1025,14 @@ INT   mta_hal_GetCALLP(ULONG LineNumber, PMTAMGMT_MTA_CALLP pCallp);
 /*  mta_hal_GetDSXLogs : */
 /**
 * @description Retrieve all DSX log entries
-* @param[out] ULONG *Count - number of entries in the log, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 2.
-* @param[out] PMTAMGMT_MTA_DSXLOG *ppDSXLog - array of log entries, to be returned.
+* @param[out] Count - Unsigned long integer pointer that provides number of entries in the log, to be returned. The value ranges from 0 to (2^32)-1.
+* @param[out] ppDSXLog - array of log entries, to be returned.
 *                                             \n Structure members are defined below:
 *                                             <pre>
-*                                                   Time        - It is a 64 bytes of character value that represents the time. Possible values: "15:30:35".
+*                                                   Time        - It is a 64 bytes of character value that represents the time. It is vendor specific.
 *                                                   Description - It is a 128 bytes of character value that represents the description. It is a vendor-specific value.
-*                                                   ID          - It is a unsigned long integer value that represents the ID. It is a vendor-specific value.
-*                                                   Level       - It is a unsigned long integer value that represents the level. It is a vendor-specific value.
+*                                                   ID          - It is a unsigned long integer value that represents the ID. The range is 0 to the (2^32)-1. It is a vendor-specific value.
+*                                                   Level       - It is a unsigned long integer value that represents the level. The range is 0 to the (2^32)-1. It is a vendor-specific value.
 *                                             </pre>
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1022,7 +1052,7 @@ INT   mta_hal_GetDSXLogs(ULONG *Count, PMTAMGMT_MTA_DSXLOG *ppDSXLog);
 /*  mta_hal_GetDSXLogEnable : */
 /**
 * @description Get the value of if DSX log is enabled
-* @param[out] BOOLEAN * pBool - boolean value of enable, to be returned. Possible values: "TRUE", "FALSE".
+* @param[out] pBool - It is a boolean pointer type with 1 byte size, boolean value of enable, to be returned. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1042,7 +1072,7 @@ INT   mta_hal_GetDSXLogEnable(BOOLEAN *pBool);
 /*  mta_hal_SetDSXLogEnable : */
 /**
 * @description Set value of DSX enable to the value
-* @param[in] BOOLEAN Bool - value to set DSX log enable to the value. Possible values: "TRUE", "FALSE".
+* @param[in] Bool - It is a boolean type with 1 byte size, value to set DSX log enable to the value. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1061,7 +1091,7 @@ INT   mta_hal_SetDSXLogEnable(BOOLEAN Bool);
 /*  mta_hal_ClearDSXLog : */
 /**
 * @description Set value of ClearDSXLog to the value
-* @param[in] BOOLEAN Bool - value to set to clear DSX log. Possible values: "TRUE", "FALSE".
+* @param[in] Bool - It is a boolean type with 1 byte size, value to set to clear DSX log. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1079,7 +1109,7 @@ INT mta_hal_ClearDSXLog(BOOLEAN Bool) ;
 /*  mta_hal_GetCallSignallingLogEnable : */
 /**
 * @description Get the value of if CallSignalling log is enabled
-* @param[out] BOOLEAN * pBool - boolean value of enable, to be returned. Possible values: "TRUE", "FALSE".
+* @param[out] pBool - It is a boolean pointer type with 1 byte size, boolean value of enable, to be returned. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1100,7 +1130,7 @@ INT mta_hal_GetCallSignallingLogEnable(BOOLEAN *pBool) ;
 /*  mta_hal_SetCallSignallingLogEnable : */
 /**
 * @description Set value of CallSignalling enable to the value
-* @param[in] BOOLEAN Bool - value to set CallSignalling log enable to the value. Possible values: "TRUE", "FALSE".
+* @param[in] Bool - It is a boolean type with 1 byte size, value to set CallSignalling log enable to the value. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1120,7 +1150,7 @@ INT mta_hal_SetCallSignallingLogEnable(BOOLEAN Bool) ;
 /*  mta_hal_ClearCallSignallingLog : */
 /**
 * @description Set value of CallSignalling enable to the value
-* @param[in] BOOLEAN Bool - value to set to clear CallSignalling log. Possible values: "TRUE", "FALSE".
+* @param[in] Bool - It is a boolean type with 1 byte size, value to set to clear CallSignalling log. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1139,15 +1169,15 @@ INT mta_hal_ClearCallSignallingLog(BOOLEAN Bool) ;
 /*  mta_hal_GetMtaLog : */
 /**
 * @description Get all log entries from the MTA Log
-* @param[out] ULONG *Count - number of entries in the log, to be returned
-* @param[out] PMTAMGMT_MTA_MTALOG_FULL *ppCfg - array of log entries, to be returned.
+* @param[out] Count - Unsigned long integer pointer that provides number of entries in the log, to be returned. The range is 0 to the (2^32)-1.
+* @param[out] ppCfg - array of log entries, to be returned.
 *                                               \n Structure members are defined below:
 *                                               <pre>
-*                                                       Index        - It is a unsigned long integer value that represents the Index. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 1, 2.
-*                                                       EventID      - It is a unsigned long integer value that represents the eventID. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 1, 2.
-*                                                       EventLevel   - It is a 64 bytes of character value that represents the event level. Possible values: "1", "2".
-*                                                       Time         - It is a 64 bytes of character value that represents the time. Possible values: "1998-05-14".
-*                                                       pDescription - It is a 64 bytes of character value that represents the description. Possible values: "this is a log for matLog1", "this is a log for matLog2".
+*                                                       Index        - It is a unsigned long integer value that represents the Index. The range is 0 to the (2^32)-1. The values are 1,2.
+*                                                       EventID      - It is a unsigned long integer value that represents the eventID. The range is 0 to the (2^32)-1. The value are 1,2.
+*                                                       EventLevel   - It is a 64 bytes of character value that represents the event level. The values are "1","2".
+*                                                       Time         - It is a 64 bytes of character value that represents the time. The values is: "1998-05-14"
+*                                                       pDescription - It is a 64 bytes of character value that represents the description. The values are: "this is a log for matLog1", "this is a log for matLog2".
 *                                               </pre>
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1167,7 +1197,7 @@ INT mta_hal_GetMtaLog(ULONG *Count, PMTAMGMT_MTA_MTALOG_FULL *ppCfg);
 /*  mta_hal_BatteryGetInstalled : */
 /**
 * @description Check to see if the battery is installed
-* @param[out] BOOLEAN* Val - TRUE/FALSE, value to be returned. Possible values: "TRUE", "FALSE".
+* @param[out] Val - It is a boolean pointer type with 1 byte size, value to be returned. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1187,7 +1217,7 @@ INT mta_hal_BatteryGetInstalled(BOOLEAN* Val);
 /*  mta_hal_BatteryGetTotalCapacity : */
 /**
 * @description Get the total capacity of the battery
-* @param[out] INT* Val - capacity in mAVHour, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 0.
+* @param[out] Val - It is an unsigned long integer pointer type with 4 bytes size, capacity in mAVHour, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1207,7 +1237,7 @@ INT mta_hal_BatteryGetTotalCapacity(ULONG* Val);
 /*  mta_hal_BatteryGetActualCapacity : */
 /**
 * @description Retrieve the actual capacity of the battery
-* @param[out] INT* Val - capacity in mAVHour, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 0.
+* @param[out] INT* Val - It is an unsigned long integer pointer type with 4 bytes size, capacity in mAVHour, to be returned. The range is 0 to (2^32)-1.  It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1227,7 +1257,7 @@ INT mta_hal_BatteryGetActualCapacity(ULONG* Val);
 /*  mta_hal_BatteryGetRemainingCharge : */
 /**
 * @description Retrieve the current charge remain in the battery
-* @param[out] INT* Val - capacity in mAVHour, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 0.
+* @param[out] Val - It is an unsigned long integer pointer type with 4 bytes size, capacity in mAVHour, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1247,7 +1277,7 @@ INT mta_hal_BatteryGetRemainingCharge(ULONG* Val);
 /* mta_hal_BatteryGetRemainingTime : */
 /**
 * @description Get estimated battery remaining time if current usage continues
-* @param[out] INT* Val - Remaining time in minutes, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 0.
+* @param[out] Val -  It is an unsigned long integer pointer type with 4 bytes size. Remaining time in minutes, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1267,7 +1297,7 @@ INT mta_hal_BatteryGetRemainingTime(ULONG* Val);
 /*  mta_hal_BatteryGetNumberofCycles : */
 /**
 * @description Get max number of cycles the battery can be charge cycled
-* @param[out] INT* Val - Max number of cycles, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 0.
+* @param[out] Val -  It is an unsigned long integer pointer type with 4 bytes size. Max number of cycles, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1287,8 +1317,8 @@ INT mta_hal_BatteryGetNumberofCycles(ULONG* Val);
 /*  mta_hal_BatteryGetPowerStatus : */
 /**
 * @description Get power status of MTA
-* @param[out] CHAR* Val - Status of "AC", "Battery", or "Unknown", to be returned. Possible values: "Battery".
-* @param[out] ULONG *len - string length, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 8.
+* @param[out] Val - It is a character pointer type of 1 byte size. Status of "AC", "Battery", or "Unknown", to be returned. The value is: "Battery".
+* @param[out] len - It is an unsigned long integer pointer of 4 bytes size, string length, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1308,8 +1338,8 @@ INT mta_hal_BatteryGetPowerStatus(CHAR *Val, ULONG *len);
 /*  mta_hal_BatteryGetCondition: */
 /**
 * @description Get the battery condition
-* @param[out] CHAR* Val - Status of "Good" or "Bad", to be returned. Possible values: "Good".
-* @param[out] ULONG *len - string length, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 5.
+* @param[out] Val - It is a character pointer type of 1 byte size. Status of "Good" or "Bad", to be returned. The value is: "Good".
+* @param[out] len - It is an unsigned long integer pointer of 4 bytes size, string length, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1329,9 +1359,9 @@ INT mta_hal_BatteryGetCondition(CHAR *Val, ULONG *len);
 /*  mta_hal_BatteryGetStatus: */
 /**
 * @description Get the battery status
-* @param[out] CHAR* Val - Status of "Missing", "Idle", "Charging",
-*                         \n "Discharging", or "Unknown", to be returned. Possible values: "Unknown".
-* @param[out] ULONG *len - string length, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 8.
+* @param[out] Val - It is a character pointer type of 1 byte size. Status of "Missing", "Idle", "Charging", 
+*                   \n "Discharging", or "Unknown", to be returned. The value is : "Discharging".
+* @param[out] len - It is an unsigned long integer pointer of 4 bytes size, string length, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1351,8 +1381,8 @@ INT mta_hal_BatteryGetStatus(CHAR* Val, ULONG *len);
 /*  mta_hal_BatteryGetLife: */
 /**
 * @description Get the battery life status
-* @param[out] CHAR* Val - Values of "Need Replacement", or "Good", to be returned. Possible values: "Unknown".
-* @param[out] ULONG *len - string length, to be returned. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 8.
+* @param[out] Val - It is a character pointer type of 1 byte size. Values of "Need Replacement", or "Good", to be returned. The value is: "Need Replacement".
+* @param[out] len - It is an unsigned long integer pointer of 4 bytes size, string length, to be returned. The range is 0 to the (2^32)-1. It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1373,13 +1403,13 @@ INT mta_hal_BatteryGetLife(CHAR* Val, ULONG *len);
 /*  mta_hal_BatteryGetInfo: */
 /**
 * @description Get the battery info
-* @param[out] PMTAMGMT_MTA_BATTERY_INFO pInfo - battery info, to be returned
+* @param[out] pInfo - battery info from the structure PMTAMGMT_MTA_BATTERY_INFO, to be returned
 *                                               \n Structure members are defined below:
 *                                               <pre>
-*                                                       ModelNumber             - It is a 32 bytes of character value that represents the model number. Possible values: "ModelNumber1.0".
-*                                                       SerialNumber            - It is a 32 bytes of character value that represents the serial number. Possible values: "SerialNumber1.0".
-*                                                       PartNumber              - It is a 32 bytes of character value that represents the part number. Possible values: "PartNumber1.0".
-*                                                       ChargerFirmwareRevision - It is a 32 bytes of character value that represents the charger firmware revision. Possible values: "ChargerFirmwareRevision1.0".
+*                                                       ModelNumber             - It is a 32 bytes of character value that represents the model number. It is vendor specific.
+*                                                       SerialNumber            - It is a 32 bytes of character value that represents the serial number. It is vendor specific.
+*                                                       PartNumber              - It is a 32 bytes of character value that represents the part number. It is vendor specific.
+*                                                       ChargerFirmwareRevision - It is a 32 bytes of character value that represents the charger firmware revision. It is vendor specific.
 *                                               </pre>
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1397,7 +1427,7 @@ INT mta_hal_BatteryGetInfo(PMTAMGMT_MTA_BATTERY_INFO pInfo);
 /*  mta_hal_BatteryGetPowerSavingModeStatus: */
 /**
 * @description Get the battery Power Saving Mode Status
-* @param[out] ULONG *pValue- Values of 1 for Enabled, 2 for Disabled.
+* @param[out] pValue- It is an unsigned long integer pointer of 4 bytes size. Values of 1 for Enabled, 2 for Disabled. The range is 0 to the (2^32)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1417,7 +1447,7 @@ INT mta_hal_BatteryGetPowerSavingModeStatus(ULONG *pValue);
 /*  mta_hal_Get_MTAResetCount: */
 /**
 * @description Get the reset count of MTA
-* @param[out] ULONG * resetcnt- count. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 2.
+* @param[out] resetcnt- It is an unsigned long integer pointer of 4 bytes size, that gives the count. The range is 0 to the (2^32)-1. The value is 4.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1435,10 +1465,10 @@ INT mta_hal_BatteryGetPowerSavingModeStatus(ULONG *pValue);
 
 INT mta_hal_Get_MTAResetCount(ULONG *resetcnt);
 
-/*  mta_hal_Get_MTAResetCount: */
+/*  mta_hal_Get_LineResetCount: */
 /**
 * @description Get the reset count of MTA Lines
-* @param[out] ULONG *resetcnt- count. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 2.
+* @param[out] resetcnt- It is an unsigned long integer pointer of 4 bytes size, that gives the count. The range is 0 to the (2^32)-1. The value is 5.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1458,7 +1488,7 @@ INT mta_hal_Get_LineResetCount(ULONG *resetcnt);
 
 /**
 * @description clear the VQM stats per line
-* @param[in] ULONG InstanceNumber - instance number. It is a vendor-specific value. The value ranges from 0 to n, where n is an unsigned long value. Possible values: 1.
+* @param[in] InstanceNumber - It is an unsigned long integer pointer of 4 bytes size, that gives the instance number. The range is 0 to the (2^32)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1476,24 +1506,20 @@ INT mta_hal_ClearCalls(ULONG InstanceNumber);
 /* mta_hal_getDhcpStatus: */
 /**
 * @description Get the DHCP status for MTA
-* @param[out] MTAMGMT_MTA_STATUS *output_pIpv4status - ipv4 dhcp status.
+* @param[out] output_pIpv4status - ipv4 dhcp status.
 *                                                      \n The enum values are defined below:
-*                                                      <pre>
-*                                                           MTA_INIT     = 0
-*                                                           MTA_START    = 1
-*                                                           MTA_COMPLETE = 2
-*                                                           MTA_ERROR    = 3
-*                                                           MTA_REJECTED = 4
-*                                                      </pre>
-* @param[out] MTAMGMT_MTA_STATUS *output_pIpv6status - ipv6 dhcp status
+*                                                      \n   MTA_INIT     = 0
+*                                                      \n   MTA_START    = 1
+*                                                      \n   MTA_COMPLETE = 2
+*                                                      \n   MTA_ERROR    = 3
+*                                                      \n     MTA_REJECTED = 4
+* @param[out] output_pIpv6status - ipv6 dhcp status from MTAMGMT_MTA_STATUS structure
 *                                                      \n The enum values are defined below:
-*                                                      <pre>
-*                                                           MTA_INIT     = 0
-*                                                           MTA_START    = 1
-*                                                           MTA_COMPLETE = 2
-*                                                           MTA_ERROR    = 3
-*                                                           MTA_REJECTED = 4
-*                                                      </pre>
+*                                                      \n   MTA_INIT     = 0
+*                                                      \n   MTA_START    = 1
+*                                                      \n   MTA_COMPLETE = 2
+*                                                      \n   MTA_ERROR    = 3
+*                                                      \n   MTA_REJECTED = 4
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected
@@ -1512,15 +1538,13 @@ INT mta_hal_getDhcpStatus(MTAMGMT_MTA_STATUS *output_pIpv4status, MTAMGMT_MTA_ST
 /* mta_hal_getConfigFileStatus: */
 /**
 * @description Get the MTA config file status
-* @param[out] MTAMGMT_MTA_STATUS *poutput_status - config file status
+* @param[out] poutput_status - config file status from MTAMGMT_MTA_STATUS structure:
 *                                                  \n The enum values are defined below:
-*                                                  <pre>
-*                                                       MTA_INIT     = 0
-*                                                       MTA_START    = 1
-*                                                       MTA_COMPLETE = 2
-*                                                       MTA_ERROR    = 3
-*                                                       MTA_REJECTED = 4
-*                                                  </pre>
+*                                                  \n   MTA_INIT     = 0
+*                                                  \n   MTA_START    = 1
+*                                                  \n   MTA_COMPLETE = 2
+*                                                  \n   MTA_ERROR    = 3
+*                                                  \n   MTA_REJECTED = 4
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected
@@ -1539,16 +1563,14 @@ INT mta_hal_getConfigFileStatus(MTAMGMT_MTA_STATUS *poutput_status);
 /* mta_hal_getLineRegisterStatus: */
 /**
 * @description Get the register status for all lines
-* @param[out] MTAMGMT_MTA_STATUS *output_status_array - return array buffer for all line register status.
+* @param[out] output_status_array - return array buffer for all line register status from MTAMGMT_MTA_STATUS structure.
 *                                                       \n The enum values are defined below:
-*                                                       <pre>
-*                                                            MTA_INIT     = 0
-*                                                            MTA_START    = 1
-*                                                            MTA_COMPLETE = 2
-*                                                            MTA_ERROR    = 3
-*                                                            MTA_REJECTED = 4
-*                                                       </pre>
-* @param[in] int array_size - buffer size (total line number). Possible values: 6.
+*                                                       \n   MTA_INIT     = 0
+*                                                       \n   MTA_START    = 1
+*                                                       \n   MTA_COMPLETE = 2
+*                                                       \n   MTA_ERROR    = 3
+*                                                       \n   MTA_REJECTED = 4
+* @param[in] int array_size - It is of type integer with 4 bytes size, buffer size (total line number). The range of values are -2^31 to (2^31)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1568,7 +1590,7 @@ INT mta_hal_getLineRegisterStatus(MTAMGMT_MTA_STATUS *output_status_array, int a
 /*  mta_hal_devResetNow: */
 /**
 * @description Set boolean value passed to reset MTA device
-* @param[in] BOOLEAN bResetValue - boolean value to reset the device. Possible values: "TRUE", "FALSE".
+* @param[in] bResetValue - boolean value of 1 byte size, to reset the device. The values are: "TRUE", "FALSE".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1588,13 +1610,11 @@ INT mta_hal_devResetNow(BOOLEAN bResetValue);
 * @description Get the operational status of MTA
 * @param[out] MTAMGMT_MTA_STATUS *operationalStatus - return buffer for operational status
 *                                                     \n The enum values are defined below:
-*                                                     <pre>
-*                                                          MTA_INIT     = 0
-*                                                          MTA_START    = 1
-*                                                          MTA_COMPLETE = 2
-*                                                          MTA_ERROR    = 3
-*                                                          MTA_REJECTED = 4
-*                                                     </pre>
+*                                                     \n   MTA_INIT     = 0
+*                                                     \n   MTA_START    = 1
+*                                                     \n   MTA_COMPLETE = 2
+*                                                     \n   MTA_ERROR    = 3
+*                                                     \n   MTA_REJECTED = 4
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected
@@ -1613,7 +1633,7 @@ INT mta_hal_getMtaOperationalStatus(MTAMGMT_MTA_STATUS *operationalStatus);
 /* mta_hal_getMtaProvisioningStatus: */
 /**
 * @description Get the provisional status of MTA
-* @param[out] MTAMGMT_MTA_PROVISION_STATUS *provisionStatus - return buffer for provision status.
+* @param[out] provisionStatus - return buffer for provision status from MTAMGMT_MTA_PROVISION_STATUS structure.
 *                                                             \n The enum values are defined below:
 *                                                             <pre>
 *                                                               MTA_PROVISIONED     = 0
@@ -1649,7 +1669,7 @@ typedef  enum {
 
 typedef struct _MTAMGMT_PROVISIONING_PARAMS
 {
-  
+
 INT  MtaIPMode;
 INT  DhcpOption2171CccV6DssID1Len;                                       // Length of DhcpOption2171CccV6DssID1
 INT  DhcpOption2171CccV6DssID2Len;                                       // Length of DhcpOption2171CccV6DssID2
@@ -1664,16 +1684,16 @@ MTAMGMT_PROVISIONING_PARAMS, *PMTAMGMT_MTA_PROVISIONING_PARAMS;
 /* mta_hal_start_provisioning: */
 /**
 * @description This API call will start IP provisioning for all the lines for IPv4/IPv6 , or dual mode
-* @param[in] PMTAMGMT_MTA_PROVISIONING pParameters - IP provisioning for all line register status
+* @param[in] pParameters - IP provisioning for all line register status from PMTAMGMT_MTA_PROVISIONING_PARAMS structure.
 *                                                \n The structure members are defined below:
 *                                                <pre>
-*                                                       MtaIPMode                    - It is a integer value that represents the Mta Ip mode. The value ranges from 0 to 2. Possible value: 1.
-*                                                       DhcpOption2171CccV6DssID1Len - It is a integer value that represents the Length of DhcpOption2171CccV6DssID1. Possible value: 32.
-*                                                       DhcpOption2171CccV6DssID2Len - It is a integer value that represents the Length of DhcpOption2171CccV6DssID2. Possible value: 32.
-*                                                       DhcpOption122Suboption1      - It is a 4 byte hex value. ie. FFFFFFFF = "255.255.255.255". IPv4 addresses MUST be encoded as 4 binary octets in network  byte-order (high order byte first). Possible value: 4.
-*                                                       DhcpOption122Suboption2      - It is a 4 byte hex value ie. FFFFFFFF = "255.255.255.255". Possible values: 4.
-*                                                       DhcpOption2171CccV6DssID1    - It is a 32 byte hex value. It is a vendor-specific value.
-*                                                       DhcpOption2171CccV6DssID2    - It is a 32 byte hex value. It is a vendor-specific value.
+*                                                       MtaIPMode                    - It is a integer value that represents the Mta Ip mode. The value ranges from 0 to 2. 
+*                                                       DhcpOption2171CccV6DssID1Len - It is a integer value that represents the Length of DhcpOption2171CccV6DssID1. It ranges from -2^31 to (2^31)-1.
+*                                                       DhcpOption2171CccV6DssID2Len - It is a integer value that represents the Length of DhcpOption2171CccV6DssID2. It ranges from -2^31 to (2^31)-1.
+*                                                       DhcpOption122Suboption1      - It is a 5 byte character array having hex value. ie. FFFFFFFF = "255.255.255.255". IPv4 addresses MUST be encoded as 4 binary octets in network  byte-order (high order byte first). It is vendor specific.
+*                                                       DhcpOption122Suboption2      - It is a 5 byte character array having hex value. ie. FFFFFFFF = "255.255.255.255". IPv4 addresses MUST be encoded as 4 binary octets in network  byte-order (high order byte first). It is vendor specific.
+*                                                       DhcpOption2171CccV6DssID1    - It is a 33 byte character array having hex value. It is a vendor-specific value.
+*                                                       DhcpOption2171CccV6DssID2    - It is a 33 byte character array having hex value. It is a vendor-specific value.
 *                                                </pre>
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1691,8 +1711,14 @@ INT mta_hal_start_provisioning(PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters); //
 /* mta_hal_getLineRegisterStatus_callback: */
 /**
 * @description This call back will be invoked to returing MTA line
-* @param MTAMGMT_MTA_STATUS *output_status_array - return array buffer for all line register status.
-* @param int array_size - buffer size (total line number)
+* @param output_status_array - return array buffer for all line register status from MTAMGMT_MTA_STATUS structure.
+*                                                  \n The enum values are:
+*                                                  \n MTA_INIT=0
+*                                                  \n MTA_START=1
+*                                                  \n MTA_COMPLETE=2
+*                                                  \n MTA_ERROR=3
+*                                                  \n MTA_REJECTED=4
+* @param int array_size - It is a 4 byte integer that provides buffer size (total line number). The range of values are -2^31 to (2^31)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1714,16 +1740,14 @@ typedef INT ( * mta_hal_getLineRegisterStatus_callback)(MTAMGMT_MTA_STATUS *outp
 * @description This call back will be invoked to returing MTA line
 * @param[in] mta_hal_getLineRegisterStatus_callback callback_proc - Callback registration function.
 *                                                                   The values defined below:
-*                                                                   <pre>
-*                                                                   output_status_array - Output parameter to return array buffer for all line register status.
-*                                                                                         The enum values are defined below:
-*                                                                                             MTA_INIT     = 0
-*                                                                                             MTA_START    = 1
-*                                                                                             MTA_COMPLETE = 2
-*                                                                                             MTA_ERROR    = 3
-*                                                                                             MTA_REJECTED = 4
-*                                                                                         </pre>
-*                                                                   array_size - buffer size (total line number). Input parameter of type int. Possible value: 6.
+*                                                               \n  output_status_array - Output parameter to return array buffer for all line register status.
+*                                                               \n                        The enum values are defined below:
+*                                                               \n                            MTA_INIT     = 0
+*                                                               \n                            MTA_START    = 1
+*                                                               \n                            MTA_COMPLETE = 2
+*                                                               \n                            MTA_ERROR    = 3
+*                                                               \n                            MTA_REJECTED = 4
+*                                                                   array_size - buffer size (total line number). Input parameter of type int. The range of values are -2^31 to (2^31)-1.
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected
@@ -1742,5 +1766,3 @@ void mta_hal_LineRegisterStatus_callback_register(mta_hal_getLineRegisterStatus_
 /**
  * @}
  */
-
-

@@ -688,7 +688,7 @@ CcspHalEthSwSetPortAdminStatus
 *                       CCSP_HAL_ETHSW_PortMax              = 20
 * </pre>
 * @param[in] AgingSpeed  Integer value of aging speed.
-*                        \n The range of acceptable values is 0 to n, where n is an integer value which represents the vendor specific maximum aging time.
+*                        \n It is a vendor specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -714,6 +714,7 @@ CcspHalEthSwSetAgingSpeed
 * @description Query Moca and External switch port for the given MAC address.
 
 * @param[in] mac Pointer to character array holding the MAC address to search for. The buffer size is 6 bytes.
+*                \n The format of the MAC address is given as an example: "00:1A:2B:11:B2:33".
 * @param[out] port Pointer to an integer value holding the external port. The possible return values are: 0: MoCA, 1-4: Ethernet port.
 *
 * @return The status of the operation.
@@ -772,17 +773,21 @@ typedef struct _eth_device {
 /**
 * @description The HAL need to allocate array and return the array size by output_array_size.
 
-* @param[in] output_array_size Pointer to unsigned long integer holding the output array size to be returned.
-*                              \n The range of acceptable values is 0 to n, where n is an unsigned integer value.
+* @param[out] output_array_size Pointer to unsigned long integer holding the output array size to be returned.
+*                              \n The range of acceptable values is 0 to 4,294,967,296.
 * @param[out] output_struct Pointer to an array of structures of type eth_device_t.
 *                           \n The structure members are defined as below:
 * <pre>
-*                               eth_devMacAddress[6]    - It is a 6 bytes unsigned character array that represents the MAC Address. Example: "00:1A:2B:11:22:33".
-*                               eth_port                - Which external port the device attached to. Range of indexes start from 0 to n, where n is an integer value.
-*                               eth_vlanid              - It is an integer valie which represents What vlan ID the port is tagged. It is a vendor specific value.
-*                               eth_devTxRate           - Tx Speed. The range of acceptable values is 0 to n, where n is an unsigned integer value.
-*                               eth_devRxRate           - Rx Speed. The range of acceptable values is 0 to n, where n is an unsigned integer value.
-*                               eth_Active;             - It is a boolean value which represents whether the device is online/offline. Possible values: TRUE or FALSE.
+*    eth_devMacAddress[6]    - It is a 6 bytes unsigned character array that represents the MAC Address.
+*                              The format of the MAC address is given as an example: "00:1A:2B:11:B2:33".
+*    eth_port                - Which external port the device attached to. It is an integer value.
+*                              \n The valid range of eth_Port is from 0 to MaxEthPort-1, where MaxEthPort is platform specific.
+*                              It is a vendor specific value.
+*    eth_vlanid              - It is an integer value which represents What vlan ID the port is tagged.
+*                              The valid VLAN IDs range from 1 to 4094.It is a vendor specific value.
+*    eth_devTxRate           - Tx Speed. It is an unsigned integer value. It is a vendor specific value.
+*    eth_devRxRate           - Rx Speed. IT is an unsigned integer value. It is a vendor specific value.
+*    eth_Active;             - It is a boolean value which represents whether the device is online/offline. Possible values: TRUE or FALSE.
 * </pre>
 *
 * @return The status of the operation.
@@ -807,12 +812,16 @@ INT CcspHalExtSw_getAssociatedDevice(ULONG *output_array_size, eth_device_t **ou
 * @param[out] eth_dev Pointer to an array of structures of type eth_device_t.
 *                     \n The structure members are defined as below:
 * <pre>
-*                      eth_devMacAddress[6]    - It is a 6 bytes unsigned character array that represents the MAC Address. Example: "00:1A:2B:11:22:33".
-*                      eth_port                - Which external port the device attached to. Range of indexes start from 0 to n, where n is an integer value.
-*                      eth_vlanid              - It is an integer valie which represents What vlan ID the port is tagged. It is a vendor specific value.
-*                      eth_devTxRate           - Tx Speed. The range of acceptable values is 0 to n, where n is an unsigned integer value.
-*                      eth_devRxRate           - Rx Speed. The range of acceptable values is 0 to n, where n is an unsigned integer value.
-*                      eth_Active;             - It is a boolean value which represents whether the device is online/offline. Possible values: TRUE or FALSE.
+*    eth_devMacAddress[6]    - It is a 6 bytes unsigned character array that represents the MAC Address.
+*                              The format of the MAC address is given as an example: "00:1A:2B:11:B2:33".
+*    eth_port                - Which external port the device attached to. It is an integer value.
+*                              \n The valid range of eth_Port is from 0 to MaxEthPort-1, where MaxEthPort is platform specific.
+*                              It is a vendor specific value.
+*    eth_vlanid              - It is an integer value which represents What vlan ID the port is tagged.
+*                              The valid VLAN IDs range from 1 to 4094.It is a vendor specific value.
+*    eth_devTxRate           - Tx Speed. It is an unsigned integer value. It is a vendor specific value.
+*    eth_devRxRate           - Rx Speed. IT is an unsigned integer value. It is a vendor specific value.
+*    eth_Active;             - It is a boolean value which represents whether the device is online/offline. Possible values: TRUE or FALSE.
 * </pre>
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -835,16 +844,20 @@ typedef INT ( * CcspHalExtSw_ethAssociatedDevice_callback)(eth_device_t *eth_dev
 * @description Callback registration function.
 
 * @param[in] callback_proc Callback prototype.
+*            \n The parameters are defined below:
+*            \n eth_dev - Output parameter which is a pointer to an array of structures of type eth_device_t.
+*            \n The structure members are defined as below:
 * <pre>
-*                          The parameters are defined below:
-*                              eth_dev - Output parameter which is a pointer to an array of structures of type eth_device_t.
-*                              The structure members are defined as below:
-*                                 eth_devMacAddress[6]    - It is a 6 bytes unsigned character array that represents the MAC Address. Example: "00:1A:2B:11:22:33".
-*                                 eth_port                - Which external port the device attached to. Range of indexes start from 0 to n, where n is an integer value.
-*                                 eth_vlanid              - It is an integer valie which represents What vlan ID the port is tagged. It is a vendor specific value.
-*                                 eth_devTxRate           - Tx Speed. The range of acceptable values is 0 to n, where n is an unsigned integer value.
-*                                 eth_devRxRate           - Rx Speed. The range of acceptable values is 0 to n, where n is an unsigned integer value.
-*                                 eth_Active;             - It is a boolean value which represents whether the device is online/offline. Possible values: TRUE or FALSE.
+*    eth_devMacAddress[6]    - It is a 6 bytes unsigned character array that represents the MAC Address.
+*                              The format of the MAC address is given as an example: "00:1A:2B:11:B2:33".
+*    eth_port                - Which external port the device attached to. It is an integer value.
+*                              \n The valid range of eth_Port is from 0 to MaxEthPort-1, where MaxEthPort is platform specific.
+*                              It is a vendor specific value.
+*    eth_vlanid              - It is an integer value which represents What vlan ID the port is tagged.
+*                              The valid VLAN IDs range from 1 to 4094.It is a vendor specific value.
+*    eth_devTxRate           - Tx Speed. It is an unsigned integer value. It is a vendor specific value.
+*    eth_devRxRate           - Rx Speed. IT is an unsigned integer value. It is a vendor specific value.
+*    eth_Active;             - It is a boolean value which represents whether the device is online/offline. Possible values: TRUE or FALSE.
 * </pre>
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -869,7 +882,9 @@ void CcspHalExtSw_ethAssociatedDevice_callback_register(CcspHalExtSw_ethAssociat
 /**
 * @description Configure Ethernet port.
 
-* @param[in] ifname Pointer to integer holding the interface name.
+* @param[in] ifname A pointer to the character array that will hold the interface name.
+*                   \n The possible values are: eth0, eth1, eth2, eth3.
+*                   \n The buffer size should be atleast 32 bytes.
 * @param[in] WanMode Boolean value to hold the EthernetWAN enable status. The possible values are: True, False.
 *
 * @return The status of the operation.
@@ -954,7 +969,8 @@ BOOLEAN CcspHalExtSw_getCurrentWanHWConf();
 * @description Get EthernetWAN port number value.
 *
 * @param[out] pPort Pointer to unsigned integer value to store current EthernetWAN port number setting, to be returned.
-*                   \n The range of acceptable values is 0 to n, where n is an unsigned integer value which represents the vendor specific maximum EthernetWAN ports.
+*                   \n It is an unsigned integer value. It is a vendor specific value.
+*                   \n The valid range of pPort is from 0 to MaxEthPort-1, where MaxEthPort is platform specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -975,7 +991,8 @@ CcspHalExtSw_getEthWanPort
 * @description Set EthernetWAN interface/port number.
 *
 * @param[in] Port Unsigned integer value to set the EthernetWAN interface/port number.
-*                 \n The range of acceptable values is 0 to n, where n is an unsigned integer value which represents the vendor specific maximum EthernetWAN ports.
+*                   \n It is an unsigned integer value. It is a vendor specific value.
+*                   \n The valid range of Port is from 0 to MaxEthPort-1, where MaxEthPort is platform specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1141,7 +1158,9 @@ INT GWP_GetEthWanLinkStatus();
 * @description This function will get used to retrieve the ETHWAN interface name.
 *
 * @param[out] Interface Pointer to character array holding the interface name.  It is a vendor specific value.
-* @param[in] maxSize Unsigned long integer which represents the maximum size. It is a vendor specific value.
+*             \n The buffer size should be at least 64 bytes long.
+* @param[in] maxSize Unsigned long integer which represents the maximum size.
+*                    \n The range of maxsize is 11 to 262.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.

@@ -43,33 +43,32 @@
  * @{
  */
 enum DHCPC_CMD{
-	DHCPC_CMD_LEASE_TIME = 0,
-	DHCPC_CMD_LEASE_TIME_REMAIN,
-	DHCPC_CMD_RENEW_TIME_REMAIN,
-	DHCPC_CMD_REBIND_TIME_REMAIN,
-	DHCPC_CMD_CONFIG_ATTEMPTS,
-	DHCPC_CMD_GET_IFNAME,
-	DHCPC_CMD_FSM_STATE,
-	DHCPC_CMD_IP_ADDR,
-	DHCPC_CMD_IP_MASK,
-	DHCPC_CMD_ROUTERS,
-	DHCPC_CMD_DNS_SVRS,
-	DHCPC_CMD_DHCP_SVR,
-	
-	DHCPC_CMD_MAX
+        DHCPC_CMD_LEASE_TIME = 0,
+        DHCPC_CMD_LEASE_TIME_REMAIN,
+        DHCPC_CMD_RENEW_TIME_REMAIN,
+        DHCPC_CMD_REBIND_TIME_REMAIN,
+        DHCPC_CMD_CONFIG_ATTEMPTS,
+        DHCPC_CMD_GET_IFNAME,
+        DHCPC_CMD_FSM_STATE,
+        DHCPC_CMD_IP_ADDR,
+        DHCPC_CMD_IP_MASK,
+        DHCPC_CMD_ROUTERS,
+        DHCPC_CMD_DNS_SVRS,
+        DHCPC_CMD_DHCP_SVR,
+        DHCPC_CMD_MAX
 };
 
 enum DHCPC_MODULE{
-	DHCPC_ECM = 0,
-	DHCPC_EROUTER,
-    DHCPC_EMTA
+        DHCPC_ECM = 0,
+        DHCPC_EROUTER,
+        DHCPC_EMTA
 };
 
-#define MAX_IPV4_ADDR_LIST_NUMBER	4
+#define MAX_IPV4_ADDR_LIST_NUMBER        4
 
 typedef struct{
-	int	number;
-	unsigned int addrList[MAX_IPV4_ADDR_LIST_NUMBER];
+        int    number;
+        unsigned int addrList[MAX_IPV4_ADDR_LIST_NUMBER];
 }ipv4AddrList_t;
 
 /** @} */  //END OF GROUP DHCPV4C_HAL_TYPES
@@ -84,11 +83,10 @@ typedef struct{
 * @description Gets the E-Router Offered Lease Time
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 43200.
-*
+*                    \n The range is 60 to 604800.
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -106,11 +104,11 @@ int dhcp4c_get_ert_lease_time(unsigned int *pValue);
 * @description Gets the E-Router Remaining Lease Time.
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 3600.
+*                    \n The valid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -128,11 +126,11 @@ int dhcp4c_get_ert_remain_lease_time(unsigned int *pValue);
 * @description Gets the E-Router Interface Remaining Time to Renew
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 1800.
+*                    \n The valid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -150,11 +148,11 @@ int dhcp4c_get_ert_remain_renew_time(unsigned int *pValue);
 * @description Gets the E-Router Interface Remaining Time to Rebind
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 3600.
+*                    \n The valid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -172,11 +170,11 @@ int dhcp4c_get_ert_remain_rebind_time(unsigned int *pValue);
 * @description Gets the E-Router Number of Attemts to Configure.
 *
 * @param[out] pValue It is an integer pointer that provies the count.
-*                    \n The range of acceptable values are 0 to n, where n is an integer. The possible value is 2.
+*                    \n The valid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -193,11 +191,12 @@ int dhcp4c_get_ert_config_attempts(int *pValue);
 /**
 * @description Gets the E-Router Interface Name.
 *
-* @param[out] pName It is a character pointer that provides the interface name. The possible value is "erouter0".
+* @param[out] pName It is a 64 byte character array that provides the interface name.
+*                   \n It is vendor specific.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -215,11 +214,19 @@ int dhcp4c_get_ert_ifname(char *pName);
 * @description Gets the E-Router DHCP State
 *
 * @param[out] pValue It is of type integer that provides the state of the DHCP.
-*                    \n The range of acceptable values is 0 to 7. The possible value is 3 (DHCP_RENEWING).
+*                    \n The range is 0 to 6, where:
+*                    \n RELEASED = 1
+*                    \n INIT_REBOOT = 1
+*                    \n INIT_SELECTING = 2
+*                    \n REQUESTING = 3
+*                    \n REBINDING = 4
+*                    \n BOUND = 5
+*                    \n RENEWING = 6
+*                    \n RENEW_REQUESTED = 6
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -236,11 +243,12 @@ int dhcp4c_get_ert_fsm_state(int *pValue);
 /**
 * @description Gets the E-Router Interface IP Address
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the interface. The possible value is 1921680137.
+* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the interface.
+*                    \n The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -257,11 +265,12 @@ int dhcp4c_get_ert_ip_addr(unsigned int *pValue);
 /**
 * @description Gets the E-Router Subnet Mask.
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the subnet mask(bitmask). The possible value is 4294967295.
+* @param[out] pValue It is an unsigned integer pointer that represents the subnet mask(bitmask).
+*                    \n The range of values for each octet is 0 to 255.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -278,11 +287,12 @@ int dhcp4c_get_ert_mask(unsigned int *pValue);
 /**
 * @description Gets the E-Router Gateway IP Address
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the Gateway. The possible value is 3232235521.
+* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the Gateway.
+*                    \n The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -303,14 +313,13 @@ int dhcp4c_get_ert_gw(unsigned int *pValue);
 *                   <pre>
 *                   The structure members are defined as below:
 *                      number    -    It is an integer type that represents the number of IP addresses.
-*                                     The range of acceptable values is 0 to n, where n is a positive integer value. The possible value is 3.
+*                                     The range is -2^31 to (2^31)-1.
 *                      addrs     -    It is an unsigned integer array of 4 bytes which represents each IPv4 address.
-*                                     It is a Vendor Specific value.
-*                   </pre>
-*
+*                                     The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*                    </pre>
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -327,11 +336,12 @@ int dhcp4c_get_ert_dns_svrs(ipv4AddrList_t *pList);
 /**
 * @description Gets the E-Router DHCP Server IP Address
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the IP address of DHCP Server. The possible value is 3232235521.
+* @param[out] pValue It is an unsigned integer pointer that represents the IP address of DHCP Server.
+*                    \n The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -349,11 +359,11 @@ int dhcp4c_get_ert_dhcp_svr(unsigned int *pValue);
 * @description Gets the ECM Offered Lease Time.
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 86400.
+*                    \n The range is 60 to 604800.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -371,11 +381,11 @@ int dhcp4c_get_ecm_lease_time(unsigned int *pValue);
 * @description Gets the ECM Remaining Lease Time
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 3600.
+*                    \n The valid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -393,11 +403,11 @@ int dhcp4c_get_ecm_remain_lease_time(unsigned int *pValue);
 * @description Gets the ECM Interface Remaining time to Renew.
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 1800.
+*                    \n The vlid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -415,11 +425,11 @@ int dhcp4c_get_ecm_remain_renew_time(unsigned int *pValue);
 * @description Gets the ECM Interface Remaining time to Rebind.
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 3600.
+*                    \n The valid range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -437,11 +447,11 @@ int dhcp4c_get_ecm_remain_rebind_time(unsigned int *pValue);
 * @description Gets the ECM Configuration Number of Attemts.
 *
 * @param[out] pValue It is an integer pointer that provies the count.
-*                    \n The range of acceptable values are 0 to n, where n is an integer. The possible value is 8.
+*                    \n The valid range is -2^31 to (2^31)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -458,11 +468,12 @@ int dhcp4c_get_ecm_config_attempts(int *pValue);
 /**
 * @description Gets the ECM Interface Name.
 *
-* @param[out] pName	It is a character pointer that provides the interface name. The possible value is "wan0".
+* @param[out] pName     It is a 64 byte character array that provides the interface name.
+*                       \n It is vendor specific.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -480,11 +491,19 @@ int dhcp4c_get_ecm_ifname(char *pName);
 * @description Gets the ECM DHCP State
 *
 * @param[out] pValue It is of type integer that provides the state of the DHCP.
-*                    \n The range of acceptable values is 0 to 7. The possible value is 3 (DHCP_RENEWING).
+*                    \n The range is 0 to 6, where:
+*                    \n RELEASED = 1
+*                    \n INIT_REBOOT = 1
+*                    \n INIT_SELECTING = 2
+*                    \n REQUESTING = 3
+*                    \n REBINDING = 4
+*                    \n BOUND = 5
+*                    \n RENEWING = 6
+*                    \n RENEW_REQUESTED = 6
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -501,11 +520,12 @@ int dhcp4c_get_ecm_fsm_state(int *pValue);
 /**
 * @description Gets the ECM Interface IP Address
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the interface. The possible value is 1921680137.
+* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the interface.
+*                    \n The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -522,11 +542,12 @@ int dhcp4c_get_ecm_ip_addr(unsigned int *pValue);
 /**
 * @description Gets the ECM Interface Subnet Mask.
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the subnet Mask(bitmask). The possible value is 4294967295.
+* @param[out] pValue It is an unsigned integer pointer that represents the subnet Mask(bitmask).
+*                    \n The range of values for each octet is 0 to 255.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -543,11 +564,12 @@ int dhcp4c_get_ecm_mask(unsigned int *pValue);
 /**
 * @description Gets the ECM Gateway IP Address
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the gateway. The possible value is 3232235521.
+* @param[out] pValue It is an unsigned integer pointer that represents the IP address of the gateway.
+*                    \n The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -568,14 +590,14 @@ int dhcp4c_get_ecm_gw(unsigned int *pValue);
 * <pre>
 * The structure members are defined as below:
 *    number    -    It is an integer type that represents the number of IP addresses.
-*                   The range of acceptable values is 0 to n, where n is a positive integer value. The possible value is 3.
+*                   The range is -2^31 to (2^31)-1.
 *    addrs     -    It is an unsigned integer array of 4 bytes which represents each IPv4 address.
-*                   It is a Vendor Specific value.
+*                   The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 * </pre>
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -592,11 +614,12 @@ int dhcp4c_get_ecm_dns_svrs(ipv4AddrList_t *pList);
 /**
 * @description Gets the ECM DHCP Server IP Address
 *
-* @param[out] pValue It is an unsigned integer pointer that represents the IP address. The possible value is 3232235521.
+* @param[out] pValue It is an unsigned integer pointer that represents the IP address.
+*                    \n The valid ranges for IPv4 addresses are: 1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -614,11 +637,11 @@ int dhcp4c_get_ecm_dhcp_svr(unsigned int *pValue);
 * @description Gets the E-MTA interface Least Time
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 86400.
+*                    \n The range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -636,11 +659,11 @@ int dhcp4c_get_emta_remain_lease_time(unsigned int *pValue);
 * @description Gets the E-MTA interface Remaining Time to Renew
 *
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 3600.
+*                    \n The range is 0 to (2^32)-1.
 *
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -657,10 +680,11 @@ int dhcp4c_get_emta_remain_renew_time(unsigned int *pValue);
 /**
 * @description Gets the E-MTA interface Remaining Time to Rebind
 * @param[out] pValue It is an unsigned integer pointer that provides the value in seconds.
-*                    \n The range of acceptable values are 0 to n, where n is an positive integer. The possible value is 1800.
+*                    \n The range is 0 to (2^32)-1.
+*
 * @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILURE if any error is detected
+* @retval STATUS_SUCCESS which is 0 if successful.
+* @retval STATUS_FAILURE which is -1 if any error is detected
 *
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 *
@@ -676,5 +700,3 @@ int dhcp4c_get_emta_remain_rebind_time(unsigned int *pValue);
 /** @} */  //END OF GROUP DHCPV4C_HAL_APIS
 
 #endif
-
-

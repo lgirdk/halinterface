@@ -155,7 +155,7 @@ int wan_hal_Init();
 /**
 * @description Set wanmode value.
 *
-* @param[in] mode The WANMODE value to be set.
+* @param[in] mode It is of type enum, that represents WANMODE value to be set.
 *                   \n The possible values of the WANMODE are:
 *                   \n WAN_MODE_DISABLED = 1,
 *                   \n WAN_MODE_DSL_ONLY = 2,
@@ -172,7 +172,7 @@ int wan_hal_SetWanmode(t_eWanMode mode);
 /**
 * @description Set wanconnection enable value.
 *
-* @param[in] enable The WanConnectionEnable value to be set.
+* @param[in] enable It is an unsigned integer, that represents WanConnectionEnable value to be set.
 *                   \n The possible values of enable are:
 *                   \n ENABLE : 1, DISABLE : 0.
 *
@@ -202,6 +202,7 @@ int wan_hal_SetSelfHealConfig(PSELFHEAL_CONFIG pSelfHealConfig);
 * @description Get the current payload bandwidth of the upstream WANoE Connection.
 *
 * @param[out] pValue A pointer to an unsigned integer, where the current payload bandwidth of the upstream WANoE Connection to be updated.
+*                    \n The valid range of the upstream rate is 0 to 2,147,483,647.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -216,7 +217,7 @@ int wan_hal_GetWanOEUpstreamCurrRate(unsigned int *pValue);
 * @description Get the current payload bandwidth of the downstream WANoE Connection.
 *
 * @param[out] pValue A pointer to an unsigned integer, where the current payload bandwidth of the downstream WANoE Connection to be updated.
-*
+*                    \n The valid range of the downstream rate is 0 to 2,147,483,647.
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -232,35 +233,67 @@ int wan_hal_GetWanOEDownstreamCurrRate(unsigned int *pValue);
 * <pre>
 * The structure members are defined below:
 *     InstanceNumber        - It is an unsigned long integer (8 bytes) that represents the instance number.
+*                             The valid range of InstanceNumber is 1 to 128.
 *     Alias                 - It is an array of characters (a string) with a size of 64. It stores an alias or name for the queue.
+*                             The possible values of the Alias are :
+*                             Queue_1, Queue_2, Queue_3, Queue_4, Queue_5, Queue_6, Queue_7, Queue_8, Queue_9, Queue_10.
 *     queueKey              - It is an unsigned long integer (8 bytes) representing a key for the queue.
+*                             The possible values of the queueKey is : 0 to Maxqueues-1, where Maxqueues is a vendor specific value.
 *     queueEnable           - It is an unsigned char (1 byte) indicating whether the queue is enabled or disabled.
+*                             The possible values of queueEnable are : TRUE, FALSE.
 *     queueStatus           - It is an array of characters (a string) with a size of 256. It contains the status of the queue.
+*                             The possibel values of the queueStatus are : Disabled, Enabled.
 *     queueInterface        - It is an array of characters (a string) with a size of 256. It represents the associated interface for the queue.
+*                             The possible values of queueInterface are : erouter0.
 *     queueWeight           - It is an unsigned long integer (8 bytes) representing the weight of the queue.
+*                             The range is usually between 0 (no weight) and 100 (maximum weight).
+*                             It is a vendor specific value.
 *     queuePrecedence       - It is an unsigned long integer (8 bytes) indicating the precedence of the queue.
+*                             The range is [1:4294967295].It is a vendor specific value.
 *     REDThreshold          - It is an unsigned long integer (8 bytes) representing the RED (Random Early Detection) threshold for the queue.
+*                             Range: [1:100].It is a vendor specific value.
 *     dropAlgorithm         - It is an array of characters (a string) with a size of 256. It specifies the drop algorithm used by the queue.
+*                             The Possible Values: DT, RED, WRED, ARED, Blue, SFB, PIE, CoDel, FQ-CoDel.
+*                             It is a vendor specific value.
 *     schedulerAlgorithm    - It is an array of characters (a string) with a size of 256. It likely represents the scheduling algorithm used by the queue.
+*                             The Possible Values: SP, WRR, WFQ, RR, PQ, CBWFQ, LLQ.
+*                             It is a vendor specific value.
 *     shapingRate           - It is a signed long integer (8 bytes) indicating the shaping rate for the queue.
+*                             Range: [-1:2147483647].It is a vendor specific value.
 *     shapingBurstSize      - It is an unsigned long integer (8 bytes) representing the burst size for the queue shaping.
+*                             Range: 0 to the maximum burst size in bytes.
 *     MinBitRate            - It is a signed long integer (8 bytes) indicating the minimum bit rate for the queue.
+*                             Range: [-1:2147483647].It is a vendor specific value.
 *     QueueName             - It is an array of characters (a string) with a size of 256. It represents the name of the queue.
+*                             Range: Depends on character and length limitations.
+*                             Possible values : WAN Q1, WAN Q2, WAN Q3, WAN Q4, WAN Q5, WAN Q6, WAN Q7, WAN Q8, WAN Q9, WAN Q10.
 *     DslLatency            - It is a signed long integer (8 bytes) representing the DSL latency for the queue.
+                              Range: [-1:1].It is a vendor specific value.
 *     PtmPriority           - It is a signed long integer (8 bytes) indicating the Ptm priority for the queue.
+*                             Range: [-1:1].It is a vendor specific value.
 *     QueueId               - It is an unsigned long integer (8 bytes) representing the ID of the queue.
+*                             Range: A unique identifier, typically between 0 and maxqueues, where maxqueues is a vendor specific value.
+*                             Examples are : 1,2,3,4,5,6,7,8.
 *     LowClassMaxThreshold  - It is a unsigned long integer (8 bytes) representing MaxThreshold for low class of the queue.
+*                             Range: [0:100].It is a vendor specific value.
 *     LowClassMinThreshold  - It is a unsigned long integer (8 bytes) representing MinThreshold for low class of the queue.
+*                             Range: [0:100].It is a vendor specific value.
 *     HighClassMinThreshold - It is a unsigned long integer (8 bytes) representing MinThreshold for high class of the queue.
+*                             Range: [0:100].It is a vendor specific value.
 *     HighClassMaxThreshold - It is a unsigned long integer (8 bytes) representing MaxThreshold for high class of the queue.
+*                             Range: [0:100].It is a vendor specific value.
 *     L2DeviceType          - It is an array of characters (a string) with a size of 32. It indicates the type of Layer 2 device associated with the queue.
+*                             The possible values are : eth, ptm.
 * </pre>
 *
 * @param[in] QueueNumberOfEntries The number of QoS profiles.
+*            \n It is a vendor specific value.
 * @param[in] baseifname A pointer to the character array that will hold the Base interface name.
 *                         \n The buffer size should be atleast 32 bytes.
+*                         \n The possible values are : erouter0.
 * @param[in] wanifname A pointer to the character array that will hold the Wan interface name.
 *                        \n The buffer size should be atleast 32 bytes.
+*                        \n The possible values are : erouter0.
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -276,12 +309,19 @@ int wan_hal_SetQoSConfiguration(PWAN_QOS_QUEUE pQueue, unsigned int QueueNumberO
 * @param[in] pWanIpv4Cfg Pointer to the structure.
 * <pre>
 * The structure members are defined below:
-*     ifname         -     interface name. It is a 64 byte character array.Example: erouter0.
-*     subnetmask     -     subnetmask. It is a 64 byte character array.Example: 255.255.255.255.
-*     ipaddress      -     ipaddress. It is a 64 byte character array.Example: 192.168.0.1.
-*     dnsservers     -     list of servers to be added, separated by new-line.
-*                          It is a 256 byte character array.
-*     defaultgateway -     default gateway address.It is a 64 byte character array.
+*     ifname                - interface name. It is a 64 byte character array.
+*                             The possible values are : erouter0.
+*     subnetmask            - subnetmask. It is a 64 byte character array.
+*                             The valid range for IPv4 subnetmask spans from 0.0.0.0 to 255.255.255.255
+*                             Example: 255.255.255.0
+*     ipaddress             - ipaddress. It is a 64 byte character array.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     dnsservers            - list of servers ips to be added, separated by a new-line.
+*                             It is a 256 byte character array.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     defaultgateway        - default gateway address.It is a 64 byte character array.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*                             Example: 192.168.1.1
 * </pre>
 *
 * @return The status of the operation.
@@ -299,12 +339,19 @@ int wan_hal_ConfigureIpv4(PWAN_IPV4_CFG pWanIpv4Cfg);
 * @param[in] pWanIpv4Cfg Pointer to the structure.
 * <pre>
 * The structure members are defined below:
-*     ifname         -     interface name. It is a 64 byte character array.Example: erouter0.
-*     subnetmask     -     subnetmask. It is a 64 byte character array.Example: 255.255.255.255.
-*     ipaddress      -     ipaddress. It is a 64 byte character array.Example: 192.168.0.1.
-*     dnsservers     -     list of servers to be added, separated by new-line.
-*                          It is a 256 byte character array.
-*     defaultgateway -     default gateway address.It is a 64 byte character array.
+*     ifname                - interface name. It is a 64 byte character array.
+*                             The possible values are : erouter0.
+*     subnetmask            - subnetmask. It is a 64 byte character array.
+*                             The valid range for IPv4 subnetmask spans from 0.0.0.0 to 255.255.255.255
+*                             Example: 255.255.255.0
+*     ipaddress             - ipaddress. It is a 64 byte character array.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     dnsservers            - list of servers ips to be added, separated by a new-line.
+*                             It is a 256 byte character array.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*     defaultgateway        - default gateway address.It is a 64 byte character array.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*                             Example: 192.168.1.1
 * </pre>
 *
 * @return The status of the operation.
@@ -322,17 +369,24 @@ int wan_hal_UnConfigureIpv4(PWAN_IPV4_CFG pWanIpv4Cfg);
 * @param[in] pWanIpv6Cfg Pointer to the structure.
 * <pre>
 * The structure members are defined below:
-*     ifname              -     interface name. It is a 64 byte character array.Example: erouter0.
-*     ipaddress           -     ipaddress. It is a 128 byte character array.
-*                               Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
-*     dnsservers          -     list of servers to be added, separated by new-line.
-*                               It is a 512 byte character array.
-*     preferredlifetime   -     A preferred lifetime is the length of time an address is intended for full use on
-*                               an interface, and must be less than or equal to the address's valid lifetime.
-*                               And preferredlifetime is of int type.Example: 604800 sec.
-*     validlifetime       -     The valid lifetime, which is the total time the address is available,
-*                               is equal to or greater than the preferred lifetime.
-*                               And validlifetime is of int type. Example: 2592000 sec.
+*     ifname              -   interface name. It is a 64 byte character array.
+*                             The possible values are : erouter0.
+*     ipaddress           -   ipaddress. It is a 128 byte character array.
+*                             The range 2000:: to 3FFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+*                             Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+*     dnsservers          -   list of servers ips to be added, separated by new-line.
+*                             It is a 512 byte character array.
+*                             The range 2000:: to 3FFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+*     preferredlifetime   -   A preferred lifetime is the length of time an address is intended for full use on
+*                             an interface, and must be less than or equal to the address's valid lifetime.
+*                             And preferredlifetime is of int type.
+*                             The valid range for the IPv6 "preferred lifetime" is from 0 to 4,294,967,295 seconds.
+*                             Example: 604800 sec.
+*     validlifetime       -   The valid lifetime, which is the total time the address is available,
+*                             is equal to or greater than the preferred lifetime.
+*                             And validlifetime is of int type.
+*                             The valid range for the IPv6 "valid lifetime" is from 0 to 4,294,967,295 seconds.
+*                             Example: 2592000 sec.
 * </pre>
 *
 * @return The status of the operation.
@@ -350,17 +404,24 @@ int wan_hal_ConfigureIpv6(PWAN_IPV6_CFG pWanIpv6Cfg);
 * @param[in] pWanIpv6Cfg Pointer to the structure.
 * <pre>
 * The structure members are defined below:
-*     ifname              -     interface name. It is a 64 byte character array.Example: erouter0.
-*     ipaddress           -     ipaddress. It is a 128 byte character array.
-*                               Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
-*     dnsservers          -     list of servers to be added, separated by new-line.
-*                               It is a 512 byte character array.
-*     preferredlifetime   -     A preferred lifetime is the length of time an address is intended for full use on
-*                               an interface, and must be less than or equal to the address's valid lifetime.
-*                               And preferredlifetime is of int type.Example: 604800 sec.
-*     validlifetime       -     The valid lifetime, which is the total time the address is available,
-*                               is equal to or greater than the preferred lifetime.
-*                               And validlifetime is of int type. Example: 2592000 sec.
+*     ifname              -   interface name. It is a 64 byte character array.
+*                             The possible values are : erouter0.
+*     ipaddress           -   ipaddress. It is a 128 byte character array.
+*                             The range 2000:: to 3FFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+*                             Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+*     dnsservers          -   list of servers ips to be added, separated by new-line.
+*                             It is a 512 byte character array.
+*                             The range 2000:: to 3FFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+*     preferredlifetime   -   A preferred lifetime is the length of time an address is intended for full use on
+*                             an interface, and must be less than or equal to the address's valid lifetime.
+*                             And preferredlifetime is of int type.
+*                             The valid range for the IPv6 "preferred lifetime" is from 0 to 4,294,967,295 seconds.
+*                             Example: 604800 sec.
+*     validlifetime       -   The valid lifetime, which is the total time the address is available,
+*                             is equal to or greater than the preferred lifetime.
+*                             And validlifetime is of int type.
+*                             The valid range for the IPv6 "valid lifetime" is from 0 to 4,294,967,295 seconds.
+*                             Example: 2592000 sec.
 * </pre>
 *
 * @return The status of the operation.
@@ -378,13 +439,27 @@ int wan_hal_UnConfigureIpv6(PWAN_IPV6_CFG pWanIpv6Cfg);
 * @param[in] pMAPTCfg Pointer to the structure.
 * <pre>
 * The structure members are defined below:
-*     ifname              -     interface name. It is a 64 byte character array.Example: erouter0.
-*     brIPv6Prefix        -     Is an array of characters (a string) with a size of 128. It stores an IPv6 prefix for bridging.
-*     ruleIPv4Prefix      -     Is an array of characters (a string) with a size of 128. It holds an IPv4 prefix for some rule.
-*     ruleIPv6Prefix      -     Is an array of characters (a string) with a size of 128. It contains an IPv6 prefix for a rule.
-*     psidOffset          -     Is an unsigned integer (4 bytes) that represents the offset value for a Port Set Identifier (PSID).
-*     ratio               -     Is an unsigned integer (4 bytes) representing a ratio.
-*     pdIPv6Prefix        -     Is an array of characters (a string) with a size of 128. It stores an IPv6 prefix for prefix delegation.
+*     ifname              -   interface name. It is a 64 byte character array.
+*                             The possible values are : erouter0.
+*     brIPv6Prefix        -   Is an array of characters (a string) with a size of 128. It is a valid IPv6 address in string format.
+*                             The range 2000:: to 3FFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+*                             Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+*                             The buffer size should be at least 128 bytes long.
+*     ruleIPv4Prefix      -   Is an array of characters (a string) with a size of 128. It is a valid IPv4 address in string format.
+*                             The valid ranges for IPv4 addresses are:  1.0.0.0 to 127.0.0.0, 128.0.0.0 to 191.255.0.0, 192.0.0.0 to 223.255.255.0
+*                             The buffer size should be at least 128 bytes long.
+*     ruleIPv6Prefix      -   Is an array of characters (a string) with a size of 128. It is a valid IPv6 address in string format.
+*                             The range 2000:: to 3FFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+*                             Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+*                             The buffer size should be at least 128 bytes long.
+*     psidOffset          -   Is an unsigned integer (4 bytes) that represents the offset value for a Port Set Identifier (PSID).
+*                             Range: 0 to 15. It is a vendor specific value.
+*     ratio               -   Is an unsigned integer (4 bytes) representing a ratio.
+*                             Range: 1 to 65,536. It is a vendor specific value.
+*     pdIPv6Prefix        -   Is an array of characters (a string) with a size of 128. It stores an IPv6 prefix for prefix delegation.
+*                             Range: Strings representing valid IPv6 prefixes with a maximum length of 127 characters (keeping the last character for a null terminator).
+*                             The format of an IPv6 prefix typically looks like: 2001:0db8:85a3::/64, where 2001:0db8:85a3:: is the prefix and /64 denotes the prefix length (in this example, 64 bits).
+*                             The prefix length can vary, commonly seen values include /48, /56, /60, /64, etc., but the exact valid range of prefix lengths will depend on the vendor.
 * </pre>
 *
 * @return The status of the operation.
@@ -400,7 +475,9 @@ int wan_hal_EnableMapt( PWAN_MAPT_CFG pMAPTCfg );
 * @description Disable MAPT for the required interface
 *
 * @param[in] ifName It is a pointer to a constant character array (string) named ifName.
+*                  \n The possible values are : erouter0.
 *                  \n This parameter represents the name of the interface on which the MAP-T feature is to be disabled.
+*                  \n The buffer size should be at least 64 bytes long.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -416,6 +493,7 @@ int wan_hal_DisableMapt(const char* ifName);
  * the WAN_ETH_MODE and reclaim ethernet port.
  * @param[in] enable It is an unsigned char type named enable, used to control the enabling or disabling of the WAN OE mode.
  *                 \n The use of the const qualifier indicates that the parameter value will not be modified within the function.
+ *                 \n The possible values are : Enable, Disable.
  */
 int wan_hal_enableWanOEMode(const unsigned char enable);
 
@@ -424,6 +502,8 @@ int wan_hal_enableWanOEMode(const unsigned char enable);
  * @param[out] autInfo to hold the authentication data.
  *          \n It is a pointer to a character array (string) named authInfo.
  *          \n This parameter is used to pass a buffer or memory location where the authentication information will be stored.
+ *          \n The buffer size should be at least 256 bytes long and the maximum buffer size is 16384.
+ *          \n It is a vendor specific value.
  * @retval RETURN_OK if successful else RETURN_ERR.
  * @remark The caller is responsible for providing a valid memory location for the function argument.
  */

@@ -180,16 +180,16 @@ INT vlan_eth_hal_init();
 * @param[in] config A pointer to the vlan_configuration_t data structure, which contains the necessary configuration data for the VLAN interface.
 * <pre>
 * The structure members of vlan_configuration_t are defined below:
-*   L2Interface            -  It is a character array of size 64 that represents the L2 interface.
+*   L2Interface            -  It is a character array of size 64 bytes that represents the L2 interface.
 *                             It can store the name or identifier of the L2 interface.
-*                             The possible values are : eth3, ptm0 etc.
-*   L3Interface            -  It is a character array of size 64 that represents the L3 interface.
+*                             It is vendor specific.
+*   L3Interface            -  It is a character array of size 64 bytes that represents the L3 interface.
 *                             It can store the name or identifier of the L3 interface.
-*                             The possible values are : erouter0 etc.
+*                             It is vendor specific.
 *   VLANId                 -  It is an integer that holds the VLAN ID.
 *                             The valid VLAN IDs range from 1 to 4094.
 *   TPId                   -  It is an unsigned integer that holds the VLAN tag protocol identifier.
-*                             The possible values are : 0x8100.
+*                             The range is 0 to (2^32)-1.
 *   Status                 -  It is an enumeration type representing the VLAN interface status.
 *                             The enumeration vlan_interface_status_e contains different status values, such as "UP," "DOWN," or "DISABLED," indicating the current state of the VLAN interface.
 *                             The possible Values of the Status are :
@@ -201,17 +201,17 @@ INT vlan_eth_hal_init();
 *                             VLAN_IF_LOWERLAYERDOWN = 6,
 *                             VLAN_IF_ERROR = 7.
 *   skbMarkingNumOfEntries -  It is an unsigned integer that holds the number of SKB (Socket Buffer) marking entries.
-*                             It ranges from 0 to n, where n is the unsigned integer.
+*                             It ranges from 0 to 4294967295.
 *   skb_config             -  It is a pointer to the vlan_skb_config_t data structure, which contains SKB marking data.
 *                             The structure members of vlan_skb_config_t are defined below:
-*                             alias                 - It is a character array of size 32 used to store an alias that indicates whether the SKB configuration is for DATA or VOICE.
-*                                                     The possible values are : DATA, voicesip1, voicertp1, etc.
+*                             alias                 - It is a character array of size 32 bytes used to store an alias that indicates whether the SKB configuration is for DATA or VOICE.
+*                                                     It is vendor specific.
 *                             skbMark               - It is an unsigned integer that represents the SKB Marking Value.
-*                                                     The possible values are : 1048576, 2097152, 3145728, etc.
+*                                                     It ranges from 0 to (2^32)-1.
 *                             skbPort               - It is an unsigned integer that represents the SKB Marking Port.
-*                                                     The possible values are : 1, 2, 3 etc.
+*                                                     It ranges from 0 to (2^32)-1.
 *                             skbEthPriorityMark    - It is an unsigned integer that represents the SKB Ethernet Priority Mark.
-*                                                     The possible values are : 0, 5 etc.
+*                                                     It ranges from 0 to (2^32)-1.
 *   doReconfigure          -  It is a boolean (TRUE/FALSE) flag indicating whether the VLAN interface needs reconfiguration.
 *                             If doReconfigure is set to FALSE, it means the function should create and configure a new VLAN interface based on the provided configuration data.
 *                             If doReconfigure is set to TRUE, it indicates that reconfiguration is required, and the function should update the VLAN rules on an existing interface with the provided data. 
@@ -229,10 +229,10 @@ int vlan_eth_hal_configureInterface(vlan_configuration_t *config);
 
 /**
 * @description This HAL is used to deassociate an existing vlan interface.
-* @param[in] vlan_ifname A pointer to a constant character string representing the VLAN interface name.
+* @param[in] vlan_ifname A pointer to a character buffer where the DECT PIN will be stored. The buffer should be allocated by the caller and should have enough space to hold the PIN string, including the null-terminator.
 *                        \n This parameter specifies the interface that needs to be deassociated and eventually deleted.
-*                        \n The buffer size should be atleast 16 bytes.
-*                        \n The Possible values are : wl0.2, wl0.3, wl1.2, wl1.3, wl0.5, wl1.5, br106, brlan113, brlan1, brlan112, brlan0, etc.
+*                        \n The buffer size should be atleast 64 bytes.
+*                        \n It is vendor specific.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful (or) RETURN_OK If interface is not exist
@@ -246,12 +246,12 @@ int vlan_eth_hal_deleteInterface(const char *vlan_ifname);
 
 /**
 * @description This HAL is used to get current status of an vlan interface
-* @param[in] vlan_ifname A pointer to a constant character string representing the VLAN interface name.
+* @param[in] vlan_ifname A pointer to a character buffer where the DECT PIN will be stored. The buffer should be allocated by the caller and should have enough space to hold the PIN string, including the null-terminator.
 *                        \n It specifies the interface for which the status needs to be retrieved.
-*                        \n The buffer size should be atleast 16 bytes.
-*                        \n The Possible values are : wl0.2, wl0.3, wl1.2, wl1.3, wl0.5, wl1.5, br106, brlan113, brlan1, brlan112, brlan0, etc.
+*                        \n The buffer size should be atleast 64 bytes.
+*                        \n It is vendor specific.
 *@param[out] status It is a pointer to a vlan_interface_status_e variable.
-*                        \n The enumeration vlan_interface_status_e contains different status values, such as "UP," "DOWN," or "DISABLED," indicating the current state of the VLAN interface.
+*                        \n The enumeration vlan_interface_status_e contains different status values: "UP," "DOWN," or "DISABLED," indicating the current state of the VLAN interface.
 *                        \n The possible Values of the Status are :
 *                        \n VLAN_IF_UP = 1,
 *                        \n VLAN_IF_DOWN = 2,

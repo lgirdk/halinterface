@@ -126,12 +126,18 @@ extern "C"{
 * @description Set FW Download URL and Filename.
 * @param[in] pUrl A pointer to a character array that will hold the firmware download URL.
 *                 \n URL buffer size should be at least 1024 bytes.
-* @param[in] pfilename A pointer to a character array that will hold the firmware filename.
+*                 \n Example pUrl: http://dac15cdlserver.ae.ccp.xcal.tv:8080/Images
+* @param[in] pfilename - A pointer to a character array that will hold the firmware filename.
 *                      \n Filename buffer size should be at least 256 bytes.
+*                      \n pfilename format: <MODEL_NUM>_<BRANCH_NAME>_PROD_sey.bin
+*                      \n pfilename example: TG4482PC2_6.2p10s1_PROD_sey.bin
+*                      \n Possible MODEL_NUM:
+*                      \n CGM4140COM, TG3482G, CGM4981COM, CGM4331COM, CGA4332COM, SR300, SE501, WNXL11BWL, SR203, SR213, TG4482A
 *
 * @return the status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any Downloading is in process or Url string is invalided.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if pUrl / pfilename string is NULL (or)
+*         failed to open HTTP download config file '/tmp/httpDwnld.conf'.
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
 INT fwupgrade_hal_set_download_url (char* pUrl, char* pfilename);
@@ -142,11 +148,17 @@ INT fwupgrade_hal_set_download_url (char* pUrl, char* pfilename);
 * @description Get FW Download URL and Filename.
 * @param[out] pUrl A pointer to a character array that will hold the firmware download URL.
 *                  \n The buffer size should be at least 1024 bytes.
-* @param[out] pfilename A pointer to a character array that will hold the firmware filename.
+*                  \n Example pUrl: http://dac15cdlserver.ae.ccp.xcal.tv:8080/Images
+* @param[out] pfilename - A pointer to a character array that will hold the firmware filename.
 *                       \n The buffer size should be at least 256 bytes.
+*                       \n pfilename format: <MODEL_NUM>_<BRANCH_NAME>_PROD_sey.bin
+*                       \n pfilename example: TG4482PC2_6.2p10s1_PROD_sey.bin
+*                       \n Possible MODEL_NUM:
+*                       \n CGM4140COM, TG3482G, CGM4981COM, CGM4331COM, CGA4332COM, SR300, SE501, WNXL11BWL, SR203, SR213, TG4482A
 * @return the status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if FW url string is empty.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if pUrl / pfilename string is NULL (or)
+*         failed to open HTTP download config file '/tmp/httpDwnld.conf'.
 * @remark The caller is responsible for providing a valid memory location for the function arguments.
 */
 INT fwupgrade_hal_get_download_url (char *pUrl, char* pfilename);
@@ -155,10 +167,11 @@ INT fwupgrade_hal_get_download_url (char *pUrl, char* pfilename);
 /**
 * @description Set the FW Download Interface.
 * @param[in] interface The interface to be set.
-*                      \n Use interface=0 for wan0 and interface=1 for erouter0.
+*                      \n Use interface = 0 for wan0 and interface = 1 for erouter0.
 * @return the status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if interface > 1 (or)
+*         failed to open HTTP download interface config file '/tmp/httpDwnldIf.conf'.
 */
 /* interface=0 for wan0, interface=1 for erouter0 */
 INT fwupgrade_hal_set_download_interface (unsigned int interface);
@@ -169,8 +182,9 @@ INT fwupgrade_hal_set_download_interface (unsigned int interface);
 * @param[out] pinterface A pointer to an unsigned integer that stores retrieved interface value.
 *                        \n Interface value is represented as follows: 0 for wan0 and 1 for erouter0.
 * @return the status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if pinterface is NULL (or)
+*         failed to open HTTP download interface config file '/tmp/httpDwnldIf.conf'.
 * @remark The caller is responsible for providing a valid memory location for the function argument.
 */
 /* interface=0 for wan0, interface=1 for erouter0 */
@@ -181,8 +195,12 @@ INT fwupgrade_hal_get_download_interface (unsigned int* pinterface);
 * @description Start FW Download.
 * @param None
 * @return the status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any Downloading is in process.
+* @retval RETURN_OK (0) if Image flash is successful.
+* @retval RETURN_ERR (-1) if failed to get HTTP download URL or filename (or)
+*         \n failed download the image to CPE (or)
+*         \n failed to execute OEM specific firmware flasher (or)
+*         \n failed to set bootstate to new image.
+* @retval 400 - Invalid URL (or) Failed on gethostbyname() call.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -200,7 +218,7 @@ INT fwupgrade_hal_download ();
 * @retval 0 - Download is not started.
 * @retval 0-100 - Values of percent of download.
 * @retval 200 - Download is completed and waiting for reboot.
-* @retval 400 - Invalided Http server Url.
+* @retval 400 - Invalid Http server Url.
 * @retval 401 - Cannot connect to Http server.
 * @retval 402 - File is not found on Http server.
 * @retval 403 - HW_Type_DL_Protection Failure.
@@ -219,8 +237,9 @@ INT fwupgrade_hal_get_download_status ();
 * @param[out] pValue Pointer to an unsigned long variable that will store the reboot ready status.
 *                    \n Value 1 represents ready for reboot and 2 represents not ready for reboot.
 * @return the status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if pValue is NULL.
+* @remark The caller is responsible for providing a valid memory location for the function argument.
 */
 INT fwupgrade_hal_reboot_ready (ULONG *pValue);
 
@@ -229,8 +248,8 @@ INT fwupgrade_hal_reboot_ready (ULONG *pValue);
 * @description FW Download Reboot Now.
 * @param None
 * @return the status of the reboot operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any reboot is in process.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if any reboot is in process.
 */
 INT fwupgrade_hal_download_reboot_now ();
 
@@ -239,8 +258,9 @@ INT fwupgrade_hal_download_reboot_now ();
 * @description Firmware update and factory reset the device.
 * @param None
 * @return the status of the Firmware update and factory reset operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any reboot is in process.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) if failed download the image to CPE (or)
+*         \n if any reboot is in process.
 */
 INT fwupgrade_hal_update_and_factoryreset ();
 
@@ -248,10 +268,11 @@ INT fwupgrade_hal_update_and_factoryreset ();
 /**
 * @description Downloads and upgrades the firmware.
 * @param[in] url URL from which to download the firmware.
-                 \n The URL buffer size should be at least 1024 bytes.
+*                \n The URL buffer size should be at least 1024 bytes.
+*                \n Example pUrl: http://dac15cdlserver.ae.ccp.xcal.tv:8080/Images
 * @return the status of the Firmware download and upgrade status.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR in case of remote server not reachable.
+* @retval RETURN_OK (0) if successful.
+* @retval RETURN_ERR (-1) in case of remote server not reachable.
 * @remark The caller is responsible for providing a valid memory location for the function argument.
 */
 INT fwupgrade_hal_download_install(const char *url);

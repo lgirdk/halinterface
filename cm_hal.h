@@ -492,7 +492,7 @@ INT docsis_InitUS(void);
 /**
 * @description Retrieve, format and output the Cable Modem DOCSIS status.
 * @param[out] cm_status Pointer to a character array that will hold the Cable Modem DOCSIS status string to be returned.
-*                       \n Buffer size should be atleast 100 bytes.
+*                       \n Buffer size should be atleast 700 bytes.
 * <pre>
 *   Possible Status values:
 *       "Unsupported status",
@@ -542,21 +542,26 @@ INT docsis_getCMStatus(CHAR *cm_status);
 * <pre>
 * The structure members are defined as below:
 *   ChannelID       -   It is an unsigned long value that represents the Channel ID.
-*                       The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 11.
-*   Frequency       -   It is a 64 bytes character array that represents the DS channel Frequency.
-*                       The range of acceptable values is 0 to n, where n is a positive integer value. Example: "6449".
-*   PowerLevel      -   It is a 64 bytes character array that represents the DS channel Power Level.
-*                       The range of acceptable values is 0 to n. Example: "75.1 dBmV".
-*   SNRLevel        -   It is a 64 bytes character array that represents the DS channel SNR Level.
-*                       The range of acceptable values is 0 to n. Example: "50 dB".
-*   Modulation      -   It is a 64 bytes character array that represents the Modulation of the DS channel.
+*                       The range of acceptable values is 0 to (2^32)-1. Example: 11.
+*   Frequency       -   It is a character array that represents the DS channel Frequency.
+*                       The buffer size should be atleast 64 bytes long. Example: "6449".
+*   PowerLevel      -   It is a character array that represents the DS channel Power Level.
+*                       The buffer size should be atleast 64 bytes long. Example: "75.1 dBmV".
+*   SNRLevel        -   It is a character array that represents the DS channel SNR Level.
+*                       The buffer size should be atleast 64 bytes long. Example: "50 dB".
+*   Modulation      -   It is a character array that represents the Modulation of the DS channel.
+*                       The buffer size should be atleast 64 bytes long.
 *                       Possible Values: "QAM", "OFDM", "OFDMA", "UNKNOWN".
-*   Octets          -   It is an unsigned long value that represents the Octets. Example: 123.
+*   Octets          -   It is an unsigned long value that represents the Octets.
+*                       The range of acceptable values is 0 to (2^32)-1. Example: 123.
 *   Correcteds      -   It is an unsigned long value that represents the Correcteds.
+*                       The range of acceptable values is 0 to (2^32)-1.
 *                       It is a vendor specific value. Example: 100.
 *   Uncorrectables  -   It is an unsigned long value that represents the Uncorrectables.
+*                       The range of acceptable values is 0 to (2^32)-1.
 *                       It is a vendor specific value. Example: 12.
-*   LockStatus      -   It is a 64 bytes character array that represents the DS Lock Status.
+*   LockStatus      -   It is a character array that represents the DS Lock Status.
+*                       The buffer size should be atleast 64 bytes long.
 *                       Possible Values: "Locked", "NotLocked".
 * </pre>
 * @return The status of the operation.
@@ -582,17 +587,21 @@ INT docsis_GetDSChannel(PCMMGMT_CM_DS_CHANNEL * ppinfo);
 * <pre>
 * The structure members are defined as below:
 *   ChannelID   - It is an unsigned long value that represents the Channel ID of the US channel.
-*                 The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 12.
-*   Frequency   - It is a 64 bytes character array that represents the Frequency of the US channel.
-*                 The range of acceptable values is 0 to n, where n is an positive integer value. Example: "12750".
-*   PowerLevel  - It is a 64 bytes character array that represents the PowerLevel of the US channel.
-*                 The range of acceptable values is 0 to n. Example: "60".
-*   ChannelType - It is a 64 bytes character array that represents the ChannelType of the US channel.
+*                 The range of acceptable values is 0 to (2^32)-1. Example: 12.
+*   Frequency   - It is a character array that represents the Frequency of the US channel.
+*                 The buffer size should be atleast 64 bytes long. Example: "12750".
+*   PowerLevel  - It is a character array that represents the PowerLevel of the US channel.
+*                 The buffer size should be atleast 64 bytes long. Example: "60".
+*   ChannelType - It is a character array that represents the ChannelType of the US channel.
+*                 The buffer size should be atleast 64 bytes long.
 *                 Possible Values: "UNKNOWN","TDMA","ATDMA","SCDMA","TDMA_AND_ATDMA".
-*   SymbolRate  - It is a 64 bytes character array that represents the SymbolRate of the US channel. Example: "115200".
-*   Modulation  - It is a 64 bytes character array that represents the Modulation of the US channel.
+*   SymbolRate  - It is a character array that represents the SymbolRate of the US channel.
+*                 The buffer size should be atleast 64 bytes long. Example: "115200".
+*   Modulation  - It is a character array that represents the Modulation of the US channel.
+*                 The buffer size should be atleast 64 bytes long.
 *                 Possible Values: "QAM", "OFDM", "OFDMA", "UNKNOWN".
-*   LockStatus  - It is a 64 bytes character array that represents the LockStatus.
+*   LockStatus  - It is a character array that represents the LockStatus.
+*                 The buffer size should be atleast 64 bytes long.
 *                 Possible Values: "Locked", "NotLocked".
 * </pre>
 *
@@ -617,17 +626,21 @@ INT docsis_GetUsStatus(USHORT i, PCMMGMT_CM_US_CHANNEL pinfo);
 * <pre>
 * The structure members are defined as below:
 *   ChannelID   - It is an unsigned long value that represents the Channel ID of the US channel.
-*                 The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 12.
-*   Frequency   - It is a 64 bytes character array that represents the Frequency of the US channel.
-*                 The range of acceptable values is 0 to n, where n is an positive integer value. Example: "12750".
-*   PowerLevel  - It is a 64 bytes character array that represents the PowerLevel of the US channel.
-*                 The range of acceptable values is 0 to n. Example: "60".
-*   ChannelType - It is a 64 bytes character array that represents the ChannelType of the US channel.
+*                 The range of acceptable values is 0 to (2^32)-1. Example: 12.
+*   Frequency   - It is a character array that represents the Frequency of the US channel.
+*                 The buffer size should be atleast 64 bytes long. Example: "12750".
+*   PowerLevel  - It is a character array that represents the PowerLevel of the US channel.
+*                 The buffer size should be atleast 64 bytes long. Example: "60".
+*   ChannelType - It is a character array that represents the ChannelType of the US channel.
+*                 The buffer size should be atleast 64 bytes long.
 *                 Possible Values: "UNKNOWN","TDMA","ATDMA","SCDMA","TDMA_AND_ATDMA".
-*   SymbolRate  - It is a 64 bytes character array that represents the SymbolRate of the US channel. Example: "115200".
-*   Modulation  - It is a 64 bytes character array that represents the Modulation of the US channel.
+*   SymbolRate  - It is a character array that represents the SymbolRate of the US channel.
+*                 The buffer size should be atleast 64 bytes long. Example: "115200".
+*   Modulation  - It is a character array that represents the Modulation of the US channel.
+*                 The buffer size should be atleast 64 bytes long.
 *                 Possible Values: "QAM", "OFDM", "OFDMA", "UNKNOWN".
-*   LockStatus  - It is a 64 bytes character array that represents the LockStatus.
+*   LockStatus  - It is a character array that represents the LockStatus.
+*                 The buffer size should be atleast 64 bytes long.
 *                 Possible Values: "Locked", "NotLocked".
 * </pre>
 *
@@ -667,11 +680,13 @@ INT docsis_GetUSChannel(PCMMGMT_CM_US_CHANNEL * ppinfo);
 *   DOCSISDataRegComplete       - It is a 64 bytes character array that represents the DOCSIS Data Reg Complete Status.
 *                                 It is a vendor specific value. Example: "In Progress" ,"Registration Complete" .
 *   DOCSISDHCPAttempts          - It is an unsigned long value that represents the DOCSIS DHCP Attempts.
-*                                 The range of acceptable values is 0 to n, where n is a unsigned long value. Example: 3.
-*   DOCSISConfigFileName        - It is a 64 bytes character array that represents the DOCSIS Config File Name. Example: "goldenjim.cm".
+*                                 The range of acceptable values is 0 to (2^32)-1. Example: 3.
+*   DOCSISConfigFileName        - It is a character array that represents the DOCSIS Config File Name.
+*                                 The buffer size should be atleast 64 bytes long. Example: "goldenjim.cm".
 *   DOCSISTftpAttempts          - It is an unsigned long value that represents the DOCSIS Tftp Attempts.
-*                                 The range of acceptable values is 0 to n, where n is a unsigned long value. Example: 1.
-*   ToDStatus                   - It is a 64 bytes character array that represents the ToD Status.
+*                                 The range of acceptable values is 0 to (2^32)-1. Example: 1.
+*   ToDStatus                   - It is a character array that represents the ToD Status.
+*                                 The buffer size should be atleast 64 bytes long.
 *                                 Possible Values: "Complete", "NotStarted".
 *   BPIState                    - It is an boolean value that represents the BPIState.
 *                                 Possible values: TRUE or FALSE.
@@ -680,12 +695,18 @@ INT docsis_GetUSChannel(PCMMGMT_CM_US_CHANNEL * ppinfo);
 *   UpgradeServerIP             - It a ANSC_IPV4_ADDRESS union type value that represents the Upgrade Server IP. The union members are defined as below:
 *                                   Dot - An unsigned character array of size 4. Example value: {192, 168, 0, 100}
 *                                   Value - A 32 bit unsigned integer value.
-*   MaxCpeAllowed               - It is an unsigned long value that represents the Max Cpe Allowed. Example: 5.
-*   UpstreamServiceFlowParams   - It is a 64 bytes character array that holds the Upstream Service Flow Params.
-*   DownstreamServiceFlowParams - It is a 64 bytes character array that represents the Downstream Service Flow Params.
-*   DOCSISDownstreamDataRate    - It is a 64 bytes character array that represents the DOCSIS Downstream Data Rate. Example : "20000".
-*   DOCSISUpstreamDataRate      - It is a 64 bytes character array that represents the DOCSIS Upstream Data Rate. Example : "10000".
-*   CoreVersion                 - It is a 64 bytes character array that represents the Core Version. Example : "1.0".
+*   MaxCpeAllowed               - It is an unsigned long value that represents the Max Cpe Allowed.
+*                                 The range of acceptable values is 0 to (2^32)-1. Example: 5.
+*   UpstreamServiceFlowParams   - It is a character array that holds the Upstream Service Flow Params.
+*                                 The buffer size should be atleast 64 bytes long. Example: "Dummy"
+*   DownstreamServiceFlowParams - It is a character array that represents the Downstream Service Flow Params.
+*                                 The buffer size should be atleast 64 bytes long. Example: "Dummy"
+*   DOCSISDownstreamDataRate    - It is a character array that represents the DOCSIS Downstream Data Rate.
+*                                 The buffer size should be atleast 64 bytes long. Example : "20000".
+*   DOCSISUpstreamDataRate      - It is a character array that represents the DOCSIS Upstream Data Rate.
+*                                 The buffer size should be atleast 64 bytes long. Example : "10000".
+*   CoreVersion                 - It is a character array that represents the Core Version.
+*                                 The buffer size should be atleast 64 bytes long. Example : "1.0".
 * </pre>
 *
 * @return The status of the operation.
@@ -706,7 +727,8 @@ INT docsis_GetDOCSISInfo(PCMMGMT_CM_DOCSIS_INFO pinfo);
 /**
 * @description Retrieve number of US channels actively in use in current registration.
 * @param[out] cnt Pointer to an unsigned long variable that will store the number of active US channels, to be returned.
-*                 \n The range of acceptable values is 0 to n, where n is a unsigned long value.
+*                 \n The buffer size should be atleast 100 bytes long.
+*                 \n It is a vendor specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -727,7 +749,8 @@ INT docsis_GetNumOfActiveTxChannels(ULONG * cnt);
 /**
 * @description Retrieve number of DS channels actively in use in current registration.
 * @param[out] cnt Pointer to an unsigned long variable that will store the number of active DS channels, to be returned.
-*                 \n The range of acceptable values is 0 to n, where n is a unsigned long value.
+*                 \n The buffer size should be atleast 100 bytes long.
+*                 \n It is a vendor specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -837,7 +860,7 @@ UINT8 docsis_GetUSChannelId(void);
 /**
 * @description Set the US channel ID in its MAC domain.
 * @param[in] index Index to set the Upstream Channel ID to.
-*                  \n The range of acceptable values is 0 to n, where n is an integer value. Example: 12.
+*                  \n The range of acceptable values is 0 to (2^31)-1. It is an integer value. Example: 12.
 *
 * @return None
 *
@@ -870,7 +893,7 @@ ULONG docsis_GetDownFreq(void);
 /**
 * @description Change the DS primary channel frequency in the LKF table.
 * @param[in] value Primary channel frequency value that is to be set.
-*                  \n The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 12750.
+*                  \n The range of acceptable values is 0 to (2^32)-1. It is an unsigned long value. Example: 12750.
 *
 * @return None
 *
@@ -883,13 +906,14 @@ ULONG docsis_GetDownFreq(void);
 */
 void docsis_SetStartFreq(ULONG value);
 
-/*  docsis_GetDownFreq : */
+/*  docsis_GetDocsisEventLogItems : */
 /**
 * @description Retrieve the DOCSIS event log entries and display it.
 * @param[out] *entryArray entries to be returned.
 * <pre>
 * The structure members are defined as below:
-*   docsDevEvIndex      - It is an unsigned long value that represents the snmp docsDevEvIndex. Example: 1.
+*   docsDevEvIndex      - It is an unsigned integer value that represents the snmp docsDevEvIndex.
+*                         It ranges from 0 to (2^16)-1. Example: 1.
 *   docsDevEvFirstTime  - It is a struct timeval type structure that holds the local date and time when this event was generated.
 *                         The structure elements are as follows:
 *                               tv_sec  -   It ranges from 0 to n where n is a time_t value that holds the seconds.
@@ -898,12 +922,14 @@ void docsis_SetStartFreq(ULONG value);
 *                         The structure elements are as follows:
 *                               tv_sec  -   It ranges from 0 to n where n is a time_t value that holds the seconds.
 *                               tv_usec -   It is a long value that holds the microseconds.
-*   docsDevEvCounts     - It ranges from 0 to n where n is an unsigned long value that represents the docsDevEvCounts. Example: 1.
-*   docsDevEvLevel      - It ranges from 0 to n where n is an unsigned long value that represents the DOCSIS priority level associated with the event. Example: 1.
-*   docsDevEvId         - It ranges from 0 to n where n is an unsigned long value that represents the numeric identifier of the event. Example: 1.
-*   docsDevEvText       - It is a 64 bytes character array that represents the the numeric identifier of the event. It is a vendor specific value.
+*   docsDevEvCounts     - It ranges from 0 to (2^16)-1. It is an unsigned integer value that represents the docsDevEvCounts. Example: 1.
+*   docsDevEvLevel      - It ranges from 0 to (2^16)-1. It is an unsigned integer value that represents the DOCSIS priority level associated with the event. Example: 1.
+*   docsDevEvId         - It ranges from 0 to (2^16)-1. It is an unsigned integer value that represents the numeric identifier of the event. Example: 1.
+*   docsDevEvText       - It is a character array that represents the the numeric identifier of the event.
+*                         The buffer size should be atleast 255 bytes long. It is a vendor specific value.
 * </pre>
 * @param[in] len Length of log entries.
+*                \n It is integer datatype. The possible range of acceptable values is 0 to (2^31)-1.
 *
 * @return INT - number of log entries retrieved.
 *
@@ -955,13 +981,13 @@ INT docsis_ClearDocsisEventLog(void);
 *   TFTPServer          - It a ANSC_IPV4_ADDRESS union type value that represents the TFTP Server.  The union members are defined as below:
 *                                   Dot - An unsigned character array of size 4. Example: "TFTPServer.Dot = {192, 168, 0, 10}".
 *                                   Value - A 32 bit unsigned integer value.
-*   TimeServer          - It is a 64 bytes character array that represents the Time Server. Example: "ntp.cisco.com"
-*   TimeOffset          - It is an integer value ranging from 0 to n that represents the Time Offset. Example: 8.
-*   LeaseTimeRemaining  - It is an unsigned long value that represents the Lease Time Remaining. The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 3600.
-*   RebindTimeRemaining - It is a 64 bytes character array that represents the Rebind Time Remaining. The range of acceptable values is 0 to n. Example: 3700.
-*   RenewTimeRemaining  - It is a 64 bytes character array that represents the Renew Time Remaining. The range of acceptable values is 0 to n. Example: 1200.
-*   MACAddress          - It is a 64 bytes character array that represents the MAC Address. Example: "00:1A:2B:11:22:33".
-*   DOCSISDHCPStatus    - It is a 64 bytes character array that represents the DOCSIS DHCP Status. Example: "Complete".
+*   TimeServer          - It is a character array that represents the Time Server. The buffer size should be atleast 64 bytes long. Example: "ntp.cisco.com"
+*   TimeOffset          - It is an integer value ranging from 0 to (2^31)-1 that represents the Time Offset. Example: 8.
+*   LeaseTimeRemaining  - It is an unsigned long value that represents the Lease Time Remaining. The range of acceptable values is 0 to (2^32)-1. Example: 3600.
+*   RebindTimeRemaining - It is a character array that represents the Rebind Time Remaining. The buffer size should be atleast 64 bytes long. Example: 3700.
+*   RenewTimeRemaining  - It is a character array that represents the Renew Time Remaining. The buffer size should be atleast 64 bytes long. Example: 1200.
+*   MACAddress          - It is a character array that represents the MAC Address. The buffer size should be atleast 64 bytes long. Example: "00:1A:2B:11:22:33".
+*   DOCSISDHCPStatus    - It is a character array that represents the DOCSIS DHCP Status. The buffer size should be atleast 64 bytes long. Example: "Complete".
 * </pre>
 *
 * @return The status of the operation.
@@ -984,15 +1010,15 @@ INT cm_hal_GetDHCPInfo(PCMMGMT_CM_DHCP_INFO pInfo);
 * @param[out] pInfo All IPv6 DHCP info for CM, to be returned.
 * <pre>
 * The structure members are defined as below:
-*   IPv6Address             - It is a 40 bytes character array that represents the IPv6 Address. Example: "2012:cafe:100::1".
-*   IPv6BootFileName        - It is a 64 bytes character array that represents the IPv6 Boot File Name. Example: "ccsp.v6.boot".
-*   IPv6Prefix              - It is a 40 bytes character array that represents the IPv6 Prefix. Example: 2012:cafe::/32.
-*   IPv6Router              - It is a 40 bytes character array that represents the IPv6 Router. Example: 2012:cafe::1.
-*   IPv6TFTPServer          - It is a 40 bytes character array that represents the IPv6 TFTP Server. Example: "2012:cafe::2".
-*   IPv6TimeServer          - It is a 40 bytes character array that represents the IPv6 Time Server. Example: "ntp.cisco.com".
-*   IPv6LeaseTimeRemaining  - It is an unsigned long value that represents the IPv6 Lease Time Remaining. The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 3600.
-*   IPv6RebindTimeRemaining - It is an unsigned long value that represents the IPv6 Rebind Time Remaining. The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 3700.
-*   IPv6RenewTimeRemaining  - It is an unsigned long value that represents the IPv6 Renew Time Remaining. The range of acceptable values is 0 to n, where n is an unsigned long value. Example: 1200.
+*   IPv6Address             - It is a character array that represents the IPv6 Address. The buffer size should be atleast 40 bytes long. Example: "2012:cafe:100::1".
+*   IPv6BootFileName        - It is a character array that represents the IPv6 Boot File Name. The buffer size should be atleast 64 bytes long. Example: "ccsp.v6.boot".
+*   IPv6Prefix              - It is a character array that represents the IPv6 Prefix. The buffer size should be atleast 40 bytes long. Example: 2012:cafe::/32.
+*   IPv6Router              - It is a character array that represents the IPv6 Router. The buffer size should be atleast 40 bytes long. Example: 2012:cafe::1.
+*   IPv6TFTPServer          - It is a character array that represents the IPv6 TFTP Server. The buffer size should be atleast 40 bytes long. Example: "2012:cafe::2".
+*   IPv6TimeServer          - It is a character array that represents the IPv6 Time Server. The buffer size should be atleast 40 bytes long. Example: "ntp.cisco.com".
+*   IPv6LeaseTimeRemaining  - It is an unsigned long value that represents the IPv6 Lease Time Remaining. The range of acceptable values is 0 to (2^32)-1. Example: 3600.
+*   IPv6RebindTimeRemaining - It is an unsigned long value that represents the IPv6 Rebind Time Remaining. The range of acceptable values is 0 to (2^32)-1. Example: 3700.
+*   IPv6RenewTimeRemaining  - It is an unsigned long value that represents the IPv6 Renew Time Remaining. The range of acceptable values is 0 to (2^32)-1. Example: 1200.
 * </pre>
 *
 * @return The status of the operation.
@@ -1015,11 +1041,15 @@ INT cm_hal_GetIPv6DHCPInfo(PCMMGMT_CM_IPV6DHCP_INFO pInfo);
 * @param[out] ppCPEList List of all CPE, to be returned.
 * <pre>
 * The structure members are defined as below:
-*   IPAddress   - It is a 32 bytes character array that contains the IP Address of the CPE. Example: 192.168.0.1.
-*   MACAddress  - It is a 32 bytes character array that contains the MAC Address of the CPE. The MAC Address should be in the format AA:BB:CC:DD:EE:FF (colon-separated).
+*   IPAddress   - It is a character array that contains the IP Address of the CPE. Example: 192.168.0.1.
+*                 \n The buffer size should be atleast 32 bytes long.
+*   MACAddress  - It is a character array that contains the MAC Address of the CPE. The MAC Address should be in the format AA:BB:CC:DD:EE:FF (colon-separated).
+*                 \n The buffer size should be atleast 32 bytes long.
 * </pre>
 * @param[out] InstanceNum Pointer to the number of instances, to be returned.
+*                         The possibe range of acceptable values is 0 to (2^32)-1.
 * @param[in]  LanMode     Input of "router" or "bridge" mode of the modem.
+*                         \n The buffer size should be atleast 100 bytes long.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1039,7 +1069,8 @@ INT cm_hal_GetCPEList(PCMMGMT_DML_CPE_LIST * ppCPEList, ULONG* InstanceNum, CHAR
 /*  cm_hal_GetMarket : */
 /**
 * @description Retrieve the market of this modem.
-* @param[out] market Pointer to the character array containing the name of the market for this modem, "US" or "EURO", to be returned.
+* @param[out] market Pointer to the character array containing the name of the market for this modem, "US" or "EURO", to be returned
+*                       \n The buffer size should be at least 100 bytes long.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1063,7 +1094,11 @@ INT cm_hal_GetMarket(CHAR* market);
 /**
 * @description Set Http Download Settings.
 * @param[in] pHttpUrl   HTTP download URL to be stored in HTTP download config file.
+*                       \n The buffer size should be at least 60 bytes long.
+*                       \n Example: "https://ci.xconfds.coast.xcal.tv/featureControl/getSettings"
 * @param[in] pfilename  HTTP download filename to be stored in HTTP download config file.
+*                       \n The buffer size should be at least 60 bytes long.
+*                       \n Example: CGM4331COM_DEV_23Q3_sprint_20230817053130sdy_GRT
 *
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
@@ -1079,7 +1114,12 @@ INT cm_hal_Set_HTTP_Download_Url (char* pHttpUrl, char* pfilename);
 /**
 * @description Get Http Download Url.
 * @param[out] pHttpUrl  HTTP download URL fetched from HTTP download config file.
+*                       \n The buffer size should be at least 200 bytes long.
+*                       \n Example: "https://ci.xconfds.coast.xcal.tv/featureControl/getSettings"
 * @param[out] pfilename HTTP download filename fetched from HTTP download config file.
+*                       \n The buffer size should be at least 200 bytes long.
+*                       \n Example: CGM4331COM_DEV_23Q3_sprint_20230817053130sdy_GRT
+*
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if http url string is empty.
@@ -1094,6 +1134,8 @@ INT cm_hal_Get_HTTP_Download_Url (char *pHttpUrl, char* pfilename);
 * @description Set the HTTP Download Interface.
 * @param[in] interface Interface numerical value to be saved to the config file.
 *                      \n Values: interface=0 for wan0, interface=1 for erouter0.
+*                      \n The buffer size should be atleast 100 bytes long.
+*
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -1106,6 +1148,7 @@ INT cm_hal_Set_HTTP_Download_Interface(unsigned int interface);
 * @description Get the HTTP Download Interface
 * @param[out] pinterface Interface numerical value to be fetched from the config file.
 *                        \n Values: interface=0 for wan0, interface=1 for erouter0.
+*                        \n The buffer size should be atleast 100 bytes long.
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -1157,7 +1200,9 @@ INT cm_hal_Get_HTTP_Download_Status();
 /**
 * @description Get the Reboot Ready Status.
 * @param[out] *pValue Pointer to the integer containing Reboot Ready Status.
-*                     \n Possible Values of 1 for Ready, 2 for Not Ready.
+*                     \n It is a unsigned long value.
+*                     \n The buffer size should be atleast 100 bytes long.
+*
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -1181,7 +1226,14 @@ INT cm_hal_HTTP_Download_Reboot_Now();
 /**
 * @description Firmware update and factory reset the device.
 * @param[in] pUrl       Url for cm_hal_Set_HTTP_Download_Url. NULL for snmp.
+*                         \n It is variable of character pointer datatype.
+*                         \n The buffer size should be atleast 1024 bytes long.
+*                         \n Example: "https://ci.xconfds.coast.xcal.tv/featureControl/getSettings"
 * @param[in] pImagename Imagename for cm_hal_Set_HTTP_Download_Url. NULL for snmp.
+*                         \n It is variable of character pointer datatype.
+*                         \n The buffer size should be atleast 1024 bytes long.
+*                         \n Example: CGM4331COM_DEV_23Q3_sprint_20230817053130sdy_GRT
+*
 * @return the status of the Firmware update and factory reset operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any reboot is in process.
@@ -1206,7 +1258,6 @@ INT cm_hal_FWupdateAndFactoryReset(char* pUrl, char* pImagename);
 * @note This function must not suspend and must not invoke any blocking system
 * calls. It should probably just send a message to a driver event handler task.
 *
-
 */
 INT cm_hal_ReinitMac();
 
@@ -1214,7 +1265,8 @@ INT cm_hal_ReinitMac();
 /**
 * @description Retrieve the provisioned wan0 IP type.
 * @param[out] pValue Integer pointer containing the ip type currently provisioned on wan0.
-*                    \n Possible values are "IPv4", "IPv6", "Dual Stack" or "unknown".
+*                    \n It is variable of character pointer datatype.
+*                    \n The buffer size should be atleast 100 bytes long.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1235,7 +1287,9 @@ INT docsis_GetProvIpType(CHAR *pValue);
 /**
 * @description Retrieve the location of the certificate.
 * @param[out] pCert Pointer to character array holding the certificate location, to be returned.
-*                   \n Possible Values: "/nvram/cmcert.bin".
+*                   \n It is variable of character pointer datatype.
+*                   \n The buffer size should be atleast 100 bytes long.
+*                   \n Possible Value: "/nvram/cmcert.bin".
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1256,6 +1310,8 @@ INT docsis_GetCert(CHAR* pCert);
 /**
 * @description Retrieve status of the certificate.
 * @param[out] pVal Pointer to value containing the certificate status, to be returned.
+*                  \n It is a unsigned long value.
+*                  \n The buffer size should be atleast 100 bytes long.
 *                  \n Possible Values: 0 or 1.
 *
 * @return The status of the operation.
@@ -1278,7 +1334,9 @@ INT docsis_GetCertStatus(ULONG *pVal);
 /**
 * @description Retrieve the count of cable modem reset
 * @param[out] resetcnt Pointer to the count of cable modem resets, to be returned.
-*                      \n The range of acceptable values is 0 to n, where n is an unsigned long value.
+*                      \n It is a unsigned long value.
+*                      \n The buffer size should be atleast 100 bytes long.
+*                      \n Possible value: 1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1299,8 +1357,9 @@ INT cm_hal_Get_CableModemResetCount(ULONG *resetcnt);
 /**
 * @description Retrieve the count of local reset.
 * @param[out] resetcnt Pointer to the count of local cable modem resets.
-*                      \n The range of acceptable values is 0 to n, where n is an unsigned long value.
-
+*                      \n It is a unsigned long value.
+*                      \n The buffer size should be atleast 100 bytes long.
+*                      \n Possible value: 2.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1322,7 +1381,9 @@ INT cm_hal_Get_LocalResetCount(ULONG *resetcnt);
 /**
 * @description Retrieve the count of docsis reset.
 * @param[out] resetcnt Pointer to the count of docsis resets.
-*                      \n The range of acceptable values is 0 to n, where n is an unsigned long value.
+*                      \n It is a unsigned long value.
+*                      \n The buffer size should be atleast 100 bytes long.
+*                      \n Possible value: 3.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1344,7 +1405,9 @@ INT cm_hal_Get_DocsisResetCount(ULONG *resetcnt);
 /**
 * @description Retrieve the count of erouter reset.
 * @param[out] resetcnt Pointer to the count of erouter resets.
-*                      \n The range of acceptable values is 0 to n, where n is an unsigned long value.
+*                      \n It is a unsigned long value.
+*                      \n The buffer size should be atleast 100 bytes long.
+*                      \n Possible value: 4.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1392,45 +1455,54 @@ INT cm_hal_HTTP_LED_Flash( BOOLEAN LedFlash );
 * The structure members are defined as below:
 *   ChannelId                       - The Cable Modem Termination System identification of the OFDM downstream channel within this particular MAC interface.
 *                                     If the interface is down, the object returns the most current value.
-*                                     If the downstream channel ID is unknown, this object returns a value of 0. It is an unsigned int value.
+*                                     If the downstream channel ID is unknown, this object returns a value of 0. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   ChanIndicator                   - This data type defines the subcarrier spacing for the FFT mode in use.
 *                                     For downstream OFDM channels, if the FFT mode is 4K mode, then spacing is 50 kHz; if it is 8K mode, then the spacing is 25 kHz.
 *                                     For upstream OFDMA channels, if the FFT mode is 2K mode, then the spacing is 50kHz; if the mode is 4K mode, then the spacing is 25kHz. In units of kHz.
-*                                     Possible Values: other(1), primary(2), backupPrimary(3), nonPrimary(4). It is an unsigned int value.
+*                                     Possible Values: other(1), primary(2), backupPrimary(3), nonPrimary(4). It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   SubcarrierZeroFreq              - The center frequency of the subcarrier 0 of the OFDM transmission.
 *                                     Note that since ubcarrier 0 is always excluded, it will actually be below the allowed downstream spectrum band.
-*                                     This is the frequency of subcarrier X(0) in the definition of the DFT. It is an unsigned int value.
-*   FirstActiveSubcarrierNum        - The number of the first non-excluded subcarrier. The valid range is 148 to 7895.
-*   LastActiveSubcarrierNum         - The number of the last non-excluded subcarrier. The valid range is 148 to 7895.
+*                                     This is the frequency of subcarrier X(0) in the definition of the DFT. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   FirstActiveSubcarrierNum        - The number of the first non-excluded subcarrier. The valid range is 148 to 7895. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   LastActiveSubcarrierNum         - The number of the last non-excluded subcarrier. The valid range is 148 to 7895. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   NumActiveSubcarriers            - The number of active data subcarriers within the OFDM downstream channel (i.e. this exclude subcarriers for continuous pilots and the PLC).
 *                                     For 4K FFT mode, the maximum number of subcarriers including continuous pilots and the PLC cannot exceed 3800, and for 8K FFT mode,
 *                                     the maximum number of active subcarriers including continuous pilots and the PLC cannot be greater than 7600.
 *                                     There are a minimum of 56 continuous pilots in a 192MHz channel that has no exclusions,
 *                                     and the size of the PLC is 8 subcarriers for 4K FFT mode and 16 subcarriers for 8K FFT mode.
 *                                     Therefore the maximum value of NumActiveSubcarriers is 3736 (or 3800 - 56 - 8) for 4K FFT mode and 7528 (or 7600 - 56 - 16) for 8K FFT mode.
+*                                     It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   SubcarrierSpacing               - The subcarrier spacing associated with a particular FFT mode configured on the OFDM downstream channel.
 *                                     If it is 4K mode, then the subcarrier spacing is 50kHz. If it is 8K mode, then the subcarrier spacing is 25kHz. It is an unsigned int value.
-*                                     in kHz.
+*                                     It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   CyclicPrefix                    - Cyclic prefix enables the receiver to overcome the effects of inter-symbol-interference and intercarrier-interference caused  by micro-reflections in the channel.
 *                                     There are five possible alues for the length of the CP and the choice depends on the delay spread of the channel - a longer delay spread requires a longer cyclic prefix.
 *                                     The cyclic prefix (in usec) are converted into samples using the sample rate of 204.8 Msamples/s and is an integer multiple of: 1/64 * 20 us. It is an unsigned int value.
+*                                     The possible range of acceptable values is 0 to (2^32)-1.
 *   RollOffPeriod                   - Roll off period maximizes channel capacity by sharpening the edges of the spectrum of the OFDM signal.
 *                                     For windowing purposes another segment at the start of the IDFT output is appended to the end of the IDFT output - the roll-off postfix (RP).
 *                                     There are five possible values for the (RP), and the choice depends on the bandwidth of the channel and the number of exclusion bands within the channel.
 *                                     A larger RP provides sharper edges in the spectrum of the OFDM signal; however,  there is a time vs. frequency trade-off. Larger RP values reduce the efficiency of transmission in the time domain,
 *                                     but because the spectral edges are sharper, more useful subcarriers appear in the frequency domain. There is an optimum value for the RP that maximizes capacity for a given bandwidth and/or exclusion band scenario. It is an unsigned int value.
+*                                     The possible range of acceptable values is 0 to (2^32)-1.
 *   PlcFreq                         - This is the PHY Link Channel (PLC) frequency. It is the center frequency of the lowest frequency subcarrier of the PLC.
 *                                     The aim of the PLC is for the CMTS to convey to the CM the physical properties of the OFDM channel. It is an unsigned int value.
-*   NumPilots                       - The number of continuous pilots configured for the OFDM downstream channel as received in the OCD message. It is an unsigned int value.
-*   TimeInterleaverDepth            - The time interleaving used for this downstream channel as received in the OCD message. It is an unsigned int value.
-*   averageSNR                      - The averageSNR value of this downstream channel. It is a 64 bytes character array.
-*   PowerLevel                      - The power level of this downstream channel. It is a 64 bytes character array.
+*                                     The possible range of acceptable values is 0 to (2^32)-1.
+*   NumPilots                       - The number of continuous pilots configured for the OFDM downstream channel as received in the OCD message. It is an unsigned int value. The possible range of acceptable values is 0 to (2^32)-1.
+*   TimeInterleaverDepth            - The time interleaving used for this downstream channel as received in the OCD message. It is an unsigned int value.The possible range of acceptable values is 0 to (2^32)-1.
+*   averageSNR                      - The averageSNR value of this downstream channel. It is a character array.
+*                                     The buffer size should be atleast 64 bytes long.
+*   PowerLevel                      - The power level of this downstream channel. It is a character array.
+*                                     The buffer size should be atleast 64 bytes long.
 *   PlcTotalCodewords               - The total number of PLC codewords received by the CM. It is an unsigned long long value.
+*                                     It is a vendor specific value.
 *   PlcUnreliableCodewords          - The total number of PLC codewords which failed post-decoding LDPC syndrome check.  It is an unsigned long long value.
-*   NcpTotalFields                  - The total number of NCP fields received by the CM.  It is an unsigned long long value.
-*   NcpFieldCrcFailures             - The total number of NCP fields received by the CM which failed the CRC check.  It is an unsigned long long value.
+*                                     It is a vendor specific value.
+*   NcpTotalFields                  - The total number of NCP fields received by the CM.  It is an unsigned long long value. It is a vendor specific value.
+*   NcpFieldCrcFailures             - The total number of NCP fields received by the CM which failed the CRC check.  It is an unsigned long long value. It is a vendor specific value.
 * </pre>
-* @param[out] output_NumberOfEntries Array size needs to be returned with output_NumberOfEntries.
+* @param[out] output_NumberOfEntries Array size needs to be returned with output_NumberOfEntries. The possible range of acceptable values is -(2^31) to (2^31)-1.
+*
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -1453,33 +1525,35 @@ INT docsis_GetDsOfdmChanTable(PDOCSIF31_CM_DS_OFDM_CHAN *ppinfo, int *output_Num
 * The structure members are defined as below:
 *   ChannelId                      - The Cable Modem identification of the OFDMA upstream channel within this particular MAC interface.
 *                                    If the interface is down, the object returns the most current value.  If the upstream channel ID is unknown, this object returns a value of 0.
-*                                    It ranges from 0 to n where n is an unsigned int value.
+*                                    It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   ConfigChangeCt                 - The value of the Configuration Change Count field in the Upstream Channel Descriptor (UCD) MAC Management Message corresponding to this OFDMA channel.
-*                                    It ranges from 0 to n where n is an unsigned int value.
-*   SubcarrierZeroFreq             - The lower edge frequency of the OFDMA upstream channel in Hz. It ranges from 0 to n where n is an unsigned int value.
+*                                    It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   SubcarrierZeroFreq             - The lower edge frequency of the OFDMA upstream channel in Hz. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   FirstActiveSubcarrierNum       - The upper edge of the OFDMA upstream channel. The minimum channel width for an OFDMA upstream channel is 6.4 MHz in 4K mode and 10MHz in 2K mode.
-*                                    The valid range is 74 to 3947.
-*   LastActiveSubcarrierNum        - The last active subcarrier number. The valid range is 74 to 3947.
-*   NumActiveSubcarriers           - The number of active subcarriers within the OFDMA upstream channel. The valid range is 1 to 3800.
+*                                    The valid range is 74 to 3947.It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   LastActiveSubcarrierNum        - The last active subcarrier number. The valid range is 74 to 3947. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   NumActiveSubcarriers           - The number of active subcarriers within the OFDMA upstream channel. The valid range is 1 to 3800. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   SubcarrierSpacing              - The subcarrier spacing associated with a particular FFT mode configured on the OFDMA upstream channel.
-*                                    If it is 2K mode, then the subcarrier spacing is 50kHz. If it is 4K mode, then the subcarrier spacing is 25kHz. It is an unsigned int value.
+*                                    If it is 2K mode, then the subcarrier spacing is 50kHz. If it is 4K mode, then the subcarrier spacing is 25kHz. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   CyclicPrefix                   - Cyclic prefix is added in order to enable the receiver to overcome the effects of inter-symbol interference (ISI) and inter-carrier interference caused by microreflections in the channel.
 *                                    The cyclic prefix (in usec) is converted into samples using the sample rate of 102.4 Msamples/s. There are eleven values for the length of the CP and the choice depends on the delay spread of the channel;
-*                                    a longer delay spread requires a longer cyclic prefix. It is an unsigned int value.
+*                                    a longer delay spread requires a longer cyclic prefix. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   RollOffPeriod                  - Windowing is applied in order to maximize channel capacity by sharpening the edges of the spectrum of the OFDMA signal.
 *                                    Windowing is applied in the time domain by tapering (or rolling off) the edges using a raised cosine function.
 *                                    There are eight possible values of roll-off prefix. The Roll-Off Period is given in us and in number of samples using the sample rate of 102.4 Msamples/s.
-*                                    The configuration where Roll-off prefix value is greater than or equal to cyclic prefix value is considered invalid. It is an unsigned int value.
+*                                    The configuration where Roll-off prefix value is greater than or equal to cyclic prefix value is considered invalid. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   NumSymbolsPerFrame             - The number of symbol periods per frame. For channel bandwidth greater than 72MHz, the maximum number of symbol periods per frame is 18 for 2K mode and 9 for 4K mode.
 *                                    For channel bandwidth less than 72 MHz but greater than 48MHz, the maximum number of symbols per frame is 24 for 2K mode and 12 for 4K mode.
 *                                    For channel bandwidth less than 48MHz, the maximum number of symbol periods is 36 for 2K mode and 18 for 4K mode.
-*                                    The minimum number of symbol periods per frame is 6 for both the FFT modes and is independent of the channel bandwidth. It is an unsigned int value.
+*                                    The minimum number of symbol periods per frame is 6 for both the FFT modes and is independent of the channel bandwidth. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
 *   TxPower                        - The operational transmit power for the associated OFDMA upstream channel.The CM reports its Target Power, P1.6r_n as described in [PHYv3.1].
-*                                    Valid values for this object are 68 to (213 + (4*(Pmax - 65 dBmV))), since 68 quarter dBmV represents the lowest Tx power value 17 dBmV and 213 represents the nearest quarter dBmV to the highest Tx power value 53.2 dBmV. It is an unsigned int value.
-*   PreEqEnabled                   - Whether pre-equalization is enabled on the associated OFDMA upstream channel. It is an unsigned char value.
+*                                    Valid values for this object are 68 to (213 + (4*(Pmax - 65 dBmV))), since 68 quarter dBmV represents the lowest Tx power value 17 dBmV and 213 represents the nearest quarter dBmV to the highest Tx power value 53.2 dBmV.
+*                                    It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   PreEqEnabled                   - Whether pre-equalization is enabled on the associated OFDMA upstream channel. It is an unsigned character value.
+*                                    The possible range of acceptable values is 0 and (2^8)-1.
 * </pre>
-* @param[out] output_NumberOfEntries Array size needs to be returned with output_NumberOfEntries.
-*                                    \n Possible values are from 0 to n,  where n is an int value.
+* @param[out] output_NumberOfEntries variable is a integer pointer. The possible range of acceptable values is -(2^31) to (2^31)-1.
+*
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -1497,21 +1571,23 @@ INT docsis_GetUsOfdmaChanTable(PDOCSIF31_CM_US_OFDMA_CHAN *ppinfo, int *output_N
 /*  docsis_GetStatusOfdmaUsTable : */
 /**
 * @description Get the Upstream DSOFA channel status table (docsIf31CmStatusOfdmaUsTable)
-* @param[out] ppinfo Pointer to get the return array.
+* @param[out] ppinfo variable is a pointer to get the return array.
 * <pre>
 * The structure members are defined as below:
 *   ChannelId                     - The Cable Modem identification of the OFDMA upstream channel within this particular MAC interface.
 *                                   If the interface is down, the object returns the most current value. If the upstream channel ID is unknown, this object returns a value of 0.
-*   T3Timeouts                    - Number of T3 counter timeouts. It ranges from 0 to n where n is an unsigned int value.
-*   T4Timeouts                    - Number of T4 counter timeouts. It ranges from 0 to n where n is an unsigned int value.
-*   RangingAborteds               - Number of times ranging process has been aborted. It ranges from 0 to n where n is an unsigned int value.
-*   T3Exceededs                   - Number of excessive T3 timeouts. It ranges from 0 to n where n is an unsigned int value.
-*   IsMuted                       - Indicates if upstream channel is muted. It is ranges from 0 to n where n is an unsigned char value.
-*   RangingStatus                 - It is an unsigned int value which represents the Ranging State of CM. Possible values:
-*                                   other(1),aborted(2),retriesExceeded(3), success(4),continue(5),timeoutT4(6).
+*                                   The possible range of acceptable values is 0 to (2^32)-1.
+*                                   It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   T3Timeouts                    - Number of T3 counter timeouts. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   T4Timeouts                    - Number of T4 counter timeouts. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   RangingAborteds               - Number of times ranging process has been aborted. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   T3Exceededs                   - Number of excessive T3 timeouts. It is an unsigned integer value. The possible range of acceptable values is 0 to (2^32)-1.
+*   IsMuted                       - Indicates if upstream channel is muted. It is a unsigned character variable that can store an integer value within the range of 0 to (2^8)-1.
+*   RangingStatus                 - It is an unsigned integer value which represents the Ranging State of CM. Possible values:
+*                                   other(1),aborted(2),retriesExceeded(3), success(4),continue(5),timeoutT4(6). The possible range of acceptable values is 0 to (2^32)-1.
 * </pre>
-* @param[out] output_NumberOfEntries Array size needs to be returned with output_NumberOfEntries.
-*                                     \n Possible values are from 0 to n,  where n is an int value.
+* @param[out] output_NumberOfEntries variable is a integer pointer. The possible range of acceptable values is -(2^31) to (2^31)-1.
+*
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
@@ -1550,8 +1626,16 @@ INT docsis_LLDgetEnableStatus();
 * @param[in] pKickstart_Table a pointer to the SNMPv3 kickstart table.
 * <pre>
 * The structure members are defined as below:
-*   n_rows              - Contains the count of snmp kickstart rows.
-*   kickstart_values    - Contains list of snmp kickstart rows, with security_name and security_number.
+*   n_rows              - It is an unsigned character contains the count of snmp kickstart rows.
+*                             It is a variable that can store an integer value within the range of 0 to (2^8)-1.
+*   kickstart_values    - It is a pointer array of size 5 contains list of snmp kickstart rows, with security_name and security_number.
+*                         The structure members of snmp_kickstart_row_t are defined as follows:
+*                             security_name variable is from structure fixed_length_buffer_t.
+*                                 length variable is unsigned short. The possible range of acceptable values is 0 to (2^16)-1.
+*                                 buffer variable is unsigned charcter pointer. It is a variable that can store an integer value within the range of 0 to (2^8)-1.
+*                             security_number variable is from structure fixed_length_buffer_t.
+*                                 length variable is unsigned short. The possible range of acceptable values is 0 to (2^16)-1.
+*                                 buffer variable is unsigned charcter pointer. It is a variable that can store an integer value within the range of 0 to (2^8)-1.
 * </pre>
 *
 * @return The status of the operation.
@@ -1570,7 +1654,8 @@ INT cm_hal_snmpv3_kickstart_initialize(snmpv3_kickstart_table_t *pKickstart_Tabl
 /*  docsis_IsEnergyDetected: */
 /**
 * @description Get the docsis energy to detect WAN mode.
-* @param[out] pEnergyDetected 0 for No Docsis, 1 if DOCSIS is connected.
+* @param[out] pEnergyDetected variable is a boolean pointer.
+*             \n  0 for No Docsis, 1 if DOCSIS is connected.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1591,7 +1676,7 @@ INT docsis_IsEnergyDetected( BOOLEAN *pEnergyDetected );
 /**
 * @description Set ReinitMacThreshold value.
 * @param[in] value ReinitMacThreshold value to be set.
-*                  \n The range of acceptable values is 0 to n, where n is an unsigned long value.
+*             \n It is a unsigned long value. The possible range of acceptable values is 0 to (2^32)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1607,7 +1692,7 @@ INT cm_hal_set_ReinitMacThreshold(ULONG value);
 /**
 * @description Get ReinitMacThreshold value.
 * @param[out] pValue Pointer to ReinitMacThreshold value to be returned.
-*                    \n The range of acceptable values is 0 to n, where n is an unsigned long value.
+*              \n It is a unsigned long pointer. The possible range of acceptable values is 0 to (2^32)-1.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1627,8 +1712,8 @@ INT cm_hal_get_ReinitMacThreshold(ULONG *pValue);
 * @param[out] pValue Pointer to the current Diplexer Settings value to be returned.
 * <pre>
 * The structure members are defined as below:
-*   usDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz.
-*   dsDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz.
+*   usDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz. It is a Vendor specific value.
+*   dsDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz. It is a Vendor specific value.
 * </pre>
 *
 * @return The status of the operation.
@@ -1649,8 +1734,8 @@ INT cm_hal_get_DiplexerSettings(CM_DIPLEXER_SETTINGS *pValue);
 * @param[out] stCMDiplexerValue value to be received.
 * <pre>
 * The structure members are defined as below:
-*   usDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz.
-*   dsDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz.
+*     usDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz. It is a Vendor specific value.
+*     dsDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz. It is a Vendor specific value.
 * </pre>
 *
 * @return The status of the operation.
@@ -1666,7 +1751,11 @@ typedef INT ( * cm_hal_DiplexerVariationCallback)(CM_DIPLEXER_SETTINGS stCMDiple
 /*  cm_hal_Register_DiplexerVariationCallback: */
 /**
 * @description To register callback for receiving dynamic diplexer settings
-* @param[in] callback_proc , callback prototype.
+* @param[in] callback_proc is from cm_hal_DiplexerVariationCallback function.
+*                stCMDiplexerValue variable is from the structure CM_DIPLEXER_SETTINGS.
+*                The structure members are defined as below:
+*                    usDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz. It is a Vendor specific value.
+*                    dsDiplexerSetting   - Unsigned integer representing the Upper Edge in MHz. It is a Vendor specific value.
 *
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
@@ -1683,4 +1772,3 @@ INT cm_hal_Register_DiplexerVariationCallback(cm_hal_DiplexerVariationCallback c
 #endif
 
 #endif
-
