@@ -20,12 +20,18 @@
 /**********************************************************************
     Notes:
 
+    What is new for 3.0.2
+
+      1. Added cli_TxFrames, cli_RxRetries, cli_RxErrors field to wifi_associated_dev3_t
+         structure in wifi_hal_generic.h file
+
     What is new for 3.0.1
 
       1. Added cli_activeNumSpatialStreams field to wifi_associated_dev3_t structure
          in wifi_hal_generic.h file
       2. Added cli_CapableNumSpatialStreams field to wifi_associated_dev_t structure
          in wifi_hal_ap.h file
+
 
 **********************************************************************/
 
@@ -158,10 +164,10 @@ extern "C"{
 #define RESTORE_CNFG_FILE_NAME  "/data/.nvram_restore_cfg.txt"
 #define NVRAM_LINE_MAX       (1024)
 
-//defines for HAL version 3.0.1
+//defines for HAL version 3.0.2
 #define WIFI_HAL_MAJOR_VERSION 3        /**< This is the major verion of this HAL. */
 #define WIFI_HAL_MINOR_VERSION 0        /**< This is the minor verson of the HAL. */
-#define WIFI_HAL_MAINTENANCE_VERSION 1  /**< This is the maintenance version of the HAL. */
+#define WIFI_HAL_MAINTENANCE_VERSION 2  /**< This is the maintenance version of the HAL. */
 #define WIFI_HAL_VERSION (WIFI_HAL_MAJOR_VERSION *1000+ WIFI_HAL_MINOR_VERSION *10+ WIFI_HAL_MAINTENANCE_VERSION)
 
 #define MAX_NUM_TWT_SESSION  50    /**< Maximum number of TWT sessions for an AP (TODO to be defined) */
@@ -960,6 +966,10 @@ typedef struct _wifi_associated_dev3
          wifi_csi_data_t  *cli_CsiData; 
 
         UINT cli_activeNumSpatialStreams; /**< The number of active spatial streams in the session between AP and client at the moment of polling */
+
+        ULLONG     cli_TxFrames;         /**< The total number of frames transmitted to the client */
+        ULLONG     cli_RxRetries;        /**< Number of rx retries */
+        ULLONG     cli_RxErrors;         /**< Number of rx error */
 
 } wifi_associated_dev3_t;
 
