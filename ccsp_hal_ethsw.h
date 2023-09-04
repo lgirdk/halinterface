@@ -150,6 +150,8 @@
 #define ETHWAN_DEF_INTF_NUM 5
 #elif defined (ETH_4_PORTS)
 #define ETHWAN_DEF_INTF_NUM 3
+#elif defined (ETH_2_PORTS) && defined (MODEM_ONLY_SUPPORT)
+#define ETHWAN_DEF_INTF_NUM 0 
 #else
 /* Default to Physical Port #1 for ETH WAN */
 #define ETHWAN_DEF_INTF_NUM 0
