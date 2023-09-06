@@ -173,7 +173,7 @@ typedef struct _vlan_vlanidconfiguration
 *                      \n The buffer size shouldn't exceed 64 bytes.
 *                      \n The values are : brlan0, brlan1, brlan2, brlan3, brlan4, brlan5, brlan7, brlan10, brlan106, brlan403, brlan112, brlan113, brebhaul.
 * @param[in] default_vlanID A pointer to a constant character string (const char *).
-*                      \n It represents the default VLANID to be asThe buffer size shouldn't exceed 16 bytes.igned to the VLAN group.
+*                      \n A string representing the VLAN ID that will be assigned to the interface within the VLAN group.
 *                      \n The buffer size shouldn't exceed 5 bytes.
 *                      \n The valid VLAN IDs range from 1 to 4094.
 *
@@ -373,14 +373,10 @@ int _is_this_interface_available_in_given_linux_bridge(char * if_name, char * br
 
 /**
 * @description This HAL utility is used get the buffer from shell output.
-* @param[in] cmd A string representing the Linux shell command that will be executed to obtain the desired output. It will execute and get the buffer from shell output based on given command.
-* @param[out] out A character array (string) where the output of the input cmd will be copied.
+* @param[in] cmd A string representing the Linux shell command that will be executed to obtain the desired output. It will execute and get the buffer from shell output based on given command. It is vendor specific.
+* @param[out] out A character array (string) where the output of the input cmd will be copied. It is vendor specific.
 * @param[out] len length of the output string.
 *                 \n The maximum output length is 120.
-*
-* @return The status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -391,14 +387,10 @@ void _get_shell_outputbuffer(char * cmd, char * out, int len);
 
 /**
 * @description This HAL utility is used get the buffer from shell output.
-* @param[in] fp It is a pointer to a FILE object.
-* @param[out] out A character array (string) where the output of the input cmd will be copied.
+* @param[in] fp It is a pointer to a FILE object. It is vendor specific.
+* @param[out] out A character array (string) where the output of the input fp will be copied. It is vendor specific.
 * @param[out] len length of the output string.
 *                 \n The maximum output length is 120.
-*
-* @return The status of the operation.
-* @retval RETURN_OK if successful.
-* @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
 * @sideeffect None.
