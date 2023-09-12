@@ -642,6 +642,27 @@ INT wifi_getApAclDevices(INT apIndex, mac_address_t *macArray, UINT maxArraySize
 INT wifi_addApAclDevice(INT apIndex, mac_address_t DeviceMacAddress);         // adds the mac address to the filter list
 #endif
 
+/* wifi_delApAclDevice() function */
+/**
+* @brief Deletes the Device MAC address from the Access control filter list.
+*
+* @param[in]  apIndex           Access Point index
+* @param[in]  deviceMacAddress  Mac Address of a device
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+#ifdef WIFI_HAL_VERSION_3_PHASE2
+INT wifi_delApAclDevice(INT apIndex, mac_address_t deviceMacAddress);
+#endif
 
 /**
 * @brief Deletes all Device MAC address from the Access control filter list.
