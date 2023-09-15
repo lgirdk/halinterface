@@ -27,8 +27,45 @@
 extern "C"{
 #endif
 
+/**
+* @brief Perform a factory reset on the modem.
+*
+* This function is responsible for resetting the modem to its factory settings.
+*
+* @Param <None>
+*
+* @return The status of the operation.
+* @retval STATUS_SUCCESS if successful.
+* @retval STATUS_FAILED if any error is detected.
+*/
 int Modem_FactoryReset(void);
+
+/**
+* @brief Reboot the modem.
+*
+* This function is responsible for rebooting the modem.
+*
+* @Param <None>
+*
+* @return The status of the operation.
+* @retval STATUS_SUCCESS if successful.
+* @retval STATUS_FAILED if any error is detected.
+*/
 int Modem_Reboot(void);
+
+/**
+* @brief Retrieve the firmware version of the modem.
+*
+* This function is responsible for fetching the current firmware version of the modem.
+*
+* @param[out] firmware_version A pointer to a character buffer where the firmware version will be stored.
+*                              \n The buffer size of firmware_version should be atleast 128 bytes long.
+*                              \n The possible string is "EM06ALAR04A01M4G_01.003.01.003".
+*
+* @return The status of the operation.
+* @retval STATUS_SUCCESS if successful.
+* @retval STATUS_FAILED if any error is detected.
+*/
 int Modem_Firmware_Version(char *firmware_version);
 
 #ifdef __cplusplus
