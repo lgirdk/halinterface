@@ -138,15 +138,15 @@ mso_pwd_ret_status;
 /**
 * @description Validate whether the password passed in matches the password of the day for mso user.
 *
-* @param pwd - Pointer to a buffer that was preallocated by the caller. 
-* 
-* @return The status of the operation.
-* @retval mso_pwd_ret_status
-            Invalid_PWD,
-            Good_PWD,
-            Unique_PWD,
-            Expired_PWD, 
-            TimeError
+* @param[in] pwd - Provided password which is a pointer to a buffer that was preallocated by the caller.
+*
+* @return The validation status of the password (mso_pwd_ret_status).
+* @retval The mso_pwd_ret_status enum return type has the following possible return values:
+*         \n Invalid_PWD, if the provided password is invalid.
+*         \n Good_PWD, if the provided password is valid.
+*         \n Unique_PWD, if the provided password is unique.
+*         \n Expired_PWD, if the provided password has expired.
+*         \n TimeError, if an error related to time occurred during validation.
 *
 * @execution Synchronous.
 * @sideeffect None.
@@ -157,8 +157,9 @@ mso_pwd_ret_status mso_validatepwd(char *pwd);
 /**
 * @description Sets the PoD seed for mso password validation.
 *
-* @param 
-*    CHAR* - PoD seed
+* @param[in] pSeed - PoD seed which is pointer to a buffer that was preallocated by the caller.
+*                    \n The buffer size should be atleast 64 bytes long.
+*                    \n This is where the input is provided.
 *
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
@@ -171,14 +172,15 @@ mso_pwd_ret_status mso_validatepwd(char *pwd);
 * calls. It should probably just send a message to a driver event handler task. 
 * Newer Broadband Devices MUST decrypt the seed on demand when this HAL is called.
 */
-INT mso_set_pod_seed(char *);
+INT mso_set_pod_seed(char *pSeed);
 
 /* mso_get_pod_seed : */
 /**
 * @description Gets the PoD seed for mso password validation.
 *
-* @param 
-*    CHAR* pSeed - a pointer to a buffer that was preallocated by the caller.  This is where the output is written
+* @param[out] pSeed - PoD seed which is pointer to a buffer that was preallocated by the caller.
+*                     \n The buffer size should be atleast 64 bytes long.
+*                     \n This is where the output is written.
 *
 * @return the status of the operation.
 * @retval RETURN_OK if successful.
