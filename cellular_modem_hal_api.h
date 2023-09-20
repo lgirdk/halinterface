@@ -17,8 +17,30 @@
  * limitations under the License.
 */
 
+/**
+* @file cellular_modem_hal_api.h
+* @brief For Cellular Modem component
+*
+*/
+
 #ifndef __CCSP_HAL_CELL_MAN_H__
 #define __CCSP_HAL_CELL_MAN_H__
+
+/**
+* @defgroup CELLULAR_MODEM_HAL  Cellular Modem HAL
+*
+* @defgroup CELLULAR_MODEM_HAL_TYPES  Cellular Modem HAL Data Types
+* @ingroup  CELLULAR_MODEM_HAL
+*
+* @defgroup CELLULAR_MODEM_HAL_APIS Cellular Modem HAL  APIs
+* @ingroup  CELLULAR_MODEM_HAL
+*
+**/
+
+/**
+ * @addtogroup CELLULAR_MODEM_HAL_TYPES
+ * @{
+ */
 
 #define STATUS_SUCCESS 0
 #define STATUS_FAILED -1
@@ -26,6 +48,16 @@
 #ifdef __cplusplus
 extern "C"{
 #endif
+
+/**
+ * @}
+ */
+
+
+/**
+ * @addtogroup CELLULAR_MODEM_HAL_APIS
+ * @{
+ */
 
 /**
 * @brief Perform a factory reset on the modem.
@@ -68,6 +100,10 @@ int Modem_Reboot(void);
 */
 int Modem_Firmware_Version(char *firmware_version);
 
+/**
+ * @}
+ */
+ 
 #ifdef __cplusplus
 }
 #endif
