@@ -78,6 +78,7 @@ typedef struct {
     wifi_ieee80211Variant_t variant;                    /**< The radio operating mode */
     UINT csa_beacon_count;                              /**< Specifies how long CSA need to be announced. */
     wifi_countrycode_type_t countryCode;                /**< The country code. */
+    UINT regDomain;                                     /**< The regulatory domain. */
     wifi_operating_env_t operatingEnvironment;           /**< The wifi Operating environment */
     wifi_channelMap_t channel_map[64];
     BOOL DCSEnabled;                                    /**< set DCSEnabled to TRUE to enable DCS. */
