@@ -63,6 +63,11 @@ typedef struct _wifi_channelMap_t {
     wifi_channelState_t ch_state;
 } wifi_channelMap_t;
 
+typedef struct {
+    USHORT punct_bitmap; /* a bitmap of disabled 20 MHz channels */
+    UCHAR punct_acs_threshold;
+} __attribute__((packed)) wifi_radio_11be_puncturing_info_t;
+
 /**
  * @brief Wifi Radio Operation Parameters
  */
@@ -105,8 +110,8 @@ typedef struct {
     BOOL DfsEnabled;
     BOOL DfsEnabledBootup;
     BOOL EcoPowerDown;
+    wifi_radio_11be_puncturing_info_t puncturingInfo;
 } __attribute__((packed)) wifi_radio_operationParam_t;
-
 
 /**
  * @brief Enhanced Distributed Channel Access parameters
