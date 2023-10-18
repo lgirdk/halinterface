@@ -745,7 +745,8 @@ INT platform_hal_SetDeviceCodeImageValid(BOOLEAN flag);
 * @description Get FactoryPartnerID from the the device.
 *
 * @param[out] pValue - FactoryPartnerID.
-*                   \n Possible values for pValue are "unknown", "eUnprogrammed", "eComcast", "eCharter", "eCox", "eRogers", "eVodafone", "eShaw", "eVideotron".
+*                   \n Possible values for pValue are "unknown", "unprogrammed", "comcast", "charter", "cox", "rogers", "vodafone", "shaw", "videotron".
+*                   \n The Possible values are not limited to the ones above and map to partner device running FW was manufactured for.
 *                   \n The buffer size size should be at least 512 bytes long.
 *
 * @return The status of the operation.
@@ -779,7 +780,8 @@ INT platform_hal_getFactoryCmVariant(CHAR *pValue);
 * @description Set FactoryCmVariant from the the device.
 *
 * @param[in] pValue - FactoryCmVariant.
-*                  \n Possible values are  "unknown", "pc20", "pc20genband", "pc15sip" and "pc15mgcp" .
+*                  \n Possible values are  "pc20", "pc20genband", "pc15sip" and "pc15mgcp".
+*                  \n The Possible values are not limited to the ones above and map to devices supported voice stacks.
 *                  \n The string size shouldn't exceed 512 bytes.
 *
 * @return The status of the operation.
