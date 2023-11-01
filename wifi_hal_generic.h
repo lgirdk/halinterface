@@ -20,6 +20,11 @@
 /**********************************************************************
     Notes:
 
+    What is new for 3.0.4
+
+      1. Added new structure wifi_radioTemperature_t and hal wifi_hal_getRadioTemperature
+         in wifi_hal_radio.h file
+
     What is new for 3.0.3
 
       1. Added new structures wifi_mld_common_info_t, wifi_mld_info_sta_t, wifi_mld_info_ap_t
@@ -172,10 +177,10 @@ extern "C"{
 #define RESTORE_CNFG_FILE_NAME  "/data/.nvram_restore_cfg.txt"
 #define NVRAM_LINE_MAX       (1024)
 
-//defines for HAL version 3.0.3
+//defines for HAL version 3.0.4
 #define WIFI_HAL_MAJOR_VERSION 3        /**< This is the major verion of this HAL. */
 #define WIFI_HAL_MINOR_VERSION 0        /**< This is the minor verson of the HAL. */
-#define WIFI_HAL_MAINTENANCE_VERSION 3  /**< This is the maintenance version of the HAL. */
+#define WIFI_HAL_MAINTENANCE_VERSION 4  /**< This is the maintenance version of the HAL. */
 #define WIFI_HAL_VERSION (WIFI_HAL_MAJOR_VERSION *1000+ WIFI_HAL_MINOR_VERSION *10+ WIFI_HAL_MAINTENANCE_VERSION)
 
 #define MAX_NUM_TWT_SESSION  50    /**< Maximum number of TWT sessions for an AP (TODO to be defined) */
