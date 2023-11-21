@@ -776,6 +776,7 @@ typedef struct {
      radio_interface_mapping_t radio_interface_map[MAX_NUM_RADIOS];
      BOOL radio_presence[MAX_NUM_RADIOS];         /**< Indicates if the interfaces is present (not in deep sleep)*/
      wifi_multi_link_bands_t mu_bands;
+     UINT BssMaxStaAllow;                    /**< Maximum number of stations supported for given platform. Gets populated during bring-up. */
 }__attribute__((packed)) wifi_platform_property_t;
 
 /**
