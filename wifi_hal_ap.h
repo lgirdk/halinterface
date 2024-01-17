@@ -134,7 +134,7 @@ typedef struct {
     UCHAR length;
     UCHAR domainName[255]; //max domain name allowed based on the spec.
 }__attribute__((packed)) wifi_domainNameTuple_t;
-  
+
 typedef struct {
     wifi_domainNameTuple_t  domainNameTuple[4];
 }__attribute__((packed)) wifi_domainName_t;
@@ -337,7 +337,7 @@ typedef struct _wifi_radius_setting_t
      INT  IdentityRequestRetryInterval; /**< Time Interval in seconds between identity requests retries. A value of 0 (zero) disables it    */
      INT  QuietPeriodAfterFailedAuthentication;  /**< The enforced quiet period (time interval) in seconds following failed authentication. A value of 0 (zero) disables it. */
      //UCHAR RadiusSecret[64];          //<! The secret used for handshaking with the RADIUS server [RFC2865]. When read, this parameter returns an empty string, regardless of the actual value.
-         
+
 } wifi_radius_setting_t;
 
 /**
@@ -434,7 +434,7 @@ INT wifi_getApAssociatedDevice(INT ap_index, mac_address_t *output_deviceMacAddr
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_factoryResetAP(int apIndex); 
+INT wifi_factoryResetAP(int apIndex);
 
 /* wifi_deleteAp() function */
 /**
@@ -481,7 +481,7 @@ INT wifi_getApName(INT apIndex, CHAR *output_string);                 // Outputs
 * @brief Sets the packet size threshold in bytes to apply RTS/CTS backoff rules.
 *
 * @param[in] apIndex    Access Point index
-* @param[in] threshold  Packet size threshold 
+* @param[in] threshold  Packet size threshold
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -494,7 +494,7 @@ INT wifi_getApName(INT apIndex, CHAR *output_string);                 // Outputs
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApRtsThreshold(INT apIndex, UINT threshold);              // sets the packet size threshold in bytes to apply RTS/CTS backoff rules. 
+INT wifi_setApRtsThreshold(INT apIndex, UINT threshold);              // sets the packet size threshold in bytes to apply RTS/CTS backoff rules.
 
 /* wifi_removeApSecVaribles() function */
 /**
@@ -860,7 +860,7 @@ INT wifi_setApEnable(INT apIndex, BOOL enable);                       // sets th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApEnable(INT apIndex, BOOL *output_bool);                 // Outputs the setting of the internal variable that is set by wifi_setEnable().  
+INT wifi_getApEnable(INT apIndex, BOOL *output_bool);                 // Outputs the setting of the internal variable that is set by wifi_setEnable().
 
 
 /* wifi_getApStatus() function */
@@ -881,7 +881,7 @@ INT wifi_getApEnable(INT apIndex, BOOL *output_bool);                 // Outputs
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApStatus(INT apIndex, CHAR *output_string);// Outputs the AP "Enabled" "Disabled" status from driver 
+INT wifi_getApStatus(INT apIndex, CHAR *output_string);// Outputs the AP "Enabled" "Disabled" status from driver
 
 
 /* wifi_getApSsidAdvertisementEnable() function */
@@ -950,7 +950,7 @@ INT wifi_setApSsidAdvertisementEnable(INT apIndex, BOOL enable);      // sets an
 *
 */
 //The maximum number of retransmission for a packet. This corresponds to IEEE 802.11 parameter dot11ShortRetryLimit.
-INT wifi_getApRetryLimit(INT apIndex, UINT *output); 
+INT wifi_getApRetryLimit(INT apIndex, UINT *output);
 
 /* wifi_setApRetryLimit() function */
 /**
@@ -972,7 +972,7 @@ INT wifi_getApRetryLimit(INT apIndex, UINT *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApRetryLimit(INT apIndex, UINT number); 
+INT wifi_setApRetryLimit(INT apIndex, UINT number);
 
 /* wifi_getApWmmEnable() function */
 /**
@@ -995,7 +995,7 @@ INT wifi_setApRetryLimit(INT apIndex, UINT number);
 *
 */
 //Whether WMM support is currently enabled. When enabled, this is indicated in beacon frames.
-INT wifi_getApWmmEnable(INT apIndex, BOOL *output);                   
+INT wifi_getApWmmEnable(INT apIndex, BOOL *output);
 
 /* wifi_setApWmmEnable() function */
 /**
@@ -1039,7 +1039,7 @@ INT wifi_setApWmmEnable(INT apIndex, BOOL enable);                    // enables
 *
 */
 //Whether U-APSD support is currently enabled. When enabled, this is indicated in beacon frames. Note: U-APSD can only be enabled if WMM is also enabled.
-INT wifi_getApWmmUapsdEnable(INT apIndex, BOOL *output);               
+INT wifi_getApWmmUapsdEnable(INT apIndex, BOOL *output);
 
 /* wifi_setApWmmUapsdEnable() function */
 /**
@@ -1084,7 +1084,7 @@ INT wifi_setApWmmUapsdEnable(INT apIndex, BOOL enable);               // enables
 */
 // Sets the WMM ACK polity on the hardware. AckPolicy false means do not acknowledge, true means acknowledge
 INT wifi_setApWmmOgAckPolicy(INT apIndex, INT cla, BOOL ackPolicy);
-            
+
 /* wifi_getApIsolationEnable() function */
 /**
 * @brief Get Access Point isolation value.
@@ -1106,8 +1106,8 @@ INT wifi_setApWmmOgAckPolicy(INT apIndex, INT cla, BOOL ackPolicy);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Enables or disables device isolation.    A value of true means that the devices connected to the Access Point are isolated from all other devices within the home network (as is typically the case for a Wireless Hotspot).    
-INT wifi_getApIsolationEnable(INT apIndex, BOOL *output); 
+//Enables or disables device isolation.    A value of true means that the devices connected to the Access Point are isolated from all other devices within the home network (as is typically the case for a Wireless Hotspot).
+INT wifi_getApIsolationEnable(INT apIndex, BOOL *output);
 
 /* wifi_setApIsolationEnable() function */
 /**
@@ -1117,7 +1117,7 @@ INT wifi_getApIsolationEnable(INT apIndex, BOOL *output);
 * from all other devices within the home network (as is typically the case for a Wireless Hotspot).
 *
 * @param[in] apIndex  Access Point index
-* @param[in] enable   Access Point Isolation enable value 
+* @param[in] enable   Access Point Isolation enable value
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -1170,7 +1170,7 @@ INT wifi_setApBeaconRate(INT apIndex, char *sBeaconRate);
 *
 */
 INT wifi_getApBeaconRate(INT apIndex, char *output_BeaconRate);
-    
+
 
 /* wifi_getApMaxAssociatedDevices() function */
 /**
@@ -1193,7 +1193,7 @@ INT wifi_getApBeaconRate(INT apIndex, char *output_BeaconRate);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//The maximum number of devices that can simultaneously be connected to the access point. A value of 0 means that there is no specific limit.            
+//The maximum number of devices that can simultaneously be connected to the access point. A value of 0 means that there is no specific limit.
 INT wifi_getApMaxAssociatedDevices(INT apIndex, UINT *output);
 
 /* wifi_setApMaxAssociatedDevices() function */
@@ -1309,7 +1309,7 @@ INT wifi_setApSecurityMFPConfig(INT apIndex, CHAR *MfpConfig);
 *
 */
 //The IP Address and port number of the RADIUS server used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabled is an Enterprise type (i.e. WPA-Enterprise, WPA2-Enterprise or WPA-WPA2-Enterprise).  String is 64 bytes max
-INT wifi_getApSecurityRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *RadiusSecret_output); 
+INT wifi_getApSecurityRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *RadiusSecret_output);
 
 /* wifi_setApSecurityRadiusServer() function */
 /**
@@ -1320,7 +1320,7 @@ INT wifi_getApSecurityRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_outp
 *
 * @param[in] apIndex       Access Point index
 * @param[in] IPAddress     IP Address
-* @param[in] port          Port 
+* @param[in] port          Port
 * @param[in] RadiusSecret  Radius Secret
 *
 * @return The status of the operation
@@ -1589,7 +1589,7 @@ INT wifi_cancelApWPS(INT apIndex);                                    // cancels
 * @brief Get the ApManagementFramePowerControl
 *
 * @param[in]  apIndex      Access Point index
-* @param[out] output_dBm   ManagementFramePowerControl, to be returned 
+* @param[out] output_dBm   ManagementFramePowerControl, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -1602,11 +1602,11 @@ INT wifi_cancelApWPS(INT apIndex);                                    // cancels
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApManagementFramePowerControl(INT apIndex, INT *output_dBm);  // Get the RadioManagementFramePowerControl supported. 
+INT wifi_getApManagementFramePowerControl(INT apIndex, INT *output_dBm);  // Get the RadioManagementFramePowerControl supported.
 
 /* wifi_setApManagementFramePowerControl() function */
 /**
-* @brief Sets the ApManagementFramePowerControl 
+* @brief Sets the ApManagementFramePowerControl
 *
 * @param[in] apIndex  Access Point index
 * @param[in] dBm      RadioManagementFramePowerControl
@@ -1632,7 +1632,7 @@ INT wifi_setApManagementFramePowerControl(INT apIndex, INT dBm); // sets the Rad
 #ifdef WIFI_HAL_VERSION_3_PHASE2
 /* wifi_newApAssociatedDevice_callback() function */
 /**
-* @brief This call back will be invoked when new wifi client come to associate to Access Point.    
+* @brief This call back will be invoked when new wifi client come to associate to Access Point.
 *
 * @param[in] apIndex          Access Point Index
 * @param[in] associated_dev   Associated device info
@@ -1692,7 +1692,7 @@ typedef INT(* wifi_newApAssociatedDevice_callback)(INT apIndex, wifi_associated_
  */
 /* wifi_newApAssociatedDevice_callback_register() function */
 /**
-* @brief Callback registration function.    
+* @brief Callback registration function.
 *
 * @param[in] callback_proc  wifi_newApAssociatedDevice_callback callback function
 *
@@ -1716,7 +1716,7 @@ void wifi_newApAssociatedDevice_callback_register(wifi_newApAssociatedDevice_cal
  */
 /* wifi_apDisassociatedDevice_callback() function */
 /**
-* @brief This call back will be invoked when new wifi client disassociates from Access Point.    
+* @brief This call back will be invoked when new wifi client disassociates from Access Point.
 *
 * @param[in] apIndex          Access Point Index
 * @param[in] MAC                 MAC address of disassociated device
@@ -1783,7 +1783,7 @@ void wifi_radiusEapFailure_callback_register(wifi_radiusEapFailure_callback call
  */
 /* wifi_apDisassociatedDevice_callback_register() function */
 /**
-* @brief Callback registration function.    
+* @brief Callback registration function.
 *
 * @param[in] callback_proc  wifi_apDisassociatedDevice_callback callback function
 *
@@ -1918,7 +1918,7 @@ INT wifi_setApInterworkingServiceEnable(INT apIndex, BOOL input_bool);
  */
 INT wifi_getApInterworkingElement(INT apIndex, wifi_InterworkingElement_t *output_struct);
 
-INT    wifi_pushApInterworkingElement(INT apIndex, 
+INT    wifi_pushApInterworkingElement(INT apIndex,
                                 wifi_InterworkingElement_t    *infoEelement);
 /** @} */  //END OF GROUP WIFI_HAL_APIS
 
@@ -2019,7 +2019,7 @@ void wifi_csi_callback_register(wifi_csi_callback callback_proc);
 /* wifi_hal_register_frame_hook() function */
 /**
 * @brief Frame hook callregistration function. Hook will be executed when
-* the mgmt frame is received from the HAL. Is used by applications, if 
+* the mgmt frame is received from the HAL. Is used by applications, if
 * application doesn't define this hook it will not be executed.
 *
 * @param[in] hook    wifi_hal_frame_hook_fn_t callback function
@@ -2120,12 +2120,12 @@ INT wifi_sendDataFrame(INT apIndex,
                        wifi_data_priority_t prio);
 
 
-/* @description transmit an action frame 
+/* @description transmit an action frame
  * Transmits an action frame to STA from a specific VAP
  *
  * @param apIndex; index of the vAP to send the frame from.
  * @param staMAC; MAC address string of the peer device to send the frame to
- * @param frequency; frequency of the channel on which this action frame should be sent on (for public action frames that 
+ * @param frequency; frequency of the channel on which this action frame should be sent on (for public action frames that
  *      can be sent tp a device on off channel
  * @param frame; pointer to the frame buffer
  * @param len; length of the buffer
@@ -2141,10 +2141,10 @@ INT wifi_sendActionFrame(INT apIndex,
                                 UINT len);
 
 
-/* GAS Configuration */ 
+/* GAS Configuration */
 #define GAS_CFG_TYPE_SUPPORTED 1
 
-/* GAS Configuration */ 
+/* GAS Configuration */
 typedef struct _wifi_GASConfiguration_t{   // Values correspond to the dot11GASAdvertisementEntry field definitions; see 802.11-2016 Annex C.3.
     UINT AdvertisementID;
     BOOL PauseForServerResponse;
@@ -2166,7 +2166,7 @@ INT wifi_applyGASConfiguration(wifi_GASConfiguration_t *input_struct);
 INT wifi_setCountryIe(INT apIndex, BOOL enabled);
 
 /***********************************************************************************
- * Description : Get status of country code information element in Beacon 
+ * Description : Get status of country code information element in Beacon
                  and Probe Response
  * Parameters: AP Index, pointer to Enabled Status variable
  * Return: The status of the operation
@@ -2174,7 +2174,7 @@ INT wifi_setCountryIe(INT apIndex, BOOL enabled);
 INT wifi_getCountryIe(INT apIndex, BOOL *enabled);
 
 /***********************************************************************************
- * Description : Enable Traffic Inspection and Filtering 
+ * Description : Enable Traffic Inspection and Filtering
  * Parameters: AP Index, Enabled Status
  * Return: The status of the operation
  **********************************************************************************/
@@ -2188,7 +2188,7 @@ INT wifi_setLayer2TrafficInspectionFiltering(INT apIndex, BOOL enabled);
 INT wifi_getLayer2TrafficInspectionFiltering(INT apIndex, BOOL *enabled);
 
 /***********************************************************************************
- * Description : Disable DGAF. When set to true, DGAF disabled bit should be set 
+ * Description : Disable DGAF. When set to true, DGAF disabled bit should be set
                  in HS2.0 Indication Information Element in Beacon and Probe
  * Parameters: AP Index, Disabled Status
  * Return: The status of the operation
@@ -2225,7 +2225,7 @@ INT wifi_setProxyArp(INT apIndex, BOOL enabled);
 
 /***********************************************************************************
  * Description : Get Status of Proxy Arp from Driver
- * Parameters: AP Index, pointer to Enabled Status variable 
+ * Parameters: AP Index, pointer to Enabled Status variable
  * Return: The status of the operation
  **********************************************************************************/
 INT wifi_getProxyArp(INT apIndex, BOOL *enable);
@@ -2238,17 +2238,17 @@ INT wifi_getProxyArp(INT apIndex, BOOL *enable);
 INT wifi_pushApHotspotElement(INT apIndex, BOOL enabled);
 
 /***********************************************************************************
- * Description : Enable Traffic Inspection and Filtering 
+ * Description : Enable Traffic Inspection and Filtering
  * Parameters: AP Index, pointer to Enabled Status variable
  * Return: The status of the operation
  **********************************************************************************/
 INT wifi_getApHotspotElement(INT apIndex, BOOL *enabled);
 
 /***********************************************************************************
- * Description : Push Roaming Consortium Information Element Contents to HAL 
+ * Description : Push Roaming Consortium Information Element Contents to HAL
  * Parameters: AP Index, pointer to wifi_roamingConsortiumElement_t
                the structure contains OI count, length of first 3 OIs,
-               and first 3 OI as a hex string. When count > 0 and interworking is 
+               and first 3 OI as a hex string. When count > 0 and interworking is
                enabled, Roaming Consortium Information Element should be present
                in Beacon and Probe Response with this information.
  * Return: The status of the operation
@@ -2285,7 +2285,7 @@ INT wifi_getP2PCrossConnect(INT apIndex, BOOL *disabled);
 * @brief get all the TWT session(individual or Broadcast) connected to that AP Index .
 *
 * @param[in]  ap_index  access point index
-* @param[in]  maxNumberSessions  maximum number of session to copy in the list 
+* @param[in]  maxNumberSessions  maximum number of session to copy in the list
 * @param[out]  twtSessions  pointer to the sessions information
 * @param[out]  numSessionReturned  num of seesion copied the list
 
@@ -2304,13 +2304,13 @@ INT wifi_getTWTsessions(INT ap_index, UINT maxNumberSessions, wifi_twt_sessions_
 
 /* wifi_getBroadCastSession() function */
 /**
-* @brief Create or update a broadcast TWT Session  
+* @brief Create or update a broadcast TWT Session
 *
 * @param[in]  ap_index  access point index
 * @param[in]  twtParams  twt params to create or update a broadcast TWT session
 * @param[in]  create  Flag to indicate if it should create a new broadcast TWT Session
-* @param[in/out]  sessionID  Input when create flag is false and session exist; and output when 
-*                            create flag is true, in this case sessionID is the ID for the new session 
+* @param[in/out]  sessionID  Input when create flag is false and session exist; and output when
+*                            create flag is true, in this case sessionID is the ID for the new session
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -2452,7 +2452,7 @@ typedef enum{
 } wifi_onboarding_methods_t;
 
 #define WIFI_AP_MAX_WPSPIN_LEN  9
-typedef struct 
+typedef struct
 {
     BOOL enable;
     wifi_onboarding_methods_t methods;
@@ -2618,7 +2618,7 @@ typedef enum {
 } wifi_vap_mode_t;
 
 typedef struct {
-    unsigned int period;        // period in seconds    
+    unsigned int period;        // period in seconds
     wifi_channel_t  channel;    // channel to scan, 0 means scan all in the band
 } __attribute__((packed)) wifi_scan_params_t;
 

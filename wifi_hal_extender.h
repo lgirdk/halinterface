@@ -47,22 +47,22 @@ typedef struct _wifi_channelStats {
 
 /* MCS/NSS/BW rate table and indexes that shoul be used for supported rates
 ----------------------------------------------
-| type | bw         | nss        |  mcs     
+| type | bw         | nss        |  mcs
 ----------------------------------------------
-| OFDM | 0 (20Mhz)  | 0 (legacy) |  0 - 6M 
-|      |            |            |  1 - 9M 
-|      |            |            |  2 - 12M 
-|      |            |            |  3 - 18M 
-|      |            |            |  4 - 24M 
-|      |            |            |  5 - 36M 
-|      |            |            |  6 - 48M 
+| OFDM | 0 (20Mhz)  | 0 (legacy) |  0 - 6M
+|      |            |            |  1 - 9M
+|      |            |            |  2 - 12M
+|      |            |            |  3 - 18M
+|      |            |            |  4 - 24M
+|      |            |            |  5 - 36M
+|      |            |            |  6 - 48M
 |      |            |            |  7 - 54M
 ----------------------------------------------
-| CCK  | 0 (20Mhz)  | 0 (legacy) |  8 - L1M 
-|      |            |            |  9 - L2M 
+| CCK  | 0 (20Mhz)  | 0 (legacy) |  8 - L1M
+|      |            |            |  9 - L2M
 |      |            |            | 10 - L5.5M
-|      |            |            | 11 - L11M 
-|      |            |            | 12 - S2M 
+|      |            |            | 11 - L11M
+|      |            |            | 12 - S2M
 |      |            |            | 13 - S5.5M
 |      |            |            | 14 - S11M"
 ----------------------------------------------
@@ -73,8 +73,8 @@ typedef struct _wifi_channelStats {
 |      |            |            |  5 - HT/VHT
 |      |            |            |  6 - HT/VHT
 |      |            |            |  7 - HT/VHT
-|      |            |            |  8 - VHT 
-|      |            |            |  9 - VHT 
+|      |            |            |  8 - VHT
+|      |            |            |  9 - VHT
 ----------------------------------------------
 NOTE: The size of this table on 4x4 can be big - we could send only non zero elements!
 */
@@ -90,10 +90,10 @@ typedef struct _wifi_associated_dev_rate_info_rx_stats {
     ULLONG ppdus;               /**< number of PPDUs received for given rate */
     ULLONG retries;             /**< number of retries received for given rate */
     UCHAR rssi_combined;        /**< Last RSSI received on give rate */
-    /* Per antenna RSSI (above noise floor) for all widths (primary,secondary) 
+    /* Per antenna RSSI (above noise floor) for all widths (primary,secondary)
         -----------------------------------------------
         | chain_num |  20MHz [pri20                   ]
-        |           |  40MHZ [pri20,sec20             ] 
+        |           |  40MHZ [pri20,sec20             ]
         |           |  80MHz [pri20,sec20,sec40,      ]
         |           | 160MHz [pri20,sec20,sec40,sec80 ]
         -----------------------------------------------
@@ -455,7 +455,7 @@ typedef struct {
 
 // HT Capabilities Element, ID = 45.  802.11-2016 section 9.4.2.56.
 typedef struct {
-    
+
     USHORT                  info;           // Bitfield where bit 0 is info[0] bit 0.
     UCHAR                   ampduParams;
     UCHAR                   mcs[16];        // Bitfield where bit 0 is mcs[0] bit 0.
@@ -803,7 +803,7 @@ INT wifi_getApAssociatedDeviceTidStatsResult(INT radioIndex,  mac_address_t *cli
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApAssociatedDeviceStats(INT apIndex, mac_address_t *clientMacAddress, wifi_associated_dev_stats_t *associated_dev_stats, ULLONG *handle);    
+INT wifi_getApAssociatedDeviceStats(INT apIndex, mac_address_t *clientMacAddress, wifi_associated_dev_stats_t *associated_dev_stats, ULLONG *handle);
 
 /* wifi_getSSIDRadioIndex() function */
 /**
@@ -926,7 +926,7 @@ INT wifi_setApScanFilter(INT apIndex, INT mode, CHAR *essid); //mode(enum): disa
  * between them.
  *
  * @param[in] steeringGroupIndex  Wifi Steering Group index
- * @param[in] numElements         Number of elements in the array 
+ * @param[in] numElements         Number of elements in the array
  * @param[in] cfgArray            Array with the settings for each frequency
  *
  * @return RETURN_OK on success, RETURN_ERR on failure

@@ -464,7 +464,7 @@ typedef enum {
     wifi_countrycode_AT, /**< AUSTRIA */
     wifi_countrycode_AU, /**< AUSTRALIA */
     wifi_countrycode_AW, /**< ARUBA */
-    wifi_countrycode_AZ, /**< AZERBAIJAN */    
+    wifi_countrycode_AZ, /**< AZERBAIJAN */
     wifi_countrycode_BA, /**< BOSNIA AND HERZEGOVINA */
     wifi_countrycode_BB, /**< BARBADOS */
     wifi_countrycode_BD, /**< BANGLADESH */
@@ -530,14 +530,14 @@ typedef enum {
     wifi_countrycode_GG, /**< GUERNSEY */
     wifi_countrycode_GH, /**< GHANA */
     wifi_countrycode_GI, /**< GIBRALTAR */
-    wifi_countrycode_GL, /**< GREENLAND */    
+    wifi_countrycode_GL, /**< GREENLAND */
     wifi_countrycode_GM, /**< GAMBIA */
     wifi_countrycode_GN, /**< GUINEA */
     wifi_countrycode_GP, /**< GUADELOUPE */
     wifi_countrycode_GQ, /**< EQUATORIAL GUINEA */
     wifi_countrycode_GR, /**< GREECE */
     wifi_countrycode_GS, /**< SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS */
-    wifi_countrycode_GT, /**< GUATEMALA */    
+    wifi_countrycode_GT, /**< GUATEMALA */
     wifi_countrycode_GU, /**< GUAM */
     wifi_countrycode_GW, /**< GUINEA-BISSAU */
     wifi_countrycode_GY, /**< GUYANA */
@@ -612,9 +612,9 @@ typedef enum {
     wifi_countrycode_NI, /**< NICARAGUA */
     wifi_countrycode_NL, /**< NETHERLANDS */
     wifi_countrycode_NO, /**< NORWAY */
-    wifi_countrycode_NP, /**< NEPAL */    
+    wifi_countrycode_NP, /**< NEPAL */
     wifi_countrycode_NR, /**< NAURU */
-    wifi_countrycode_NU, /**< NIUE */    
+    wifi_countrycode_NU, /**< NIUE */
     wifi_countrycode_NZ, /**< NEW ZEALAND */
     wifi_countrycode_MP, /**< NORTHERN MARIANA ISLANDS */
     wifi_countrycode_OM, /**< OMAN */
@@ -629,7 +629,7 @@ typedef enum {
     wifi_countrycode_PN, /**< PITCAIRN */
     wifi_countrycode_PR, /**< PUERTO RICO */
     wifi_countrycode_PS, /**< PALESTINIAN TERRITORY, OCCUPIED */
-    wifi_countrycode_PT, /**< PORTUGAL */    
+    wifi_countrycode_PT, /**< PORTUGAL */
     wifi_countrycode_PW, /**< PALAU */
     wifi_countrycode_PY, /**< PARAGUAY */
     wifi_countrycode_QA, /**< QATAR */
@@ -970,7 +970,7 @@ typedef struct _wifi_frame_info
     UCHAR    bw_mode;            /* Bit 0-3: 0:20MHz; 1:40MHz; 2:80MHz; 3:160MHz */
                                 /* Bit 4: 80+80MHz */
                                 /* Bit 4-7: 0:11n; 1:11ac */
-    UCHAR    mcs;                /* Encoded as 11ac numbering */    
+    UCHAR    mcs;                /* Encoded as 11ac numbering */
     UCHAR    Nr;                    /* Number of antennas used to receive the frame */
     UCHAR    Nc;                    /* Number of streams used to transmit the frame */
     wifi_streams_rssi_t    nr_rssi;    /* RSSI on each of Nr */
@@ -992,14 +992,14 @@ typedef struct _wifi_frame_info
 typedef struct _wifi_csi_data
 {
     wifi_frame_info_t    frame_info;    /* as defined above */
-    wifi_csi_matrix_t    csi_matrix;        /* The NC value representing the number of non-zero columns 
-                                    in the H matrix is equal to the number of spatial streams in the 
-                                    packet. The NR value representing the number of rows in the H matrix 
-                                    is equal to the number of antennas at the receiver. 
-                                    Irrespective of the NC and NR values, the output H matrix is always 
-                                    of size 4x4. For example, if the frame uses 2 spatial streams 
-                                    and the receiver has 3 antennas, NC=2, NR=3. 
-                                    However, the H matrix will be of size 4x4 with a 3x2 sub-matrix 
+    wifi_csi_matrix_t    csi_matrix;        /* The NC value representing the number of non-zero columns
+                                    in the H matrix is equal to the number of spatial streams in the
+                                    packet. The NR value representing the number of rows in the H matrix
+                                    is equal to the number of antennas at the receiver.
+                                    Irrespective of the NC and NR values, the output H matrix is always
+                                    of size 4x4. For example, if the frame uses 2 spatial streams
+                                    and the receiver has 3 antennas, NC=2, NR=3.
+                                    However, the H matrix will be of size 4x4 with a 3x2 sub-matrix
                                     with non-zero values. Rest of the values of the matrix will be zero. */
     wifi_evm_matrix_t    evm_matrix;    /* Similar scheme to the CSI matrix, Nc represents the number of non-zero columns and Nr represents the number of nonzero rows. There are 16 elements to accommodate the full number of pilots in a 160 MHz capture. Each element is an EVM value for a pilot expressed in dB. */
 } wifi_csi_data_t;
@@ -1048,23 +1048,23 @@ typedef struct _wifi_associated_dev3
        wifi_dl_mu_stats_t  cli_UplinkMuStats;
        wifi_twt_dev_info_t cli_TwtParams; /**< TWT sessions that the device has joined */
 
-       /* To facilitate retrieval of CSI data for specific associated client, an existing RDK-B Wi-Fi HAL 
-        function is being extended. In current implementation wifi_getApAssociatedDeviceDiagnosticResult3 
-        retrieves variety of statistics and state specific information for associated clients. 
-        The wifi_associated_dev3_t data structure is filled by native WLAN drivers for each associated client 
-        as and when the function is called by RDK-B application/process. A new component structure 
-        wifi_csi_data_t is being defined that is part of wifi_associated_dev3_t structure and needs to be 
-        allocated and filled for specific client or list of clients when 
-        wifi_getApAssociatedDeviceDiagnosticResult3 API is called by RDK-B application/process. In cases when 
-        application needs CSI data, the RDK-B application will call 
+       /* To facilitate retrieval of CSI data for specific associated client, an existing RDK-B Wi-Fi HAL
+        function is being extended. In current implementation wifi_getApAssociatedDeviceDiagnosticResult3
+        retrieves variety of statistics and state specific information for associated clients.
+        The wifi_associated_dev3_t data structure is filled by native WLAN drivers for each associated client
+        as and when the function is called by RDK-B application/process. A new component structure
+        wifi_csi_data_t is being defined that is part of wifi_associated_dev3_t structure and needs to be
+        allocated and filled for specific client or list of clients when
+        wifi_getApAssociatedDeviceDiagnosticResult3 API is called by RDK-B application/process. In cases when
+        application needs CSI data, the RDK-B application will call
         INT wifi_getApAssociatedDeviceDiagnosticResult3(INT apIndex, wifi_associated_dev3_t **associated_dev_array, UINT *output_array_size) by allocating the associated_dev_array memory for output_array_size number of client
-        devices. In other words output_array_size will specify the number of client devices in the array for 
+        devices. In other words output_array_size will specify the number of client devices in the array for
         which CSI data needs to filled by driver. The cli_MACAddress will specify the client devices in each
         of wifi_associated_dev3_t. Wi-Fi HAL implementation in such case MUST allocate memory for cli_CSIData
-        fill in required fields. The called in such cases is reposnsible for deallocation of memory. 
+        fill in required fields. The called in such cases is reposnsible for deallocation of memory.
         The wifi_csi_data_t is defined above */
 
-         wifi_csi_data_t  *cli_CsiData; 
+         wifi_csi_data_t  *cli_CsiData;
 
         UINT cli_activeNumSpatialStreams; /**< The number of active spatial streams in the session between AP and client at the moment of polling */
 
