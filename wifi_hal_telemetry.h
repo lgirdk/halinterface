@@ -51,7 +51,7 @@ typedef struct _wifi_radioTrafficStats2
      INT   radio_MinimumNoiseFloorOnChannel; /**< Minimum Noise on the channel. The metric is updated in this Parameter at the end of the interval defined by "Radio Statistics Measuring Interval".  The calculation of this metric MUST only use the data collected in the just completed interval.  If this metric is queried before it has been updated with an initial calculation, it MUST return -1. Units in dBm */
      INT   radio_MedianNoiseFloorOnChannel; /**< Median Noise on the channel during the measuring interval.   The metric is updated in this parameter at the end of the interval defined by "Radio Statistics Measuring Interval".  The calculation of this metric MUST only use the data collected in the just completed interval.  If this metric is queried before it has been updated with an initial calculation, it MUST return -1. Units in dBm */
      ULONG radio_StatisticsStartTime;   /**< The date and time at which the collection of the current set of statistics started.  This time must be updated whenever the radio statistics are reset. */
-    
+
 } wifi_radioTrafficStats2_t;    //for radio only
 
 typedef struct _wifi_ssidTrafficStats2
@@ -65,7 +65,7 @@ typedef struct _wifi_ssidTrafficStats2
      ULONG ssid_FailedRetransCount; /**< The number of packets that were not transmitted successfully due to the number of retransmission attempts exceeding an 802.11 retry limit. This parameter is based on dot11FailedCount from [802.11-2012]. */
      ULONG ssid_RetryCount;  /**< The number of packets that were successfully transmitted after one or more retransmissions. This parameter is based on dot11RetryCount from [802.11-2012]. */
      ULONG ssid_MultipleRetryCount; /**< The number of packets that were successfully transmitted after more than one retransmission. This parameter is based on dot11MultipleRetryCount from [802.11-2012]. */
-     ULONG ssid_ACKFailureCount;  /**< The number of expected ACKs that were never received. This parameter is based on dot11ACKFailureCount from [802.11-2012]. */    
+     ULONG ssid_ACKFailureCount;  /**< The number of expected ACKs that were never received. This parameter is based on dot11ACKFailureCount from [802.11-2012]. */
      ULONG ssid_AggregatedPacketCount; /**< The number of aggregated packets that were transmitted. This applies only to 802.11n and 802.11ac. */
 
      ULONG ssid_ErrorsSent; /**< The total number of outbound packets that could not be transmitted because of errors. */
@@ -82,7 +82,7 @@ typedef struct _wifi_ssidTrafficStats2
 
 } wifi_ssidTrafficStats2_t;  //for ssid only
 
-//Please do not edit the elements for this data structure 
+//Please do not edit the elements for this data structure
 typedef struct _wifi_neighbor_ap2
 {
      CHAR  ap_SSID[64];     /**< The current service set identifier in use by the neighboring WiFi SSID. The value MAY be empty for hidden SSIDs. */
@@ -119,7 +119,7 @@ typedef struct _wifi_neighbor_ap2
                          last 4 rssi values      |      sample counter
                                                  |
                                          last 4 rssi's age
-    
+
                                 the "77" rssi is 1 second old
                                          ______|______
                                         /             \
@@ -139,13 +139,13 @@ typedef struct _wifi_rssi_snapshot {
 } wifi_rssi_snapshot_t;
 
 #ifdef WIFI_HAL_VERSION_3_PHASE2
-typedef struct _wifi_apRssi {  
+typedef struct _wifi_apRssi {
     CHAR  ap_BSSID[6];              /**< BSSID */
     wifi_channelBandwidth_t   ap_channelWidth;         /**< The channel width; 1 for 20Mhz, 2 for 40 MHz, 4 for 80 MHz, 8 for 160 MHz, 10 for 80+80Mhz */
     INT   ap_rssi;                  /**< RSSI of the neighboring AP in dBm. */
 } wifi_apRssi_t;
 #else
-typedef struct _wifi_apRssi {  
+typedef struct _wifi_apRssi {
     CHAR  ap_BSSID[6];              /**< BSSID */
     UINT   ap_channelWidth;         /**< The channel width; 1 for 20Mhz, 2 for 40 MHz, 4 for 80 MHz, 8 for 160 MHz, 10 for 80+80Mhz */
     INT   ap_rssi;                  /**< RSSI of the neighboring AP in dBm. */
@@ -261,10 +261,10 @@ INT wifi_getApAssociatedClientDiagnosticResult(INT apIndex, mac_address_t mac_ad
 
 /* wifi_setClientDetailedStatisticsEnable() function */
 /**
-* @brief This function enabled/disabled collection of detailed statistics of associated clients on Access Point. 
+* @brief This function enabled/disabled collection of detailed statistics of associated clients on Access Point.
 *
 * @param[in] radioIndex          Radio Index
-* @param[in] enable              enable/disable 
+* @param[in] enable              enable/disable
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
