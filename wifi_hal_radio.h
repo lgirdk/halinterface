@@ -123,7 +123,7 @@ typedef struct {
     wifi_radio_11be_puncturing_info_t puncturingInfo;
     UINT autoChanRefreshPeriod;
     INT  mcs;
-    BOOL amsduEnable;    
+    BOOL amsduEnable;
 } __attribute__((packed)) wifi_radio_operationParam_t;
 
 /**
@@ -537,7 +537,7 @@ INT wifi_getRadioCarrierSenseThresholdRange(INT radioIndex, INT *output);  //P3
 /* wifi_getRadioCarrierSenseThresholdInUse() function */
 /**
 * @brief The RSSI signal level at which CS/CCA detects a busy condition.
-* 
+*
 * This attribute enables Access Points to increase minimum sensitivity to avoid detecting busy condition
 * from multiple/weak Wi-Fi sources in dense Wi-Fi environments.
 * It is measured in dBm. Refer section A.2.3.2 of CableLabs Wi-Fi MGMT Specification.
@@ -603,7 +603,7 @@ INT wifi_setRadioCarrierSenseThresholdInUse(INT radioIndex, INT threshold);    /
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_applyRadioSettings(INT radioIndex);  
+INT wifi_applyRadioSettings(INT radioIndex);
 
 /* wifi_setRadioCtsProtectionEnable() function */
 /**
@@ -623,7 +623,7 @@ INT wifi_applyRadioSettings(INT radioIndex);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioCtsProtectionEnable(INT apIndex, BOOL enable);          //P3 
+INT wifi_setRadioCtsProtectionEnable(INT apIndex, BOOL enable);          //P3
 
 /* wifi_setRadioObssCoexistenceEnable() function */
 /**
@@ -643,7 +643,7 @@ INT wifi_setRadioCtsProtectionEnable(INT apIndex, BOOL enable);          //P3
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioObssCoexistenceEnable(INT apIndex, BOOL enable);      
+INT wifi_setRadioObssCoexistenceEnable(INT apIndex, BOOL enable);
 
 /* wifi_setRadioFragmentationThreshold() function */
 /**
@@ -663,7 +663,7 @@ INT wifi_setRadioObssCoexistenceEnable(INT apIndex, BOOL enable);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioFragmentationThreshold(INT apIndex, UINT threshold);    //P3 
+INT wifi_setRadioFragmentationThreshold(INT apIndex, UINT threshold);    //P3
 
 /* wifi_setRadioSTBCEnable() function */
 /**
@@ -1015,7 +1015,7 @@ INT wifi_getRadioOperatingParameters(wifi_radio_index_t index, wifi_radio_operat
 
 /* wifi_getScanResults() function */
  /**
- * Description: Return scan results 
+ * Description: Return scan results
  * Parameters :
  *      ap_index - index of client VAP
  *      channel  - scan channel
@@ -1031,7 +1031,7 @@ INT wifi_getRadioOperatingParameters(wifi_radio_index_t index, wifi_radio_operat
  *
  */
 INT wifi_getScanResults(wifi_radio_index_t index, wifi_channel_t *channel, wifi_bss_info_t **bss, UINT *num_bss);
- 
+
 
 typedef INT ( * wifi_scanResults_callback)(wifi_radio_index_t index, wifi_bss_info_t **bss, UINT *num_bss);
 

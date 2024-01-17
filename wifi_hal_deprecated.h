@@ -29,55 +29,55 @@ typedef struct _wifi_basicTrafficStats
      ULONG wifi_BytesReceived;
      ULONG wifi_PacketsSent;
      ULONG wifi_PacketsReceived;
-     ULONG wifi_Associations;     
+     ULONG wifi_Associations;
 } wifi_basicTrafficStats_t;
 
 typedef struct _wifi_radioTrafficStats
 {
-     ULONG wifi_ErrorsSent;    
-     ULONG wifi_ErrorsReceived;   
-     ULONG wifi_DiscardPacketsSent; 
-     ULONG wifi_DiscardPacketsReceived; 
-     ULONG wifi_PLCPErrorCount;    
-     ULONG wifi_FCSErrorCount;    
-     ULONG wifi_InvalidMACCount;    
-     ULONG wifi_PacketsOtherReceived;    
-     INT   wifi_Noise;     
-     
-} wifi_radioTrafficStats_t;    
+     ULONG wifi_ErrorsSent;
+     ULONG wifi_ErrorsReceived;
+     ULONG wifi_DiscardPacketsSent;
+     ULONG wifi_DiscardPacketsReceived;
+     ULONG wifi_PLCPErrorCount;
+     ULONG wifi_FCSErrorCount;
+     ULONG wifi_InvalidMACCount;
+     ULONG wifi_PacketsOtherReceived;
+     INT   wifi_Noise;
+
+} wifi_radioTrafficStats_t;
 
 typedef struct _wifi_ssidTrafficStats
 {
-     ULONG wifi_RetransCount;    
-     ULONG wifi_FailedRetransCount;     
-     ULONG wifi_RetryCount;  
-     ULONG wifi_MultipleRetryCount;     
-     ULONG wifi_ACKFailureCount;      
-     ULONG wifi_AggregatedPacketCount;     
-     
-} wifi_ssidTrafficStats_t;  
+     ULONG wifi_RetransCount;
+     ULONG wifi_FailedRetransCount;
+     ULONG wifi_RetryCount;
+     ULONG wifi_MultipleRetryCount;
+     ULONG wifi_ACKFailureCount;
+     ULONG wifi_AggregatedPacketCount;
+
+} wifi_ssidTrafficStats_t;
 
 typedef struct _wifi_neighbor_ap
 {
-     CHAR  ap_Radio[64];    
-     CHAR  ap_SSID[64];    
-     CHAR  ap_BSSID[64];    
-     CHAR  ap_Mode[64];    
+     CHAR  ap_Radio[64];
+     CHAR  ap_SSID[64];
+     CHAR  ap_BSSID[64];
+     CHAR  ap_Mode[64];
      UINT  ap_Channel;
      INT   ap_SignalStrength;
-     CHAR  ap_SecurityModeEnabled[64];    
-     CHAR  ap_EncryptionMode[64];    
-     CHAR  ap_OperatingFrequencyBand[16];    
-     CHAR  ap_SupportedStandards[64];    
-     CHAR  ap_OperatingStandards[16];    
-     CHAR  ap_OperatingChannelBandwidth[16];    
-     UINT  ap_BeaconPeriod;    
-     INT   ap_Noise;    
-     CHAR  ap_BasicDataTransferRates[256];    
+     CHAR  ap_SecurityModeEnabled[64];
+     CHAR  ap_EncryptionMode[64];
+     CHAR  ap_OperatingFrequencyBand[16];
+     CHAR  ap_SupportedStandards[64];
+     CHAR  ap_OperatingStandards[16];
+     CHAR  ap_OperatingChannelBandwidth[16];
+     UINT  ap_BeaconPeriod;
+     INT   ap_Noise;
+     CHAR  ap_BasicDataTransferRates[256];
      CHAR  ap_SupportedDataTransferRates[256];
      UINT  ap_DTIMPeriod;
-     UINT  ap_ChannelUtilization;    
-     
+     UINT  ap_ChannelUtilization;
+
 } wifi_neighbor_ap_t;
 //<<
 
@@ -90,7 +90,7 @@ typedef struct _wifi_diag_ipping_setting
      UINT  ipping_DataBlockSize;    /**< Size of the data block in bytes to be sent for each ping. */
      UINT  ipping_DSCP;    /**< DiffServ codepoint to be used for the test packets. By default the CPE SHOULD set this value to zero. */
 
-} wifi_diag_ipping_setting_t;    
+} wifi_diag_ipping_setting_t;
 
 typedef struct _wifi_diag_ipping_result
 {
@@ -100,12 +100,12 @@ typedef struct _wifi_diag_ipping_result
      UINT  ipping_AverageResponseTime;    /**< Result parameter indicating the average response time in milliseconds over all repetitions with successful responses of the most recent ping test. If there were no successful responses, this value MUST be zero. */
      UINT  ipping_MinimumResponseTime;    /**< Result parameter indicating the minimum response time in milliseconds over all repetitions with successful responses of the most recent ping test. If there were no successful responses, this value MUST be zero. */
      UINT  ipping_MaximumResponseTime;    /**< Result parameter indicating the maximum response time in milliseconds over all repetitions with successful responses of the most recent ping test. If there were no successful responses, this value MUST be zero. */
-     
+
 } wifi_diag_ipping_result_t;
 
 
 //----------------ASSO. DEV-------------------------------------------
-//>> Deprecated: used for old RDKB code. 
+//>> Deprecated: used for old RDKB code.
 typedef struct _wifi_device
 {
      UCHAR wifi_devMacAddress[6];
@@ -152,7 +152,7 @@ typedef struct _mac_t {
     unsigned char byte[6];
 } mac_t;
 
-typedef struct _wifi_channelStats2 { 
+typedef struct _wifi_channelStats2 {
     UINT    ch_Frequency;               /**< Current primary channel centre frequency */
     INT     ch_NoiseFloor;              /**< Current noise floor on channel */
     INT     ch_Non80211Noise;           /**< Current non 802.11 noise on channel */
@@ -246,7 +246,7 @@ INT wifi_getRadioCountryCode(INT radioIndex, CHAR *output_string);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioCountryCode(INT radioIndex, CHAR *CountryCode);       
+INT wifi_setRadioCountryCode(INT radioIndex, CHAR *CountryCode);
 
 
 /* wifi_pushCountryCode() function */
@@ -360,7 +360,7 @@ INT wifi_getATMCapable(BOOL *output_bool);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setATMEnable(BOOL enable); 
+INT wifi_setATMEnable(BOOL enable);
 
 
 /**
@@ -379,7 +379,7 @@ INT wifi_setATMEnable(BOOL enable);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getATMEnable(BOOL *output_enable); 
+INT wifi_getATMEnable(BOOL *output_enable);
 
 /**
 * @brief Set Access Point Air Time Percent.
@@ -399,7 +399,7 @@ INT wifi_getATMEnable(BOOL *output_enable);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApATMAirTimePercent(INT apIndex, UINT ap_AirTimePercent); 
+INT wifi_setApATMAirTimePercent(INT apIndex, UINT ap_AirTimePercent);
 
 /**
 * @brief Get Ap Air Time Percent.
@@ -481,7 +481,7 @@ INT wifi_getRadioNumberOfEntries(ULONG *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Get the total number of SSID entries in this wifi subsystem 
+//Get the total number of SSID entries in this wifi subsystem
 INT wifi_getSSIDNumberOfEntries(ULONG *output);
 
 
@@ -514,9 +514,9 @@ INT wifi_getRadioMaxBitRate(INT radioIndex, CHAR *output_string);
 /**
 * @brief Get Supported frequency bands at which the radio can operate. eg: "2.4GHz,5GHz".
 *
-* The output_string is a max length 64 octet string that is allocated by the RDKB code.  
+* The output_string is a max length 64 octet string that is allocated by the RDKB code.
 * Implementations must ensure that strings are not longer than this.
-* 
+*
 * @param[in]  radioIndex     Index of Wi-Fi radio channel
 * @param[out] output_string  Supported frequency bands, to be returned
 *
@@ -624,7 +624,7 @@ INT wifi_getRadioStandard(INT radioIndex, CHAR *output_string, BOOL *gOnly, BOOL
 *
 * @param[in]  radioIndex      Index of Wi-Fi radio channel
 * @param[out] output_string   Radio operating mode, to be returned
-* @param[out] pureMode        Pointer to pure mode bit map starting from LSB b only, g only, a only, 
+* @param[out] pureMode        Pointer to pure mode bit map starting from LSB b only, g only, a only,
 *                                 n only, ac only, ax only, e.g. n only will be 8, ax only will be 32
 *
 * @return The status of the operation
@@ -673,7 +673,7 @@ INT wifi_setRadioChannelMode(INT radioIndex, CHAR *channelMode, BOOL gOnlyFlag, 
 *
 * @param[in] radioIndex   Index of Wi-Fi radio channel
 * @param[in] channelMode  Pass the channelMode for specified radio index
-* @param[in] pureMode     Pass flag for setting pure mode bit map starting from LSB b only, g only, a only, 
+* @param[in] pureMode     Pass flag for setting pure mode bit map starting from LSB b only, g only, a only,
 *                           n only, ac only, ax only, e.g. n only will be 8, ax only will be 32
 *
 * @return The status of the operation
@@ -1006,7 +1006,7 @@ INT wifi_setRadioDCSScanTime(INT radioIndex, INT interval_seconds, INT dwell_mil
 /**
 * @brief Set radio Dcs Dwell time.
 *
-* @param[in]  radioIndex   Index of Wi-Fi radio 
+* @param[in]  radioIndex   Index of Wi-Fi radio
 * @param[in]  millisecond  Dwell time on each channel
 *
 * @return The status of the operation
@@ -1020,12 +1020,12 @@ INT wifi_setRadioDCSScanTime(INT radioIndex, INT interval_seconds, INT dwell_mil
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioDcsDwelltime(INT radioIndex, INT millisecond); 
+INT wifi_setRadioDcsDwelltime(INT radioIndex, INT millisecond);
 
 /**
 * @brief Get radio Dcs Dwell time.
 *
-* @param[in] radioIndex           Index of Wi-Fi radio 
+* @param[in] radioIndex           Index of Wi-Fi radio
 * @param[in] output_millisecond   Dwell time on each channel
 *
 * @return The status of the operation
@@ -1084,7 +1084,7 @@ INT wifi_getRadioDcsScanning(INT radioIndex, BOOL *output_bool);
 /**
 * @brief Get radio Channel Metrics.
 *
-* @param[in]  radioIndex                          Index of Wi-Fi radio 
+* @param[in]  radioIndex                          Index of Wi-Fi radio
 * @param[out] input_output_channelMetrics_array   caller allocated buffer
 * @param[out] array_size                          The count for wifi_channelMetrics_t that caller allocated
 *
@@ -1104,11 +1104,11 @@ INT wifi_getRadioDcsChannelMetrics(INT radioIndex, wifi_channelMetrics_t *input_
 /**
 * @brief Instantlly change the radio Channel.
 *
-* Use Channels Switch Announcements (CSAs) (in 802.11h) to notify the client, 
-* and channel change instantly. Do not save wifi config (channel change is not 
+* Use Channels Switch Announcements (CSAs) (in 802.11h) to notify the client,
+* and channel change instantly. Do not save wifi config (channel change is not
 * persistent over wifi reboot).
 *
-* @param[in] radioIndex  Index of Wi-Fi radio 
+* @param[in] radioIndex  Index of Wi-Fi radio
 * @param[in] channel     net channel
 *
 * @return The status of the operation
@@ -1118,7 +1118,7 @@ INT wifi_getRadioDcsChannelMetrics(INT radioIndex, wifi_channelMetrics_t *input_
 * @execution Synchronous
 * @sideeffect None
 *
-* @note This function must not suspend and should not invoke any blocking system 
+* @note This function must not suspend and should not invoke any blocking system
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
@@ -1128,7 +1128,7 @@ INT wifi_pushRadioChannel(INT radioIndex, UINT channel);
 /**
 * @brief  This HAL API is used to change the channel to destination channel, with destination bandwidth.
 *
-* @param[in] radioIndex          Index of Wi-Fi radio 
+* @param[in] radioIndex          Index of Wi-Fi radio
 * @param[in] channel             net channel
 * @param[in] channel_width_MHz   channel frequency
 * @param[in] csa_beacon_count    Specifies how long CSA need to be announced.
@@ -1140,7 +1140,7 @@ INT wifi_pushRadioChannel(INT radioIndex, UINT channel);
 * @execution Synchronous
 * @sideeffect None
 *
-* @note This function must not suspend and should not invoke any blocking system 
+* @note This function must not suspend and should not invoke any blocking system
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
@@ -1321,7 +1321,7 @@ INT wifi_setRadioExtChannel(INT radioIndex, CHAR *string); //AP only
 /**
 * @brief Get the guard interval value. eg "400nsec" or "800nsec".
 *
-* The output_string is a max length 64 octet string that is allocated by the RDKB code. 
+* The output_string is a max length 64 octet string that is allocated by the RDKB code.
 * Implementations must ensure that strings are not longer than this.
 *
 * @param[in]  radioIndex     Index of Wi-Fi radio channel
@@ -1385,8 +1385,8 @@ INT wifi_getRadioTransmitPowerSupported(INT radioIndex, CHAR *output_list);
 
 /* wifi_getRadioIEEE80211hSupported() function */
 /**
-* @brief Get 80211h Supported. 
-* 
+* @brief Get 80211h Supported.
+*
 * 80211h solves interference with satellites and radar using the same 5 GHz frequency band.
 *
 * @param[in]  radioIndex  Index of Wi-Fi radio channel
@@ -1488,7 +1488,7 @@ INT wifi_getRadioBeaconPeriod(INT radioIndex, UINT *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioBeaconPeriod(INT radioIndex, UINT BeaconPeriod); 
+INT wifi_setRadioBeaconPeriod(INT radioIndex, UINT BeaconPeriod);
 
 /* wifi_getRadioSupportedDataTransmitRates() function */
 /**
@@ -1513,7 +1513,7 @@ INT wifi_setRadioBeaconPeriod(INT radioIndex, UINT BeaconPeriod);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Contains a comma separated string of supported rates supported by the radio instance. Must include all rates in the acceptance criteria belonging to the corresponding radio configuration.    
+//Contains a comma separated string of supported rates supported by the radio instance. Must include all rates in the acceptance criteria belonging to the corresponding radio configuration.
 INT wifi_getRadioSupportedDataTransmitRates(INT radioIndex, char *output_rates);
 
 /* wifi_getRadioBasicDataTransmitRates() function */
@@ -1539,7 +1539,7 @@ INT wifi_getRadioSupportedDataTransmitRates(INT radioIndex, char *output_rates);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Comma-separated list of strings. The set of data rates, in Mbps, that have to be supported by all stations that desire to join this BSS. The stations have to be able to receive and transmit at each of the data rates listed inBasicDataTransmitRates. For example, a value of "1,2", indicates that stations support 1 Mbps and 2 Mbps. Most control packets use a data rate in BasicDataTransmitRates.    
+//Comma-separated list of strings. The set of data rates, in Mbps, that have to be supported by all stations that desire to join this BSS. The stations have to be able to receive and transmit at each of the data rates listed inBasicDataTransmitRates. For example, a value of "1,2", indicates that stations support 1 Mbps and 2 Mbps. Most control packets use a data rate in BasicDataTransmitRates.
 INT wifi_getRadioBasicDataTransmitRates(INT radioIndex, CHAR *output);
 
 /* wifi_setRadioBasicDataTransmitRates() function */
@@ -1547,7 +1547,7 @@ INT wifi_getRadioBasicDataTransmitRates(INT radioIndex, CHAR *output);
 * @brief Set the data rates, in Mbps.
 *
 * This have to be supported by all stations that desire to join this BSS.
-* The stations have to be able to receive and transmit at each of the data rates listed inBasicDataTransmitRates. 
+* The stations have to be able to receive and transmit at each of the data rates listed inBasicDataTransmitRates.
 * For example, a value of "1,2", indicates that stations support 1 Mbps and 2 Mbps.
 * Most control packets use a data rate in BasicDataTransmitRates.
 *
@@ -1589,8 +1589,8 @@ INT wifi_setRadioBasicDataTransmitRates(INT radioIndex, CHAR *TransmitRates);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Contains a comman separated string of operational rates supported by the radio instance. Is either equal to the set of supported rates or a super set.    
-INT wifi_getRadioOperationalDataTransmitRates(INT radioIndex, char *output_rates);        
+//Contains a comman separated string of operational rates supported by the radio instance. Is either equal to the set of supported rates or a super set.
+INT wifi_getRadioOperationalDataTransmitRates(INT radioIndex, char *output_rates);
 
 /* wifi_setRadioOperationalDataTransmitRates() function */
 /**
@@ -1661,7 +1661,7 @@ INT wifi_setRadioTrafficStatsRadioStatisticsEnable(INT radioIndex, BOOL enable);
 /**
 * @brief Clients associated with the AP over a specific interval.
 *
-* The histogram MUST have a range from -110to 0 dBm and MUST be divided in bins of 3 dBM, with bins aligning on the -110 dBm 
+* The histogram MUST have a range from -110to 0 dBm and MUST be divided in bins of 3 dBM, with bins aligning on the -110 dBm
 * end of the range.
 * Received signal levels equal to or greater than the smaller boundary of a bin and less than the larger boundary are included
 * in the respective bin.
@@ -1669,7 +1669,7 @@ INT wifi_setRadioTrafficStatsRadioStatisticsEnable(INT radioIndex, BOOL enable);
 * Additionally, the respective bins associated with each connected clients current received signal level MUST be incremented at
 * the interval defined by "Radio Statistics Measuring Rate".
 * The histogram  bins MUST NOT be incremented at any other time.
-* The histogram data collected during the interval MUST be published to the parameter only at the end of the interval defined by 
+* The histogram data collected during the interval MUST be published to the parameter only at the end of the interval defined by
 * "Radio Statistics Measuring Interval".
 * The underlying histogram data MUST be cleared at the start of each interval defined by "Radio Statistics Measuring Interval".
 * If any of the parameter's representing this histogram is queried before the histogram has been updated with an initial set of
@@ -1774,7 +1774,7 @@ INT wifi_getSSIDStatus(INT ssidIndex, CHAR *output_string);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getSSIDName(INT apIndex, CHAR *output_string);        
+INT wifi_getSSIDName(INT apIndex, CHAR *output_string);
 
 /**
 * @brief To read the run time ssid name.
@@ -1865,7 +1865,7 @@ INT wifi_getSSIDMACAddress(INT ssidIndex, CHAR *output_string);
 * @brief Start the wifi scan and get the result into output buffer for RDKB to parser.
 *
 * The result will be used to manage endpoint list. HAL functon should allocate an data structure array,
-* and return to caller with "neighbor_ap_array". 
+* and return to caller with "neighbor_ap_array".
 *
 * @param[in]  radioIndex           Radio index
 * @param[out] neighbor_ap_array    Neighbour access point info to be returned
@@ -1906,7 +1906,7 @@ INT wifi_getNeighboringWiFiDiagnosticResult2(INT radioIndex, wifi_neighbor_ap2_t
 INT wifi_getNeighboringWiFiStatus(INT radioIndex, wifi_neighbor_ap2_t **neighbor_ap_array, UINT *output_array_size);
 #endif
 
-//>> Deprecated: used for old RDKB code. 
+//>> Deprecated: used for old RDKB code.
 /** Deprecated: used for old RDKB code. */
 INT wifi_getSSIDTrafficStats(INT ssidIndex, wifi_ssidTrafficStats_t *output_struct);
 /** Deprecated: used for old RDKB code. */
@@ -1933,7 +1933,7 @@ INT wifi_getAllAssociatedDeviceDetail(INT apIndex, ULONG *output_ulong, wifi_dev
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getBandSteeringCapability(BOOL *support); 
+INT wifi_getBandSteeringCapability(BOOL *support);
 
 #ifndef WIFI_HAL_VERSION_3_PHASE2
 /* wifi_getApAssociatedDevice() function */
@@ -2122,7 +2122,7 @@ INT wifi_pushRadioRxChainMask(INT radioIndex);                           //P2  /
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_pushSSID(INT apIndex, CHAR *ssid);                          // push the environment varible that is set by "wifi_setSsidName" to the hardware    
+INT wifi_pushSSID(INT apIndex, CHAR *ssid);                          // push the environment varible that is set by "wifi_setSsidName" to the hardware
 
 /* wifi_pushSsidAdvertisementEnable() function */
 /**
@@ -2142,7 +2142,7 @@ INT wifi_pushSSID(INT apIndex, CHAR *ssid);                          // push the
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_pushSsidAdvertisementEnable(INT apIndex, BOOL enable);             // push the environment varible that is set by "wifi_setApSsidAdvertisementEnable" to the hardware    
+INT wifi_pushSsidAdvertisementEnable(INT apIndex, BOOL enable);             // push the environment varible that is set by "wifi_setApSsidAdvertisementEnable" to the hardware
 
 /* wifi_getRadioReverseDirectionGrantEnable() function */
 /**
@@ -2333,7 +2333,7 @@ INT wifi_getApIndexFromName(CHAR *inputSsidString, INT *ouput_int);     // Outpu
 * DTIM (Delivery Traffic Indication Message)
 *
 * @param[in] apIndex        Access Point index
-* @param[in] dtimInterval   DTIM interval 
+* @param[in] dtimInterval   DTIM interval
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -2373,7 +2373,7 @@ INT wifi_getApBeaconType(INT apIndex, CHAR *output_string);           // Outputs
 * @brief Sets the beacon type environment variable. Allowed input strings are "None", "Basic", "WPA, "11i", "WPAand11i".
 *
 * @param[in] apIndex            Access Point index
-* @param[in] beaconTypeString   Beacon type 
+* @param[in] beaconTypeString   Beacon type
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -2394,7 +2394,7 @@ INT wifi_setApBeaconType(INT apIndex, CHAR *beaconTypeString);        // Sets th
 * @brief Sets the beacon interval on the hardware for this Access Point.
 *
 * @param[in] apIndex          Access Point index
-* @param[in] beaconInterval   Beacon interval 
+* @param[in] beaconInterval   Beacon interval
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -2414,7 +2414,7 @@ INT wifi_setApBeaconInterval(INT apIndex, INT beaconInterval);        // sets th
 * @brief Get the packet size threshold supported.
 *
 * @param[in]  apIndex       Access Point index
-* @param[out] output_bool   Packet size threshold supported, to be returned 
+* @param[out] output_bool   Packet size threshold supported, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -2427,14 +2427,14 @@ INT wifi_setApBeaconInterval(INT apIndex, INT beaconInterval);        // sets th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApRtsThresholdSupported(INT apIndex, BOOL *output_bool);  // Get the packet size threshold supported. 
+INT wifi_getApRtsThresholdSupported(INT apIndex, BOOL *output_bool);  // Get the packet size threshold supported.
 
 /* wifi_getApWpaEncryptionMode() function */
 /**
 * @brief Ouputs up to a 32 byte string as either "TKIPEncryption", "AESEncryption", or "TKIPandAESEncryption".
 *
 * @param[in]  apIndex        Access Point index
-* @param[out] output_string  WPA Encryption mode, to be returned 
+* @param[out] output_string  WPA Encryption mode, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -2625,7 +2625,7 @@ INT wifi_addApAclDevice(INT apIndex, CHAR *DeviceMacAddress);         // adds th
 *
 */
 INT wifi_delApAclDevice(INT apIndex, CHAR *DeviceMacAddress);
-#endif 
+#endif
 
 /* wifi_setApVlanEnable() function */
 /**
@@ -2648,7 +2648,7 @@ INT wifi_delApAclDevice(INT apIndex, CHAR *DeviceMacAddress);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApVlanEnable(INT apIndex, BOOL VlanEnabled);              // enables internal gateway VLAN mode.  In this mode a Vlan tag is added to upstream (received) data packets before exiting the Wifi driver.  VLAN tags in downstream data are stripped from data packets before transmission.  Default is FALSE. 
+INT wifi_setApVlanEnable(INT apIndex, BOOL VlanEnabled);              // enables internal gateway VLAN mode.  In this mode a Vlan tag is added to upstream (received) data packets before exiting the Wifi driver.  VLAN tags in downstream data are stripped from data packets before transmission.  Default is FALSE.
 
 /* wifi_getApBridgeInfo() function */
 /**
@@ -2696,7 +2696,7 @@ INT wifi_getApBridgeInfo(INT index, CHAR *bridgeName, CHAR *IP, CHAR *subnet);  
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApBridgeInfo(INT apIndex, CHAR *bridgeName, CHAR *IP, CHAR *subnet);   //sets bridgeName, IP address and Subnet to internal environment variables. bridgeName is a maximum of 32 characters, 
+INT wifi_setApBridgeInfo(INT apIndex, CHAR *bridgeName, CHAR *IP, CHAR *subnet);   //sets bridgeName, IP address and Subnet to internal environment variables. bridgeName is a maximum of 32 characters,
 
 INT wifi_pushBridgeInfo(INT apIndex);                                      //P2  //!< Push the BridgeInfo environment variables to the hardware
 
@@ -2759,7 +2759,7 @@ INT wifi_pushApSsidAdvertisementEnable(INT apIndex, BOOL enable);     // push th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApWMMCapability(INT apIndex, BOOL *output); 
+INT wifi_getApWMMCapability(INT apIndex, BOOL *output);
 
 /* wifi_getApUAPSDCapability() function */
 /**
@@ -2782,7 +2782,7 @@ INT wifi_getApWMMCapability(INT apIndex, BOOL *output);
 *
 */
 //Indicates whether this access point supports WMM Unscheduled Automatic Power Save Delivery (U-APSD). Note: U-APSD support implies WMM support.
-INT wifi_getApUAPSDCapability(INT apIndex, BOOL *output);             
+INT wifi_getApUAPSDCapability(INT apIndex, BOOL *output);
 
 /* wifi_getApSecurityModesSupported() function */
 /**
@@ -2813,7 +2813,7 @@ INT wifi_getApUAPSDCapability(INT apIndex, BOOL *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApSecurityModesSupported(INT apIndex, CHAR *output);             
+INT wifi_getApSecurityModesSupported(INT apIndex, CHAR *output);
 
 /* wifi_getApSecurityModeEnabled() function */
 /**
@@ -2836,7 +2836,7 @@ INT wifi_getApSecurityModesSupported(INT apIndex, CHAR *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);    
+INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);
 
 /* wifi_setApSecurityModeEnabled() function */
 /**
@@ -2858,7 +2858,7 @@ INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApSecurityModeEnabled(INT apIndex, CHAR *encMode);        
+INT wifi_setApSecurityModeEnabled(INT apIndex, CHAR *encMode);
 
 /* wifi_getApSecurityPreSharedKey() function */
 /**
@@ -2967,7 +2967,7 @@ INT wifi_setApSecurityKeyPassphrase(INT apIndex, CHAR *passPhrase);           //
 *
 */
 //Enables or disables WPS functionality for this access point.
-INT wifi_getApWpsEnable(INT apIndex, BOOL *output_bool);   
+INT wifi_getApWpsEnable(INT apIndex, BOOL *output_bool);
 
 /* wifi_setApWpsEnable() function */
 /**
@@ -2989,7 +2989,7 @@ INT wifi_getApWpsEnable(INT apIndex, BOOL *output_bool);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApWpsEnable(INT apIndex, BOOL enableValue);    
+INT wifi_setApWpsEnable(INT apIndex, BOOL enableValue);
 
 /* wifi_getApWpsConfigMethodsSupported() function */
 /**
@@ -3351,7 +3351,7 @@ INT wifi_getRMCapabilities(CHAR *peer, UCHAR out_Capabilities[5]);
  * @retval RETURN_ERR if any error is detected.
  */
 
-INT wifi_dppSetSTAPassphrase(UINT apIndex, 
+INT wifi_dppSetSTAPassphrase(UINT apIndex,
                                 CHAR *sta,
                                 CHAR *key);
 
@@ -3423,7 +3423,7 @@ typedef struct {
     wifi_dpp_discovery_object_t         discovery;
     wifi_dpp_credential_object_t        credentials;
     void     *reconfigCtx;
-    void     *cSignInstance;        
+    void     *cSignInstance;
 } wifi_dpp_configuration_object_t;
 
 typedef enum {
@@ -3559,7 +3559,7 @@ typedef struct {
  * @note This function must not suspend and must not invoke any blocking system
  * calls.
  */
-typedef void (*wifi_dppAuthResponse_callback_t)(UINT apIndex, 
+typedef void (*wifi_dppAuthResponse_callback_t)(UINT apIndex,
                                                 mac_address_t sta,
                                                 UCHAR *frame,
                                                 UINT len);
@@ -3635,7 +3635,7 @@ typedef void (*wifi_dppReconfigAnnounce_callback_t)(UINT apIndex,
  * @note This function must not suspend and must not invoke any blocking system
  * calls.
  */
-typedef void (*wifi_dppReconfigAuthResponse_callback_t)(UINT apIndex, 
+typedef void (*wifi_dppReconfigAuthResponse_callback_t)(UINT apIndex,
                                                 mac_address_t sta,
                                                 UCHAR *frame,
                                                 UINT len);
@@ -3652,7 +3652,7 @@ typedef void (*wifi_dppReconfigAuthResponse_callback_t)(UINT apIndex,
  * @param rBootstrapSubjectPubKeyInfoB64; pointer to responder's DER encoded ASN.1 base64 subject public key info (RFC 5280).
  * @param channel; frequency in Hz of channel on which initiator should send the DPP Authentication Request public action frame
 
- 
+
  * @return The status of the operation.
  * @retval RETURN_OK if successful.
  * @retval RETURN_ERR if any error is detected.
@@ -3693,7 +3693,7 @@ int mgmt_frame_received_callback(INT ap_index, mac_address_t sta_mac, UCHAR *fra
  * @note This function must not suspend and must not invoke any blocking system
  * calls.
  */
- 
+
 INT wifi_dpp_frame_received_callbacks_register(wifi_dppAuthResponse_callback_t dppAuthCallback,
                                     wifi_dppConfigRequest_callback_t dppConfigCallback,
                                     wifi_dppConfigResult_callback_t dppConfigResultCallback,
@@ -3701,7 +3701,7 @@ INT wifi_dpp_frame_received_callbacks_register(wifi_dppAuthResponse_callback_t d
                                     wifi_dppReconfigAuthResponse_callback_t dppReconfigAuthRspCallback);
 
 /* @description send athentication confiration as per DPP specifications
- * Causes AP to transmit DPP Authentication Conf message frame to STA that will cause STA 
+ * Causes AP to transmit DPP Authentication Conf message frame to STA that will cause STA
  * to request configuration process in case confirmation status is set to success
  * Sent from the AP at apIndex.  Returns an error if message transmission fails.
  *
@@ -3716,7 +3716,7 @@ INT wifi_dpp_frame_received_callbacks_register(wifi_dppAuthResponse_callback_t d
 INT wifi_dppSendAuthCnf(wifi_device_dpp_context_t *ctx);
 
 /* @description send device specific configuration as per DPP specifications
- * Causes AP to transmit DPP Configuration Response frame to STA with device specific 
+ * Causes AP to transmit DPP Configuration Response frame to STA with device specific
  * configuration
  * Sent from the AP at apIndex.  Returns an error if message transmission fails.
  *

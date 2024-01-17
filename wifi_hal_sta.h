@@ -67,7 +67,7 @@ INT wifi_connect(INT ap_index, wifi_bss_info_t *bss);
 /* wifi_disconnect() function */
  /**
  * Description: To disconnect client
- * Parameters : 
+ * Parameters :
  *      ap_index - index of client VAP
  *
  * @return status of the operation
@@ -84,7 +84,7 @@ INT wifi_disconnect(INT ap_index);
 /* wifi_getClientCapability() function */
  /**
  * Description: To get client
- * Parameters : 
+ * Parameters :
  *      ap_index - index of client VAP
  *      capability - wifi_client_capabilities_t structure
  *
