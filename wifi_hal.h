@@ -83,22 +83,22 @@
 #include "wifi_hal_generic.h"
 /**
  * Wifi Radio specific APIs.
- * Includes API to configure and read configuration, factory-reset and reset of the radio. 
+ * Includes API to configure and read configuration, factory-reset and reset of the radio.
  */
 #include "wifi_hal_radio.h"
 /**
  * Wifi VAP specific APIs.
- * Includes API to create, configure and read configuration, factory-reset and reset of the VAP. 
+ * Includes API to create, configure and read configuration, factory-reset and reset of the VAP.
  */
 #include "wifi_hal_ap.h"
 /**
 * Wifi STA specific APIs.
-* Includes API to create, configure and read configuration the STA VAP. 
+* Includes API to create, configure and read configuration the STA VAP.
 */
 #include "wifi_hal_sta.h"
 /**
  * Wifi measurement and Telemetry specific APIs.
- * 
+ *
  */
 #include "wifi_hal_telemetry.h"
 /**
