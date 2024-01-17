@@ -83,11 +83,11 @@ INT wifi_setBandSteeringEnable(BOOL enable);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getBandSteeringApGroup(char *output_ApGroup);    
+INT wifi_getBandSteeringApGroup(char *output_ApGroup);
 
 /* wifi_setBandSteeringApGroup() function */
 /**
-* @brief To set Band Steering Access Point group. 
+* @brief To set Band Steering Access Point group.
 *
 * @param[in] ApGroup - Band Steering Access Point  group
 *
@@ -102,11 +102,11 @@ INT wifi_getBandSteeringApGroup(char *output_ApGroup);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//To set Band Steering AP group 
+//To set Band Steering AP group
 //ApGroup contains AP index(start from 1) pair array, in following format "$index_2.4G,$index_5G;$index_2.4G,$index_5G"
-//Example "1,2;3,4;7,8" for Private, XH, LnF pairs. 
+//Example "1,2;3,4;7,8" for Private, XH, LnF pairs.
 //ApGroup have to contain at least one AP pair, such as "1,2"
-INT wifi_setBandSteeringApGroup(char *ApGroup); 
+INT wifi_setBandSteeringApGroup(char *ApGroup);
 
 //<<
 /* wifi_getBandSteeringBandUtilizationThreshold() function */
@@ -234,7 +234,7 @@ INT wifi_setBandSteeringPhyRateThreshold (INT radioIndex, INT prThreshold); //If
 
 /* wifi_getBandSteeringOverloadInactiveTime() function */
 /**
-* @brief To read the inactivity time (in seconds) for steering under overload condition 
+* @brief To read the inactivity time (in seconds) for steering under overload condition
 *
 *
 * @param[in]  radioIndex             Radio Index
@@ -339,7 +339,7 @@ INT wifi_setBandSteeringIdleInactiveTime (INT radioIndex, INT idleInactiveTime);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getBandSteeringLog(INT record_index, ULONG *pSteeringTime, CHAR *pClientMAC, INT *pSourceSSIDIndex, INT *pDestSSIDIndex, INT *pSteeringReason); 
+INT wifi_getBandSteeringLog(INT record_index, ULONG *pSteeringTime, CHAR *pClientMAC, INT *pSourceSSIDIndex, INT *pDestSSIDIndex, INT *pSteeringReason);
 
 /* wifi_getApAssociatedDevicesHighWatermarkThreshold() function */
 /**
@@ -376,11 +376,11 @@ INT wifi_getApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT *output)
 * as that is controlled by MaxAssociatedDevices.
 * MaxAssociatedDevices or 50.
 * The default value of this parameter should be equal to MaxAssociatedDevices.
-* In case MaxAssociatedDevices is 0 (zero), the default value of this parameter should be 50. 
+* In case MaxAssociatedDevices is 0 (zero), the default value of this parameter should be 50.
 * A value of 0 means that there is no specific limit and Watermark calculation algorithm should be turned off.
 *
 * @param[in] apIndex    Access Point index
-* @param[in] Threshold  HighWatermarkThreshold value 
+* @param[in] Threshold  HighWatermarkThreshold value
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -427,7 +427,7 @@ INT wifi_getApAssociatedDevicesHighWatermarkThresholdReached(INT apIndex, UINT *
 *
 * @param[in]  apIndex  Access Point index
 * @param[out] output   Maximum number of associated devices that have ever associated with the access point concurrently,
-*                      to be returned 
+*                      to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -451,7 +451,7 @@ INT wifi_getApAssociatedDevicesHighWatermark(INT apIndex, UINT *output);
 * This dateTime value is in UTC.
 *
 * @param[in]   apIndex             Access Point index
-* @param[out]  output_in_seconds   Date and Time at which the maximum number of associated 
+* @param[out]  output_in_seconds   Date and Time at which the maximum number of associated
 *                                  devices ever associated with the access point
 *                                  concurrenlty, to be returned.
 *
@@ -471,7 +471,7 @@ INT wifi_getApAssociatedDevicesHighWatermarkDate(INT apIndex, ULONG *output_in_s
 /* @description Set the Fast Transition capability to disabled, full FT
  * support, or adaptive FT support.  Adaptive support is the same as full
  * support except the Mobility Domain Element is not sent in Beacon Frames.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param activate - 0 = disabled, 1 = full FT support, 2 = adaptive support.
  * @return The status of the operation.
@@ -481,8 +481,8 @@ INT wifi_getApAssociatedDevicesHighWatermarkDate(INT apIndex, ULONG *output_in_s
 INT wifi_setFastBSSTransitionActivated(INT apIndex, UCHAR activate);
 
 /**
- * @brief Get the Fast Transition capability value.  
- * 
+ * @brief Get the Fast Transition capability value.
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param activate - 0 = disabled, 1 = full FT support, 2 = adaptive support.
  *
@@ -520,7 +520,7 @@ typedef struct _wifi_eap_config_t
  * @{
  */
 /**
- * @brief Get the Fast Transition over DS activated value.  
+ * @brief Get the Fast Transition over DS activated value.
  * @description Set the EAP authentication and EAPOL Handshake parameters.
  * EAPOL Key Timeout and max retries [M1 and M3]
  * EAP Identity Request and max retries
@@ -549,9 +549,9 @@ INT wifi_setEAP_Param(UINT apIndex, UINT value, char  *param);
  */
 INT wifi_getEAP_Param(UINT apIndex, wifi_eap_config_t *output);
 
-/* @description Get the Fast Transition over DS activated value.  
+/* @description Get the Fast Transition over DS activated value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param activate - True for activated (enabled), false for not activated
  * (disabled).
@@ -563,9 +563,9 @@ INT wifi_getEAP_Param(UINT apIndex, wifi_eap_config_t *output);
 INT wifi_getFTOverDSActivated(INT apIndex, BOOL *activate);
 
 /**
- * @brief Set the Fast Transition over DS activated value. 
- * See 802.11-2016 section 13.3. 
- * 
+ * @brief Set the Fast Transition over DS activated value.
+ * See 802.11-2016 section 13.3.
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param activate - True for activated (enabled), false for not activated
  * (disabled).
@@ -577,9 +577,9 @@ INT wifi_getFTOverDSActivated(INT apIndex, BOOL *activate);
 INT wifi_setFTOverDSActivated(INT apIndex, BOOL *activate);
 
 /**
- * @brief Get the Fast Transition Mobility Domain value. 
- * See 802.11-2016 section 13.3. 
- * 
+ * @brief Get the Fast Transition Mobility Domain value.
+ * See 802.11-2016 section 13.3.
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param mobilityDomain - Value of the FT Mobility Domain for this AP.
  *
@@ -590,9 +590,9 @@ INT wifi_setFTOverDSActivated(INT apIndex, BOOL *activate);
 INT wifi_getFTMobilityDomainID(INT apIndex, UCHAR mobilityDomain[2]);
 
 /**
- * @brief Set the Fast Transition Mobility Domain value.  
+ * @brief Set the Fast Transition Mobility Domain value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param mobilityDomain - Value of the FT Mobility Domain for this AP.
  *
@@ -603,9 +603,9 @@ INT wifi_getFTMobilityDomainID(INT apIndex, UCHAR mobilityDomain[2]);
 INT wifi_setFTMobilityDomainID(INT apIndex, UCHAR mobilityDomain[2]);
 
 /**
- * @brief Get the Fast Transition Resource Request Support value. 
- * See 802.11-2016 section 13.3. 
- * 
+ * @brief Get the Fast Transition Resource Request Support value.
+ * See 802.11-2016 section 13.3.
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param supported - True is FT resource request supported, false is not
  * supported.
@@ -617,9 +617,9 @@ INT wifi_setFTMobilityDomainID(INT apIndex, UCHAR mobilityDomain[2]);
 INT wifi_getFTResourceRequestSupported(INT apIndex, BOOL *supported);
 
 /**
- * @brief Set the Fast Transition Resource Request Support value.  
+ * @brief Set the Fast Transition Resource Request Support value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param suppored - True is FT resource request supported, false is not
  * supported.
@@ -631,9 +631,9 @@ INT wifi_getFTResourceRequestSupported(INT apIndex, BOOL *supported);
 INT wifi_setFTResourceRequestSupported(INT apIndex, BOOL *supported);
 
 /**
- * @brief Get the Fast Transition R0 Key Lifetime value.  
+ * @brief Get the Fast Transition R0 Key Lifetime value.
  * See 802.11-2016 section 13.4.2.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param lifetime - R0 Key Lifetime.
  *
@@ -644,9 +644,9 @@ INT wifi_setFTResourceRequestSupported(INT apIndex, BOOL *supported);
 INT wifi_getFTR0KeyLifetime(INT apIndex, UINT *lifetime);
 
 /**
- * @brief Set the Fast Transition R0 Key Lifetime value.  
+ * @brief Set the Fast Transition R0 Key Lifetime value.
  * See 802.11-2016 section 13.4.2
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param lifetime - R0 Key Lifetime.
  *
@@ -657,9 +657,9 @@ INT wifi_getFTR0KeyLifetime(INT apIndex, UINT *lifetime);
 INT wifi_setFTR0KeyLifetime(INT apIndex, UINT *lifetime);
 
 /**
- * @brief Get the Fast Transition R0 Key Holder ID value.  
+ * @brief Get the Fast Transition R0 Key Holder ID value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param keyHolderID - R0 Key Holder ID string.
  *
@@ -670,9 +670,9 @@ INT wifi_setFTR0KeyLifetime(INT apIndex, UINT *lifetime);
 INT wifi_getFTR0KeyHolderID(INT apIndex, UCHAR *keyHolderID);
 
 /**
- * @brief Set the Fast Transition R0 Key Holder ID value.  
+ * @brief Set the Fast Transition R0 Key Holder ID value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param keyHolderID - R0 Key Holder ID string.
  *
@@ -683,9 +683,9 @@ INT wifi_getFTR0KeyHolderID(INT apIndex, UCHAR *keyHolderID);
 INT wifi_setFTR0KeyHolderID(INT apIndex, UCHAR *keyHolderID);
 
 /**
- * @brief Get the Fast Transition R1 Key Holder ID value.  
+ * @brief Get the Fast Transition R1 Key Holder ID value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param keyHolderID - R0 Key Holder ID string.
  *
@@ -696,9 +696,9 @@ INT wifi_setFTR0KeyHolderID(INT apIndex, UCHAR *keyHolderID);
 INT wifi_getFTR1KeyHolderID(INT apIndex, UCHAR *keyHolderID);
 
 /**
- * @brief Set the Fast Transition R1 Key Holder ID value.  
+ * @brief Set the Fast Transition R1 Key Holder ID value.
  * See 802.11-2016 section 13.3.
- * 
+ *
  * @param apIndex - AP Index the setting applies to.
  * @param keyHolderID - R0 Key Holder ID string.
  *
@@ -717,7 +717,7 @@ INT wifi_setFTR1KeyHolderID(INT apIndex, UCHAR *keyHolderID);
 typedef enum {
     FT_SUPPORT_DISABLED,
     FT_SUPPORT_FULL,
-    FT_SUPPORT_ADAPTIVE    
+    FT_SUPPORT_ADAPTIVE
 } wifi_fastTrasitionSupport_t;
 
 #define MAX_KEY_HOLDERS 8

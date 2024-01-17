@@ -27,16 +27,16 @@
 
     description:
 
-        This header file gives the function call prototypes and 
-        structure definitions used for the RDK-Broadband 
+        This header file gives the function call prototypes and
+        structure definitions used for the RDK-Broadband
         Wifi radio hardware abstraction layer
 
     ---------------------------------------------------------------
 
     environment:
 
-        This HAL layer is intended to support Wifi drivers 
-        through an open API.  
+        This HAL layer is intended to support Wifi drivers
+        through an open API.
 
     ---------------------------------------------------------------
 
@@ -44,13 +44,13 @@
 
         The version of the Wifi HAL is specified in #defines below.
 
-    --------------------------------------------------------------- 
+    ---------------------------------------------------------------
 
     author:
 
-        zhicheng_qiu@cable.comcast.com 
+        zhicheng_qiu@cable.comcast.com
         Charles Moreman, moremac@cisco.com
-		
+
     ---------------------------------------------------------------
 
 	Notes:
@@ -184,14 +184,14 @@ _COSA_DML_WIFI_AP_MAC_FILTER
 COSA_DML_WIFI_AP_MAC_FILTER;
 
 
-//>> Deprecated: used for old RDKB code. 
+//>> Deprecated: used for old RDKB code.
 typedef struct _wifi_basicTrafficStats
 {
      ULONG wifi_BytesSent;
      ULONG wifi_BytesReceived;
      ULONG wifi_PacketsSent;
      ULONG wifi_PacketsReceived;
-     ULONG wifi_Associations; 	
+     ULONG wifi_Associations;
 } wifi_basicTrafficStats_t;
 
 typedef struct _wifi_trafficStats
@@ -211,50 +211,50 @@ typedef struct _wifi_trafficStats
 
 typedef struct _wifi_radioTrafficStats
 {
-	 ULONG wifi_ErrorsSent;	
-     ULONG wifi_ErrorsReceived;   
-     ULONG wifi_DiscardPacketsSent; 
-     ULONG wifi_DiscardPacketsReceived; 
-	 ULONG wifi_PLCPErrorCount;	
-	 ULONG wifi_FCSErrorCount;	
-	 ULONG wifi_InvalidMACCount;	
-	 ULONG wifi_PacketsOtherReceived;	
-	 INT   wifi_Noise; 	
-	 
-} wifi_radioTrafficStats_t;	
+	 ULONG wifi_ErrorsSent;
+     ULONG wifi_ErrorsReceived;
+     ULONG wifi_DiscardPacketsSent;
+     ULONG wifi_DiscardPacketsReceived;
+	 ULONG wifi_PLCPErrorCount;
+	 ULONG wifi_FCSErrorCount;
+	 ULONG wifi_InvalidMACCount;
+	 ULONG wifi_PacketsOtherReceived;
+	 INT   wifi_Noise;
+
+} wifi_radioTrafficStats_t;
 
 typedef struct _wifi_ssidTrafficStats
 {
-     ULONG wifi_RetransCount;	
-     ULONG wifi_FailedRetransCount; 	
-     ULONG wifi_RetryCount;  
-     ULONG wifi_MultipleRetryCount; 	
-     ULONG wifi_ACKFailureCount;  	
-     ULONG wifi_AggregatedPacketCount; 	
-	 
-} wifi_ssidTrafficStats_t;  
+     ULONG wifi_RetransCount;
+     ULONG wifi_FailedRetransCount;
+     ULONG wifi_RetryCount;
+     ULONG wifi_MultipleRetryCount;
+     ULONG wifi_ACKFailureCount;
+     ULONG wifi_AggregatedPacketCount;
+
+} wifi_ssidTrafficStats_t;
 
 typedef struct _wifi_neighbor_ap
 {
-	 CHAR  ap_Radio[64];	
-	 CHAR  ap_SSID[64];	
-	 CHAR  ap_BSSID[64];	
-	 CHAR  ap_Mode[64];	
+	 CHAR  ap_Radio[64];
+	 CHAR  ap_SSID[64];
+	 CHAR  ap_BSSID[64];
+	 CHAR  ap_Mode[64];
 	 UINT  ap_Channel;
 	 INT   ap_SignalStrength;
-	 CHAR  ap_SecurityModeEnabled[64];	
-	 CHAR  ap_EncryptionMode[64];	
-	 CHAR  ap_OperatingFrequencyBand[16];	
-	 CHAR  ap_SupportedStandards[64];	
-	 CHAR  ap_OperatingStandards[16];	
-	 CHAR  ap_OperatingChannelBandwidth[16];	
-	 UINT  ap_BeaconPeriod;	
-	 INT   ap_Noise;	
-	 CHAR  ap_BasicDataTransferRates[256];	
+	 CHAR  ap_SecurityModeEnabled[64];
+	 CHAR  ap_EncryptionMode[64];
+	 CHAR  ap_OperatingFrequencyBand[16];
+	 CHAR  ap_SupportedStandards[64];
+	 CHAR  ap_OperatingStandards[16];
+	 CHAR  ap_OperatingChannelBandwidth[16];
+	 UINT  ap_BeaconPeriod;
+	 INT   ap_Noise;
+	 CHAR  ap_BasicDataTransferRates[256];
 	 CHAR  ap_SupportedDataTransferRates[256];
 	 UINT  ap_DTIMPeriod;
-	 UINT  ap_ChannelUtilization;	
-	 
+	 UINT  ap_ChannelUtilization;
+
 } wifi_neighbor_ap_t;
 //<<
 
@@ -282,7 +282,7 @@ typedef struct _wifi_radioTrafficStats2
 	 INT   radio_MinimumNoiseFloorOnChannel; /**< Minimum Noise on the channel. The metric is updated in this Parameter at the end of the interval defined by "Radio Statistics Measuring Interval".  The calculation of this metric MUST only use the data collected in the just completed interval.  If this metric is queried before it has been updated with an initial calculation, it MUST return -1. Units in dBm */
 	 INT   radio_MedianNoiseFloorOnChannel; /**< Median Noise on the channel during the measuring interval.   The metric is updated in this parameter at the end of the interval defined by "Radio Statistics Measuring Interval".  The calculation of this metric MUST only use the data collected in the just completed interval.  If this metric is queried before it has been updated with an initial calculation, it MUST return -1. Units in dBm */
 	 ULONG radio_StatisticsStartTime; 	 /**< The date and time at which the collection of the current set of statistics started.  This time must be updated whenever the radio statistics are reset. */
-	
+
 } wifi_radioTrafficStats2_t;	//for radio only
 
 typedef struct _wifi_radioTrafficStatsMeasure
@@ -305,7 +305,7 @@ typedef struct _wifi_ssidTrafficStats2
      ULONG ssid_MultipleRetryCount; /**< The number of packets that were successfully transmitted after more than one retransmission. This parameter is based on dot11MultipleRetryCount from [802.11-2012]. */
      ULONG ssid_ACKFailureCount;  /**< The number of expected ACKs that were never received. This parameter is based on dot11ACKFailureCount from [802.11-2012].	 */
      ULONG ssid_AggregatedPacketCount; /**< The number of aggregated packets that were transmitted. This applies only to 802.11n and 802.11ac. */
-	 
+
 	 ULONG ssid_ErrorsSent;	/**< The total number of outbound packets that could not be transmitted because of errors. */
      ULONG ssid_ErrorsReceived;    /**< The total number of inbound packets that contained errors preventing them from being delivered to a higher-layer protocol. */
      ULONG ssid_UnicastPacketsSent;	/**< The total number of inbound packets that contained errors preventing them from being delivered to a higher-layer protocol. */
@@ -321,10 +321,10 @@ typedef struct _wifi_ssidTrafficStats2
 } wifi_ssidTrafficStats2_t;  //for ssid only
 
 
-//Please do not edit the elements for this data structure 
+//Please do not edit the elements for this data structure
 typedef struct _wifi_neighbor_ap2
 {
-	 //CHAR  ap_Radio[64];	//The value MUST be the path name of a row in theDevice.WiFi.Radiotable. The Radio that detected the neighboring WiFi SSID.  
+	 //CHAR  ap_Radio[64];	//The value MUST be the path name of a row in theDevice.WiFi.Radiotable. The Radio that detected the neighboring WiFi SSID.
 	 CHAR  ap_SSID[64];	/**< The current service set identifier in use by the neighboring WiFi SSID. The value MAY be empty for hidden SSIDs. */
 	 CHAR  ap_BSSID[64];	/**< [MACAddress] The BSSID used for the neighboring WiFi SSID. */
 	 CHAR  ap_Mode[64];	/**< The mode the neighboring WiFi radio is operating in. Enumeration of: AdHoc, Infrastructure */
@@ -342,7 +342,7 @@ typedef struct _wifi_neighbor_ap2
 	 CHAR  ap_SupportedDataTransferRates[256];	/**< Comma-separated list (maximum list length 256) of strings. Data transmit rates (in Mbps) for unicast frames at which the SSID will permit a station to connect. For example, ifSupportedDataTransferRatesis "1,2,5.5", this indicates that the SSID will only permit connections at 1 Mbps, 2 Mbps and 5.5 Mbps. */
 	 UINT  ap_DTIMPeriod;	/**< The number of beacon intervals that elapse between transmission of Beacon frames containing a TIM element whose DTIM count field is 0. This value is transmitted in the DTIM Period field of beacon frames. [802.11-2012] */
 	 UINT  ap_ChannelUtilization;	/**< Indicates the fraction of the time AP senses that the channel is in use by the neighboring AP for transmissions. */
-	 
+
 } wifi_neighbor_ap2_t;	//COSA_DML_NEIGHTBOURING_WIFI_RESULT
 
 typedef struct _wifi_diag_ipping_setting
@@ -354,7 +354,7 @@ typedef struct _wifi_diag_ipping_setting
 	 UINT  ipping_DataBlockSize;	/**< Size of the data block in bytes to be sent for each ping. */
 	 UINT  ipping_DSCP;	/**< DiffServ codepoint to be used for the test packets. By default the CPE SHOULD set this value to zero. */
 
-} wifi_diag_ipping_setting_t;	
+} wifi_diag_ipping_setting_t;
 
 typedef struct _wifi_diag_ipping_result
 {
@@ -364,11 +364,11 @@ typedef struct _wifi_diag_ipping_result
 	 UINT  ipping_AverageResponseTime;	/**< Result parameter indicating the average response time in milliseconds over all repetitions with successful responses of the most recent ping test. If there were no successful responses, this value MUST be zero. */
 	 UINT  ipping_MinimumResponseTime;	/**< Result parameter indicating the minimum response time in milliseconds over all repetitions with successful responses of the most recent ping test. If there were no successful responses, this value MUST be zero. */
 	 UINT  ipping_MaximumResponseTime;	/**< Result parameter indicating the maximum response time in milliseconds over all repetitions with successful responses of the most recent ping test. If there were no successful responses, this value MUST be zero. */
-	 
+
 } wifi_diag_ipping_result_t;
 
 //>> -------------------------------- wifi_ap_hal --------------------------------------------
-//>> Deprecated: used for old RDKB code. 
+//>> Deprecated: used for old RDKB code.
 typedef struct _wifi_device
 {
      UCHAR wifi_devMacAddress[6];
@@ -380,7 +380,7 @@ typedef struct _wifi_device
 } wifi_device_t;
 //<<
 
-//Please do not edit the elements for this data structure 
+//Please do not edit the elements for this data structure
 typedef struct _wifi_associated_dev
 {
      //UCHAR cli_devMacAddress[6];
@@ -389,7 +389,7 @@ typedef struct _wifi_associated_dev
      //INT   cli_devSignalStrength;
      //INT   cli_devTxRate;
      //INT   cli_devRxRate;
-	 
+
 	 UCHAR cli_MACAddress[6];		/**< The MAC address of an associated device. */
 	 CHAR  cli_IPAddress[64];		/**< IP of the associated device */
 	 BOOL  cli_AuthenticationState; /**< Whether an associated device has authenticated (true) or not (false). */
@@ -398,7 +398,7 @@ typedef struct _wifi_associated_dev
 	 INT   cli_SignalStrength; 		/**< An indicator of radio signal strength of the uplink from the associated device to the access point, measured in dBm, as an average of the last 100 packets received from the device. */
 	 UINT  cli_Retransmissions; 	/**< The number of packets that had to be re-transmitted, from the last 100 packets sent to the associated device. Multiple re-transmissions of the same packet count as one. */
 	 BOOL  cli_Active; 				/**<	boolean	-	Whether or not this node is currently present in the WiFi AccessPoint network. */
-	
+
 	 CHAR  cli_OperatingStandard[64];	/**< Radio standard the associated Wi-Fi client device is operating under. Enumeration of: */
 	 CHAR  cli_OperatingChannelBandwidth[64];	/**< The operating channel bandwidth of the associated device. The channel bandwidth (applicable to 802.11n and 802.11ac specifications only). Enumeration of: */
 	 INT   cli_SNR;		/**< A signal-to-noise ratio (SNR) compares the level of the Wi-Fi signal to the level of background noise. Sources of noise can include microwave ovens, cordless phone, bluetooth devices, wireless video cameras, wireless game controllers, fluorescent lights and more. It is measured in decibels (dB). */
@@ -412,7 +412,7 @@ typedef struct _wifi_associated_dev
 	 INT   cli_MaxRSSI;	/**< The Maximum Received Signal Strength Indicator, RSSI, parameter is the energy observed at the antenna receiver for past transmissions (100 packets). */
 	 UINT  cli_Disassociations;	/**< This parameter  represents the total number of client disassociations. Reset the parameter evey 24hrs or reboot */
 	 UINT  cli_AuthenticationFailures;	/**< This parameter indicates the total number of authentication failures.  Reset the parameter evey 24hrs or reboot */
-	 
+
 } wifi_associated_dev_t;	//~COSA_DML_WIFI_AP_ASSOC_DEVICE
 
 typedef struct _wifi_radius_setting_t
@@ -427,8 +427,8 @@ typedef struct _wifi_radius_setting_t
 	 INT  IdentityRequestRetryInterval; /**< Time Interval in seconds between identity requests retries. A value of 0 (zero) disables it.	*/
 	 INT  QuietPeriodAfterFailedAuthentication;  /**< The enforced quiet period (time interval) in seconds following failed authentication. A value of 0 (zero) disables it. */
 	 //UCHAR RadiusSecret[64];			//The secret used for handshaking with the RADIUS server [RFC2865]. When read, this parameter returns an empty string, regardless of the actual value.
-		 
-} wifi_radius_setting_t;	
+
+} wifi_radius_setting_t;
 
 //typedef struct wifi_AC_parameters_record  // Access Catagoriy parameters.  see 802.11-2012 spec for descriptions
 //{
@@ -471,7 +471,7 @@ typedef struct _wifi_radius_setting_t
 */
 //Wifi system api
 //Get the wifi hal version in string, eg "2.0.0".  WIFI_HAL_MAJOR_VERSION.WIFI_HAL_MINOR_VERSION.WIFI_HAL_MAINTENANCE_VERSION
-INT wifi_getHalVersion(CHAR *output_string);   //RDKB   
+INT wifi_getHalVersion(CHAR *output_string);   //RDKB
 
 //---------------------------------------------------------------------------------------------------
 //
@@ -481,7 +481,7 @@ INT wifi_getHalVersion(CHAR *output_string);   //RDKB
 
 /* wifi_factoryReset() function */
 /**
-* @description Clears internal variables to implement a factory reset of the Wi-Fi 
+* @description Clears internal variables to implement a factory reset of the Wi-Fi
 * subsystem. Resets Implementation specifics may dictate some functionality since different hardware implementations may have different requirements.
 *
 * @param None
@@ -563,8 +563,8 @@ INT wifi_setLED(INT radioIndex, BOOL enable);	//RDKB
 
 /* wifi_init() function */
 /**
-* @description This function call initializes all Wi-Fi radios. Implementation 
-* specifics may dictate the functionality since different hardware implementations 
+* @description This function call initializes all Wi-Fi radios. Implementation
+* specifics may dictate the functionality since different hardware implementations
 * may have different initilization requirements.
 *
 * @param None
@@ -586,7 +586,7 @@ INT wifi_init();                              //RDKB
 /* wifi_reset() function */
 /**
 * @description Resets the Wifi subsystem. This includes reset of all AP varibles.
-* Implementation specifics may dictate what is actualy reset since different hardware 
+* Implementation specifics may dictate what is actualy reset since different hardware
 * implementations may have different requirements.
 *
 * @param None
@@ -608,7 +608,7 @@ INT wifi_reset();                            //RDKB
 /* wifi_down() function */
 /**
 * @description Turns off transmit power for the entire Wifi subsystem, for all radios.
-* Implementation specifics may dictate some functionality since 
+* Implementation specifics may dictate some functionality since
 * different hardware implementations may have different requirements.
 *
 * @param None
@@ -630,9 +630,9 @@ INT wifi_down();                       		//RDKB
 /* wifi_createInitialConfigFiles() function */
 /**
 * @description This function creates wifi configuration files. The format
-* and content of these files are implementation dependent.  This function call is 
-* used to trigger this task if necessary. Some implementations may not need this 
-* function. If an implementation does not need to create config files the function call can 
+* and content of these files are implementation dependent.  This function call is
+* used to trigger this task if necessary. Some implementations may not need this
+* function. If an implementation does not need to create config files the function call can
 * do nothing and return RETURN_OK.
 *
 * @param None
@@ -649,7 +649,7 @@ INT wifi_down();                       		//RDKB
 *
 */
 // creates initial implementation dependent configuration files that are later used for variable storage.  Not all implementations may need this function.  If not needed for a particular implementation simply return no-error (0)
-INT wifi_createInitialConfigFiles();                                                                                    
+INT wifi_createInitialConfigFiles();
 
 /* wifi_getRadioCountryCode() function */
 /**
@@ -670,14 +670,14 @@ INT wifi_createInitialConfigFiles();
 *
 */
 // outputs the country code to a max 64 character string
-INT wifi_getRadioCountryCode(INT radioIndex, CHAR *output_string);   
+INT wifi_getRadioCountryCode(INT radioIndex, CHAR *output_string);
 
 /* wifi_setRadioCountryCode() function */
 /**
 * @description Set the country code for selected Wi-Fi radio channel.
 *
 * @param radioIndex - Index of Wi-Fi radio channel
-* @param CountryCode - Country code 
+* @param CountryCode - Country code
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -690,7 +690,7 @@ INT wifi_getRadioCountryCode(INT radioIndex, CHAR *output_string);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioCountryCode(INT radioIndex, CHAR *CountryCode);       
+INT wifi_setRadioCountryCode(INT radioIndex, CHAR *CountryCode);
 
 //---------------------------------------------------------------------------------------------------
 //Wifi Tr181 API
@@ -736,7 +736,7 @@ INT wifi_getRadioNumberOfEntries(ULONG *output); //Tr181
 *
 */
 //Device.WiFi.SSIDNumberOfEntries
-//Get the total number of SSID entries in this wifi subsystem 
+//Get the total number of SSID entries in this wifi subsystem
 INT wifi_getSSIDNumberOfEntries(ULONG *output); //Tr181
 
 //Device.WiFi.AccessPointNumberOfEntries
@@ -852,7 +852,7 @@ INT wifi_getRadioIfName(INT radioIndex, CHAR *output_string); //Tr181
 /**
 * @description Get the maximum PHY bit rate supported by this interface. eg: "216.7 Mb/s", "1.3 Gb/s"
 * The output_string is a max length 64 octet string that is allocated by the RDKB code.  Implementations must ensure that strings are not longer than this.
-* 
+*
 * @param radioIndex - Index of Wi-Fi radio channel
 * @param output_string - Maximum bit rate supported, to be returned
 *
@@ -875,9 +875,9 @@ INT wifi_getRadioMaxBitRate(INT radioIndex, CHAR *output_string);	//RDKB
 /* wifi_getRadioSupportedFrequencyBands() function */
 /**
 * @description Get Supported frequency bands at which the radio can operate. eg: "2.4GHz,5GHz"
-* The output_string is a max length 64 octet string that is allocated by the RDKB code.  
+* The output_string is a max length 64 octet string that is allocated by the RDKB code.
 * Implementations must ensure that strings are not longer than this.
-* 
+*
 * @param radioIndex - Index of Wi-Fi radio channel
 * @param output_string - Supported frequency bands, to be returned
 *
@@ -901,7 +901,7 @@ INT wifi_getRadioSupportedFrequencyBands(INT radioIndex, CHAR *output_string);	/
 /**
 * @description Get the frequency band at which the radio is operating, eg: "2.4GHz".
 * The output_string is a max length 64 octet string that is allocated by the RDKB code.  Implementations must ensure that strings are not longer than this.
-* 
+*
 * @param radioIndex - Index of Wi-Fi radio channel
 * @param output_string - Operating frequency band, to be returned
 *
@@ -995,7 +995,7 @@ INT wifi_getRadioStandard(INT radioIndex, CHAR *output_string, BOOL *gOnly, BOOL
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Set the radio operating mode, and pure mode flag. 
+//Set the radio operating mode, and pure mode flag.
 INT wifi_setRadioChannelMode(INT radioIndex, CHAR *channelMode, BOOL gOnlyFlag, BOOL nOnlyFlag, BOOL acOnlyFlag);	//RDKB
 
 /* wifi_getRadioPossibleChannels() function */
@@ -1067,7 +1067,7 @@ INT wifi_getRadioChannelsInUse(INT radioIndex, CHAR *output_string);	//RDKB
 *
 */
 //Device.WiFi.Radio.{i}.Channel
-//Get the running channel number 
+//Get the running channel number
 INT wifi_getRadioChannel(INT radioIndex,ULONG *output_ulong);	//RDKB
 
 /* wifi_setRadioChannel() function */
@@ -1088,7 +1088,7 @@ INT wifi_getRadioChannel(INT radioIndex,ULONG *output_ulong);	//RDKB
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Set the running channel number 
+//Set the running channel number
 INT wifi_setRadioChannel(INT radioIndex, ULONG channel);	//RDKB	//AP only
 
 /* wifi_setRadioAutoChannelEnable() function */
@@ -1377,8 +1377,8 @@ INT wifi_getRadioDfsSupport(INT radioIndex, BOOL *output_bool);		//RDKB
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.Radio.{i}.X_COMCAST-COM_DfsEnable					
-INT wifi_getRadioDfsEnable(INT radioIndex, BOOL *output_bool);		//RDKB				
+//Device.WiFi.Radio.{i}.X_COMCAST-COM_DfsEnable
+INT wifi_getRadioDfsEnable(INT radioIndex, BOOL *output_bool);		//RDKB
 
 /* wifi_setRadioDfsEnable() function */
 /**
@@ -1399,7 +1399,7 @@ INT wifi_getRadioDfsEnable(INT radioIndex, BOOL *output_bool);		//RDKB
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioDfsEnable(INT radioIndex, BOOL enabled);			//RDKB				
+INT wifi_setRadioDfsEnable(INT radioIndex, BOOL enabled);			//RDKB
 
 /* wifi_getRadioAutoChannelRefreshPeriodSupported() function */
 /**
@@ -1578,7 +1578,7 @@ INT wifi_setRadioExtChannel(INT radioIndex, CHAR *string); //Tr181	//AP only
 *
 */
 //Device.WiFi.Radio.{i}.GuardInterval
-//Get the guard interval value. eg "400nsec" or "800nsec" 
+//Get the guard interval value. eg "400nsec" or "800nsec"
 //The output_string is a max length 64 octet string that is allocated by the RDKB code.  Implementations must ensure that strings are not longer than this.
 INT wifi_getRadioGuardInterval(INT radioIndex, CHAR *output_string);	//Tr181
 
@@ -1725,7 +1725,7 @@ INT wifi_setRadioTransmitPower(INT radioIndex, ULONG TransmitPower);	//RDKB
 
 /* wifi_getRadioIEEE80211hSupported() function */
 /**
-* @description Get 80211h Supported.  
+* @description Get 80211h Supported.
 * 80211h solves interference with satellites and radar using the same 5 GHz frequency band.
 * \n Device.WiFi.Radio.{i}.IEEE80211hSupported
 *
@@ -1796,7 +1796,7 @@ INT wifi_setRadioIEEE80211hEnabled(INT radioIndex, BOOL enable);  //Tr181
 /**
 * @description Indicates the Carrier Sense ranges supported by the radio. It is measured in dBm. Refer section A.2.3.2 of CableLabs Wi-Fi MGMT Specification.
 * \n Device.WiFi.Radio.{i}.RegulatoryDomain
-* \n Device.WiFi.Radio.{i}.X_COMCAST-COM_CarrierSenseThresholdRange		
+* \n Device.WiFi.Radio.{i}.X_COMCAST-COM_CarrierSenseThresholdRange
 *
 * @param radioIndex - Index of Wi-Fi radio channel
 * @param output - Carrier sense threshold range, to be returned
@@ -1814,7 +1814,7 @@ INT wifi_setRadioIEEE80211hEnabled(INT radioIndex, BOOL enable);  //Tr181
 */
 //Device.WiFi.Radio.{i}.RegulatoryDomain
 
-//Device.WiFi.Radio.{i}.X_COMCAST-COM_CarrierSenseThresholdRange		
+//Device.WiFi.Radio.{i}.X_COMCAST-COM_CarrierSenseThresholdRange
 //Indicates the Carrier Sense ranges supported by the radio. It is measured in dBm. Refer section A.2.3.2 of CableLabs Wi-Fi MGMT Specification.
 INT wifi_getRadioCarrierSenseThresholdRange(INT radioIndex, INT *output);  //P3
 
@@ -1843,7 +1843,7 @@ INT wifi_getRadioCarrierSenseThresholdInUse(INT radioIndex, INT *output);	//P3
 
 /* wifi_setRadioCarrierSenseThresholdInUse() function */
 /**
-* @description Set Carrier sense threshold in use for the selected radio index. 
+* @description Set Carrier sense threshold in use for the selected radio index.
 * The RSSI signal level at which CS/CCA detects a busy condition. This attribute enables APs to increase minimum sensitivity to avoid detecting busy condition from multiple/weak Wi-Fi sources in dense Wi-Fi environments. It is measured in dBm.
 * \n Device.WiFi.Radio.{i}.X_COMCAST-COM_CarrierSenseThresholdInUse
 *
@@ -1889,7 +1889,7 @@ INT wifi_setRadioCarrierSenseThresholdInUse(INT radioIndex, INT threshold);	//P3
 */
 //Device.WiFi.Radio.{i}.BeaconPeriod
 //Time interval between transmitting beacons (expressed in milliseconds). This parameter is based ondot11BeaconPeriod from [802.11-2012].
-INT wifi_getRadioBeaconPeriod(INT radioIndex, UINT *output); 
+INT wifi_getRadioBeaconPeriod(INT radioIndex, UINT *output);
 
 /* wifi_setRadioBeaconPeriod() function */
 /**
@@ -1910,7 +1910,7 @@ INT wifi_getRadioBeaconPeriod(INT radioIndex, UINT *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioBeaconPeriod(INT radioIndex, UINT BeaconPeriod); 
+INT wifi_setRadioBeaconPeriod(INT radioIndex, UINT BeaconPeriod);
 
 /* wifi_getRadioBasicDataTransmitRates() function */
 /**
@@ -1932,7 +1932,7 @@ INT wifi_setRadioBeaconPeriod(INT radioIndex, UINT BeaconPeriod);
 *
 */
 //Device.WiFi.Radio.{i}.BasicDataTransmitRates
-//Comma-separated list of strings. The set of data rates, in Mbps, that have to be supported by all stations that desire to join this BSS. The stations have to be able to receive and transmit at each of the data rates listed inBasicDataTransmitRates. For example, a value of "1,2", indicates that stations support 1 Mbps and 2 Mbps. Most control packets use a data rate in BasicDataTransmitRates.	
+//Comma-separated list of strings. The set of data rates, in Mbps, that have to be supported by all stations that desire to join this BSS. The stations have to be able to receive and transmit at each of the data rates listed inBasicDataTransmitRates. For example, a value of "1,2", indicates that stations support 1 Mbps and 2 Mbps. Most control packets use a data rate in BasicDataTransmitRates.
 INT wifi_getRadioBasicDataTransmitRates(INT radioIndex, CHAR *output);
 
 /* wifi_setRadioBasicDataTransmitRates() function */
@@ -2079,8 +2079,8 @@ INT wifi_getRadioStatsReceivedSignalLevel(INT radioIndex, INT signalIndex, INT *
 //-----------------------------------------------------------------------------------------------------
 /* wifi_applyRadioSettings() function */
 /**
-* @description This API is used to apply (push) all previously set radio level variables and make these settings active in the 
-* hardware. Not all implementations may need this function.  If not needed for a particular implementation simply return no-error 
+* @description This API is used to apply (push) all previously set radio level variables and make these settings active in the
+* hardware. Not all implementations may need this function.  If not needed for a particular implementation simply return no-error
 * (0).
 *
 * @param radioIndex - Index of Wi-Fi radio channel
@@ -2098,7 +2098,7 @@ INT wifi_getRadioStatsReceivedSignalLevel(INT radioIndex, INT signalIndex, INT *
 */
 //This API is used to apply (push) all previously set radio level variables and make these settings active in the hardware
 //Not all implementations may need this function.  If not needed for a particular implementation simply return no-error (0)
-INT wifi_applyRadioSettings(INT radioIndex);  
+INT wifi_applyRadioSettings(INT radioIndex);
 
 
 /* wifi_getRadioResetCount() function */
@@ -2244,7 +2244,7 @@ INT wifi_getSSIDStatus(INT ssidIndex, CHAR *output_string); //Tr181
 
 //Device.WiFi.SSID.{i}.Name
 // Outputs a 32 byte or less string indicating the SSID name.  Sring buffer must be preallocated by the caller.
-INT wifi_getSSIDName(INT apIndex, CHAR *output_string);        
+INT wifi_getSSIDName(INT apIndex, CHAR *output_string);
 
 /* wifi_setSSIDName() function */
 /**
@@ -2266,10 +2266,10 @@ INT wifi_getSSIDName(INT apIndex, CHAR *output_string);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-// accepts a max 32 byte string and sets an internal variable to the SSID name          
+// accepts a max 32 byte string and sets an internal variable to the SSID name
 INT wifi_setSSIDName(INT apIndex, CHAR *ssid_string);
 // push the ssid name to the hardware //repleaced by wifi_applySSIDSettings
-//INT wifi_pushSSIDName(INT apIndex, CHAR *ssid);                         
+//INT wifi_pushSSIDName(INT apIndex, CHAR *ssid);
 
 
 /* wifi_getBaseBSSID() function */
@@ -2296,7 +2296,7 @@ INT wifi_setSSIDName(INT apIndex, CHAR *ssid_string);
 //Device.WiFi.SSID.{i}.LowerLayers
 
 //Device.WiFi.SSID.{i}.BSSID
-//Get the BSSID 
+//Get the BSSID
 INT wifi_getBaseBSSID(INT ssidIndex, CHAR *output_string);	//RDKB
 
 /* wifi_getSSIDMACAddress() function */
@@ -2331,13 +2331,13 @@ INT wifi_getSSIDMACAddress(INT ssidIndex, CHAR *output_string); //Tr181
 //Device.WiFi.SSID.{i}.Stats.PacketsSent
 //Device.WiFi.SSID.{i}.Stats.PacketsReceived
 
-//Device.WiFi.SSID.{i}.Stats.RetransCount		
-//Device.WiFi.SSID.{i}.Stats.FailedRetransCount	
-//Device.WiFi.SSID.{i}.Stats.RetryCount	
-//Device.WiFi.SSID.{i}.Stats.MultipleRetryCount	
-//Device.WiFi.SSID.{i}.Stats.ACKFailureCount	
-//Device.WiFi.SSID.{i}.Stats.AggregatedPacketCount	
-	 
+//Device.WiFi.SSID.{i}.Stats.RetransCount
+//Device.WiFi.SSID.{i}.Stats.FailedRetransCount
+//Device.WiFi.SSID.{i}.Stats.RetryCount
+//Device.WiFi.SSID.{i}.Stats.MultipleRetryCount
+//Device.WiFi.SSID.{i}.Stats.ACKFailureCount
+//Device.WiFi.SSID.{i}.Stats.AggregatedPacketCount
+
 //Device.WiFi.SSID.{i}.Stats.ErrorsSent
 //Device.WiFi.SSID.{i}.Stats.ErrorsReceived
 //Device.WiFi.SSID.{i}.Stats.UnicastPacketsSent
@@ -2348,14 +2348,14 @@ INT wifi_getSSIDMACAddress(INT ssidIndex, CHAR *output_string); //Tr181
 //Device.WiFi.SSID.{i}.Stats.MulticastPacketsReceived
 //Device.WiFi.SSID.{i}.Stats.BroadcastPacketsSent
 //Device.WiFi.SSID.{i}.Stats.BroadcastPacketsReceived
-//Device.WiFi.SSID.{i}.Stats.UnknownProtoPacketsReceived	
+//Device.WiFi.SSID.{i}.Stats.UnknownProtoPacketsReceived
 
 /* wifi_getSSIDTrafficStats2() function */
 /**
 * @description Get the basic SSID traffic static info.
 *
 * @param ssidIndex - SSID index
-* @param output_struct - wifi_ssidTrafficStats2_t *output_struct SSID traffic 
+* @param output_struct - wifi_ssidTrafficStats2_t *output_struct SSID traffic
 * stats, to be returned
 *
 * @return The status of the operation
@@ -2396,25 +2396,25 @@ INT wifi_applySSIDSettings(INT ssidIndex);
 
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.NeighboringWiFiDiagnostic.	
+//Device.WiFi.NeighboringWiFiDiagnostic.
 //Device.WiFi.NeighboringWiFiDiagnostic.DiagnosticsState
 //Device.WiFi.NeighboringWiFiDiagnostic.ResultNumberOfEntries
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.	
+//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.Radio
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.SSID
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.BSSID
-//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.Mode						
+//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.Mode
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.Channel
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.SignalStrength
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.SecurityModeEnabled
-//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.EncryptionMode	
+//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.EncryptionMode
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.OperatingFrequencyBand
-//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.SupportedStandards		
+//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.SupportedStandards
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.OperatingStandards
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.OperatingChannelBandwidth
-//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.BeaconPeriod	
+//Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.BeaconPeriod
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.Noise
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.BasicDataTransferRates
 //Device.WiFi.NeighboringWiFiDiagnostic.Result.{i}.SupportedDataTransferRates
@@ -2424,11 +2424,11 @@ INT wifi_applySSIDSettings(INT ssidIndex);
 /* wifi_getNeighboringWiFiDiagnosticResult2() function */
 /**
 * @description Start the wifi scan and get the result into output buffer for RDKB to parser. The result will be used to manage endpoint list.
-* HAL funciton should allocate an data structure array, and return to caller with 
-"neighbor_ap_array". 
+* HAL funciton should allocate an data structure array, and return to caller with
+"neighbor_ap_array".
 *
 * @param radioIndex - Radio index
-* @param neighbor_ap_array - wifi_neighbor_ap2_t **neighbor_ap_array, neighbour 
+* @param neighbor_ap_array - wifi_neighbor_ap2_t **neighbor_ap_array, neighbour
 access point info to be returned
 * @param output_array_size - UINT *output_array_size, to be returned
 *
@@ -2445,9 +2445,9 @@ access point info to be returned
 */
 //Start the wifi scan and get the result into output buffer for RDKB to parser. The result will be used to manage endpoint list
 //HAL funciton should allocate an data structure array, and return to caller with "neighbor_ap_array"
-INT wifi_getNeighboringWiFiDiagnosticResult2(INT radioIndex, wifi_neighbor_ap2_t **neighbor_ap_array, UINT *output_array_size); //Tr181	
+INT wifi_getNeighboringWiFiDiagnosticResult2(INT radioIndex, wifi_neighbor_ap2_t **neighbor_ap_array, UINT *output_array_size); //Tr181
 
-//>> Deprecated: used for old RDKB code. 
+//>> Deprecated: used for old RDKB code.
 /** Deprecated: used for old RDKB code. */
 INT wifi_getSSIDTrafficStats(INT ssidIndex, wifi_ssidTrafficStats_t *output_struct); //Tr181
 /** Deprecated: used for old RDKB code. */
@@ -2467,7 +2467,7 @@ INT wifi_getAllAssociatedDeviceDetail(INT apIndex, ULONG *output_ulong, wifi_dev
 //
 //---------------------------------------------------------------------------------------------------
 
-	
+
 /* wifi_factoryResetAP() function */
 /**
 * @description Restore AP paramters to default without change other AP nor Radio parameters (No need to reboot wifi)
@@ -2509,7 +2509,7 @@ INT wifi_setRadioCtsProtectionEnable(INT apIndex, BOOL enable);          //P3 //
 
 /* wifi_setRadioObssCoexistenceEnable() function */
 /**
-* @description enables OBSS Coexistence - fall back to 20MHz if necessary for the radio used by this 
+* @description enables OBSS Coexistence - fall back to 20MHz if necessary for the radio used by this
 AP.
 *
 * @param apIndex - Access Point index
@@ -2530,7 +2530,7 @@ INT wifi_setRadioObssCoexistenceEnable(INT apIndex, BOOL enable);        // enab
 
 /* wifi_setRadioFragmentationThreshold() function */
 /**
-* @description Sets the fragmentation threshold in bytes for the radio used by this 
+* @description Sets the fragmentation threshold in bytes for the radio used by this
 AP.
 *
 * @param apIndex - Access Point index
@@ -2567,7 +2567,7 @@ INT wifi_setRadioFragmentationThreshold(INT apIndex, UINT threshold);    //P3 //
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioSTBCEnable(INT radioIndex, BOOL STBC_Enable);           // enable STBC mode in the hardwarwe, 0 == not enabled, 1 == enabled 
+INT wifi_setRadioSTBCEnable(INT radioIndex, BOOL STBC_Enable);           // enable STBC mode in the hardwarwe, 0 == not enabled, 1 == enabled
 
 /* wifi_getRadioAMSDUEnable() function */
 /**
@@ -2587,7 +2587,7 @@ INT wifi_setRadioSTBCEnable(INT radioIndex, BOOL STBC_Enable);           // enab
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getRadioAMSDUEnable(INT radioIndex, BOOL *output_bool);         // outputs A-MSDU enable status, 0 == not enabled, 1 == enabled 
+INT wifi_getRadioAMSDUEnable(INT radioIndex, BOOL *output_bool);         // outputs A-MSDU enable status, 0 == not enabled, 1 == enabled
 
 /* wifi_setRadioAMSDUEnable() function */
 /**
@@ -2607,7 +2607,7 @@ INT wifi_getRadioAMSDUEnable(INT radioIndex, BOOL *output_bool);         // outp
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioAMSDUEnable(INT radioIndex, BOOL amsduEnable);          // enables A-MSDU in the hardware, 0 == not enabled, 1 == enabled  
+INT wifi_setRadioAMSDUEnable(INT radioIndex, BOOL amsduEnable);          // enables A-MSDU in the hardware, 0 == not enabled, 1 == enabled
 
 /* wifi_getRadioTxChainMask() function */
 /**
@@ -2647,7 +2647,7 @@ INT wifi_getRadioTxChainMask(INT radioIndex, INT *output_int);           //P2  /
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setRadioTxChainMask(INT radioIndex, INT numStreams);            //P2  // sets the number of Tx streams to an enviornment variable  
+INT wifi_setRadioTxChainMask(INT radioIndex, INT numStreams);            //P2  // sets the number of Tx streams to an enviornment variable
 
 /* wifi_getRadioRxChainMask() function */
 /**
@@ -2689,7 +2689,7 @@ INT wifi_getRadioRxChainMask(INT radioIndex, INT *output_int);           //P2  /
 */
 INT wifi_setRadioRxChainMask(INT radioIndex, INT numStreams);            //P2  // sets the number of Rx streams to an enviornment variable
 
-//>> Deprecated: 
+//>> Deprecated:
 /** Deprecated */
 INT wifi_pushBridgeInfo(INT apIndex); 									 //P2  // Push the BridgeInfo environment variables to the hardware
 /** Deprecated */
@@ -2720,7 +2720,7 @@ INT wifi_pushRadioRxChainMask(INT radioIndex);                           //P2  /
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_pushSSID(INT apIndex, CHAR *ssid); 							 // push the enviornment varible that is set by "wifi_setSsidName" to the hardware    
+INT wifi_pushSSID(INT apIndex, CHAR *ssid); 							 // push the enviornment varible that is set by "wifi_setSsidName" to the hardware
 
 /* wifi_pushSsidAdvertisementEnable() function */
 /**
@@ -2740,7 +2740,7 @@ INT wifi_pushSSID(INT apIndex, CHAR *ssid); 							 // push the enviornment vari
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_pushSsidAdvertisementEnable(INT apIndex, BOOL enable);			 // push the enviornment varible that is set by "wifi_setApSsidAdvertisementEnable" to the hardware	
+INT wifi_pushSsidAdvertisementEnable(INT apIndex, BOOL enable);			 // push the enviornment varible that is set by "wifi_setApSsidAdvertisementEnable" to the hardware
 
 /* wifi_getRadioUpTime() function */
 /**
@@ -2760,7 +2760,7 @@ INT wifi_pushSsidAdvertisementEnable(INT apIndex, BOOL enable);			 // push the e
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getRadioUpTime(INT radioIndex, ULONG *uptime);					 // get the number of seconds elapsed since radio is started	 
+INT wifi_getRadioUpTime(INT radioIndex, ULONG *uptime);					 // get the number of seconds elapsed since radio is started
 
 
 /* wifi_getRadioReverseDirectionGrantSupported() function */
@@ -3054,11 +3054,11 @@ INT wifi_deleteAp(INT apIndex);                                     // deletes t
 
 /* wifi_getApName() function */
 /**
-* @description Outputs a 16 byte or less name assocated with the AP.  
+* @description Outputs a 16 byte or less name assocated with the AP.
 * String buffer must be pre-allocated by the caller.
 *
 * @param apIndex - Access Point index
-* @param output_string - Access Point name, to be returned 
+* @param output_string - Access Point name, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3078,7 +3078,7 @@ INT wifi_getApName(INT apIndex, CHAR *output_string);                 // Outputs
 * @description Outputs the index number in that corresponds to the SSID string.
 *
 * @param inputSsidString - WiFi SSID Name
-* @param ouput_int - Access Point index, to be returned 
+* @param ouput_int - Access Point index, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3098,7 +3098,7 @@ INT wifi_getApIndexFromName(CHAR *inputSsidString, INT *ouput_int);	 // Outputs 
 * @description Outputs a 32 byte or less string indicating the beacon type as "None", "Basic", "WPA", "11i", "WPAand11i".
 *
 * @param apIndex - Access Point index
-* @param output_string - Beacon type, to be returned 
+* @param output_string - Beacon type, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3118,7 +3118,7 @@ INT wifi_getApBeaconType(INT apIndex, CHAR *output_string);           // Outputs
 * @description Sets the beacon type enviornment variable. Allowed input strings are "None", "Basic", "WPA, "11i", "WPAand11i".
 *
 * @param apIndex - Access Point index
-* @param beaconTypeString - Beacon type 
+* @param beaconTypeString - Beacon type
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3138,7 +3138,7 @@ INT wifi_setApBeaconType(INT apIndex, CHAR *beaconTypeString);        // Sets th
 * @description Sets the beacon interval on the hardware for this AP.
 *
 * @param apIndex - Access Point index
-* @param beaconInterval - Beacon interval 
+* @param beaconInterval - Beacon interval
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3158,7 +3158,7 @@ INT wifi_setApBeaconInterval(INT apIndex, INT beaconInterval);        // sets th
 * @description Sets the DTIM interval for this AP.
 *
 * @param apIndex - Access Point index
-* @param dtimInterval - DTIM interval 
+* @param dtimInterval - DTIM interval
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3171,14 +3171,14 @@ INT wifi_setApBeaconInterval(INT apIndex, INT beaconInterval);        // sets th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApDTIMInterval(INT apIndex, INT dtimInterval);			  // Sets the DTIM interval for this AP	
+INT wifi_setApDTIMInterval(INT apIndex, INT dtimInterval);			  // Sets the DTIM interval for this AP
 
 /* wifi_getApRtsThresholdSupported() function */
 /**
 * @description Get the packet size threshold supported.
 *
 * @param apIndex - Access Point index
-* @param output_bool - Packet size threshold supported, to be returned 
+* @param output_bool - Packet size threshold supported, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3191,14 +3191,14 @@ INT wifi_setApDTIMInterval(INT apIndex, INT dtimInterval);			  // Sets the DTIM 
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApRtsThresholdSupported(INT apIndex, BOOL *output_bool);  // Get the packet size threshold supported. 
+INT wifi_getApRtsThresholdSupported(INT apIndex, BOOL *output_bool);  // Get the packet size threshold supported.
 
 /* wifi_setApRtsThreshold() function */
 /**
 * @description Sets the packet size threshold in bytes to apply RTS/CTS backoff rules.
 *
 * @param apIndex - Access Point index
-* @param threshold - Packet size threshold 
+* @param threshold - Packet size threshold
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3211,14 +3211,14 @@ INT wifi_getApRtsThresholdSupported(INT apIndex, BOOL *output_bool);  // Get the
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApRtsThreshold(INT apIndex, UINT threshold);              // sets the packet size threshold in bytes to apply RTS/CTS backoff rules. 
+INT wifi_setApRtsThreshold(INT apIndex, UINT threshold);              // sets the packet size threshold in bytes to apply RTS/CTS backoff rules.
 
 /* wifi_getApWpaEncryptoinMode() function */
 /**
 * @description ouputs up to a 32 byte string as either "TKIPEncryption", "AESEncryption", or "TKIPandAESEncryption".
 *
 * @param apIndex - Access Point index
-* @param output_string - WPA Encryption mode, to be returned 
+* @param output_string - WPA Encryption mode, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3238,7 +3238,7 @@ INT wifi_getApWpaEncryptoinMode(INT apIndex, CHAR *output_string);    // ouputs 
 * @description Sets the encyption mode enviornment variable.  Valid string format is "TKIPEncryption", "AESEncryption", or "TKIPandAESEncryption".
 *
 * @param apIndex - Access Point index
-* @param encMode - WPA Encryption mode 
+* @param encMode - WPA Encryption mode
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -3550,7 +3550,7 @@ INT wifi_setApMacAddressControlMode(INT apIndex, INT filterMode);     // sets th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApVlanEnable(INT apIndex, BOOL VlanEnabled);              // enables internal gateway VLAN mode.  In this mode a Vlan tag is added to upstream (received) data packets before exiting the Wifi driver.  VLAN tags in downstream data are stripped from data packets before transmission.  Default is FALSE. 
+INT wifi_setApVlanEnable(INT apIndex, BOOL VlanEnabled);              // enables internal gateway VLAN mode.  In this mode a Vlan tag is added to upstream (received) data packets before exiting the Wifi driver.  VLAN tags in downstream data are stripped from data packets before transmission.  Default is FALSE.
 
 /* wifi_setApVlanID() function */
 /**
@@ -3614,7 +3614,7 @@ INT wifi_getApBridgeInfo(INT index, CHAR *bridgeName, CHAR *IP, CHAR *subnet);	/
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApBridgeInfo(INT apIndex, CHAR *bridgeName, CHAR *IP, CHAR *subnet);   //sets bridgeName, IP address and Subnet to internal enviornment variables. bridgeName is a maximum of 32 characters, 
+INT wifi_setApBridgeInfo(INT apIndex, CHAR *bridgeName, CHAR *IP, CHAR *subnet);   //sets bridgeName, IP address and Subnet to internal enviornment variables. bridgeName is a maximum of 32 characters,
 //INT wifi_pushApBridgeInfo(INT apIndex);                               // push the BridgeInfo enviornment variables to the hardware //Applying changes with wifi_applyRadioSettings()
 
 /* wifi_resetApVlanCfg() function */
@@ -3717,7 +3717,7 @@ INT wifi_stopHostApd();                                             // stops hos
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.	
+//Device.WiFi.AccessPoint.{i}.
 //Device.WiFi.AccessPoint.{i}.Enable
 INT wifi_setApEnable(INT apIndex, BOOL enable);                       // sets the AP enable status variable for the specified ap.
 
@@ -3739,12 +3739,12 @@ INT wifi_setApEnable(INT apIndex, BOOL enable);                       // sets th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApEnable(INT apIndex, BOOL *output_bool);                 // Outputs the setting of the internal variable that is set by wifi_setEnable().  
+INT wifi_getApEnable(INT apIndex, BOOL *output_bool);                 // Outputs the setting of the internal variable that is set by wifi_setEnable().
 
 
 /* wifi_getApStatus() function */
 /**
-* @description Outputs the AP "Enabled" "Disabled" status from driver. 
+* @description Outputs the AP "Enabled" "Disabled" status from driver.
 * \n Device.WiFi.AccessPoint.{i}.Status
 *
 * @param apIndex - Access Point index
@@ -3762,7 +3762,7 @@ INT wifi_getApEnable(INT apIndex, BOOL *output_bool);                 // Outputs
 *
 */
 //Device.WiFi.AccessPoint.{i}.Status
-INT wifi_getApStatus(INT apIndex, CHAR *output_string);  				// Outputs the AP "Enabled" "Disabled" status from driver 
+INT wifi_getApStatus(INT apIndex, CHAR *output_string);  				// Outputs the AP "Enabled" "Disabled" status from driver
 
 /* wifi_getApSsidAdvertisementEnable() function */
 /**
@@ -3783,7 +3783,7 @@ INT wifi_getApStatus(INT apIndex, CHAR *output_string);  				// Outputs the AP "
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.SSIDAdvertisementEnabled		
+//Device.WiFi.AccessPoint.{i}.SSIDAdvertisementEnabled
 //Indicates whether or not beacons include the SSID name.
 INT wifi_getApSsidAdvertisementEnable(INT apIndex, BOOL *output_bool);// outputs a 1 if SSID on the AP is enabled, else ouputs 0
 
@@ -3847,9 +3847,9 @@ INT wifi_pushApSsidAdvertisementEnable(INT apIndex, BOOL enable);     // push th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.RetryLimit		
+//Device.WiFi.AccessPoint.{i}.RetryLimit
 //The maximum number of retransmission for a packet. This corresponds to IEEE 802.11 parameter dot11ShortRetryLimit.
-INT wifi_getApRetryLimit(INT apIndex, UINT *output); 
+INT wifi_getApRetryLimit(INT apIndex, UINT *output);
 
 /* wifi_setApRetryLimit() function */
 /**
@@ -3870,7 +3870,7 @@ INT wifi_getApRetryLimit(INT apIndex, UINT *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApRetryLimit(INT apIndex, UINT number); 
+INT wifi_setApRetryLimit(INT apIndex, UINT number);
 
 /* wifi_getApWMMCapability() function */
 /**
@@ -3891,9 +3891,9 @@ INT wifi_setApRetryLimit(INT apIndex, UINT number);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.WMMCapability	
+//Device.WiFi.AccessPoint.{i}.WMMCapability
 //Indicates whether this access point supports WiFi Multimedia (WMM) Access Categories (AC).
-INT wifi_getApWMMCapability(INT apIndex, BOOL *output); 
+INT wifi_getApWMMCapability(INT apIndex, BOOL *output);
 
 /* wifi_getApUAPSDCapability() function */
 /**
@@ -3914,10 +3914,10 @@ INT wifi_getApWMMCapability(INT apIndex, BOOL *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.UAPSDCapability		
+//Device.WiFi.AccessPoint.{i}.UAPSDCapability
 //Indicates whether this access point supports WMM Unscheduled Automatic Power Save Delivery (U-APSD). Note: U-APSD support implies WMM support.
-INT wifi_getApUAPSDCapability(INT apIndex, BOOL *output); 			
-			
+INT wifi_getApUAPSDCapability(INT apIndex, BOOL *output);
+
 /* wifi_getApWmmEnable() function */
 /**
 * @description Indicates whether WMM support is currently enabled. When enabled, this is indicated in beacon frames.
@@ -3937,9 +3937,9 @@ INT wifi_getApUAPSDCapability(INT apIndex, BOOL *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.WMMEnable		
+//Device.WiFi.AccessPoint.{i}.WMMEnable
 //Whether WMM support is currently enabled. When enabled, this is indicated in beacon frames.
-INT wifi_getApWmmEnable(INT apIndex, BOOL *output);                   
+INT wifi_getApWmmEnable(INT apIndex, BOOL *output);
 
 /* wifi_setApWmmEnable() function */
 /**
@@ -3980,9 +3980,9 @@ INT wifi_setApWmmEnable(INT apIndex, BOOL enable);                    // enables
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.UAPSDEnable		
+//Device.WiFi.AccessPoint.{i}.UAPSDEnable
 //Whether U-APSD support is currently enabled. When enabled, this is indicated in beacon frames. Note: U-APSD can only be enabled if WMM is also enabled.
-INT wifi_getApWmmUapsdEnable(INT apIndex, BOOL *output);               
+INT wifi_getApWmmUapsdEnable(INT apIndex, BOOL *output);
 
 /* wifi_setApWmmUapsdEnable() function */
 /**
@@ -4025,14 +4025,14 @@ INT wifi_setApWmmUapsdEnable(INT apIndex, BOOL enable);               // enables
 */
 // Sets the WMM ACK polity on the hardware. AckPolicy false means do not acknowledge, true means acknowledge
 INT wifi_setApWmmOgAckPolicy(INT apIndex, INT class, BOOL ackPolicy);  //RDKB
-			
+
 /* wifi_getApIsolationEnable() function */
 /**
 * @description Get AP isolation value.A value of true means that the devices connected to the Access Point are isolated from all other devices within the home network (as is typically the case for a Wireless Hotspot).
 * \n Device.WiFi.AccessPoint.{i}.IsolationEnable
 *
 * @param apIndex - Access Point index
-* @param output - AP Isolation enable, to be returned 
+* @param output - AP Isolation enable, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4045,9 +4045,9 @@ INT wifi_setApWmmOgAckPolicy(INT apIndex, INT class, BOOL ackPolicy);  //RDKB
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.IsolationEnable	
-//Enables or disables device isolation.	A value of true means that the devices connected to the Access Point are isolated from all other devices within the home network (as is typically the case for a Wireless Hotspot).	
-INT wifi_getApIsolationEnable(INT apIndex, BOOL *output); //Tr181		
+//Device.WiFi.AccessPoint.{i}.IsolationEnable
+//Enables or disables device isolation.	A value of true means that the devices connected to the Access Point are isolated from all other devices within the home network (as is typically the case for a Wireless Hotspot).
+INT wifi_getApIsolationEnable(INT apIndex, BOOL *output); //Tr181
 
 /* wifi_setApIsolationEnable() function */
 /**
@@ -4055,7 +4055,7 @@ INT wifi_getApIsolationEnable(INT apIndex, BOOL *output); //Tr181
 * \n Device.WiFi.AccessPoint.{i}.IsolationEnable
 *
 * @param apIndex - Access Point index
-* @param enable - AP Isolation enable value 
+* @param enable - AP Isolation enable value
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4068,16 +4068,16 @@ INT wifi_getApIsolationEnable(INT apIndex, BOOL *output); //Tr181
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApIsolationEnable(INT apIndex, BOOL enable); //Tr181					
+INT wifi_setApIsolationEnable(INT apIndex, BOOL enable); //Tr181
 
 /* wifi_getApMaxAssociatedDevices() function */
 /**
-* @description Get maximum associated devices with the Access Point index. 
+* @description Get maximum associated devices with the Access Point index.
 * The maximum number of devices that can simultaneously be connected to the access point. A value of 0 means that there is no specific limit.
 * \n Device.WiFi.AccessPoint.{i}.MaxAssociatedDevices
 *
 * @param apIndex - Access Point index
-* @param output - Maximum associated devices, to be returned 
+* @param output - Maximum associated devices, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4090,18 +4090,18 @@ INT wifi_setApIsolationEnable(INT apIndex, BOOL enable); //Tr181
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.MaxAssociatedDevices	
-//The maximum number of devices that can simultaneously be connected to the access point. A value of 0 means that there is no specific limit.			
-INT wifi_getApMaxAssociatedDevices(INT apIndex, UINT *output); //Tr181		
+//Device.WiFi.AccessPoint.{i}.MaxAssociatedDevices
+//The maximum number of devices that can simultaneously be connected to the access point. A value of 0 means that there is no specific limit.
+INT wifi_getApMaxAssociatedDevices(INT apIndex, UINT *output); //Tr181
 
 /* wifi_setApMaxAssociatedDevices() function */
 /**
-* @description Set maximum associated devices with the Access Point index. 
+* @description Set maximum associated devices with the Access Point index.
 * The maximum number of devices that can simultaneously be connected to the access point. A value of 0 means that there is no specific limit.
 * \n Device.WiFi.AccessPoint.{i}.MaxAssociatedDevices
 *
 * @param apIndex - Access Point index
-* @param number - Maximum associated devices 
+* @param number - Maximum associated devices
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4114,15 +4114,15 @@ INT wifi_getApMaxAssociatedDevices(INT apIndex, UINT *output); //Tr181
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApMaxAssociatedDevices(INT apIndex, UINT number); //Tr181					
-					
+INT wifi_setApMaxAssociatedDevices(INT apIndex, UINT number); //Tr181
+
 /* wifi_getApAssociatedDevicesHighWatermarkThreshold() function */
 /**
 * @description Get the HighWatermarkThreshold value, that is lesser than or equal to MaxAssociatedDevices. Setting this parameter does not actually limit the number of clients that can associate with this access point as that is controlled by MaxAssociatedDevices.	MaxAssociatedDevices or 50. The default value of this parameter should be equal to MaxAssociatedDevices. In case MaxAssociatedDevices is 0 (zero), the default value of this parameter should be 50. A value of 0 means that there is no specific limit and Watermark calculation algorithm should be turned off.
 * \n Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThreshold
 *
 * @param apIndex - Access Point index
-* @param output - HighWatermarkThreshold value, to be returned 
+* @param output - HighWatermarkThreshold value, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4135,8 +4135,8 @@ INT wifi_setApMaxAssociatedDevices(INT apIndex, UINT number); //Tr181
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThreshold	
-//The HighWatermarkThreshold value that is lesser than or equal to MaxAssociatedDevices. Setting this parameter does not actually limit the number of clients that can associate with this access point as that is controlled by MaxAssociatedDevices.	MaxAssociatedDevices or 50. The default value of this parameter should be equal to MaxAssociatedDevices. In case MaxAssociatedDevices is 0 (zero), the default value of this parameter should be 50. A value of 0 means that there is no specific limit and Watermark calculation algorithm should be turned off.			
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThreshold
+//The HighWatermarkThreshold value that is lesser than or equal to MaxAssociatedDevices. Setting this parameter does not actually limit the number of clients that can associate with this access point as that is controlled by MaxAssociatedDevices.	MaxAssociatedDevices or 50. The default value of this parameter should be equal to MaxAssociatedDevices. In case MaxAssociatedDevices is 0 (zero), the default value of this parameter should be 50. A value of 0 means that there is no specific limit and Watermark calculation algorithm should be turned off.
 INT wifi_getApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT *output); //Tr181	//P3
 
 /* wifi_setApAssociatedDevicesHighWatermarkThreshold() function */
@@ -4145,7 +4145,7 @@ INT wifi_getApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT *output)
 * \n Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThreshold
 *
 * @param apIndex - Access Point index
-* @param Threshold - HighWatermarkThreshold value 
+* @param Threshold - HighWatermarkThreshold value
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4158,7 +4158,7 @@ INT wifi_getApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT *output)
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT Threshold); //Tr181		//P3			
+INT wifi_setApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT Threshold); //Tr181		//P3
 
 /* wifi_getApAssociatedDevicesHighWatermarkThresholdReached() function */
 /**
@@ -4166,7 +4166,7 @@ INT wifi_setApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT Threshol
 * \n Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThresholdReached
 *
 * @param apIndex - Access Point index
-* @param output - Number of times the current total number of associated device has reached the HighWatermarkThreshold value, to be returned 
+* @param output - Number of times the current total number of associated device has reached the HighWatermarkThreshold value, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4179,8 +4179,8 @@ INT wifi_setApAssociatedDevicesHighWatermarkThreshold(INT apIndex, UINT Threshol
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThresholdReached		
-//Number of times the current total number of associated device has reached the HighWatermarkThreshold value. This calculation can be based on the parameter AssociatedDeviceNumberOfEntries as well. Implementation specifics about this parameter are left to the product group and the device vendors. It can be updated whenever there is a new client association request to the access point.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkThresholdReached
+//Number of times the current total number of associated device has reached the HighWatermarkThreshold value. This calculation can be based on the parameter AssociatedDeviceNumberOfEntries as well. Implementation specifics about this parameter are left to the product group and the device vendors. It can be updated whenever there is a new client association request to the access point.
 INT wifi_getApAssociatedDevicesHighWatermarkThresholdReached(INT apIndex, UINT *output); //Tr181 //P3
 
 /* wifi_getApAssociatedDevicesHighWatermark() function */
@@ -4189,7 +4189,7 @@ INT wifi_getApAssociatedDevicesHighWatermarkThresholdReached(INT apIndex, UINT *
 * \n Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermark
 *
 * @param apIndex - Access Point index
-* @param output - Maximum number of associated devices that have ever associated with the access point concurrently, to be returned 
+* @param output - Maximum number of associated devices that have ever associated with the access point concurrently, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4202,8 +4202,8 @@ INT wifi_getApAssociatedDevicesHighWatermarkThresholdReached(INT apIndex, UINT *
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermark	
-//Maximum number of associated devices that have ever associated with the access point concurrently since the last reset of the device or WiFi module.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermark
+//Maximum number of associated devices that have ever associated with the access point concurrently since the last reset of the device or WiFi module.
 INT wifi_getApAssociatedDevicesHighWatermark(INT apIndex, UINT *output); //Tr181	//P3
 
 /* wifi_getApAssociatedDevicesHighWatermarkDate() function */
@@ -4212,7 +4212,7 @@ INT wifi_getApAssociatedDevicesHighWatermark(INT apIndex, UINT *output); //Tr181
 * \n Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkDate
 *
 * @param apIndex - Access Point index
-* @param output_in_seconds - Date and Time at which the maximum number of associated devices ever associated with the access point concurrenlty, to be returned 
+* @param output_in_seconds - Date and Time at which the maximum number of associated devices ever associated with the access point concurrenlty, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4225,28 +4225,28 @@ INT wifi_getApAssociatedDevicesHighWatermark(INT apIndex, UINT *output); //Tr181
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkDate		
-//Date and Time at which the maximum number of associated devices ever associated with the access point concurrenlty since the last reset of the device or WiFi module (or in short when was X_COMCAST-COM_AssociatedDevicesHighWatermark updated). This dateTime value is in UTC.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_AssociatedDevicesHighWatermarkDate
+//Date and Time at which the maximum number of associated devices ever associated with the access point concurrenlty since the last reset of the device or WiFi module (or in short when was X_COMCAST-COM_AssociatedDevicesHighWatermark updated). This dateTime value is in UTC.
 INT wifi_getApAssociatedDevicesHighWatermarkDate(INT apIndex, ULONG *output_in_seconds); //Tr181	//P3
 
-					
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingServiceCapability	boolean	R	
-//When true, indicates whether the access point supports interworking with external networks.	
 
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingServiceEnable	boolean	W	
-//Enables or disables capability of the access point to intework with external network. When enabled, the access point includes Interworking IE in the beacon frames.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingServiceCapability	boolean	R
+//When true, indicates whether the access point supports interworking with external networks.
 
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_PasspointCapability	boolean	R	
-//Indicates whether this access point supports Passpoint (aka Hotspot 2.0). The Passpoint enabled AccessPoint must use WPA2-Enterprise security and WPS must not be enabled.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingServiceEnable	boolean	W
+//Enables or disables capability of the access point to intework with external network. When enabled, the access point includes Interworking IE in the beacon frames.
 
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_PasspointEnable	boolean	W	
-//Whether Passpoint (aka Hotspot 2.0) support is currently enabled. When enabled, Passpoint specific information elemenets are indicated in beacon frames.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_PasspointCapability	boolean	R
+//Indicates whether this access point supports Passpoint (aka Hotspot 2.0). The Passpoint enabled AccessPoint must use WPA2-Enterprise security and WPS must not be enabled.
 
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_MAC_FilteringMode	string	R	
-//"The current operational state of the MAC Filtering Mode, Enumeration of:    Allow-ALL, Allow, Deny			
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_PasspointEnable	boolean	W
+//Whether Passpoint (aka Hotspot 2.0) support is currently enabled. When enabled, Passpoint specific information elemenets are indicated in beacon frames.
 
-//-----------------------------------------------------------------------------------------------				  
-//Device.WiFi.AccessPoint.{i}.Security.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_MAC_FilteringMode	string	R
+//"The current operational state of the MAC Filtering Mode, Enumeration of:    Allow-ALL, Allow, Deny
+
+//-----------------------------------------------------------------------------------------------
+//Device.WiFi.AccessPoint.{i}.Security.
 
 /* wifi_getApSecurityModesSupported() function */
 /**
@@ -4254,7 +4254,7 @@ INT wifi_getApAssociatedDevicesHighWatermarkDate(INT apIndex, ULONG *output_in_s
 * \n Device.WiFi.AccessPoint.{i}.Security.ModesSupported
 *
 * @param apIndex - Access Point index
-* @param output - Comma-separated list of security modes, to be returned 
+* @param output - Comma-separated list of security modes, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4267,17 +4267,17 @@ INT wifi_getApAssociatedDevicesHighWatermarkDate(INT apIndex, ULONG *output_in_s
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.ModesSupported	
+//Device.WiFi.AccessPoint.{i}.Security.ModesSupported
 //Comma-separated list of strings. Indicates which security modes this AccessPoint instance is capable of supporting. Each list item is an enumeration of: None,WEP-64,WEP-128,WPA-Personal,WPA2-Personal,WPA-WPA2-Personal,WPA-Enterprise,WPA2-Enterprise,WPA-WPA2-Enterprise
-INT wifi_getApSecurityModesSupported(INT apIndex, CHAR *output); 			
-			
+INT wifi_getApSecurityModesSupported(INT apIndex, CHAR *output);
+
 /* wifi_getApSecurityModeEnabled() function */
 /**
 * @description Get the Security modes supported. The value MUST be a member of the list reported by the ModesSupported parameter. Indicates which security mode is enabled.
 * \n Device.WiFi.AccessPoint.{i}.Security.ModeEnabled	string	W
 *
 * @param apIndex - Access Point index
-* @param output - Enabled security mode, to be returned 
+* @param output - Enabled security mode, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4290,9 +4290,9 @@ INT wifi_getApSecurityModesSupported(INT apIndex, CHAR *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.ModeEnabled	string	W	
+//Device.WiFi.AccessPoint.{i}.Security.ModeEnabled	string	W
 //The value MUST be a member of the list reported by the ModesSupported parameter. Indicates which security mode is enabled.
-INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);    
+INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);
 
 /* wifi_setApSecurityModeEnabled() function */
 /**
@@ -4300,7 +4300,7 @@ INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);
 * \n Device.WiFi.AccessPoint.{i}.Security.ModeEnabled	string	W
 *
 * @param apIndex - Access Point index
-* @param encMode - Supported security mode 
+* @param encMode - Supported security mode
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4313,9 +4313,9 @@ INT wifi_getApSecurityModeEnabled(INT apIndex, CHAR *output);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApSecurityModeEnabled(INT apIndex, CHAR *encMode);        
+INT wifi_setApSecurityModeEnabled(INT apIndex, CHAR *encMode);
 
-//Device.WiFi.AccessPoint.{i}.Security.WEPKey	
+//Device.WiFi.AccessPoint.{i}.Security.WEPKey
 //A WEP key expressed as a hexadecimal string.
 
 /* wifi_getApSecurityPreSharedKey() function */
@@ -4324,7 +4324,7 @@ INT wifi_setApSecurityModeEnabled(INT apIndex, CHAR *encMode);
 * \n Device.WiFi.AccessPoint.{i}.Security.PreSharedKey
 *
 * @param apIndex - Access Point index
-* @param output_string - PreSharedKey, to be returned 
+* @param output_string - PreSharedKey, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4337,7 +4337,7 @@ INT wifi_setApSecurityModeEnabled(INT apIndex, CHAR *encMode);
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.PreSharedKey		
+//Device.WiFi.AccessPoint.{i}.Security.PreSharedKey
 //A literal PreSharedKey (PSK) expressed as a hexadecimal string.
 INT wifi_getApSecurityPreSharedKey(INT apIndex, CHAR *output_string);         // output_string must be pre-allocated as 64 character string by caller
 
@@ -4347,7 +4347,7 @@ INT wifi_getApSecurityPreSharedKey(INT apIndex, CHAR *output_string);         //
 * \n Device.WiFi.AccessPoint.{i}.Security.PreSharedKey
 *
 * @param apIndex - Access Point index
-* @param preSharedKey - PreSharedKey 
+* @param preSharedKey - PreSharedKey
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4368,7 +4368,7 @@ INT wifi_setApSecurityPreSharedKey(INT apIndex, CHAR *preSharedKey);          //
 * \n Device.WiFi.AccessPoint.{i}.Security.KeyPassphrase string-(63)	W
 *
 * @param apIndex - Access Point index
-* @param output_string - Security key passphrase, to be returned 
+* @param output_string - Security key passphrase, to be returned
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4381,7 +4381,7 @@ INT wifi_setApSecurityPreSharedKey(INT apIndex, CHAR *preSharedKey);          //
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.KeyPassphrase	string(63)	W	
+//Device.WiFi.AccessPoint.{i}.Security.KeyPassphrase	string(63)	W
 //A passphrase from which the PreSharedKey is to be generated, for WPA-Personal or WPA2-Personal or WPA-WPA2-Personal security modes.
 INT wifi_getApSecurityKeyPassphrase(INT apIndex, CHAR *output_string);        // outputs the passphrase, maximum 63 characters
 
@@ -4406,7 +4406,7 @@ INT wifi_getApSecurityKeyPassphrase(INT apIndex, CHAR *output_string);        //
 */
 INT wifi_setApSecurityKeyPassphrase(INT apIndex, CHAR *passPhrase);           // sets the passphrase enviornment variable, max 63 characters
 
-//Device.WiFi.AccessPoint.{i}.Security.RekeyingInterval	unsignedInt	W	
+//Device.WiFi.AccessPoint.{i}.Security.RekeyingInterval	unsignedInt	W
 //The interval (expressed in seconds) in which the keys are re-generated.
 //INT wifi_getApSecurityWpaRekeyInterval(INT apIndex, INT *output_int);         // outputs the rekey interval
 //INT wifi_setApSecurityWpaRekeyInterval(INT apIndex, INT rekeyInterval);       // sets the internal variable for the rekey interval
@@ -4429,23 +4429,23 @@ INT wifi_setApSecurityKeyPassphrase(INT apIndex, CHAR *passPhrase);           //
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.Reset	
+//Device.WiFi.AccessPoint.{i}.Security.Reset
 //When set to true, this AccessPoint instance's WiFi security settings are reset to their factory default values. The affected settings include ModeEnabled, WEPKey, PreSharedKey and KeyPassphrase.
 INT wifi_setApSecurityReset(INT apIndex);
 
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_KeyPassphrase	string(63)	RW	
-//A passphrase from which the PreSharedKey is to be generated, for WPA-Personal or WPA2-Personal or WPA-WPA2-Personal security modes.	If KeyPassphrase is written, then PreSharedKey is immediately generated. The ACS SHOULD NOT set both the KeyPassphrase and the PreSharedKey directly (the result of doing this is undefined). The key is generated as specified by WPA, which uses PBKDF2 from PKCS #5: Password-based Cryptography Specification Version 2.0 ([RFC2898]).	This custom parameter is defined to enable reading the Passphrase via TR-069 /ACS. When read it should return the actual passphrase			
-//INT wifi_getApKeyPassphrase(INT apIndex, CHAR *output); //Tr181	
-//INT wifi_setApKeyPassphrase(INT apIndex, CHAR *passphase); //Tr181	
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_KeyPassphrase	string(63)	RW
+//A passphrase from which the PreSharedKey is to be generated, for WPA-Personal or WPA2-Personal or WPA-WPA2-Personal security modes.	If KeyPassphrase is written, then PreSharedKey is immediately generated. The ACS SHOULD NOT set both the KeyPassphrase and the PreSharedKey directly (the result of doing this is undefined). The key is generated as specified by WPA, which uses PBKDF2 from PKCS #5: Password-based Cryptography Specification Version 2.0 ([RFC2898]).	This custom parameter is defined to enable reading the Passphrase via TR-069 /ACS. When read it should return the actual passphrase
+//INT wifi_getApKeyPassphrase(INT apIndex, CHAR *output); //Tr181
+//INT wifi_setApKeyPassphrase(INT apIndex, CHAR *passphase); //Tr181
 
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_WEPKey	string	RW	
-//A WEP key expressed as a hexadecimal string.	WEPKey is used only if ModeEnabled is set to WEP-64 or WEP-128.	A 5 byte WEPKey corresponds to security mode WEP-64 and a 13 byte WEPKey corresponds to security mode WEP-128.	This custom parameter is defined to enable reading the WEPKey via TR-069/ACS. When read it should return the actual WEPKey.	If User enters 10 or 26 Hexadecimal characters, it should return keys as Hexadecimal characters.	If user enters 5 or 13 ASCII character key it should return key as ASCII characters.			
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_WEPKey	string	RW
+//A WEP key expressed as a hexadecimal string.	WEPKey is used only if ModeEnabled is set to WEP-64 or WEP-128.	A 5 byte WEPKey corresponds to security mode WEP-64 and a 13 byte WEPKey corresponds to security mode WEP-128.	This custom parameter is defined to enable reading the WEPKey via TR-069/ACS. When read it should return the actual WEPKey.	If User enters 10 or 26 Hexadecimal characters, it should return keys as Hexadecimal characters.	If user enters 5 or 13 ASCII character key it should return key as ASCII characters.
 
 //-----------------------------------------------------------------------------------------------
 
 /* wifi_getApSecurityRadiusServer() function */
 /**
-* @description Get the IP Address and port number of the RADIUS server, which 
+* @description Get the IP Address and port number of the RADIUS server, which
 are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabled is an Enterprise type (i.e. WPA-Enterprise, WPA2-Enterprise or WPA-WPA2-Enterprise).  String is 64 bytes max.
 * \n Device.WiFi.AccessPoint.{i}.Security.RadiusServerIPAddr
 * \n Device.WiFi.AccessPoint.{i}.Security.RadiusServerPort
@@ -4467,15 +4467,15 @@ are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabl
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.RadiusServerIPAddr	
-//Device.WiFi.AccessPoint.{i}.Security.RadiusServerPort	
+//Device.WiFi.AccessPoint.{i}.Security.RadiusServerIPAddr
+//Device.WiFi.AccessPoint.{i}.Security.RadiusServerPort
 //Device.WiFi.AccessPoint.{i}.Security.RadiusSecret
 //The IP Address and port number of the RADIUS server used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabled is an Enterprise type (i.e. WPA-Enterprise, WPA2-Enterprise or WPA-WPA2-Enterprise).  String is 64 bytes max
-INT wifi_getApSecurityRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *RadiusSecret_output); //Tr181	
+INT wifi_getApSecurityRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *RadiusSecret_output); //Tr181
 
 /* wifi_setApSecurityRadiusServer() function */
 /**
-* @description Set the IP Address and port number of the RADIUS server, which 
+* @description Set the IP Address and port number of the RADIUS server, which
 are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabled is an Enterprise type (i.e. WPA-Enterprise, WPA2-Enterprise or WPA-WPA2-Enterprise).  String is 64 bytes max.
 * \n Device.WiFi.AccessPoint.{i}.Security.RadiusServerIPAddr
 * \n Device.WiFi.AccessPoint.{i}.Security.RadiusServerPort
@@ -4483,7 +4483,7 @@ are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabl
 *
 * @param apIndex - Access Point index
 * @param IPAddress - IP Address
-* @param port - Port 
+* @param port - Port
 * @param RadiusSecret - Radius Secret
 *
 * @return The status of the operation
@@ -4497,11 +4497,11 @@ are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabl
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApSecurityRadiusServer(INT apIndex, CHAR *IPAddress, UINT port, CHAR *RadiusSecret); //Tr181	
+INT wifi_setApSecurityRadiusServer(INT apIndex, CHAR *IPAddress, UINT port, CHAR *RadiusSecret); //Tr181
 
 /* wifi_getApSecuritySecondaryRadiusServer() function */
 /**
-* @description Get secondary IP Address, port number and RADIUS server, which 
+* @description Get secondary IP Address, port number and RADIUS server, which
 are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabled is an Enterprise type (i.e. WPA-Enterprise, WPA2-Enterprise or WPA-WPA2-Enterprise).  String is 64 bytes max.
 *
 * @param apIndex - Access Point index
@@ -4520,11 +4520,11 @@ are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabl
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_getApSecuritySecondaryRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *RadiusSecret_output); //Tr181	
+INT wifi_getApSecuritySecondaryRadiusServer(INT apIndex, CHAR *IP_output, UINT *Port_output, CHAR *RadiusSecret_output); //Tr181
 
 /* wifi_setApSecuritySecondaryRadiusServer() function */
 /**
-* @description Set secondary IP Address, port number and RADIUS server, which 
+* @description Set secondary IP Address, port number and RADIUS server, which
 are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabled is an Enterprise type (i.e. WPA-Enterprise, WPA2-Enterprise or WPA-WPA2-Enterprise).  String is 64 bytes max.
 *
 * @param apIndex - Access Point index
@@ -4543,11 +4543,11 @@ are used for WLAN security. RadiusServerIPAddr is only applicable when ModeEnabl
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApSecuritySecondaryRadiusServer(INT apIndex, CHAR *IPAddress, UINT port, CHAR *RadiusSecret); //Tr181	
+INT wifi_setApSecuritySecondaryRadiusServer(INT apIndex, CHAR *IPAddress, UINT port, CHAR *RadiusSecret); //Tr181
 
 /* wifi_getApSecurityRadiusSettings() function */
 /**
-* @description Get Access Point security radius settings. 
+* @description Get Access Point security radius settings.
 * \n Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.
 *
 * @param apIndex - Access Point index
@@ -4564,21 +4564,21 @@ INT wifi_setApSecuritySecondaryRadiusServer(INT apIndex, CHAR *IPAddress, UINT p
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.		
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.RadiusServerRetries	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.RadiusServerRequestTimeout	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.PMKLifetime	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.PMKCaching	boolean	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.PMKCacheInterval	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.MaxAuthenticationAttempts	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.BlacklistTableTimeout	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.IdentityRequestRetryInterval	int	W	
-//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.QuietPeriodAfterFailedAuthentication	int	W		
-INT wifi_getApSecurityRadiusSettings(INT apIndex, wifi_radius_setting_t *output); //Tr181	
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.RadiusServerRetries	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.RadiusServerRequestTimeout	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.PMKLifetime	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.PMKCaching	boolean	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.PMKCacheInterval	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.MaxAuthenticationAttempts	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.BlacklistTableTimeout	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.IdentityRequestRetryInterval	int	W
+//Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.QuietPeriodAfterFailedAuthentication	int	W
+INT wifi_getApSecurityRadiusSettings(INT apIndex, wifi_radius_setting_t *output); //Tr181
 
 /* wifi_setApSecurityRadiusSettings() function */
 /**
-* @description Set Access Point security radius settings. 
+* @description Set Access Point security radius settings.
 * \n Device.WiFi.AccessPoint.{i}.Security.X_COMCAST-COM_RadiusSettings.
 *
 * @param apIndex - Access Point index
@@ -4595,7 +4595,7 @@ INT wifi_getApSecurityRadiusSettings(INT apIndex, wifi_radius_setting_t *output)
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-INT wifi_setApSecurityRadiusSettings(INT apIndex, wifi_radius_setting_t *input); //Tr181	
+INT wifi_setApSecurityRadiusSettings(INT apIndex, wifi_radius_setting_t *input); //Tr181
 
 
 //-----------------------------------------------------------------------------------------------
@@ -4621,9 +4621,9 @@ INT wifi_setApSecurityRadiusSettings(INT apIndex, wifi_radius_setting_t *input);
 *
 */
 //Device.WiFi.AccessPoint.{i}.WPS.
-//Device.WiFi.AccessPoint.{i}.WPS.Enable	
+//Device.WiFi.AccessPoint.{i}.WPS.Enable
 //Enables or disables WPS functionality for this access point.
-INT wifi_getApWpsEnable(INT apIndex, BOOL *output_bool);              // outputs the WPS enable state of this ap in output_bool 
+INT wifi_getApWpsEnable(INT apIndex, BOOL *output_bool);              // outputs the WPS enable state of this ap in output_bool
 
 /* wifi_setApWpsEnable() function */
 /**
@@ -4668,9 +4668,9 @@ INT wifi_setApWpsEnable(INT apIndex, BOOL enableValue);               // sets th
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.WPS.ConfigMethodsSupported	
+//Device.WiFi.AccessPoint.{i}.WPS.ConfigMethodsSupported
 //Comma-separated list of strings. Indicates WPS configuration methods supported by the device. Each list item is an enumeration of: USBFlashDrive,Ethernet,ExternalNFCToken,IntegratedNFCToken,NFCInterface,PushButton,PIN
-INT wifi_getApWpsConfigMethodsSupported(INT apIndex, CHAR *output); //Tr181				
+INT wifi_getApWpsConfigMethodsSupported(INT apIndex, CHAR *output); //Tr181
 
 /* wifi_getApWpsConfigMethodsEnabled() function */
 /**
@@ -4691,7 +4691,7 @@ INT wifi_getApWpsConfigMethodsSupported(INT apIndex, CHAR *output); //Tr181
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.WPS.ConfigMethodsEnabled	string	W	
+//Device.WiFi.AccessPoint.{i}.WPS.ConfigMethodsEnabled	string	W
 //Comma-separated list of strings. Each list item MUST be a member of the list reported by the ConfigMethodsSupported parameter. Indicates WPS configuration methods enabled on the device.
 INT wifi_getApWpsConfigMethodsEnabled(INT apIndex, CHAR *output_string); // Outputs a common separated list of the enabled WPS config methods, 64 bytes max
 
@@ -4758,7 +4758,7 @@ INT wifi_setApWpsDevicePIN(INT apIndex, ULONG pin);                   // set an 
 
 /* wifi_getApWpsConfigurationState() function */
 /**
-* @description Get WPS configuration state. Output string is either Not configured or Configured, max 32 
+* @description Get WPS configuration state. Output string is either Not configured or Configured, max 32
 characters.
 *
 * @param apIndex - Access Point index
@@ -4782,7 +4782,7 @@ INT wifi_getApWpsConfigurationState(INT apIndex, CHAR *output_string); // Output
 * @description Sets the WPS pin for this AP.
 *
 * @param apIndex - Access Point index
-* @param pin - WPS enroll Pin 
+* @param pin - WPS enroll Pin
 *
 * @return The status of the operation
 * @retval RETURN_OK if successful
@@ -4840,7 +4840,7 @@ INT wifi_cancelApWPS(INT apIndex);                                    // cancels
 /* wifi_getApAssociatedDeviceDiagnosticResult() function */
 /**
 * @description HAL funciton should allocate an data structure array, and return to caller with "associated_dev_array".
-* \n Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.	
+* \n Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.
 *
 * @param apIndex - Access Point index
 * @param associated_dev_array - Associated device array, to be returned
@@ -4857,9 +4857,9 @@ INT wifi_cancelApWPS(INT apIndex);                                    // cancels
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.	  
-//Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_OperatingStandard	
-//Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_OperatingChannelBandwidth	
+//Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.
+//Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_OperatingStandard
+//Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_OperatingChannelBandwidth
 //Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_SNR
 //Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_InterferenceSources	//P3
 //Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_DataFramesSentAck		//P3
@@ -4872,21 +4872,21 @@ INT wifi_cancelApWPS(INT apIndex);                                    // cancels
 //Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_Disassociations		//P3
 //Device.WiFi.AccessPoint.{i}.AssociatedDevice.{i}.X_COMCAST-COM_AuthenticationFailures	//P3
 //HAL funciton should allocate an data structure array, and return to caller with "associated_dev_array"
-INT wifi_getApAssociatedDeviceDiagnosticResult(INT apIndex, wifi_associated_dev_t **associated_dev_array, UINT *output_array_size); //Tr181	
+INT wifi_getApAssociatedDeviceDiagnosticResult(INT apIndex, wifi_associated_dev_t **associated_dev_array, UINT *output_array_size); //Tr181
 
 //------------------------------------------------------------------------------------------------------
 ////SSID stearing APIs using blacklisting
-//INT wifi_setSsidSteeringPreferredList(INT radioIndex,INT apIndex, INT *preferredAPs[32]);  // prevent any client device from assocating with this ipIndex that has previously had a valid assocation on any of the listed "preferred" SSIDs unless SsidSteeringTimeout has expired for this device. The array lists all APs that are preferred over this AP.  Valid AP values are 1 to 32. Unused positions in this array must be set to 0. This setting becomes active when committed.  The wifi subsystem must default to no preferred SSID when initalized.  
+//INT wifi_setSsidSteeringPreferredList(INT radioIndex,INT apIndex, INT *preferredAPs[32]);  // prevent any client device from assocating with this ipIndex that has previously had a valid assocation on any of the listed "preferred" SSIDs unless SsidSteeringTimeout has expired for this device. The array lists all APs that are preferred over this AP.  Valid AP values are 1 to 32. Unused positions in this array must be set to 0. This setting becomes active when committed.  The wifi subsystem must default to no preferred SSID when initalized.
 ////Using the concept of an preferred list provides a solution to most use cases that requrie SSID Steering.  To implement this approach, the AP places the STA into the Access Control DENY list for a given SSID only if the STA has previously associated to one of the SSIDs in the preferred list that for SSID.
-//INT wifi_setSsidSteeringTimout(INT radioIndex,INT apIndex, ULONG SsidSteeringTimout);  // only prevent the client device from assocatign with this apIndex if the device has connected to a preferred SSID within this timeout period - in units of hours.  This setting becomes active when committed.  
+//INT wifi_setSsidSteeringTimout(INT radioIndex,INT apIndex, ULONG SsidSteeringTimout);  // only prevent the client device from assocatign with this apIndex if the device has connected to a preferred SSID within this timeout period - in units of hours.  This setting becomes active when committed.
 
 
 /* wifi_newApAssociatedDevice_callback() function */
 /**
-* @description This call back will be invoked when new wifi client come to associate to AP.	
+* @description This call back will be invoked when new wifi client come to associate to AP.
 *
 * @param apIndex - Access Point Index
-* @param associated_dev - wifi_associated_dev_t *associated_dev, associated 
+* @param associated_dev - wifi_associated_dev_t *associated_dev, associated
 device info
 *
 * @return The status of the operation
@@ -4900,12 +4900,12 @@ device info
 * calls. It should probably just send a message to a driver event handler task.
 *
 */
-//This call back will be invoked when new wifi client come to associate to AP. 
+//This call back will be invoked when new wifi client come to associate to AP.
 typedef INT ( * wifi_newApAssociatedDevice_callback)(INT apIndex, wifi_associated_dev_t *associated_dev);
 
 /* wifi_newApAssociatedDevice_callback_register() function */
 /**
-* @description Callback registration function.	
+* @description Callback registration function.
 *
 * @param callback_proc - wifi_newApAssociatedDevice_callback callback function
 *
@@ -4925,7 +4925,7 @@ void wifi_newApAssociatedDevice_callback_register(wifi_newApAssociatedDevice_cal
 
 /* KillHostapd() function */
 /**
-* @description Killing the running hostapd and restart the hostapd with current configuration.	
+* @description Killing the running hostapd and restart the hostapd with current configuration.
 *
 * @param None
 *
@@ -4943,7 +4943,7 @@ void KillHostapd();
 
 /* checkWifi() function */
 /**
-* @description Check whether hostapd is up or not.	
+* @description Check whether hostapd is up or not.
 *
 * @param None
 *
@@ -4961,7 +4961,7 @@ BOOL checkWifi();
 
 /* checkLanInterface() function */
 /**
-* @description Check whether wlan0 interface is up or not.	
+* @description Check whether wlan0 interface is up or not.
 *
 * @param None
 *
@@ -4979,12 +4979,12 @@ BOOL checkLanInterface();
 
 /* CcspHal_change_config_value() function */
 /**
-* @description Passing inputs to hostapd configuration file.	
+* @description Passing inputs to hostapd configuration file.
 *
 * @param field_name - Field Name
 * @param field_value - Field Value
 * @param buf - Buffer
-* @param nbytes - Size of buffer 
+* @param nbytes - Size of buffer
 *
 * @return True/False
 *
@@ -5007,7 +5007,7 @@ INT CcspHal_change_config_value(char *field_name, char *field_value, char *buf, 
 ***********************************************************************************************/
 /* do_MacFilter_Addrule() function */
 /**
-* @description To Add Wifi MacFiltering Rule Chain.    
+* @description To Add Wifi MacFiltering Rule Chain.
 *
 * @param None
 *
@@ -5027,7 +5027,7 @@ int do_MacFilter_Addrule();
 
 /* do_MacFilter_Delrule() function */
 /**
-* @description To Delete Wifi MacFiltering Rule Chain.    
+* @description To Delete Wifi MacFiltering Rule Chain.
 *
 * @param None
 *
@@ -5047,11 +5047,11 @@ int do_MacFilter_Delrule();
 
 /* do_MacFilter_Update() function */
 /**
-* @description To Update Wifi MacFiltering Rule Chain.    
+* @description To Update Wifi MacFiltering Rule Chain.
 *
 * @param Operation - Operation, to update mac filtering rule chain
 * @param i_macFiltCnt - MAC filter count
-* @param i_macFiltTabPtr - COSA_DML_WIFI_AP_MAC_FILTER *i_macFiltTabPtr, Mac Filter table pointer 
+* @param i_macFiltTabPtr - COSA_DML_WIFI_AP_MAC_FILTER *i_macFiltTabPtr, Mac Filter table pointer
 * @param count - count
 * @param hostPtr - hostDetails *hostPtr, Host Details
 *
@@ -5231,7 +5231,7 @@ BOOL checkLanInterface();
 //Get the ssid name from hostapd configuration file
 INT GettingHostapdSsid(INT ssidIndex,char *hostapd_conf,char *val);
 
-//Disable wifi interface 
+//Disable wifi interface
 void DisableWifi(int InstanceNumber);
 
 // Read the hostapd configuration file with corresponding parameters
@@ -5294,120 +5294,120 @@ int wifihal_interfacestatus(CHAR *wifi_status,CHAR *interface_name);
 
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService. 
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.AccessNetworkType	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.AccessNetworkType
 //Access Network Type value to be included in the Interworking IE in the beaconds. (refer 8.4.2.94 of IEEE Std 802.11-2012). Possible values are: 0 - Private network;1 - Private network with guest access;2 - Chargeable public network;3 - Free public network;4 - Personal device network;5 - Emergency services only network;6-13 - Reserved;14 - Test or experimental;15 - Wildcard
 //INT wifi_setAccessNetworkType(INT apIndex, INT accessNetworkType);   // P3
 
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.Internet	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.VenueGroupCode	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.VenueTypeCode	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.HESSID	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.DGAFEnable	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.Internet
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.VenueGroupCode
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.VenueTypeCode
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.HESSID
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.DGAFEnable
 //Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.ANQPDomainID
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.VenueNamesNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.OperatorNamesNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.ConsortiumOIsNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.DomainNamesNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.3GPPNetworksNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.NAIRealmsNumberOfEntries	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.VenueNamesNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.OperatorNamesNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.ConsortiumOIsNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.DomainNamesNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.3GPPNetworksNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_InterworkingService.NAIRealmsNumberOfEntries
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.VenueNames.{i}.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.VenueNames.{i}.
 //Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.VenueNames.{i}.LanguageCode
 //Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.VenueNames.{i}.VanueName
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OperatorNames.{i}.	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OperatorNames.{i}.
 //Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OperatorNames.{i}.LanguageCode
 //Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OperatorNames.{i}.OperatorName
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.ConsortiumOIs.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.ConsortiumOIs.{i}.OI	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.ConsortiumOIs.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.ConsortiumOIs.{i}.OI
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.DomainNames.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.DomainNames.{i}.DomainName	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.DomainNames.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.DomainNames.{i}.DomainName
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.3GPPNetworks.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.3GPPNetworks.{i}.MCC	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.3GPPNetworks.{i}.MNC	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.3GPPNetworks.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.3GPPNetworks.{i}.MCC
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.3GPPNetworks.{i}.MNC
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.NAIRealmEncodingType	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.NAIRealm	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethodsNumberOfEntries	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.NAIRealmEncodingType
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.NAIRealm
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethodsNumberOfEntries
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.EAPMethod	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParametersNumberOfEntries	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.EAPMethod
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParametersNumberOfEntries
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParameters.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParameters.{i}.ID	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParameters.{i}.Value	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParameters.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParameters.{i}.ID
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.NAIRealms.{i}.EAPMethods.{i}.AuthenticationParameters.{i}.Value
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.LinkStatus	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.AtCapacity	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.DownlinkSpeed	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.UplinkSpeed	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.DownlinkLoad	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.UplinkLoad	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.LinkStatus
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.AtCapacity
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.DownlinkSpeed
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.UplinkSpeed
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.DownlinkLoad
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.WANMetrics.UplinkLoad
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProvidersNumberOfEntries	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProvidersNumberOfEntries
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.OSUServerURI	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.OSUMethodsList	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.OSUNAI	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.NamesNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.IconsNumberOfEntries	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}ServiceDescriptionsNumberOfEntries	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.OSUServerURI
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.OSUMethodsList
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.OSUNAI
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.NamesNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.IconsNumberOfEntries
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}ServiceDescriptionsNumberOfEntries
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Names.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Names.{i}.LanguageCode	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Names.{i}.OSUProviderFriendlyName	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Names.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Names.{i}.LanguageCode
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Names.{i}.OSUProviderFriendlyName
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.IconWidth	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.IconHeight	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.LanguageCode	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.IconWidth
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.IconHeight
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.Icons.{i}.LanguageCode
 
 //-----------------------------------------------------------------------------------------------
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.ServiceDescriptions.{i}.	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.ServiceDescriptions.{i}.LanguageCode	
-//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.ServiceDescriptions.{i}.ServiceDescription	
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.ServiceDescriptions.{i}.
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.ServiceDescriptions.{i}.LanguageCode
+//Device.WiFi.AccessPoint.{i}.X_COMCAST-COM_Passpoint.OSU.OSUProviders.{i}.ServiceDescriptions.{i}.ServiceDescription
 
 //-----------------------------------------------------------------------------------------------
-//Device.IP.Diagnostics.	
-//Device.IP.Diagnostics.IPPing.	
-//Device.IP.Diagnostics.IPPing.DiagnosticsState	
+//Device.IP.Diagnostics.
+//Device.IP.Diagnostics.IPPing.
+//Device.IP.Diagnostics.IPPing.DiagnosticsState
 //Device.IP.Diagnostics.IPPing.Interface
-//Device.IP.Diagnostics.IPPing.Host	
-//Device.IP.Diagnostics.IPPing.NumberOfRepetitions		
-//Device.IP.Diagnostics.IPPing.Timeout	
-//Device.IP.Diagnostics.IPPing.DataBlockSize	
-//Device.IP.Diagnostics.IPPing.DSCP			
+//Device.IP.Diagnostics.IPPing.Host
+//Device.IP.Diagnostics.IPPing.NumberOfRepetitions
+//Device.IP.Diagnostics.IPPing.Timeout
+//Device.IP.Diagnostics.IPPing.DataBlockSize
+//Device.IP.Diagnostics.IPPing.DSCP
 
-//Device.IP.Diagnostics.IPPing.SuccessCount	
-//Device.IP.Diagnostics.IPPing.FailureCount		
-//Device.IP.Diagnostics.IPPing.AverageResponseTime		
-//Device.IP.Diagnostics.IPPing.MinimumResponseTime		
-//Device.IP.Diagnostics.IPPing.MaximumResponseTime			
+//Device.IP.Diagnostics.IPPing.SuccessCount
+//Device.IP.Diagnostics.IPPing.FailureCount
+//Device.IP.Diagnostics.IPPing.AverageResponseTime
+//Device.IP.Diagnostics.IPPing.MinimumResponseTime
+//Device.IP.Diagnostics.IPPing.MaximumResponseTime
 
 //Start the ping test and get the result
-//INT wifi_getIPDiagnosticsIPPingResult(wifi_diag_ipping_setting_t *input, wifi_diag_ipping_result_t *result); //Tr181		
+//INT wifi_getIPDiagnosticsIPPingResult(wifi_diag_ipping_setting_t *input, wifi_diag_ipping_result_t *result); //Tr181
 //--------------------------------------------------------------------------------------------------
 // Wifi Airtime Management and QOS APIs to control contention based access to airtime
 //INT wifi_clearDownLinkQos(INT apIndex);                             // clears the QOS parameters to the WMM default values for the downlink direction (from the access point to the stations.  This set must take affect when the api wifi_applySSIDSettings() is called.
