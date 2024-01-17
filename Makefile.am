@@ -24,6 +24,7 @@ EXTRA_DIST = ccsp_hal_dhcpv4_emu_api.h  \
              dhcp6cApi.h \
              dhcpv4c_api.h \
              mso_mgmt_hal.h \
+             platform_hal.h \
              vlan_hal.h \
              voice_hal.h \
              wifi_hal.h \
