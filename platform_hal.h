@@ -164,6 +164,7 @@ extern "C"{
 #define DHCPV6_OPT_15  15  // User Class Option
 #define DHCPV6_OPT_16  16  // Vendor Class Option
 #define DHCPV6_OPT_20  20  // Reconfigure Accept Option
+#define DHCPV6_OPT_64  64  // 
 
 
 //DHCPv4 Options
