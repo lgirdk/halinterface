@@ -1734,6 +1734,47 @@ void wifi_newApAssociatedDevice_callback_register(wifi_newApAssociatedDevice_cal
 *
 */
 typedef INT ( * wifi_apDisassociatedDevice_callback)(INT apIndex, char *MAC, INT event_type);
+
+/* wifi_radiusEapFailure_callback() function */
+/**
+* @brief This call back will be invoked when new there is a radius or EAP failure happens.
+*
+* @param[in] apIndex          Access Point Index
+* @param[in] failure_reason   Failure reason
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+typedef INT ( * wifi_radiusEapFailure_callback)(INT apIndex, INT failure_reason);
+
+/* wifi_radiusEapFailure_callback_register() function */
+/**
+* @brief Callback registration function.
+*
+* @param[in] callback_proc  wifi_radiusEapFailure__callback callback function
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect None
+*
+* @note This function must not suspend and must not invoke any blocking system
+* calls. It should probably just send a message to a driver event handler task.
+*
+*/
+
+void wifi_radiusEapFailure_callback_register(wifi_radiusEapFailure_callback callback_proc);
+
 /** @} */  //END OF GROUP WIFI_HAL_TYPES
 
 /**

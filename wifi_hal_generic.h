@@ -914,6 +914,10 @@ typedef enum {
    wifi_connection_status_ap_not_found
 } wifi_connection_status_t;
 
+typedef enum {
+    RADIUS_ACCESS_REJECT = 1,
+    EAP_FAILURE
+} radius_eap_failure_code_t;
 
 #define MAX_NR                  4
 #define MAX_NC                  1
