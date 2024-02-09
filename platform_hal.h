@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2016 RDK Management
+ * Copyright 2023 RDK Management
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,52 +16,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-
-/**********************************************************************
-   Copyright [2014] [Cisco Systems, Inc.]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-**********************************************************************/
-
-/**********************************************************************
-
-    module: platform_hal.h
-
-        For CCSP Component:  CcspCMAgent
-
-    ---------------------------------------------------------------
-
-    description:
-
-        This header file gives the function call prototypes and
-        structure definitions used for the RDK-Broadband
-        hardware abstraction layer for platform
-
-    ---------------------------------------------------------------
-
-    environment:
-
-        This HAL layer is intended to support platform drivers
-        through an open API.
-        Changes may be needed to support different hardware enviornments.
-
-    ---------------------------------------------------------------
-
-    author:
-
-        Cisco
-
-**********************************************************************/
 /**
 * @file platform_hal.h
 * @author Cisco
@@ -154,18 +108,21 @@ extern "C"{
  */
 
 //DHCPv6 Options
-#define DHCPV6_OPT_82  82  // OPTION_SOL_MAX_RT: Solicite Maximum Retry Time
-#define DHCPV6_OPT_23  23  // OPTION_SOL_MAX_RT: Solicite Maximum Retry Time
-#define DHCPV6_OPT_95  95  // OPTION_SOL_MAX_RT: Solicite Maximum Retry Time
-#define DHCPV6_OPT_24  24  // OPTION_DOMAIN_LIST
-#define DHCPV6_OPT_83  83  // OPTION_INF_MAX_RT
-#define DHCPV6_OPT_17  17  // OPTION_VENDOR_OPTS
-#define DHCPV6_OPT_31  31  // OPTION_SNTP_SERVERS
+#define DHCPV6_OPT_3    3  // Identity Association for Non-temporary Addresses Option
+#define DHCPV6_OPT_5    5  // IA Address Option
 #define DHCPV6_OPT_15  15  // User Class Option
 #define DHCPV6_OPT_16  16  // Vendor Class Option
+#define DHCPV6_OPT_17  17  // OPTION_VENDOR_OPTS
 #define DHCPV6_OPT_20  20  // Reconfigure Accept Option
-#define DHCPV6_OPT_64  64  // 
-
+#define DHCPV6_OPT_22  22  // OPTION_SIP_SERVER_A
+#define DHCPV6_OPT_23  23  // DNS Recursive Name Server option
+#define DHCPV6_OPT_24  24  // OPTION_DOMAIN_LIST
+#define DHCPV6_OPT_25  25  // Identity Association for Prefix Delegation Option
+#define DHCPV6_OPT_31  31  // OPTION_SNTP_SERVERS
+#define DHCPV6_OPT_64  64  // OPTION_AFTR_NAME 
+#define DHCPV6_OPT_82  82  // OPTION_SOL_MAX_RT: Solicite Maximum Retry Time
+#define DHCPV6_OPT_83  83  // OPTION_INF_MAX_RT
+#define DHCPV6_OPT_95  95  // OPTION_SOL_MAX_RT: Solicite Maximum Retry Time
 
 //DHCPv4 Options
 #define DHCPV4_OPT_2    2  // Time Offset
@@ -221,7 +178,6 @@ PLAT_PROC_MEM_INFO, *PPLAT_PROC_MEM_INFO;
  *  Subsystem level function prototypes
  *
 **********************************************************************************/
-/* platform_hal_GetDeviceConfigStatus() function */
 /**
 * @description Get the device configuration status.
 *
@@ -233,11 +189,9 @@ PLAT_PROC_MEM_INFO, *PPLAT_PROC_MEM_INFO;
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetDeviceConfigStatus(CHAR *pValue);
 
-/* platform_hal_GetTelnetEnable() function */
 /**
 * @description Get telnet enable status.
 *
@@ -247,11 +201,9 @@ INT platform_hal_GetDeviceConfigStatus(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetTelnetEnable(BOOLEAN *pFlag);
 
-/* platform_hal_SetTelnetEnable() function */
 /**
 * @description Enable/Disable telnet.
 *
@@ -261,11 +213,9 @@ INT platform_hal_GetTelnetEnable(BOOLEAN *pFlag);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetTelnetEnable(BOOLEAN Flag);
 
-/* platform_hal_GetSSHEnable() function */
 /**
 * @description Get SSH enable status.
 *
@@ -275,11 +225,9 @@ INT platform_hal_SetTelnetEnable(BOOLEAN Flag);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetSSHEnable(BOOLEAN *pFlag);
 
-/* platform_hal_SetSSHEnable() function */
 /**
 * @description Enable/disable SSH.
 *
@@ -289,11 +237,9 @@ INT platform_hal_GetSSHEnable(BOOLEAN *pFlag);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetSSHEnable(BOOLEAN Flag);
 
-/* platform_hal_GetSNMPEnable() function */
 /**
 * @description Get SNMP Enable value from the device.
 *
@@ -305,11 +251,9 @@ INT platform_hal_SetSSHEnable(BOOLEAN Flag);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetSNMPEnable(CHAR* pValue);
 
-/* platform_hal_SetSNMPEnable() function */
 /**
 * @description Set SNMP Enable value.
 *
@@ -321,11 +265,9 @@ INT platform_hal_GetSNMPEnable(CHAR* pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetSNMPEnable(CHAR* pValue);
 
-/* platform_hal_GetWebUITimeout() function */
 /**
 * @description Get WebUI timeout value.
 *
@@ -337,11 +279,9 @@ INT platform_hal_SetSNMPEnable(CHAR* pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetWebUITimeout(ULONG *pValue);
 
-/* platform_hal_SetWebUITimeout() function */
 /**
 * @description Set WebUI timeout value.
 *
@@ -352,12 +292,9 @@ INT platform_hal_GetWebUITimeout(ULONG *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetWebUITimeout(ULONG value);
 
-/** Soon to be deprecated **/
-/* platform_hal_GetWebAccessLevel() function */
 /**
 * @description Get Web Access Level.
 *
@@ -369,12 +306,10 @@ INT platform_hal_SetWebUITimeout(ULONG value);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
+* @note Soon to be deprecated
 */
 INT platform_hal_GetWebAccessLevel(INT userIndex, INT ifIndex, ULONG *pValue);
 
-/** Soon to be deprecated **/
-/* platform_hal_SetWebAccessLevel() function */
 /**
 * @description Set Web Access Level.
 *
@@ -403,11 +338,10 @@ INT platform_hal_GetWebAccessLevel(INT userIndex, INT ifIndex, ULONG *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
+* @note Soon to be deprecated
 */
 INT platform_hal_SetWebAccessLevel(INT userIndex, INT ifIndex, ULONG value);
 
-/* platform_hal_PandMDBInit() function */
 /**
 * @description Initialize PandM DB (Database).
 *
@@ -417,11 +351,9 @@ INT platform_hal_SetWebAccessLevel(INT userIndex, INT ifIndex, ULONG value);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_PandMDBInit(void);
 
-/* platform_hal_DocsisParamsDBInit() function */
 /**
 * @description Initialize Platform HAL docsis parameters DB.
 *
@@ -431,11 +363,9 @@ INT platform_hal_PandMDBInit(void);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_DocsisParamsDBInit(void);
 
-/* platform_hal_GetModelName() function */
 /**
 * @description Get device model name.
 *
@@ -447,11 +377,9 @@ INT platform_hal_DocsisParamsDBInit(void);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetModelName(CHAR* pValue);
 
-/* platform_hal_GetRouterRegion() function */
 /**
 * @description Get router region.
 *
@@ -463,11 +391,9 @@ INT platform_hal_GetModelName(CHAR* pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetRouterRegion(CHAR* pValue);
 
-/* platform_hal_GetSerialNumber() function */
 /**
 * @description Get device serial number.
 *
@@ -479,11 +405,9 @@ INT platform_hal_GetRouterRegion(CHAR* pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetSerialNumber(CHAR* pValue);
 
-/* platform_hal_GetHardwareVersion() function */
 /**
 * @description Get hardware version of the device.
 *
@@ -495,11 +419,9 @@ INT platform_hal_GetSerialNumber(CHAR* pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetHardwareVersion(CHAR* pValue);
 
-/* platform_hal_GetSoftwareVersion() function */
 /**
 * @description Get software version flashed in the device.
 *
@@ -512,11 +434,9 @@ INT platform_hal_GetHardwareVersion(CHAR* pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None
 */
 INT platform_hal_GetSoftwareVersion(CHAR* pValue, ULONG maxSize);
 
-/* platform_hal_GetBootloaderVersion() function */
 /**
 * @description Get the bootloader version flashed in the device.
 *
@@ -529,11 +449,9 @@ INT platform_hal_GetSoftwareVersion(CHAR* pValue, ULONG maxSize);
 * @retval RETURN_OK  if successful.
 * @retval RETURN_ERR If any error is detected .
 *
-* @sideeffect None.
 */
 INT platform_hal_GetBootloaderVersion(CHAR* pValue, ULONG maxSize);
 
-/* platform_hal_GetFirmwareName() function */
 /**
 * @description Get firmware image name flashed in the device.
 *
@@ -546,11 +464,9 @@ INT platform_hal_GetBootloaderVersion(CHAR* pValue, ULONG maxSize);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetFirmwareName(CHAR* pValue, ULONG maxSize);
 
-/* platform_hal_GetBaseMacAddress() function */
 /**
 * @description Get base MAC Address of the device.
 *
@@ -562,11 +478,9 @@ INT platform_hal_GetFirmwareName(CHAR* pValue, ULONG maxSize);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetBaseMacAddress(CHAR *pValue);
 
-/*platform_hal_GetHardware() function*/
 /**
 * @description Get total flash size of the hardware.
 *
@@ -578,11 +492,9 @@ INT platform_hal_GetBaseMacAddress(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetHardware(CHAR *pValue);
 
-/* platform_hal_GetHardware_MemUsed() function */
 /**
 * @description Get total used memory of the flash.
 *
@@ -594,11 +506,9 @@ INT platform_hal_GetHardware(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetHardware_MemUsed(CHAR *pValue);
 
-/* platform_hal_GetHardware_MemFree() function */
 /**
 * @description Get total available memory of the flash.
 *
@@ -610,11 +520,9 @@ INT platform_hal_GetHardware_MemUsed(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetHardware_MemFree(CHAR *pValue);
 
-/* platform_hal_GetTotalMemorySize() function */
 /**
 * @description Get total memory size of the DRAM (Dynamic Random Access Memory).
 *
@@ -625,11 +533,9 @@ INT platform_hal_GetHardware_MemFree(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetTotalMemorySize(ULONG *pulSize);
 
-/* platform_hal_GetUsedMemorySize() function */
 /**
 * @description Get the total used memory of the DRAM (Dynamic Random Access Memory)
 *
@@ -640,11 +546,9 @@ INT platform_hal_GetTotalMemorySize(ULONG *pulSize);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetUsedMemorySize(ULONG *pulSize);
 
-/* platform_hal_GetFreeMemorySize() function */
 /**
 * @description Get the total available memory of the DRAM (Dynamic Random Access Memory).
 *
@@ -655,11 +559,9 @@ INT platform_hal_GetUsedMemorySize(ULONG *pulSize);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetFreeMemorySize(ULONG *pulSize);
 
-/* platform_hal_GetFactoryResetCount() function */
 /**
 * @description Get the total number of times factory reset has been done on the device.
 * \n Device.DeviceInfo.FactoryResetCount.
@@ -671,11 +573,9 @@ INT platform_hal_GetFreeMemorySize(ULONG *pulSize);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetFactoryResetCount(ULONG *pulSize);
 
-/* platform_hal_ClearResetCount() function */
 /**
 * @description Reset the factory reset count on the device.
 *\n Device.DeviceInfo.ClearResetCount.
@@ -687,11 +587,9 @@ INT platform_hal_GetFactoryResetCount(ULONG *pulSize);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_ClearResetCount(BOOLEAN bFlag);
 
-/* platform_hal_getTimeOffSet() function */
 /**
 * @description Get the time offset from the device.
 * \n Device.DeviceInfo.TimeOffset.
@@ -707,11 +605,9 @@ INT platform_hal_ClearResetCount(BOOLEAN bFlag);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_getTimeOffSet(CHAR *timeOffSet);
 
-/* platform_hal_SetDeviceCodeImageTimeout() function */
 /**
 * @description Set HW watchdog timeout value.
 *
@@ -723,12 +619,10 @@ INT platform_hal_getTimeOffSet(CHAR *timeOffSet);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetDeviceCodeImageTimeout(INT seconds);
 
 
-/* platform_hal_SetDeviceCodeImageValid() function */
 /**
 * @description Set Valid flag for firmware image flashed in the device.
 *
@@ -738,11 +632,9 @@ INT platform_hal_SetDeviceCodeImageTimeout(INT seconds);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetDeviceCodeImageValid(BOOLEAN flag);
 
-/* platform_hal_getFactoryPartnerId() function */
 /**
 * @description Get FactoryPartnerID from the the device.
 *
@@ -755,12 +647,10 @@ INT platform_hal_SetDeviceCodeImageValid(BOOLEAN flag);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_getFactoryPartnerId(CHAR *pValue);
 
 
-/* platform_hal_getFactoryCmVariant() function */
 /**
 * @description Get FactoryCmVariant from the the device.
 *
@@ -772,12 +662,10 @@ INT platform_hal_getFactoryPartnerId(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_getFactoryCmVariant(CHAR *pValue);
 
 
-/* platform_hal_setFactoryCmVariant() function */
 /**
 * @description Set FactoryCmVariant from the the device.
 *
@@ -790,7 +678,6 @@ INT platform_hal_getFactoryCmVariant(CHAR *pValue);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_setFactoryCmVariant(CHAR *pValue);
 
@@ -836,7 +723,6 @@ LEDMGMT_PARAMS, *PLEDMGMT_PARAMS;
  */
 
 #ifdef FEATURE_RDKB_LED_MANAGER
-/* platfom_hal_initLed() function */
 /**
 * @description Initialises HAL layer and return file pointer to config file.
 *
@@ -851,7 +737,6 @@ LEDMGMT_PARAMS, *PLEDMGMT_PARAMS;
 int platform_hal_initLed(char * config_file_name);
 #endif
 
-/* platform_hal_setLed() function */
 /**
 * @description Set Led behavior of the device.
 *
@@ -871,12 +756,9 @@ int platform_hal_initLed(char * config_file_name);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_setLed(PLEDMGMT_PARAMS pValue);
 
-
-/* platform_hal_getLed() function */
 /**
 * @description Get Led behavior of the device at time of call.
 *
@@ -895,12 +777,9 @@ INT platform_hal_setLed(PLEDMGMT_PARAMS pValue);
 * @return The status of the operation.
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
-*
-* @sideeffect None
 */
 INT platform_hal_getLed(PLEDMGMT_PARAMS pValue);
 
-/* platform_hal_getFanSpeed() function */
 /**
 * @description Get PWM (pulse width modulation) setting of the fan.
 *
@@ -912,7 +791,6 @@ INT platform_hal_getLed(PLEDMGMT_PARAMS pValue);
 */
 UINT platform_hal_getFanSpeed(UINT fanIndex);
 
-/* platform_hal_getRPM() function */
 /**
 * @description Get RPM(rotations per minute) of the fan.
 *
@@ -924,7 +802,6 @@ UINT platform_hal_getFanSpeed(UINT fanIndex);
 */
 UINT platform_hal_getRPM(UINT fanIndex);
 
-/* platform_hal_getRotorLock() function */
 /**
 * @description Get the status of rotor lock.
 *
@@ -938,8 +815,6 @@ UINT platform_hal_getRPM(UINT fanIndex);
 */
 INT platform_hal_getRotorLock(UINT fanIndex);
 
-
-/* platform_hal_getFanStatus() function */
 /**
 * @description Get the fan status.
 *
@@ -952,7 +827,6 @@ INT platform_hal_getRotorLock(UINT fanIndex);
 */
 BOOLEAN platform_hal_getFanStatus(UINT fanIndex);
 
-/* platform_hal_setFanMaxOverride() function */
 /**
 * @description Set the fan to maximum speed.
 *
@@ -989,9 +863,6 @@ typedef struct _FAN_PLATFORM_CONFIG
    UINT LogInterval;
 } THERMAL_PLATFORM_CONFIG;
 
-
-
-/* platform_hal_initThermal() function */
 /**
 * @description Initialise Thermal Hal.
 *
@@ -1022,7 +893,6 @@ typedef struct _FAN_PLATFORM_CONFIG
 */
 INT platform_hal_initThermal(THERMAL_PLATFORM_CONFIG* pThermalPlatformConfig);
 
-/* platform_hal_LoadThermalConfig() function */
 /**
 * @description Loads default Thermal Hal thresholds.
 *
@@ -1059,7 +929,6 @@ typedef enum {
    FAN_ERR_MAX_OVERRIDE_SET = 2
 } FAN_ERR; // Fan errors
 
-/* platform_hal_setFanSpeed() function */
 /**
 * @description Set the fan speed.
 *
@@ -1076,7 +945,6 @@ typedef enum {
 */
 INT platform_hal_setFanSpeed(UINT fanIndex, FAN_SPEED fanSpeed, FAN_ERR* pErrReason);
 
-/* platform_hal_getFanTemperature() function */
 /**
 * @description Get current device temperature reading.
 *
@@ -1103,7 +971,6 @@ INT platform_hal_getFanTemperature(int* pTemp);
 */
 INT platform_hal_getInputCurrent(INT *pValue);
 
-/* platform_hal_getInputPower() function */
 /**
 * @description To get input power.
 *
@@ -1116,7 +983,6 @@ INT platform_hal_getInputCurrent(INT *pValue);
 */
 INT platform_hal_getInputPower(INT *pValue);
 
-/* platform_hal_getRadioTemperature() function */
 /**
 * @description To get Radio Temperature.
 *
@@ -1133,7 +999,6 @@ INT platform_hal_getRadioTemperature(INT radioIndex, INT* pValue);
 
 #endif
 
-/* platform_hal_SetSNMPOnboardRebootEnable() function */
 /**
 * @description Set SNMP Onboard Reboot Enable value  to allow or ignore SNMP reboot.
 *
@@ -1148,7 +1013,6 @@ INT platform_hal_getRadioTemperature(INT radioIndex, INT* pValue);
 INT platform_hal_SetSNMPOnboardRebootEnable(CHAR* pValue);
 
 
-/* platform_hal_GetMACsecEnable() function */
 /**
 * @description Get MACsec enable status.
 *
@@ -1163,8 +1027,6 @@ INT platform_hal_SetSNMPOnboardRebootEnable(CHAR* pValue);
 */
 INT platform_hal_GetMACsecEnable(INT ethPort, BOOLEAN *pFlag);
 
-
-/* platform_hal_SetMACsecEnable() function */
 /**
 * @description Enable/Disable MACsec.
 *
@@ -1179,8 +1041,6 @@ INT platform_hal_GetMACsecEnable(INT ethPort, BOOLEAN *pFlag);
 */
 INT platform_hal_SetMACsecEnable(INT ethPort, BOOLEAN Flag);
 
-
-/* platform_hal_GetMACsecOperationalStatus() function */
 /**
 * @description Checks whether MACSEC is configured at interface / driver level.
 *
@@ -1195,7 +1055,6 @@ INT platform_hal_SetMACsecEnable(INT ethPort, BOOLEAN Flag);
 */
 INT platform_hal_GetMACsecOperationalStatus(INT ethPort, BOOLEAN *pFlag);
 
-/* platform_hal_StartMACsec() function */
 /**
 * @description Start MACsec - Call should be Blocking.
 *
@@ -1211,7 +1070,6 @@ INT platform_hal_GetMACsecOperationalStatus(INT ethPort, BOOLEAN *pFlag);
 */
 INT platform_hal_StartMACsec(INT ethPort, INT timeoutSec);
 
-/* platform_hal_StopMACsec() function */
 /**
 * @description Stop MACsec - Call should be Blocking.
 *
@@ -1225,8 +1083,6 @@ INT platform_hal_StartMACsec(INT ethPort, INT timeoutSec);
 */
 INT platform_hal_StopMACsec(INT ethPort);
 
-
-/*  platform_hal_GetMemoryPaths() function */
 /**
 * @description Get the device specific processors DRAM and eMMC paths.
 *
@@ -1256,7 +1112,6 @@ INT platform_hal_StopMACsec(INT ethPort);
 * @retval RETURN_ERR if any error is detected.
 *
 * @execution Synchronous.
-* \n @sideeffect None.
 *
 * @note HAL function need to allocate the array of PPLAT_PROC_MEM_INFO and return with ppinfo.
 *
@@ -1274,7 +1129,6 @@ typedef struct dhcp_opt_list {
     struct dhcp_opt_list * next;
 } dhcp_opt_list;
 
-/* platform_hal_GetDhcpv4Options() function*/
 /**
 * @description  This function fills in 2 list, 1 for request option and 1 for send option.
 *
@@ -1310,7 +1164,6 @@ typedef struct dhcp_opt_list {
 */
 INT platform_hal_GetDhcpv4_Options(dhcp_opt_list ** req_opt_list, dhcp_opt_list ** send_opt_list);
 
-/* platform_hal_GetDhcpv6Options() function*/
 /**
 * @description This function fills in 2 list, 1 for request option and 1 for send option.
 *
@@ -1352,7 +1205,6 @@ typedef  enum {
    PSM_NOT_SUPPORTED,
 } PSM_STATE, *PPSM_STATE; // Power Saving Mode State
 
-/* platform_hal_SetLowPowerModeState() function */
 /**
 * @description Set Low Power Mode State value. Hysteresis currently not accounted for before call.
 *
@@ -1363,11 +1215,9 @@ typedef  enum {
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_SetLowPowerModeState(PPSM_STATE pState);
 
-/* platform_hal_getCMTSMac() function */
 /**
 * @description Get CMTS MAC Address.
 *
@@ -1378,7 +1228,6 @@ INT platform_hal_SetLowPowerModeState(PPSM_STATE pState);
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_getCMTSMac(CHAR *pValue);
 
@@ -1410,7 +1259,6 @@ typedef struct DSCP_list {
     DSCP_Element_t DSCP_Element[64];
 } DSCP_list_t, *pDSCP_list_t;
 
-/* platform_hal_setDscp() function */
 /**
 * @description Control/Set traffic counting based on Dscp value.
 *
@@ -1429,7 +1277,6 @@ typedef struct DSCP_list {
 */
 INT platform_hal_setDscp(WAN_INTERFACE interfaceType , TRAFFIC_CNT_COMMAND cmd , char* pDscpVals);
 
-/* platform_hal_resetDscpCounts() function */
 /**
 * @description To reset Dscp Counter values.
 *
@@ -1442,7 +1289,6 @@ INT platform_hal_setDscp(WAN_INTERFACE interfaceType , TRAFFIC_CNT_COMMAND cmd ,
 INT platform_hal_resetDscpCounts(WAN_INTERFACE interfaceType);
 
 
-/* platform_hal_getDscpClientList() function */
 /**
 * @description To get counter data.
 *
@@ -1475,7 +1321,6 @@ INT platform_hal_resetDscpCounts(WAN_INTERFACE interfaceType);
 INT platform_hal_getDscpClientList(WAN_INTERFACE interfaceType , pDSCP_list_t pDSCP_List);
 
 
-/* platform_hal_GetCPUSpeed() function */
 /**
 * @description Get cpu speed.
 *
@@ -1487,7 +1332,6 @@ INT platform_hal_getDscpClientList(WAN_INTERFACE interfaceType , pDSCP_list_t pD
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetCPUSpeed(char *cpuSpeed);
 
@@ -1503,7 +1347,6 @@ typedef  struct _FW_BANK_INFO
 }
 FW_BANK_INFO, *PFW_BANK_INFO;
 
-/* platform_hal_GetFirmwareBankInfo() function */
 /**
 * @description Get firmware image name flashed in the given Bank.
 *
@@ -1525,7 +1368,6 @@ FW_BANK_INFO, *PFW_BANK_INFO;
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetFirmwareBankInfo(FW_BANK bankIndex,PFW_BANK_INFO pFW_Bankinfo);
 
@@ -1537,7 +1379,7 @@ typedef  struct _INTF_STATS
    UINT64_t tx_bytes; /* Bytes sent */
 }
 INTF_STATS, *PINTF_STATS;
-/* platform_hal_GetInterfaceStats() function */
+
 /**
 * @description Get Interface Stats for the given interface,considering only LAN to WAN/WAN to LAN traffic.
 *
@@ -1548,7 +1390,6 @@ INTF_STATS, *PINTF_STATS;
 * @retval RETURN_OK if successful.
 * @retval RETURN_ERR if any error is detected.
 *
-* @sideeffect None.
 */
 INT platform_hal_GetInterfaceStats(const char *ifname,PINTF_STATS pIntfStats);
 
