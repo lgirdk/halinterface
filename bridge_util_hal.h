@@ -114,13 +114,28 @@ enum Config {
 	HOTSPOT_SECURE_5G = 8,
 	MOCA_ISOLATION = 9,
 	MESH_BACKHAUL = 10,
+#if defined (_CBR2_PRODUCT_REQ_)
+        /*
+          Instance 11 is used for public hotspot in cbr device.
+         */
+        HOTSPOT_PUBLIC = 11,
+#else
 	ETH_BACKHAUL = 11,
+#endif
 	MESH = 12,
 	MESH_WIFI_BACKHAUL_2G = 13,
 	MESH_WIFI_BACKHAUL_5G = 14
 #if defined  (WIFI_MANAGE_SUPPORTED)
         ,MANAGE_WIFI_BRIDGE = 17
 #endif /* WIFI_MANAGE_SUPPORTED*/
+#if defined (_CBR2_PRODUCT_REQ_)
+        ,ETH_BACKHAUL = 22
+#endif /*
+            Creating new instance for ethbackhaul in cbr2 device
+            to resolve conflicts in the instance number between
+            public hotspot and ethbackhaul.
+        */
+        ,MAX_VALUE = 25
 };
 
 /**
