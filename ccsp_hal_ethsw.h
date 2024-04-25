@@ -151,7 +151,11 @@
 #elif defined (ETH_5_PORTS)
 #define ETHWAN_DEF_INTF_NUM 4
 #elif defined (ETH_4_PORTS)
+#if defined(_XB10_PRODUCT_REQ_)
+#define ETHWAN_DEF_INTF_NUM 1
+#else
 #define ETHWAN_DEF_INTF_NUM 3
+#endif
 #elif defined (ETH_2_PORTS) && defined (MODEM_ONLY_SUPPORT)
 #define ETHWAN_DEF_INTF_NUM 0 
 #else
