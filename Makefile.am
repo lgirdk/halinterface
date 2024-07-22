@@ -19,8 +19,6 @@
 SUBDIRS = 
 DIST_SUBDIRS = 
 EXTRA_DIST = ccsp_hal_dhcpv4_emu_api.h  \
-             dhcp6cApi.h \
-             dhcpv4c_api.h \
              mso_mgmt_hal.h \
              voice_hal.h \
              wifi_hal.h \
@@ -33,7 +31,6 @@ EXTRA_DIST = ccsp_hal_dhcpv4_emu_api.h  \
              wifi_hal_extender.h \
              wifi_hal_sta.h \
              ccsp_hal_ethsw.h \
-             dhcp4cApi.h \
              Tr69_Tlv.h \
              wifi_hal_emu.h \
              dpoe_hal.h \
