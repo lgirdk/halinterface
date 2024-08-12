@@ -149,7 +149,11 @@
 #if defined (ETH_6_PORTS)
 #define ETHWAN_DEF_INTF_NUM 5
 #elif defined (ETH_5_PORTS)
+#if defined (_SCER11BEL_PRODUCT_REQ_)
+#define ETHWAN_DEF_INTF_NUM 5
+#else
 #define ETHWAN_DEF_INTF_NUM 4
+#endif
 #elif defined (ETH_4_PORTS)
 #if defined(_XB10_PRODUCT_REQ_)
 #define ETHWAN_DEF_INTF_NUM 1
