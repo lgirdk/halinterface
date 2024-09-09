@@ -2503,7 +2503,10 @@ typedef enum {
     wifi_security_key_type_psk,
     wifi_security_key_type_pass,
     wifi_security_key_type_sae,
-    wifi_security_key_type_psk_sae
+    wifi_security_key_type_psk_sae,
+    wifi_security_key_type_saeext,
+    wifi_security_key_type_sae_saeext,
+    wifi_security_key_type_psk_sae_saeext
 } wifi_security_key_type_t;
 
 typedef struct {

@@ -20,6 +20,13 @@
 /**********************************************************************
     Notes:
 
+    What is new for 3.0.6
+
+      1. Added new security types wifi_security_key_type_saeext, wifi_security_key_type_sae_saeext
+         and wifi_security_key_type_psk_sae_saeext to wifi_security_key_type_t structure in
+         wifi_hal_ap.h and wifi_encryption_aes_gcmp256 and wifi_encryption_gcmp256 to
+         wifi_encryption_method_t structure in wifi_hal_generic.h file.
+
     What is new for 3.0.5
 
       1. Added new variables cli_MLDEnable and cli_MLDAddr to wifi_associated_dev3_t structure
@@ -183,10 +190,10 @@ extern "C"{
 #define RESTORE_CNFG_FILE_NAME  "/data/.nvram_restore_cfg.txt"
 #define NVRAM_LINE_MAX       (1024)
 
-//defines for HAL version 3.0.5
+//defines for HAL version 3.0.6
 #define WIFI_HAL_MAJOR_VERSION 3        /**< This is the major verion of this HAL. */
 #define WIFI_HAL_MINOR_VERSION 0        /**< This is the minor verson of the HAL. */
-#define WIFI_HAL_MAINTENANCE_VERSION 5  /**< This is the maintenance version of the HAL. */
+#define WIFI_HAL_MAINTENANCE_VERSION 6  /**< This is the maintenance version of the HAL. */
 #define WIFI_HAL_VERSION (WIFI_HAL_MAJOR_VERSION *1000+ WIFI_HAL_MINOR_VERSION *10+ WIFI_HAL_MAINTENANCE_VERSION)
 
 #define MAX_NUM_TWT_SESSION  50    /**< Maximum number of TWT sessions for an AP (TODO to be defined) */
@@ -275,6 +282,8 @@ typedef enum {
     wifi_encryption_tkip = 1,
     wifi_encryption_aes,
     wifi_encryption_aes_tkip,
+    wifi_encryption_aes_gcmp256,
+    wifi_encryption_gcmp256,
 } wifi_encryption_method_t;
 
 /**
