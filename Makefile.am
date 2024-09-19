@@ -29,7 +29,6 @@ EXTRA_DIST = ccsp_hal_dhcpv4_emu_api.h  \
              wifi_hal_deprecated.h \
              wifi_hal_extender.h \
              wifi_hal_sta.h \
-             ccsp_hal_ethsw.h \
              Tr69_Tlv.h \
              wifi_hal_emu.h \
              dpoe_hal.h \
